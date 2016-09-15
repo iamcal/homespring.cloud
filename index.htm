@@ -1,0 +1,73 @@
+<html>
+<head>
+<script>
+
+var program = 'Hello,.   World ..\n';
+
+var tokens = hs_tokenize(program);
+console.log(tokens);
+
+// tokenizer tests
+// "Hello,.   World ..\n" =>
+// "a b c  d e   f g    h i" => 
+
+
+function hs_tokenize(str){
+	// illegal stuff
+	if (str.indexOf('\t') >= 0){ console.log('illegal program - contains tabs'); return []; }
+	//if (str.indexOf(' . ') >= 0){ console.log('illegal program - contains space-dot-space'); return []; }
+	//if (str.indexOf('. .') >= 0){ console.log('illegal program - contains dot-space-dot'); return []; }
+
+	// tokenizing is super annoying to do via regexp or splits,
+	// so we'll just go linearly through the string producing tokens.
+
+	var tokens = [];
+
+	var chars = str.split('');
+	var next = '';
+	var len = chars.length;
+
+	for (var i=0; i<len; i++){
+		if (chars[i] == ' '){
+			// " ." is a literal period, else this terminates the token
+			if (chars[i+1] == '.'){
+				next += '.';
+				i++;
+			}else{
+				tokens.push(next);
+				next = '';
+			}
+		}else if (chars[i] == '\n'){
+			// \n counts as whitespace, unless it's preceeded by a period
+			// which is handled below
+			tokens.push(next);
+			next = '';
+		}else if (chars[i] == '.'){
+			if (chars[i+1] == ' '){
+				next += ' ';
+				i++;
+			}else if (chars[i+1] == '\n'){
+				next += '\n';
+				tokens.push(next);
+				next = '';
+				i++;
+			}else{
+				console.log('parser error - unexpected period followewd by ' + chars[i+1]);
+				return [];
+			}
+		}else{
+			next += chars[i];
+		}
+	}
+	if (next.length) tokens.push(next);
+
+	return tokens;
+}
+
+</script>
+</head>
+<body>
+
+
+</body>
+</html>
