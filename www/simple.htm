@@ -1,0 +1,125 @@
+<html>
+<head>
+<script>
+
+// http://bunny.xeny.net/linked/Homespring-Proposed-Language-Standard.pdf
+
+window.onload = function(){
+
+	var p_simple = 'Hello,.   World ..\n';
+	var p_tree = 'a b c  d e   f g    h i';
+	var p_helloworld = 'Universe bear hatchery Hello. World!.\n Powers   marshy marshy snowmelt';
+
+	var tokens = hs_tokenize(p_helloworld);
+	var tree = hs_tree(tokens);
+	console.log(tree);
+}
+
+
+var HS = {};
+
+function hs_tree(tokens){
+	if (!tokens.length) return null;
+
+	var c = 1;
+
+	var root = new HS.Node(c++, tokens[0]);
+	var current = root;
+	var nodes = [root];
+
+	for (var i=1; i<tokens.length; i++){
+		if (tokens[i] == ''){
+			current = current.parent;
+			if (!current){
+				console.log('invalid program - traversed beyond start');
+				return null;
+			}
+		}else{
+			var n = new HS.Node(c++, tokens[i], current);
+			nodes.push(n);
+			current = n;
+		}
+	}
+
+	return {
+		'root'	: root,
+		'nodes'	: nodes
+	};
+}
+
+
+// represents a node in the river system
+
+HS.Node = function(uid, name, parent){
+	var self = this;
+	self.uid = uid;
+	self.name = name;
+	self.parent = parent;
+	self.kids = [];
+	if (parent) parent.kids.push(self);
+	return self;
+}
+
+function hs_tokenize(str){
+	// illegal stuff
+	if (str.indexOf('\t') >= 0){ console.log('illegal program - contains tabs'); return []; }
+	//if (str.indexOf(' . ') >= 0){ console.log('illegal program - contains space-dot-space'); return []; }
+	//if (str.indexOf('. .') >= 0){ console.log('illegal program - contains dot-space-dot'); return []; }
+
+	// tokenizing is super annoying to do via regexp or splits,
+	// so we'll just go linearly through the string producing tokens.
+
+	var tokens = [];
+
+	var chars = str.split('');
+	var next = '';
+	var len = chars.length;
+
+	for (var i=0; i<len; i++){
+		if (chars[i] == ' '){
+			// " ." is a literal period, else this terminates the token
+			if (chars[i+1] == '.'){
+				next += '.';
+				i++;
+			}else{
+				tokens.push(next);
+				next = '';
+			}
+		}else if (chars[i] == '\n'){
+			// \n counts as whitespace, unless it's preceeded by a period
+			// which is handled below
+			tokens.push(next);
+			next = '';
+		}else if (chars[i] == '.'){
+			if (chars[i+1] == ' '){
+				next += ' ';
+				i++;
+			}else if (chars[i+1] == '\n'){
+				next += '\n';
+				tokens.push(next);
+				next = '';
+				i++;
+			}else{
+				console.log('parser error - unexpected period followewd by ' + chars[i+1]);
+				return [];
+			}
+		}else{
+			next += chars[i];
+		}
+	}
+	if (next.length) tokens.push(next);
+
+	return tokens;
+}
+
+</script>
+<style>
+
+ 
+</style>
+</head>
+<body>
+
+
+</body>
+</html>
