@@ -10,15 +10,25 @@ window.onload = function(){
 	var p_tree = 'a b c  d e   f g    h i';
 	var p_helloworld = 'Universe bear hatchery Hello. World!.\n Powers   marshy marshy snowmelt';
 
-	var tokens = hs_tokenize(p_helloworld);
-	var tree = hs_tree(tokens);
-	console.log(tree);
+	var p = new HS.Program(p_helloworld);
+
+	console.log(p);
 }
 
 
 var HS = {};
 
-function hs_tree(tokens){
+HS.Program = function(source){
+	var self = this;
+
+	self.tokens = self.tokenize(source);
+	self.tree = self.build_tree(self.tokens);
+
+	return self;
+}
+
+HS.Program.prototype.build_tree = function(tokens){
+
 	if (!tokens.length) return null;
 
 	var c = 1;
@@ -60,7 +70,19 @@ HS.Node = function(uid, name, parent){
 	return self;
 }
 
-function hs_tokenize(str){
+
+// represents a salmon swiming through the river system
+
+HS.Salmon = function(){
+	var self = this;
+	self.name = name;
+	self.age = null;
+	self.direction = null;
+	return self;
+}
+
+
+HS.Program.prototype.tokenize = function(str){
 	// illegal stuff
 	if (str.indexOf('\t') >= 0){ console.log('illegal program - contains tabs'); return []; }
 	//if (str.indexOf(' . ') >= 0){ console.log('illegal program - contains space-dot-space'); return []; }
