@@ -4,13 +4,15 @@
 
 // http://bunny.xeny.net/linked/Homespring-Proposed-Language-Standard.pdf
 
+var p;
+
 window.onload = function(){
 
 	var p_simple = 'Hello,.   World ..\n';
 	var p_tree = 'a b c  d e   f g    h i';
-	var p_helloworld = 'Universe bear hatchery Hello. World!.\n Powers   marshy marshy snowmelt';
+	var p_helloworld = 'universe bear hatchery Hello. World!.\n Powers   marshy marshy snowmelt';
 
-	var p = new HS.Program(p_helloworld);
+	p = new HS.Program(p_helloworld);
 
 	console.log(p);
 }
@@ -23,6 +25,9 @@ HS.Program = function(source){
 
 	self.tokens = self.tokenize(source);
 	self.tree = self.build_tree(self.tokens);
+
+	self.tickNum = 0;
+	self.endThisTick = false;
 
 	return self;
 }
@@ -67,6 +72,14 @@ HS.Node = function(uid, name, parent){
 	self.parent = parent;
 	self.kids = [];
 	if (parent) parent.kids.push(self);
+
+	// general node state
+	self.is_snowy = null;
+
+	// special node flags
+	self.prev_snow = false; // used by "marshy"
+	self.was_bridge = false; // used by "bridge"
+
 	return self;
 }
 
@@ -133,6 +146,153 @@ HS.Program.prototype.tokenize = function(str){
 
 	return tokens;
 }
+
+HS.Program.prototype.tick = function(){
+	var self = this;
+	self.tickNum++;
+	self.snowTick();
+	self.waterTick();
+	self.powerTick();
+	self.fishTick();
+	self.miscTick();
+	self.inputTick();
+}
+
+HS.Program.prototype.snowTick = function(){
+	var self = this;
+	console.log('starting snow tick #'+self.tickNum);
+
+	// In the snow tick, the snow state of each node is updated. A node becomes snowy
+	// if it is not currently blocking snowmelts and if one of its children is snowy. The
+	// snow tick is propagated in a post-order fashion.
+
+	// Certain nodes will be destroyed when snowmelt reaches them. A node that
+	// is destroyed loses its abilities and its name (its name becomes "").
+
+	var destroyed_by_snowmelt = {
+		"hydro power"	: 1,
+		"universe"	: 1,
+		"oblivion"	: 1,
+		"power invert"	: 1,
+		"bridge"	: 1
+	};
+
+	for (var i=self.tree.nodes.length-1; i>=0; i--){
+		var n = self.tree.nodes[i];
+
+		// special case - snowmelt starts the snow every tick
+		if (n.name == 'snowmelt'){
+			n.is_snowy = true;
+			continue;
+		}
+
+		// do any of the children of this node have snow?
+		var has_snowy_children = false;
+		for (var j=0; j<n.kids.length; j++){
+			if (n.kids[j].is_snowy){
+				has_snowy_children = true;
+				break;
+			}
+		}
+
+		// special case - marshy propogates its previous state
+		if (n.name == 'marshy'){
+			n.is_snowy = n.prev_snow;
+			n.prev_snow = has_snowy_children;
+			continue;
+		}
+
+
+		// if none of the children are snowy, we can't be snowy
+		if (!has_snowy_children){
+			n.is_snowy = false;
+			continue;
+		}
+
+		// at least one child is snowy, determine if this node is
+		// currently blocking snowmelt
+
+		if (n.name == 'force field' || n.name == 'evaporates' || n.name == 'lock'){
+			if (n.is_powered){
+				n.is_snowy = false;
+				continue;
+			}
+		}
+
+		if (n.name == 'inverse lock'){
+			if (!n.is_powered){
+				n.is_snowy = false;
+				continue;
+			}
+		}
+
+		if (n.name == '' && n.was_bridge){
+			n.is_snowy = false;
+			continue;
+		}
+
+
+		// snowmelt spreads
+
+		n.is_snowy = true;		
+
+		if (n.name == 'universe'){
+			self.endThisTick = true;
+		}
+
+		if (n.name == 'bridge'){
+			n.was_bridge = true;
+		}
+
+		if (destroyed_by_snowmelt[n.name]){
+			n.name = '';
+		}
+	}
+}
+
+HS.Program.prototype.waterTick = function(){
+	var self = this;
+	console.log('starting water tick #'+self.tickNum);
+}
+
+HS.Program.prototype.powerTick = function(){
+	var self = this;
+	console.log('starting power tick #'+self.tickNum);
+}
+
+HS.Program.prototype.fishTick = function(){
+	var self = this;
+	console.log('starting fish tick #'+self.tickNum);
+}
+
+HS.Program.prototype.miscTick = function(){
+	var self = this;
+	console.log('starting misc tick #'+self.tickNum);
+
+	if (self.endThisTick){
+		console.log('program exits!');
+	}
+}
+
+HS.Program.prototype.inputTick = function(){
+	var self = this;
+	console.log('starting input tick #'+self.tickNum);
+}
+
+HS.Program.prototype.tickD = function(){
+	var self = this;
+	self.tick();
+
+	for (var i=0; i<self.tree.nodes.length; i++){
+		var n = self.tree.nodes[i];
+		if (n.name == 'marshy'){
+			console.log(n.name+' -> '+(n.is_snowy ? 'YES' : '-')+(n.prev_snow ? ' / (YES)' : ' / (-)'));
+		}else{
+			console.log(n.name+' -> '+(n.is_snowy ? 'YES' : '-'));
+		}
+	}
+}
+
 
 </script>
 <style>
