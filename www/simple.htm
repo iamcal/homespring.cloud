@@ -13,6 +13,7 @@ window.onload = function(){
 	var p_helloworld = 'Universe bear hatchery Hello. World!.\n Powers   marshy marshy snowmelt';
 
 	p = new HS.Program(p_helloworld);
+	p.tick();
 
 	console.log(p);
 }
@@ -126,6 +127,7 @@ HS.Node = function(uid, name, parent){
 	// general node state
 	self.is_snowy = null;
 	self.is_watered = null;
+	self.generates_power = null;
 
 	// special node flags
 	self.prev_snow = false; // used by "marshy"
@@ -138,6 +140,116 @@ HS.Node.prototype.isSpring = function(){
 	var self = this;
 
 	return HS.Program.prototype.reservedList[self.name.toLowerCase()] ? false : true;
+}
+
+HS.Node.prototype.isPowered = function(){
+	var self = this;
+
+	// to determine is a node is powered:
+	// 1) does it generate power? return true
+	// 2) does it block power? return false
+	// 3) check children - if a child has isPowered()=true, return true
+	// 4) return false
+
+	if (self.generates_power) return true;
+
+	var name = self.name.toLowerCase();
+
+
+	// check for blocking power
+
+	if (name == 'insulated'){
+		return false;
+	}
+
+	if (name == 'upstream sense'){
+		if (self.hasMatureUpstreamSalmon()){
+			return false;
+		}
+	}
+
+	if (name == 'downstream sense'){
+		if (self.hasMatureDownstreamSalmon()){
+			return false;
+		}
+	}
+
+
+	if (name == 'sense'){
+		if (self.hasMatureSalmon()){
+			return false;
+		}
+	}
+
+	if (name == 'young sense'){
+		if (self.hasYoungSalmon()){
+			return false;
+		}
+	}
+
+
+	if (name == 'range sense'){
+		if (self.hasMatureSalmon() || self.hasMatureSalmonUpstream()){
+			return false;
+		}
+	}
+
+	if (name == 'young range sense'){
+		if (self.hasYoungSalmon() || self.hasYoungSalmonUpstream()){
+			return false;
+		}
+	}
+
+
+	if (name == 'switch'){
+		if (!self.hasMatureSalmon()){
+			return false;
+		}
+	}
+	
+	if (name == 'young switch'){
+		if (!self.hasYoungSalmon()){
+			return false;
+		}
+	}
+
+
+	if (name == 'range switch'){
+		if (!self.hasMatureSalmon() && !self.hasMatureSalmonUpstream()){
+			return false;
+		}
+	}
+
+	if (name == 'young range switch'){
+		if (!self.hasYoungSalmon() && !self.hasYoungSalmonUpstream()){
+			return false;
+		}
+	}
+
+
+	// power invert is a special case
+
+	if (name == 'power invert'){
+
+		for (var i=0; i<self.kids; i++){
+			if (self.kids[i].isPowered()){
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+
+	// now check children	
+
+	for (var i=0; i<self.kids.length; i++){
+		if (self.kids[i].isPowered()){
+			return true;
+		}
+	}
+
+	return false;
 }
 
 
@@ -363,11 +475,32 @@ HS.Program.prototype.waterTick = function(){
 HS.Program.prototype.powerTick = function(){
 	var self = this;
 	console.log('starting power tick #'+self.tickNum);
+
+	for (var i=0; i<self.tree.nodes.length; i++){
+		var n = self.tree.nodes[i];
+		var name = n.name.toLowerCase();
+
+		n.generates_power = false;
+
+		if (name == 'hydro power'){
+			if (n.is_watered){
+				n.generates_power = true;
+			}
+			continue;
+		}
+
+		if (name == 'powers'){
+			n.generates_power = true;
+			continue;
+		}
+	}
 }
 
 HS.Program.prototype.fishTick = function(){
 	var self = this;
 	console.log('starting fish tick #'+self.tickNum);
+
+	// TODO
 }
 
 HS.Program.prototype.miscTick = function(){
@@ -377,11 +510,15 @@ HS.Program.prototype.miscTick = function(){
 	if (self.endThisTick){
 		console.log('program exits!');
 	}
+
+	// TODO
 }
 
 HS.Program.prototype.inputTick = function(){
 	var self = this;
 	console.log('starting input tick #'+self.tickNum);
+
+	// TODO
 }
 
 HS.Program.prototype.tickSnow = function(){
