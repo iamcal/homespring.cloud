@@ -1,0 +1,3 @@
+[submodule "www/homespring.js"]
+	path = www/homespring.js
+	url = git@github.com:iamcal/homespring.js.git
