@@ -1,0 +1,174 @@
+<html>
+<head>
+<script src="homespring.js/lib/homespring.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/2.6.1/svg.min.js"></script>
+<script>
+
+var p;
+var draw;
+
+var max_depth = 1; // how wide is the river system
+var max_height = 1; // how high is the river system
+
+var x_gap = 0;
+var x_size = 0;
+var y_gap = 0;
+var y_size = 0;
+var node_size = 0;
+var node_half = 0;
+
+window.onload = function(){
+
+	draw = SVG('drawing');
+
+	var p_simple = 'Hello,.   World ..\n';
+	var p_tree = 'a b c  d e   f g    h i';
+	var p_helloworld = 'Universe bear hatchery Hello. World!.\n Powers   marshy marshy snowmelt';
+
+	set_source(p_helloworld)
+}
+
+function crazy(){
+	set_source('Universe marshy now. The marshy stuff evaporates downstream. Sense rapids\nupstream. Killing. Device downstream. Sense shallows and say Hi,. \n   That powers the     force. Field sense shallows hatchery power.\nHi .. What\'s. your. name?. \n  Hydro. Power spring  when snowmelt then       powers\n    insulated bear hatchery !.\n Powers felt;       powers feel     snowmelt themselves. ');
+}
+
+function set_source(source){
+
+	p = new HS.Program(source);
+
+	rebuild_tree();
+}
+
+function get_depth(node){
+	if (node.parent) return get_depth(node.parent)+1;
+	return 1;
+}
+
+function rebuild_tree(){
+
+	// calculate how many grid boxes we need
+
+	max_depth = 1;
+	var depths = {};
+	var nodes = {};
+
+	for (var i=0; i<p.nodes.length; i++){
+		var d = get_depth(p.nodes[i]);
+
+		depths[d] = 1 + (depths[d] || 0);
+
+		if (!nodes[d]) nodes[d] = [];
+		nodes[d].push(p.nodes[i]);
+
+		max_depth = Math.max(max_depth, d);
+	}
+
+	max_height = 1;
+	for (var i in depths) max_height = Math.max(max_height, depths[i]);
+
+
+	// layout nodes into grid boxes
+	// do this badly for now
+	for (var x in nodes){
+		for (var y=0; y<nodes[x].length; y++){
+			nodes[x][y].pos_x = parseInt(x)-1;
+			nodes[x][y].pos_y = y;
+		}
+	}
+
+	//console.log(max_depth, max_height);
+	//console.log(nodes);
+
+	redraw_tree();
+}
+
+function redraw_tree(){
+
+	draw.clear();
+
+	canvas_width = document.documentElement.clientWidth;
+	canvas_height = document.documentElement.clientHeight-1;
+
+	var units_wide = 1 + (11 * max_depth);
+	var unit_width = Math.floor(canvas_width / units_wide);
+	x_gap = unit_width;
+	x_size = unit_width * 10;
+
+	var units_high = 1 + (6 * max_height);
+	var unit_height = Math.floor(canvas_height / units_high);
+	y_gap = unit_height;
+	y_size = unit_height * 5;
+
+	node_size = Math.min(x_gap, y_gap);
+	node_half = node_size / 2;
+
+
+	//
+	// draw the layout boxes
+	//
+
+	draw.size(canvas_width, canvas_height);
+
+	for (var x=0; x<max_depth; x++){
+	for (var y=0; y<max_height; y++){
+
+		var r = draw.rect(x_size, y_size).move(x_gap + (x * (x_gap + x_size)), y_gap + (y * (y_gap + y_size))).attr({ fill: '#eef' });
+	}
+	}
+
+
+	//
+	// calculate node positions
+	//
+
+	for (var i=0; i<p.nodes.length; i++){
+
+		p.nodes[i].px = x_gap + (p.nodes[i].pos_x * (x_gap + x_size)) + (x_size / 2);
+		p.nodes[i].py = y_gap + (p.nodes[i].pos_y * (y_gap + y_size)) + (y_size / 2);
+	}
+
+
+	//
+	// draw lines first so they're at the back
+	//
+
+	for (var i=0; i<p.nodes.length; i++){
+
+		var n = p.nodes[i];
+
+		if (n.parent){
+
+			var l = draw.line(n.px+node_half, n.py+node_half, n.parent.px+node_half, n.parent.py+node_half).stroke({ width: 1 });
+		}
+	}
+
+
+	//
+	// draw the nodes
+	//
+
+	for (var i=0; i<p.nodes.length; i++){
+
+		var n = p.nodes[i];
+
+		var c = draw.circle(node_size).move(n.px, n.py).attr({ fill: '#0f0' });
+		var t = draw.text(n.name).move(n.px + node_size, n.py).font({ fill: '#f06', family: 'Inconsolata' });
+	}
+}
+
+
+</script>
+<style>
+
+body {
+	margin: 0;
+}
+ 
+</style>
+</head>
+<body>
+
+<div id="drawing"></div>
+
+</body>
+</html>
