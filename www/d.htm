@@ -19,6 +19,8 @@ var node_half = 0;
 var offset_x = 0;
 var offset_y = 0;
 
+var running = false;
+
 window.onload = function(){
 
 	draw = SVG('drawing');
@@ -38,6 +40,10 @@ function set_source(source){
 
 	p = new HS.Program(source);
 	p.prev_salmon = [];
+
+	p.onOutput = function(str){
+		console.log("OUT: "+str);
+	};
 
 	rebuild_tree();
 }
@@ -211,8 +217,26 @@ function update_state(){
 }
 
 function step(){
+
 	p.tick();
 	update_state();
+}
+
+function start(){
+
+	running = true;
+	var int = null;
+
+	int = setInterval(function(){
+		step();
+		if (!running){
+			clearInterval(int);
+		}
+	}, 200);
+}
+
+function stop(){
+	running = false;
 }
 
 
@@ -240,6 +264,8 @@ body {
 
 <div id="controls">
 	<a href="#" onclick="step(); return false;">step</a>
+	<a href="#" onclick="start(); return false;">start</a>
+	<a href="#" onclick="stop(); return false;">stop</a>
 </div>
 
 </body>
