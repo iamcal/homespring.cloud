@@ -16,6 +16,8 @@ var y_gap = 0;
 var y_size = 0;
 var node_size = 0;
 var node_half = 0;
+var offset_x = 0;
+var offset_y = 0;
 
 window.onload = function(){
 
@@ -103,6 +105,9 @@ function redraw_tree(){
 	node_size = Math.min(x_gap, y_gap);
 	node_half = node_size / 2;
 
+	offset_x = Math.round((canvas_width  - (units_wide * x_gap)) / 2);
+	offset_y = Math.round((canvas_height - (units_high * y_gap)) / 2);
+
 
 	//
 	// draw the layout boxes
@@ -113,7 +118,7 @@ function redraw_tree(){
 	for (var x=0; x<max_depth; x++){
 	for (var y=0; y<max_height; y++){
 
-		var r = draw.rect(x_size, y_size).move(x_gap + (x * (x_gap + x_size)), y_gap + (y * (y_gap + y_size))).attr({ fill: '#eef' });
+		var r = draw.rect(x_size, y_size).move(offset_x + x_gap + (x * (x_gap + x_size)), offset_y + y_gap + (y * (y_gap + y_size))).attr({ fill: '#eef' });
 	}
 	}
 
@@ -124,8 +129,8 @@ function redraw_tree(){
 
 	for (var i=0; i<p.nodes.length; i++){
 
-		p.nodes[i].px = x_gap + (p.nodes[i].pos_x * (x_gap + x_size)) + (x_size / 2);
-		p.nodes[i].py = y_gap + (p.nodes[i].pos_y * (y_gap + y_size)) + (y_size / 2);
+		p.nodes[i].px = offset_x + x_gap + (p.nodes[i].pos_x * (x_gap + x_size)) + (x_size / 2);
+		p.nodes[i].py = offset_y + y_gap + (p.nodes[i].pos_y * (y_gap + y_size)) + (y_size / 2);
 	}
 
 
