@@ -33,7 +33,9 @@ window.onload = function(){
 }
 
 window.onresize = function(){
-	rebuild_tree();	
+
+	calculate_sizing();
+	redraw_tree();	
 }
 
 function crazy(){
@@ -49,7 +51,8 @@ function set_source(source){
 		console.log("OUT: "+str);
 	};
 
-	rebuild_tree();
+	layout_tree(); // figure out which nodes go in which box
+	redraw_tree(); // draw first state
 }
 
 function get_depth(node){
@@ -57,7 +60,41 @@ function get_depth(node){
 	return 1;
 }
 
-function rebuild_tree(){
+
+// given the number of grid boxes required for the current program,
+// decide how big each one can be. always runs _after_ `layout_tree()`.
+
+function calculate_sizing(){
+
+	// calculate size of grid boxes
+	// this gets called after a new program has had layout_tree() called, or after the window resizes
+
+	canvas_width = document.documentElement.clientWidth;
+	canvas_height = document.documentElement.clientHeight-100;
+
+	var units_wide = 1 + (11 * max_depth);
+	var unit_width = Math.floor(canvas_width / units_wide);
+	x_gap = unit_width;
+	x_size = unit_width * 10;
+
+	var units_high = 1 + (6 * max_height);
+	var unit_height = Math.floor(canvas_height / units_high);
+	y_gap = unit_height;
+	y_size = unit_height * 5;
+
+	node_size = Math.min(x_gap, y_gap);
+	node_half = node_size / 2;
+
+	offset_x = Math.round((canvas_width  - (units_wide * x_gap)) / 2);
+	offset_y = Math.round((canvas_height - (units_high * y_gap)) / 2);
+}
+
+
+// figure out how many grid boxes we need and which node
+// goes into which box. this happens after the program is
+// parsed and is independant of canvas size.
+
+function layout_tree(){
 
 	// calculate how many grid boxes we need
 
@@ -79,7 +116,6 @@ function rebuild_tree(){
 	max_height = 1;
 	for (var i in depths) max_height = Math.max(max_height, depths[i]);
 
-
 	// layout nodes into grid boxes
 	// do this badly for now
 	for (var x in nodes){
@@ -92,31 +128,20 @@ function rebuild_tree(){
 	//console.log(max_depth, max_height);
 	//console.log(nodes);
 
-	redraw_tree();
+	calculate_sizing();
 }
+
+
+// we have layout and sizing information - create and position the river system (but no salmon!)
 
 function redraw_tree(){
 
+	// remove salmon nodes from program
+	p.preOrderSalmon(function(n, s){
+		delete s.node;
+	});
+
 	draw.clear();
-
-	canvas_width = document.documentElement.clientWidth;
-	canvas_height = document.documentElement.clientHeight-100;
-
-	var units_wide = 1 + (11 * max_depth);
-	var unit_width = Math.floor(canvas_width / units_wide);
-	x_gap = unit_width;
-	x_size = unit_width * 10;
-
-	var units_high = 1 + (6 * max_height);
-	var unit_height = Math.floor(canvas_height / units_high);
-	y_gap = unit_height;
-	y_size = unit_height * 5;
-
-	node_size = Math.min(x_gap, y_gap);
-	node_half = node_size / 2;
-
-	offset_x = Math.round((canvas_width  - (units_wide * x_gap)) / 2);
-	offset_y = Math.round((canvas_height - (units_high * y_gap)) / 2);
 
 
 	//
@@ -170,7 +195,12 @@ function redraw_tree(){
 		n.node_c = draw.circle(node_size).move(n.px, n.py).attr({ fill: '#0f0' });
 		n.node_t = draw.text(n.name).move(n.px + node_size, n.py).font({ fill: '#f06', family: 'Inconsolata' });
 	}
+
+	update_state();
 }
+
+
+// update node state and add/update/remove salmon
 
 function update_state(){
 
@@ -219,6 +249,9 @@ function update_state(){
 		}
 	});
 }
+
+
+// flow control
 
 function step(){
 
