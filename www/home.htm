@@ -614,6 +614,7 @@ function snapshotSalmon(){
 function nodeColor(node){
 	if (node.is_destroyed) return '#585b70';
 	if (node.generates_power) return '#f9e2af';
+	if (node.isPowered()) return '#f9e2af';
 	if (node.is_watered) return '#89b4fa';
 	if (node.is_snowy) return '#cdd6f4';
 	return '#a6e3a1';
@@ -725,16 +726,17 @@ function updateNodeVisuals(){
 		n.svgLabel.setAttribute('fill', node.is_destroyed ? '#585b70' : '#cdd6f4');
 
 		var flags = [];
-		if (node.is_destroyed) flags.push('destroyed');
-		if (node.generates_power) flags.push('power');
-		if (node.is_watered) flags.push('water');
-		if (node.is_snowy) flags.push('snow');
-		n.svgStateLabel.textContent = flags.join(' ');
+		if (node.is_destroyed) flags.push('\uD83D\uDCA5');
+		if (node.isPowered()) flags.push('\u26A1');
+		if (node.is_watered) flags.push('\uD83D\uDCA7');
+		if (node.is_snowy) flags.push('\u2744\uFE0F');
+		n.svgStateLabel.textContent = flags.join('');
 
 		var tipLines = ['Node: ' + (node.name || '(unnamed)')];
 		tipLines.push('Type: ' + (node.lname || node.name || 'unknown'));
 		if (node.is_destroyed) tipLines.push('State: Destroyed');
 		if (node.generates_power) tipLines.push('Power: Generating');
+		if (node.isPowered() && !node.generates_power) tipLines.push('Powered: Yes');
 		if (node.is_watered) tipLines.push('Watered: Yes');
 		if (node.is_snowy) tipLines.push('Snowy: Yes');
 		tipLines.push('Children: ' + node.kids.length);
