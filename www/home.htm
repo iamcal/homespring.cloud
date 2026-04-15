@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>homespring.cloud</title>
-<script src="homespring.js/lib/homespring.js"></script>
+<script src="homespring.js/lib/homespring.js?v=2"></script>
 <style>
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -334,6 +334,61 @@ html, body {
 </div>
 
 <script>
+
+// ---- Node descriptions from the Homespring Proposed Language Standard (2005) ----
+
+var NODE_DESCRIPTIONS = {
+	'hatchery':                'When powered, creates a mature, upstream salmon named \u201Chomeless\u201D. Operates during the fish tick hatch step.',
+	'hydro_power':             'Creates electricity when watered. Can be destroyed by snowmelt.',
+	'snowmelt':                'Creates a snowmelt at the end of each snow tick.',
+	'shallows':                'Mature salmon take two turns to pass through.',
+	'rapids':                  'Young salmon take two turns to pass through.',
+	'append_down':             'For each downstream salmon that did not arrive from the first child, destroy that salmon and append its name to each downstream salmon that did arrive from the first child.',
+	'bear':                    'Eats mature salmon.',
+	'force_field':             'Blocks water, snowmelt and salmon when powered.',
+	'sense':                   'Blocks electricity when mature salmon are present.',
+	'clone':                   'For each salmon, create a young, downstream salmon with the same name.',
+	'young_bear':              'Eats every other mature salmon (the first mature salmon gets eaten, the second one doesn\u2019t, etc.). Young salmon are moved to the beginning of the list because they don\u2019t have to take the time to evade the bear.',
+	'bird':                    'Eats young salmon.',
+	'upstream_killing_device': 'When powered and if it contains more than one child, kills all the salmon in the last child.',
+	'waterfall':               'Blocks upstream salmon.',
+	'universe':                'If destroyed by a snowmelt, the program terminates. The program is terminated in the miscellaneous tick following the snow tick in which the Universe is destroyed.',
+	'powers':                  'Generates power.',
+	'marshy':                  'Snowmelts take two turns to pass through.',
+	'insulated':               'Blocks power.',
+	'upstream_sense':          'Blocks the flow of electricity when upstream, mature salmon are present.',
+	'downstream_sense':        'Blocks the flow of electricity when downstream, mature salmon are present.',
+	'evaporates':              'Blocks water and snowmelt when powered.',
+	'youth_fountain':          'Makes all salmon young.',
+	'oblivion':                'When powered, changes the name of each salmon to \u201C\u201D. Can be destroyed by snowmelt.',
+	'pump':                    'Very blocks salmon unless powered.',
+	'range_sense':             'Blocks electricity when mature salmon are here or upstream.',
+	'fear':                    'Very blocks salmon when powered.',
+	'reverse_up':              'For each downstream salmon that arrived from the second child, move it to the first child unless it is prevented from moving there.',
+	'reverse_down':            'For each downstream salmon that arrived from the first child, move it to the second child unless it is prevented from moving there.',
+	'time':                    'Makes all salmon mature.',
+	'lock':                    'Very blocks downstream salmon and blocks snowmelt when powered.',
+	'inverse_lock':            'Very blocks downstream salmon and blocks snowmelt when not powered.',
+	'young_sense':             'Blocks electricity when young salmon are present.',
+	'switch':                  'Blocks electricity unless mature salmon are present.',
+	'young_switch':            'Blocks electricity unless young salmon are present.',
+	'narrows':                 'Very blocks salmon if another salmon is present.',
+	'append_up':               'For each downstream salmon that did not arrive from the first child, destroy that salmon and append its name to each upstream salmon.',
+	'young_range_sense':       'Blocks electricity when young salmon are here or upstream.',
+	'net':                     'Very blocks mature salmon.',
+	'force_down':              'For each downstream salmon that arrived from the first child, move it to the second child unless it is prevented from moving there.\nAlso blocks upstream salmon from moving to the last child.',
+	'force_up':                'For each downstream salmon that arrived from the second child, move it to the first child unless it is prevented from moving there.\nAlso blocks upstream salmon from moving to the first child.',
+	'spawn':                   'When powered, makes all salmon upstream spawn.',
+	'power_invert':            'This node is powered if and only if none of its children are powered. Can be destroyed by snowmelt.',
+	'current':                 'Very blocks young salmon.',
+	'bridge':                  'If destroyed by snowmelt, blocks snowmelt and water and very blocks salmon.',
+	'split':                   'Splits each salmon into a new salmon for each letter in the original salmon\u2019s name. The original salmon are destroyed.',
+	'range_switch':            'Blocks electricity unless mature salmon are here or upstream.',
+	'young_range_switch':      'Blocks electricity unless young salmon are here or upstream.'
+};
+
+// Spring description verbatim from section 5 of the spec
+var SPRING_DESCRIPTION = 'The name of the node determines its behaviour; a list of reserved names is in section 7.2.\nEvery node whose name is not a reserved name is a spring: it creates water.';
 
 // ---- State ----
 
@@ -733,7 +788,10 @@ function updateNodeVisuals(){
 		n.svgStateLabel.textContent = flags.join('');
 
 		var tipLines = ['Node: ' + (node.name || '(unnamed)')];
-		tipLines.push('Type: ' + (node.lname || node.name || 'unknown'));
+		var nodeType = node.lname || node.name || 'unknown';
+		tipLines.push('Type: ' + nodeType);
+		var desc = NODE_DESCRIPTIONS[nodeType.replace(/ /g, '_')] || SPRING_DESCRIPTION;
+		tipLines.push(desc);
 		if (node.is_destroyed) tipLines.push('State: Destroyed');
 		if (node.generates_power) tipLines.push('Power: Generating');
 		if (node.isPowered() && !node.generates_power) tipLines.push('Powered: Yes');
