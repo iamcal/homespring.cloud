@@ -265,6 +265,15 @@ html, body {
 	pointer-events: none;
 }
 
+.salmon-node.dying rect {
+	fill: #f38ba8 !important;
+	opacity: 0.5 !important;
+}
+
+.salmon-node.dying text {
+	fill: #f38ba8 !important;
+}
+
 </style>
 </head>
 <body>
@@ -332,12 +341,14 @@ var program = null;
 var running = false;
 var runInterval = null;
 var ANIM_DURATION = 350; // ms for salmon travel animation
-var TICK_INTERVAL = 500; // ms between ticks when playing (must be > ANIM_DURATION)
+var DEATH_DURATION = 200; // ms for death flash+fade
 
 // ---- Persistent layout state ----
 
 var layoutData = null;   // { nodeList, nodeMap, maxDepth, depthCounts, W, H }
 var prevSalmonPos = {};  // salmonUid -> nodeUid (where each salmon was last tick)
+var prevSalmonState = {}; // salmonUid -> { name, age, direction }
+var animating = false;   // true while animation phases are running
 
 // ---- SVG layer groups (persistent across ticks) ----
 
@@ -374,7 +385,7 @@ function createProgram(){
 		return;
 	}
 
-	program.input = inputArea.value;
+	program.input = inputArea.value || null;
 
 	program.onOutput = function(str){
 		outputLog.textContent += str;
@@ -382,7 +393,7 @@ function createProgram(){
 
 	computeLayout();
 	renderTree();
-	renderSalmon(false);
+	renderSalmonStatic();
 	updateTickDisplay();
 }
 
@@ -391,17 +402,26 @@ function resetProgram(){
 	createProgram();
 }
 
-function doTick(){
-	if (!program || program.terminated) return;
-	program.input = inputArea.value;
+function doTick(onComplete){
+	if (!program || program.terminated || animating) return;
+	if (inputArea.value){
+		program.input = inputArea.value;
+		inputArea.value = '';
+	}
 
-	// snapshot salmon positions before tick
 	snapshotSalmon();
-
 	program.tick();
 	updateNodeVisuals();
-	renderSalmon(true);
 	updateTickDisplay();
+
+	animating = true;
+	btnStep.disabled = true;
+
+	renderSalmonAnimated(function(){
+		animating = false;
+		if (!running) btnStep.disabled = false;
+		if (onComplete) onComplete();
+	});
 }
 
 function stepProgram(){
@@ -417,13 +437,16 @@ function startRunning(){
 	btnStep.disabled = true;
 	srcEditor.disabled = true;
 
-	runInterval = setInterval(function(){
-		if (!program || program.terminated){
+	function playTick(){
+		if (!running || !program || program.terminated){
 			stopRunning();
 			return;
 		}
-		doTick();
-	}, TICK_INTERVAL);
+		doTick(function(){
+			if (running) runInterval = setTimeout(playTick, 100);
+		});
+	}
+	playTick();
 }
 
 function stopRunning(){
@@ -564,15 +587,22 @@ function pointOnEdge(parentInfo, childInfo, t, upstream){
 	};
 }
 
-// ---- Snapshot salmon positions before tick ----
+// ---- Snapshot salmon state before tick ----
 
 function snapshotSalmon(){
 	prevSalmonPos = {};
+	prevSalmonState = {};
 	if (!program) return;
 	for (var i = 0; i < program.nodes.length; i++){
 		var node = program.nodes[i];
 		for (var s = 0; s < node.salmon.length; s++){
-			prevSalmonPos[node.salmon[s].uid] = node.uid;
+			var sal = node.salmon[s];
+			prevSalmonPos[sal.uid] = node.uid;
+			prevSalmonState[sal.uid] = {
+				name: sal.name,
+				age: sal.age,
+				direction: sal.direction
+			};
 		}
 	}
 }
@@ -711,13 +741,13 @@ function updateNodeVisuals(){
 	}
 }
 
-// ---- Salmon rendering with animation ----
+// ---- Salmon rendering with event-driven animation ----
 
-function makeSalmonEl(sal, nodeInfo, index){
-	var isUpstream = sal.direction === HS.const.UPSTREAM;
-	var isYoung = sal.age === HS.const.YOUNG;
+function makeSalmonEl(name, age, direction, nodeName){
+	var isUpstream = direction === HS.const.UPSTREAM;
+	var isYoung = age === HS.const.YOUNG;
 	var salColor = isUpstream ? '#fab387' : '#89b4fa';
-	var dirArrow = isUpstream ? '\u2190' : '\u2192';
+	var dirArrow = isUpstream ? '\u2192' : '\u2190';
 
 	var sg = svgEl('g', { 'class': 'salmon-node' });
 
@@ -733,26 +763,23 @@ function makeSalmonEl(sal, nodeInfo, index){
 		'fill': salColor,
 		'font-weight': isYoung ? 'normal' : 'bold'
 	});
-	sLabel.textContent = dirArrow + ' ' + sal.name;
+	sLabel.textContent = dirArrow + ' ' + name;
 	sg.appendChild(sLabel);
 
 	var salTip = svgEl('title');
 	salTip.textContent = [
-		'Name: ' + sal.name,
+		'Name: ' + name,
 		'Age: ' + (isYoung ? 'Young' : 'Mature'),
 		'Direction: ' + (isUpstream ? 'Upstream' : 'Downstream'),
-		'At node: ' + (nodeInfo.node.name || '(unnamed)')
+		'At node: ' + (nodeName || '(unnamed)')
 	].join('\n');
 	sg.appendChild(salTip);
 
-	// need to measure text - temporarily add to DOM
+	// measure text
 	salmonGroup.appendChild(sg);
 	var bbox = sLabel.getBBox();
 	rect.setAttribute('width', bbox.width + 8);
 	salmonGroup.removeChild(sg);
-
-	sg._rect = rect;
-	sg._label = sLabel;
 
 	return sg;
 }
@@ -761,143 +788,230 @@ function salmonRestPos(nodeInfo, index){
 	return { x: nodeInfo.x + 20, y: nodeInfo.y + 6 + (index * 18) };
 }
 
-function renderSalmon(animate){
+// Render salmon at their final (post-tick) positions, no animation
+function renderSalmonStatic(){
 	if (!salmonGroup || !layoutData) return;
-
-	// clear old salmon
 	while (salmonGroup.firstChild) salmonGroup.removeChild(salmonGroup.firstChild);
 
 	var ld = layoutData;
-	var animations = [];
-
 	for (var i = 0; i < ld.nodeList.length; i++){
 		var nInfo = ld.nodeList[i];
 		var node = nInfo.node;
 		if (!node.salmon || !node.salmon.length) continue;
-
 		for (var s = 0; s < node.salmon.length; s++){
 			var sal = node.salmon[s];
-			var sg = makeSalmonEl(sal, nInfo, s);
-			var destPos = salmonRestPos(nInfo, s);
-
-			var prevNodeUid = prevSalmonPos[sal.uid];
-			var moved = animate && prevNodeUid !== undefined && prevNodeUid !== node.uid;
-
-			if (moved){
-				// find the edge this salmon traveled along
-				var prevInfo = ld.nodeMap[prevNodeUid];
-				if (prevInfo){
-					var anim = buildAnimation(sg, sal, prevInfo, nInfo, destPos);
-					if (anim){
-						animations.push(anim);
-						continue; // animation will add the element
-					}
-				}
-			}
-
-			// no animation — place at rest position
-			sg.setAttribute('transform', 'translate(' + destPos.x + ',' + destPos.y + ')');
+			var sg = makeSalmonEl(sal.name, sal.age, sal.direction, node.name);
+			var pos = salmonRestPos(nInfo, s);
+			sg.setAttribute('transform', 'translate(' + pos.x + ',' + pos.y + ')');
 			salmonGroup.appendChild(sg);
 		}
-	}
-
-	// start all animations
-	if (animations.length){
-		var startTime = performance.now();
-		requestAnimationFrame(function tick(now){
-			var t = Math.min((now - startTime) / ANIM_DURATION, 1);
-			var eased = t < 1 ? t * (2 - t) : 1; // ease-out quad
-			var anyRunning = false;
-
-			for (var a = 0; a < animations.length; a++){
-				var anim = animations[a];
-				if (anim.done) continue;
-
-				var pos;
-				if (anim.segmented && anim.segments.length){
-					// multi-segment: distribute eased t across segments
-					var totalSegs = anim.segments.length;
-					var rawSeg = eased * totalSegs;
-					var segIdx = Math.min(Math.floor(rawSeg), totalSegs - 1);
-					var segT = rawSeg - segIdx;
-					if (eased >= 1){ segIdx = totalSegs - 1; segT = 1; }
-					var seg = anim.segments[segIdx];
-					pos = {
-						x: cubicBezier(segT, seg.p0x, seg.p1x, seg.p2x, seg.p3x),
-						y: cubicBezier(segT, seg.p0y, seg.p1y, seg.p2y, seg.p3y)
-					};
-				} else if (anim.points){
-					// single edge Bezier
-					pos = {
-						x: cubicBezier(eased, anim.points.p0x, anim.points.p1x, anim.points.p2x, anim.points.p3x),
-						y: cubicBezier(eased, anim.points.p0y, anim.points.p1y, anim.points.p2y, anim.points.p3y)
-					};
-				}
-
-				if (pos) anim.el.setAttribute('transform', 'translate(' + pos.x + ',' + pos.y + ')');
-
-				if (t >= 1){
-					anim.done = true;
-				} else {
-					anyRunning = true;
-				}
-			}
-
-			if (anyRunning) requestAnimationFrame(tick);
-		});
 	}
 }
 
-function buildAnimation(sg, sal, fromInfo, toInfo, destPos){
-	var isUpstream = sal.direction === HS.const.UPSTREAM;
+// Event-driven animated salmon rendering
+function renderSalmonAnimated(onComplete){
+	if (!salmonGroup || !layoutData || !program) {
+		if (onComplete) onComplete();
+		return;
+	}
 
-	// find the path between the two nodes
-	// salmon travel parent↔child edges. figure out which is parent, which is child
+	var ld = layoutData;
+	var events = program.events || [];
+
+	// separate events into phases
+	var moves = [];
+	var deaths = [];
+	var creates = [];
+	var spawns = [];
+
+	for (var i = 0; i < events.length; i++){
+		var e = events[i];
+		if (e.type === 'move') moves.push(e);
+		else if (e.type === 'die') deaths.push(e);
+		else if (e.type === 'create') creates.push(e);
+		else if (e.type === 'spawn') spawns.push(e);
+	}
+
+	// Phase 0: Show salmon at their pre-tick positions
+	while (salmonGroup.firstChild) salmonGroup.removeChild(salmonGroup.firstChild);
+
+	// build a map of pre-tick salmon elements by uid
+	var salmonEls = {};
+	// count salmon per node for stacking
+	var nodeSlotCount = {};
+
+	// draw all pre-tick salmon at their old positions
+	for (var uid in prevSalmonPos){
+		var nodeUid = prevSalmonPos[uid];
+		var nInfo = ld.nodeMap[nodeUid];
+		var state = prevSalmonState[uid];
+		if (!nInfo || !state) continue;
+
+		if (!nodeSlotCount[nodeUid]) nodeSlotCount[nodeUid] = 0;
+		var slot = nodeSlotCount[nodeUid]++;
+
+		var sg = makeSalmonEl(state.name, state.age, state.direction, nInfo.node.name);
+		var pos = salmonRestPos(nInfo, slot);
+		sg.setAttribute('transform', 'translate(' + pos.x + ',' + pos.y + ')');
+		salmonGroup.appendChild(sg);
+		salmonEls[uid] = { el: sg, nodeUid: nodeUid, slot: slot };
+	}
+
+	// Phase 1: Animate movements
+	animatePhase(moves, salmonEls, function(){
+		// Phase 2: Animate deaths (flash and fade)
+		animateDeaths(deaths, salmonEls, function(){
+			// Phase 3: Show final state
+			renderSalmonStatic();
+			animating = false;
+			if (onComplete) onComplete();
+		});
+	});
+}
+
+function animatePhase(moves, salmonEls, onComplete){
+	if (!moves.length){
+		if (onComplete) onComplete();
+		return;
+	}
+
+	var ld = layoutData;
+	var animations = [];
+
+	for (var i = 0; i < moves.length; i++){
+		var evt = moves[i];
+		var entry = salmonEls[evt.salmon];
+		if (!entry) continue;
+
+		var fromInfo = ld.nodeMap[evt.from];
+		var toInfo = ld.nodeMap[evt.to];
+		if (!fromInfo || !toInfo) continue;
+
+		var sg = entry.el;
+
+		// compute destination (approximate slot 0 at target node)
+		var destPos = salmonRestPos(toInfo, 0);
+
+		var anim = buildMoveAnimation(sg, fromInfo, toInfo, entry.slot, destPos);
+		if (anim) animations.push(anim);
+	}
+
+	if (!animations.length){
+		if (onComplete) onComplete();
+		return;
+	}
+
+	var startTime = performance.now();
+	requestAnimationFrame(function tick(now){
+		var t = Math.min((now - startTime) / ANIM_DURATION, 1);
+		var eased = t < 1 ? t * (2 - t) : 1;
+		var anyRunning = false;
+
+		for (var a = 0; a < animations.length; a++){
+			var anim = animations[a];
+			if (anim.done) continue;
+
+			var pos;
+			if (anim.segmented && anim.segments.length){
+				var totalSegs = anim.segments.length;
+				var rawSeg = eased * totalSegs;
+				var segIdx = Math.min(Math.floor(rawSeg), totalSegs - 1);
+				var segT = rawSeg - segIdx;
+				if (eased >= 1){ segIdx = totalSegs - 1; segT = 1; }
+				var seg = anim.segments[segIdx];
+				pos = {
+					x: cubicBezier(segT, seg.p0x, seg.p1x, seg.p2x, seg.p3x),
+					y: cubicBezier(segT, seg.p0y, seg.p1y, seg.p2y, seg.p3y)
+				};
+			} else if (anim.points){
+				pos = {
+					x: cubicBezier(eased, anim.points.p0x, anim.points.p1x, anim.points.p2x, anim.points.p3x),
+					y: cubicBezier(eased, anim.points.p0y, anim.points.p1y, anim.points.p2y, anim.points.p3y)
+				};
+			}
+
+			if (pos) anim.el.setAttribute('transform', 'translate(' + pos.x + ',' + pos.y + ')');
+
+			if (t >= 1) anim.done = true;
+			else anyRunning = true;
+		}
+
+		if (anyRunning) requestAnimationFrame(tick);
+		else if (onComplete) onComplete();
+	});
+}
+
+function animateDeaths(deaths, salmonEls, onComplete){
+	if (!deaths.length){
+		if (onComplete) onComplete();
+		return;
+	}
+
+	// flash dying salmon red then fade out
+	var dyingEls = [];
+	for (var i = 0; i < deaths.length; i++){
+		var entry = salmonEls[deaths[i].salmon];
+		if (entry && entry.el && entry.el.parentNode){
+			dyingEls.push(entry.el);
+			entry.el.setAttribute('class', 'salmon-node dying');
+		}
+	}
+
+	if (!dyingEls.length){
+		if (onComplete) onComplete();
+		return;
+	}
+
+	var startTime = performance.now();
+	requestAnimationFrame(function tick(now){
+		var t = Math.min((now - startTime) / DEATH_DURATION, 1);
+
+		// first half: pulse/flash, second half: fade out
+		var opacity;
+		if (t < 0.3){
+			opacity = 1;
+		} else {
+			opacity = 1 - ((t - 0.3) / 0.7);
+		}
+
+		for (var i = 0; i < dyingEls.length; i++){
+			dyingEls[i].setAttribute('opacity', opacity);
+		}
+
+		if (t < 1) requestAnimationFrame(tick);
+		else if (onComplete) onComplete();
+	});
+}
+
+function buildMoveAnimation(sg, fromInfo, toInfo, fromSlot, destPos){
 	var parentInfo, childInfo;
+	var ox = 20, oy = 6;
 
 	if (toInfo.node.parent && toInfo.node.parent.uid === fromInfo.node.uid){
-		// moved from parent to child (downstream along this edge)
 		parentInfo = fromInfo;
 		childInfo = toInfo;
 	} else if (fromInfo.node.parent && fromInfo.node.parent.uid === toInfo.node.uid){
-		// moved from child to parent (upstream along this edge)
 		parentInfo = toInfo;
 		childInfo = fromInfo;
 	} else {
-		// nodes aren't directly connected — traverse the path between them
 		var path = findPath(fromInfo, toInfo);
-		if (!path || path.length < 2){
-			// fallback: just place at destination
-			sg.setAttribute('transform', 'translate(' + destPos.x + ',' + destPos.y + ')');
-			salmonGroup.appendChild(sg);
-			return null;
-		}
-		// build a multi-segment animation
-		return buildMultiSegmentAnimation(sg, sal, path, destPos);
+		if (!path || path.length < 2) return null;
+		return buildMultiSegmentAnimation(sg, path, destPos);
 	}
 
-	// single edge animation
-	// the Bezier goes from parent to child
 	var pp = getPathPoints(parentInfo, childInfo);
 	var animPoints;
 
-	// offset the path to the salmon rest position (shifted right and down from node center)
-	var fromPos = salmonRestPos(fromInfo, 0); // approximate starting slot
-	var ox = 20; // offset from node center for salmon label
-	var oy = 6;
-
 	if (fromInfo === parentInfo){
-		// downstream: parent→child, same direction as Bezier
 		animPoints = {
-			p0x: pp.p0x + ox, p0y: pp.p0y + oy,
+			p0x: pp.p0x + ox, p0y: pp.p0y + oy + (fromSlot * 18),
 			p1x: pp.p1x + ox, p1y: pp.p1y + oy,
 			p2x: pp.p2x + ox, p2y: pp.p2y + oy,
 			p3x: destPos.x,   p3y: destPos.y
 		};
 	} else {
-		// upstream: child→parent, reverse the Bezier
 		animPoints = {
-			p0x: pp.p3x + ox, p0y: pp.p3y + oy,
+			p0x: pp.p3x + ox, p0y: pp.p3y + oy + (fromSlot * 18),
 			p1x: pp.p2x + ox, p1y: pp.p2y + oy,
 			p2x: pp.p1x + ox, p2y: pp.p1y + oy,
 			p3x: destPos.x,   p3y: destPos.y
@@ -905,21 +1019,14 @@ function buildAnimation(sg, sal, fromInfo, toInfo, destPos){
 	}
 
 	sg.setAttribute('transform', 'translate(' + animPoints.p0x + ',' + animPoints.p0y + ')');
-	salmonGroup.appendChild(sg);
-
 	return { el: sg, points: animPoints, done: false };
 }
 
-// Find a path of layout-info nodes between from and to, traversing parent links
 function findPath(fromInfo, toInfo){
-	// get ancestors of each node
 	function ancestors(info){
 		var path = [];
 		var n = info.node;
-		while (n){
-			path.push(n.uid);
-			n = n.parent;
-		}
+		while (n){ path.push(n.uid); n = n.parent; }
 		return path;
 	}
 
@@ -927,22 +1034,15 @@ function findPath(fromInfo, toInfo){
 	var aTo = ancestors(toInfo);
 	var ld = layoutData;
 
-	// find common ancestor
 	var toSet = {};
 	for (var i = 0; i < aTo.length; i++) toSet[aTo[i]] = i;
 
 	var caIdx = -1, caUid;
 	for (var i = 0; i < aFrom.length; i++){
-		if (toSet[aFrom[i]] !== undefined){
-			caUid = aFrom[i];
-			caIdx = i;
-			break;
-		}
+		if (toSet[aFrom[i]] !== undefined){ caUid = aFrom[i]; caIdx = i; break; }
 	}
-
 	if (caIdx === -1) return null;
 
-	// path = fromInfo → ... → commonAncestor → ... → toInfo
 	var upPath = [];
 	for (var i = 0; i <= caIdx; i++) upPath.push(ld.nodeMap[aFrom[i]]);
 
@@ -953,8 +1053,7 @@ function findPath(fromInfo, toInfo){
 	return upPath.concat(downPath);
 }
 
-function buildMultiSegmentAnimation(sg, sal, path, destPos){
-	// build concatenated Bezier segments
+function buildMultiSegmentAnimation(sg, path, destPos){
 	var segments = [];
 	var ox = 20, oy = 6;
 
@@ -988,15 +1087,13 @@ function buildMultiSegmentAnimation(sg, sal, path, destPos){
 		}
 	}
 
-	// fix last segment endpoint to actual destination
-	if (segments.length) {
+	if (segments.length){
 		segments[segments.length - 1].p3x = destPos.x;
 		segments[segments.length - 1].p3y = destPos.y;
 	}
 
 	var startPos = segments[0];
 	sg.setAttribute('transform', 'translate(' + startPos.p0x + ',' + startPos.p0y + ')');
-	salmonGroup.appendChild(sg);
 
 	return { el: sg, segments: segments, done: false, segmented: true };
 }
@@ -1010,7 +1107,7 @@ window.addEventListener('resize', function(){
 		if (program && program.root){
 			computeLayout();
 			renderTree();
-			renderSalmon(false);
+			renderSalmonStatic();
 		}
 	}, 100);
 });
