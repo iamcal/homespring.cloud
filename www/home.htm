@@ -331,6 +331,19 @@ html, body {
 var program = null;
 var running = false;
 var runInterval = null;
+var ANIM_DURATION = 350; // ms for salmon travel animation
+var TICK_INTERVAL = 500; // ms between ticks when playing (must be > ANIM_DURATION)
+
+// ---- Persistent layout state ----
+
+var layoutData = null;   // { nodeList, nodeMap, maxDepth, depthCounts, W, H }
+var prevSalmonPos = {};  // salmonUid -> nodeUid (where each salmon was last tick)
+
+// ---- SVG layer groups (persistent across ticks) ----
+
+var linkGroup = null;
+var nodeGroup = null;
+var salmonGroup = null;
 
 // ---- DOM refs ----
 
@@ -349,13 +362,15 @@ var treeSvg = document.getElementById('tree-canvas');
 function createProgram(){
 	var src = srcEditor.value;
 	outputLog.textContent = '';
+	prevSalmonPos = {};
 	try {
 		program = new HS.Program(src);
 	} catch(e) {
 		outputLog.textContent = 'Parse error: ' + e.message;
 		program = null;
-		renderTree();
-		updateTick();
+		layoutData = null;
+		clearSvg();
+		updateTickDisplay();
 		return;
 	}
 
@@ -365,8 +380,10 @@ function createProgram(){
 		outputLog.textContent += str;
 	};
 
+	computeLayout();
 	renderTree();
-	updateTick();
+	renderSalmon(false);
+	updateTickDisplay();
 }
 
 function resetProgram(){
@@ -374,12 +391,21 @@ function resetProgram(){
 	createProgram();
 }
 
-function stepProgram(){
+function doTick(){
 	if (!program || program.terminated) return;
 	program.input = inputArea.value;
+
+	// snapshot salmon positions before tick
+	snapshotSalmon();
+
 	program.tick();
-	renderTree();
-	updateTick();
+	updateNodeVisuals();
+	renderSalmon(true);
+	updateTickDisplay();
+}
+
+function stepProgram(){
+	doTick();
 }
 
 function startRunning(){
@@ -396,11 +422,8 @@ function startRunning(){
 			stopRunning();
 			return;
 		}
-		program.input = inputArea.value;
-		program.tick();
-		renderTree();
-		updateTick();
-	}, 300);
+		doTick();
+	}, TICK_INTERVAL);
 }
 
 function stopRunning(){
@@ -416,7 +439,7 @@ function stopRunning(){
 	srcEditor.disabled = false;
 }
 
-function updateTick(){
+function updateTickDisplay(){
 	tickNum.textContent = program ? program.tickNum : 0;
 }
 
@@ -437,7 +460,7 @@ srcEditor.addEventListener('input', function(){
 	}, 400);
 });
 
-// ---- SVG Tree Rendering ----
+// ---- SVG helpers ----
 
 var SVG_NS = 'http://www.w3.org/2000/svg';
 
@@ -451,20 +474,22 @@ function svgEl(tag, attrs){
 	return el;
 }
 
-function renderTree(){
-	// clear
+function clearSvg(){
 	while (treeSvg.firstChild) treeSvg.removeChild(treeSvg.firstChild);
+	linkGroup = null;
+	nodeGroup = null;
+	salmonGroup = null;
+}
 
-	if (!program || !program.root) return;
+// ---- Layout computation (runs on parse and resize) ----
+
+function computeLayout(){
+	if (!program || !program.root){ layoutData = null; return; }
 
 	var container = treeSvg.parentNode;
 	var W = container.clientWidth || 800;
 	var H = container.clientHeight || 400;
-	treeSvg.setAttribute('width', W);
-	treeSvg.setAttribute('height', H);
-	treeSvg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
 
-	// compute layout: assign depth and sibling index
 	var depthCounts = {};
 	var nodeList = [];
 
@@ -479,45 +504,113 @@ function renderTree(){
 		return info;
 	}
 
-	var tree = layoutNode(program.root, 0);
+	layoutNode(program.root, 0);
 
-	// find max depth and max count at any depth
 	var maxDepth = 0;
-	var maxCount = 0;
 	for (var d in depthCounts){
 		var di = parseInt(d);
 		if (di > maxDepth) maxDepth = di;
-		if (depthCounts[d] > maxCount) maxCount = depthCounts[d];
 	}
 
-	var padX = 80;
-	var padY = 50;
+	var padX = 80, padY = 50;
 	var usableW = W - padX * 2;
 	var usableH = H - padY * 2;
 
-	// position nodes: depth goes left to right, siblings top to bottom
 	for (var i = 0; i < nodeList.length; i++){
 		var n = nodeList[i];
-		var cols = maxDepth + 1;
 		var rows = depthCounts[n.depth];
-		n.x = padX + (cols > 1 ? (n.depth / maxDepth) * usableW : usableW / 2);
+		n.x = padX + (maxDepth > 0 ? (n.depth / maxDepth) * usableW : usableW / 2);
 		n.y = padY + (rows > 1 ? (n.idx / (rows - 1)) * usableH : usableH / 2);
 	}
 
-	// build a map from node uid to layout info
 	var nodeMap = {};
 	for (var i = 0; i < nodeList.length; i++){
 		nodeMap[nodeList[i].node.uid] = nodeList[i];
 	}
 
-	// draw links first
-	var linkGroup = svgEl('g');
+	layoutData = { nodeList: nodeList, nodeMap: nodeMap, maxDepth: maxDepth, depthCounts: depthCounts, W: W, H: H };
+}
+
+// ---- Bezier math for path animation ----
+
+function cubicBezier(t, p0, p1, p2, p3){
+	var u = 1 - t;
+	return u*u*u*p0 + 3*u*u*t*p1 + 3*u*t*t*p2 + t*t*t*p3;
+}
+
+// Get the Bezier control points for the path between parent and child nodes
+function getPathPoints(fromInfo, toInfo){
+	var mx = (fromInfo.x + toInfo.x) / 2;
+	return {
+		p0x: fromInfo.x, p0y: fromInfo.y,
+		p1x: mx,         p1y: fromInfo.y,
+		p2x: mx,         p2y: toInfo.y,
+		p3x: toInfo.x,   p3y: toInfo.y
+	};
+}
+
+// Returns {x, y} at parameter t along the path between two adjacent nodes.
+// parentInfo is always the node closer to root. direction determines t mapping.
+// upstream: child→parent (t=0 at child, t=1 at parent)
+// downstream: parent→child (t=0 at parent, t=1 at child)
+function pointOnEdge(parentInfo, childInfo, t, upstream){
+	// The stored Bezier goes from parent to child
+	var p = getPathPoints(parentInfo, childInfo);
+	// For upstream, we reverse: walk from child (t=0) to parent (t=1) means Bezier parameter = 1-t
+	var bt = upstream ? (1 - t) : t;
+	return {
+		x: cubicBezier(bt, p.p0x, p.p1x, p.p2x, p.p3x),
+		y: cubicBezier(bt, p.p0y, p.p1y, p.p2y, p.p3y)
+	};
+}
+
+// ---- Snapshot salmon positions before tick ----
+
+function snapshotSalmon(){
+	prevSalmonPos = {};
+	if (!program) return;
+	for (var i = 0; i < program.nodes.length; i++){
+		var node = program.nodes[i];
+		for (var s = 0; s < node.salmon.length; s++){
+			prevSalmonPos[node.salmon[s].uid] = node.uid;
+		}
+	}
+}
+
+// ---- Node color helpers ----
+
+function nodeColor(node){
+	if (node.is_destroyed) return '#585b70';
+	if (node.generates_power) return '#f9e2af';
+	if (node.is_watered) return '#89b4fa';
+	if (node.is_snowy) return '#cdd6f4';
+	return '#a6e3a1';
+}
+
+function nodeStroke(node){
+	if (node.is_destroyed) return '#45475a';
+	return '#313150';
+}
+
+// ---- Render static tree (links + nodes) ----
+
+function renderTree(){
+	clearSvg();
+	if (!layoutData) return;
+
+	var ld = layoutData;
+	treeSvg.setAttribute('width', ld.W);
+	treeSvg.setAttribute('height', ld.H);
+	treeSvg.setAttribute('viewBox', '0 0 ' + ld.W + ' ' + ld.H);
+
+	// links layer
+	linkGroup = svgEl('g', { 'class': 'link-layer' });
 	treeSvg.appendChild(linkGroup);
 
-	for (var i = 0; i < nodeList.length; i++){
-		var n = nodeList[i];
+	for (var i = 0; i < ld.nodeList.length; i++){
+		var n = ld.nodeList[i];
 		if (n.node.parent){
-			var pInfo = nodeMap[n.node.parent.uid];
+			var pInfo = ld.nodeMap[n.node.parent.uid];
 			if (pInfo){
 				var path = svgEl('path', {
 					'd': 'M' + pInfo.x + ',' + pInfo.y +
@@ -531,133 +624,381 @@ function renderTree(){
 		}
 	}
 
-	// draw nodes
-	var nodeGroup = svgEl('g');
+	// nodes layer
+	nodeGroup = svgEl('g', { 'class': 'node-layer' });
 	treeSvg.appendChild(nodeGroup);
 
-	// color scheme for node types
-	function nodeColor(node){
-		if (node.is_destroyed) return '#585b70';  // muted
-		if (node.generates_power) return '#f9e2af'; // yellow - powered
-		if (node.is_watered) return '#89b4fa';      // blue - watered
-		if (node.is_snowy) return '#cdd6f4';        // white - snowy
-		return '#a6e3a1';                           // green - default
-	}
+	for (var i = 0; i < ld.nodeList.length; i++){
+		var n = ld.nodeList[i];
+		var g = svgEl('g', {
+			'class': 'tree-node',
+			'transform': 'translate(' + n.x + ',' + n.y + ')',
+			'data-uid': n.node.uid
+		});
 
-	function nodeStroke(node){
-		if (node.is_destroyed) return '#45475a';
-		return '#313150';
-	}
-
-	for (var i = 0; i < nodeList.length; i++){
-		var n = nodeList[i];
-		var g = svgEl('g', { 'class': 'tree-node', 'transform': 'translate(' + n.x + ',' + n.y + ')' });
-
-		var circle = svgEl('circle', {
-			'r': 7,
-			'cx': 0,
-			'cy': 0,
+		g.appendChild(svgEl('circle', {
+			'r': 7, 'cx': 0, 'cy': 0,
 			'fill': nodeColor(n.node),
 			'stroke': nodeStroke(n.node)
-		});
-		g.appendChild(circle);
+		}));
 
 		var label = svgEl('text', {
-			'x': 0,
-			'y': -14,
+			'x': 0, 'y': -14,
 			'text-anchor': 'middle',
 			'fill': n.node.is_destroyed ? '#585b70' : '#cdd6f4'
 		});
 		label.textContent = n.node.name || '(unnamed)';
 		g.appendChild(label);
 
-		// show state flags below node
-		var flags = [];
-		if (n.node.is_destroyed) flags.push('destroyed');
-		if (n.node.generates_power) flags.push('power');
-		if (n.node.is_watered) flags.push('water');
-		if (n.node.is_snowy) flags.push('snow');
-		if (flags.length){
-			var stateLabel = svgEl('text', {
-				'x': 0,
-				'y': 20,
-				'text-anchor': 'middle',
-				'font-size': '9px',
-				'fill': '#7f849c'
-			});
-			stateLabel.textContent = flags.join(' ');
-			g.appendChild(stateLabel);
-		}
+		var stateLabel = svgEl('text', {
+			'x': 0, 'y': 20,
+			'text-anchor': 'middle',
+			'font-size': '9px',
+			'fill': '#7f849c'
+		});
+		g.appendChild(stateLabel);
 
-		// tooltip for river node
-		var tipLines = ['Node: ' + (n.node.name || '(unnamed)')];
-		tipLines.push('Type: ' + (n.node.lname || n.node.name || 'unknown'));
-		if (n.node.is_destroyed) tipLines.push('State: Destroyed');
-		if (n.node.generates_power) tipLines.push('Power: Generating');
-		if (n.node.is_watered) tipLines.push('Watered: Yes');
-		if (n.node.is_snowy) tipLines.push('Snowy: Yes');
-		tipLines.push('Children: ' + n.node.kids.length);
-		if (n.node.salmon && n.node.salmon.length) tipLines.push('Salmon here: ' + n.node.salmon.length);
 		var tip = svgEl('title');
-		tip.textContent = tipLines.join('\n');
 		g.appendChild(tip);
 
+		// stash refs for fast updates
+		n.svgGroup = g;
+		n.svgCircle = g.querySelector('circle');
+		n.svgLabel = label;
+		n.svgStateLabel = stateLabel;
+		n.svgTip = tip;
+
 		nodeGroup.appendChild(g);
+	}
 
-		// draw salmon at this node
-		if (n.node.salmon && n.node.salmon.length){
-			for (var s = 0; s < n.node.salmon.length; s++){
-				var sal = n.node.salmon[s];
-				var sx = n.x + 20;
-				var sy = n.y + 6 + (s * 18);
+	// salmon layer (on top)
+	salmonGroup = svgEl('g', { 'class': 'salmon-layer' });
+	treeSvg.appendChild(salmonGroup);
 
-				var isUpstream = sal.direction === HS.const.UPSTREAM;
-				var isYoung = sal.age === HS.const.YOUNG;
-				var salColor = isUpstream ? '#fab387' : '#89b4fa';
-				var dirArrow = isUpstream ? '\u2190' : '\u2192';
+	updateNodeVisuals();
+}
 
-				var sg = svgEl('g', { 'class': 'salmon-node', 'transform': 'translate(' + sx + ',' + sy + ')' });
+// ---- Update node visuals in-place (no DOM rebuild) ----
 
-				var rect = svgEl('rect', {
-					'x': 0,
-					'y': -8,
-					'height': 16,
-					'fill': salColor,
-					'opacity': '0.25',
-					'rx': 3,
-					'ry': 3
-				});
-				sg.appendChild(rect);
+function updateNodeVisuals(){
+	if (!layoutData) return;
+	var ld = layoutData;
 
-				var sLabel = svgEl('text', {
-					'x': 4,
-					'y': 4,
-					'fill': salColor,
-					'font-weight': isYoung ? 'normal' : 'bold'
-				});
-				sLabel.textContent = dirArrow + ' ' + sal.name;
-				sg.appendChild(sLabel);
+	for (var i = 0; i < ld.nodeList.length; i++){
+		var n = ld.nodeList[i];
+		var node = n.node;
 
-				// size the background rect to fit the text
-				nodeGroup.appendChild(sg);
-				var bbox = sLabel.getBBox();
-				rect.setAttribute('width', bbox.width + 8);
-				nodeGroup.removeChild(sg);
+		n.svgCircle.setAttribute('fill', nodeColor(node));
+		n.svgCircle.setAttribute('stroke', nodeStroke(node));
+		n.svgLabel.setAttribute('fill', node.is_destroyed ? '#585b70' : '#cdd6f4');
 
-				// tooltip for salmon
-				var salTip = svgEl('title');
-				salTip.textContent = [
-					'Name: ' + sal.name,
-					'Age: ' + (isYoung ? 'Young' : 'Mature'),
-					'Direction: ' + (isUpstream ? 'Upstream' : 'Downstream'),
-					'At node: ' + (n.node.name || '(unnamed)')
-				].join('\n');
-				sg.appendChild(salTip);
+		var flags = [];
+		if (node.is_destroyed) flags.push('destroyed');
+		if (node.generates_power) flags.push('power');
+		if (node.is_watered) flags.push('water');
+		if (node.is_snowy) flags.push('snow');
+		n.svgStateLabel.textContent = flags.join(' ');
 
-				nodeGroup.appendChild(sg);
+		var tipLines = ['Node: ' + (node.name || '(unnamed)')];
+		tipLines.push('Type: ' + (node.lname || node.name || 'unknown'));
+		if (node.is_destroyed) tipLines.push('State: Destroyed');
+		if (node.generates_power) tipLines.push('Power: Generating');
+		if (node.is_watered) tipLines.push('Watered: Yes');
+		if (node.is_snowy) tipLines.push('Snowy: Yes');
+		tipLines.push('Children: ' + node.kids.length);
+		if (node.salmon && node.salmon.length) tipLines.push('Salmon here: ' + node.salmon.length);
+		n.svgTip.textContent = tipLines.join('\n');
+	}
+}
+
+// ---- Salmon rendering with animation ----
+
+function makeSalmonEl(sal, nodeInfo, index){
+	var isUpstream = sal.direction === HS.const.UPSTREAM;
+	var isYoung = sal.age === HS.const.YOUNG;
+	var salColor = isUpstream ? '#fab387' : '#89b4fa';
+	var dirArrow = isUpstream ? '\u2190' : '\u2192';
+
+	var sg = svgEl('g', { 'class': 'salmon-node' });
+
+	var rect = svgEl('rect', {
+		'x': 0, 'y': -8, 'height': 16,
+		'fill': salColor, 'opacity': '0.25',
+		'rx': 3, 'ry': 3
+	});
+	sg.appendChild(rect);
+
+	var sLabel = svgEl('text', {
+		'x': 4, 'y': 4,
+		'fill': salColor,
+		'font-weight': isYoung ? 'normal' : 'bold'
+	});
+	sLabel.textContent = dirArrow + ' ' + sal.name;
+	sg.appendChild(sLabel);
+
+	var salTip = svgEl('title');
+	salTip.textContent = [
+		'Name: ' + sal.name,
+		'Age: ' + (isYoung ? 'Young' : 'Mature'),
+		'Direction: ' + (isUpstream ? 'Upstream' : 'Downstream'),
+		'At node: ' + (nodeInfo.node.name || '(unnamed)')
+	].join('\n');
+	sg.appendChild(salTip);
+
+	// need to measure text - temporarily add to DOM
+	salmonGroup.appendChild(sg);
+	var bbox = sLabel.getBBox();
+	rect.setAttribute('width', bbox.width + 8);
+	salmonGroup.removeChild(sg);
+
+	sg._rect = rect;
+	sg._label = sLabel;
+
+	return sg;
+}
+
+function salmonRestPos(nodeInfo, index){
+	return { x: nodeInfo.x + 20, y: nodeInfo.y + 6 + (index * 18) };
+}
+
+function renderSalmon(animate){
+	if (!salmonGroup || !layoutData) return;
+
+	// clear old salmon
+	while (salmonGroup.firstChild) salmonGroup.removeChild(salmonGroup.firstChild);
+
+	var ld = layoutData;
+	var animations = [];
+
+	for (var i = 0; i < ld.nodeList.length; i++){
+		var nInfo = ld.nodeList[i];
+		var node = nInfo.node;
+		if (!node.salmon || !node.salmon.length) continue;
+
+		for (var s = 0; s < node.salmon.length; s++){
+			var sal = node.salmon[s];
+			var sg = makeSalmonEl(sal, nInfo, s);
+			var destPos = salmonRestPos(nInfo, s);
+
+			var prevNodeUid = prevSalmonPos[sal.uid];
+			var moved = animate && prevNodeUid !== undefined && prevNodeUid !== node.uid;
+
+			if (moved){
+				// find the edge this salmon traveled along
+				var prevInfo = ld.nodeMap[prevNodeUid];
+				if (prevInfo){
+					var anim = buildAnimation(sg, sal, prevInfo, nInfo, destPos);
+					if (anim){
+						animations.push(anim);
+						continue; // animation will add the element
+					}
+				}
 			}
+
+			// no animation — place at rest position
+			sg.setAttribute('transform', 'translate(' + destPos.x + ',' + destPos.y + ')');
+			salmonGroup.appendChild(sg);
 		}
 	}
+
+	// start all animations
+	if (animations.length){
+		var startTime = performance.now();
+		requestAnimationFrame(function tick(now){
+			var t = Math.min((now - startTime) / ANIM_DURATION, 1);
+			var eased = t < 1 ? t * (2 - t) : 1; // ease-out quad
+			var anyRunning = false;
+
+			for (var a = 0; a < animations.length; a++){
+				var anim = animations[a];
+				if (anim.done) continue;
+
+				var pos;
+				if (anim.segmented && anim.segments.length){
+					// multi-segment: distribute eased t across segments
+					var totalSegs = anim.segments.length;
+					var rawSeg = eased * totalSegs;
+					var segIdx = Math.min(Math.floor(rawSeg), totalSegs - 1);
+					var segT = rawSeg - segIdx;
+					if (eased >= 1){ segIdx = totalSegs - 1; segT = 1; }
+					var seg = anim.segments[segIdx];
+					pos = {
+						x: cubicBezier(segT, seg.p0x, seg.p1x, seg.p2x, seg.p3x),
+						y: cubicBezier(segT, seg.p0y, seg.p1y, seg.p2y, seg.p3y)
+					};
+				} else if (anim.points){
+					// single edge Bezier
+					pos = {
+						x: cubicBezier(eased, anim.points.p0x, anim.points.p1x, anim.points.p2x, anim.points.p3x),
+						y: cubicBezier(eased, anim.points.p0y, anim.points.p1y, anim.points.p2y, anim.points.p3y)
+					};
+				}
+
+				if (pos) anim.el.setAttribute('transform', 'translate(' + pos.x + ',' + pos.y + ')');
+
+				if (t >= 1){
+					anim.done = true;
+				} else {
+					anyRunning = true;
+				}
+			}
+
+			if (anyRunning) requestAnimationFrame(tick);
+		});
+	}
+}
+
+function buildAnimation(sg, sal, fromInfo, toInfo, destPos){
+	var isUpstream = sal.direction === HS.const.UPSTREAM;
+
+	// find the path between the two nodes
+	// salmon travel parent↔child edges. figure out which is parent, which is child
+	var parentInfo, childInfo;
+
+	if (toInfo.node.parent && toInfo.node.parent.uid === fromInfo.node.uid){
+		// moved from parent to child (downstream along this edge)
+		parentInfo = fromInfo;
+		childInfo = toInfo;
+	} else if (fromInfo.node.parent && fromInfo.node.parent.uid === toInfo.node.uid){
+		// moved from child to parent (upstream along this edge)
+		parentInfo = toInfo;
+		childInfo = fromInfo;
+	} else {
+		// nodes aren't directly connected — traverse the path between them
+		var path = findPath(fromInfo, toInfo);
+		if (!path || path.length < 2){
+			// fallback: just place at destination
+			sg.setAttribute('transform', 'translate(' + destPos.x + ',' + destPos.y + ')');
+			salmonGroup.appendChild(sg);
+			return null;
+		}
+		// build a multi-segment animation
+		return buildMultiSegmentAnimation(sg, sal, path, destPos);
+	}
+
+	// single edge animation
+	// the Bezier goes from parent to child
+	var pp = getPathPoints(parentInfo, childInfo);
+	var animPoints;
+
+	// offset the path to the salmon rest position (shifted right and down from node center)
+	var fromPos = salmonRestPos(fromInfo, 0); // approximate starting slot
+	var ox = 20; // offset from node center for salmon label
+	var oy = 6;
+
+	if (fromInfo === parentInfo){
+		// downstream: parent→child, same direction as Bezier
+		animPoints = {
+			p0x: pp.p0x + ox, p0y: pp.p0y + oy,
+			p1x: pp.p1x + ox, p1y: pp.p1y + oy,
+			p2x: pp.p2x + ox, p2y: pp.p2y + oy,
+			p3x: destPos.x,   p3y: destPos.y
+		};
+	} else {
+		// upstream: child→parent, reverse the Bezier
+		animPoints = {
+			p0x: pp.p3x + ox, p0y: pp.p3y + oy,
+			p1x: pp.p2x + ox, p1y: pp.p2y + oy,
+			p2x: pp.p1x + ox, p2y: pp.p1y + oy,
+			p3x: destPos.x,   p3y: destPos.y
+		};
+	}
+
+	sg.setAttribute('transform', 'translate(' + animPoints.p0x + ',' + animPoints.p0y + ')');
+	salmonGroup.appendChild(sg);
+
+	return { el: sg, points: animPoints, done: false };
+}
+
+// Find a path of layout-info nodes between from and to, traversing parent links
+function findPath(fromInfo, toInfo){
+	// get ancestors of each node
+	function ancestors(info){
+		var path = [];
+		var n = info.node;
+		while (n){
+			path.push(n.uid);
+			n = n.parent;
+		}
+		return path;
+	}
+
+	var aFrom = ancestors(fromInfo);
+	var aTo = ancestors(toInfo);
+	var ld = layoutData;
+
+	// find common ancestor
+	var toSet = {};
+	for (var i = 0; i < aTo.length; i++) toSet[aTo[i]] = i;
+
+	var caIdx = -1, caUid;
+	for (var i = 0; i < aFrom.length; i++){
+		if (toSet[aFrom[i]] !== undefined){
+			caUid = aFrom[i];
+			caIdx = i;
+			break;
+		}
+	}
+
+	if (caIdx === -1) return null;
+
+	// path = fromInfo → ... → commonAncestor → ... → toInfo
+	var upPath = [];
+	for (var i = 0; i <= caIdx; i++) upPath.push(ld.nodeMap[aFrom[i]]);
+
+	var downPath = [];
+	var caToIdx = toSet[caUid];
+	for (var i = caToIdx - 1; i >= 0; i--) downPath.push(ld.nodeMap[aTo[i]]);
+
+	return upPath.concat(downPath);
+}
+
+function buildMultiSegmentAnimation(sg, sal, path, destPos){
+	// build concatenated Bezier segments
+	var segments = [];
+	var ox = 20, oy = 6;
+
+	for (var i = 0; i < path.length - 1; i++){
+		var a = path[i], b = path[i + 1];
+		var parentInfo, childInfo;
+
+		if (b.node.parent && b.node.parent.uid === a.node.uid){
+			parentInfo = a; childInfo = b;
+		} else {
+			parentInfo = b; childInfo = a;
+		}
+
+		var pp = getPathPoints(parentInfo, childInfo);
+		var goingDown = (a === parentInfo);
+
+		if (goingDown){
+			segments.push({
+				p0x: pp.p0x + ox, p0y: pp.p0y + oy,
+				p1x: pp.p1x + ox, p1y: pp.p1y + oy,
+				p2x: pp.p2x + ox, p2y: pp.p2y + oy,
+				p3x: pp.p3x + ox, p3y: pp.p3y + oy
+			});
+		} else {
+			segments.push({
+				p0x: pp.p3x + ox, p0y: pp.p3y + oy,
+				p1x: pp.p2x + ox, p1y: pp.p2y + oy,
+				p2x: pp.p1x + ox, p2y: pp.p1y + oy,
+				p3x: pp.p0x + ox, p3y: pp.p0y + oy
+			});
+		}
+	}
+
+	// fix last segment endpoint to actual destination
+	if (segments.length) {
+		segments[segments.length - 1].p3x = destPos.x;
+		segments[segments.length - 1].p3y = destPos.y;
+	}
+
+	var startPos = segments[0];
+	sg.setAttribute('transform', 'translate(' + startPos.p0x + ',' + startPos.p0y + ')');
+	salmonGroup.appendChild(sg);
+
+	return { el: sg, segments: segments, done: false, segmented: true };
 }
 
 // ---- Resize handling ----
@@ -666,7 +1007,11 @@ var resizeTimer = null;
 window.addEventListener('resize', function(){
 	clearTimeout(resizeTimer);
 	resizeTimer = setTimeout(function(){
-		renderTree();
+		if (program && program.root){
+			computeLayout();
+			renderTree();
+			renderSalmon(false);
+		}
 	}, 100);
 });
 
