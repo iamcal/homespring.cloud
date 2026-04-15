@@ -341,7 +341,6 @@ var program = null;
 var running = false;
 var runInterval = null;
 var ANIM_DURATION = 350; // ms for salmon travel animation
-var DEATH_DURATION = 200; // ms for death flash+fade
 
 // ---- Persistent layout state ----
 
@@ -349,6 +348,7 @@ var layoutData = null;   // { nodeList, nodeMap, maxDepth, depthCounts, W, H }
 var prevSalmonPos = {};  // salmonUid -> nodeUid (where each salmon was last tick)
 var prevSalmonState = {}; // salmonUid -> { name, age, direction }
 var animating = false;   // true while animation phases are running
+var deadSalmon = [];     // salmon that died last tick, shown until next step
 
 // ---- SVG layer groups (persistent across ticks) ----
 
@@ -374,6 +374,7 @@ function createProgram(){
 	var src = srcEditor.value;
 	outputLog.textContent = '';
 	prevSalmonPos = {};
+	deadSalmon = [];
 	try {
 		program = new HS.Program(src);
 	} catch(e) {
@@ -416,6 +417,7 @@ function doTick(onComplete){
 
 	animating = true;
 	btnStep.disabled = true;
+	deadSalmon = [];
 
 	renderSalmonAnimated(function(){
 		animating = false;
@@ -794,18 +796,70 @@ function renderSalmonStatic(){
 	while (salmonGroup.firstChild) salmonGroup.removeChild(salmonGroup.firstChild);
 
 	var ld = layoutData;
+
+	// count live salmon per node for stacking
+	var slotCounts = {};
+
 	for (var i = 0; i < ld.nodeList.length; i++){
 		var nInfo = ld.nodeList[i];
 		var node = nInfo.node;
 		if (!node.salmon || !node.salmon.length) continue;
+		if (!slotCounts[node.uid]) slotCounts[node.uid] = 0;
 		for (var s = 0; s < node.salmon.length; s++){
 			var sal = node.salmon[s];
 			var sg = makeSalmonEl(sal.name, sal.age, sal.direction, node.name);
-			var pos = salmonRestPos(nInfo, s);
+			var pos = salmonRestPos(nInfo, slotCounts[node.uid]++);
 			sg.setAttribute('transform', 'translate(' + pos.x + ',' + pos.y + ')');
 			salmonGroup.appendChild(sg);
 		}
 	}
+
+	// render dead salmon from this tick (skull + red background, persist until next step)
+	for (var d = 0; d < deadSalmon.length; d++){
+		var dead = deadSalmon[d];
+		var nInfo = ld.nodeMap[dead.node];
+		if (!nInfo) continue;
+		if (!slotCounts[dead.node]) slotCounts[dead.node] = 0;
+		var sg = makeDeadSalmonEl(dead, nInfo.node.name);
+		var pos = salmonRestPos(nInfo, slotCounts[dead.node]++);
+		sg.setAttribute('transform', 'translate(' + pos.x + ',' + pos.y + ')');
+		salmonGroup.appendChild(sg);
+	}
+}
+
+function makeDeadSalmonEl(dead, nodeName){
+	var sg = svgEl('g', { 'class': 'salmon-node dying' });
+
+	var rect = svgEl('rect', {
+		'x': 0, 'y': -8, 'height': 16,
+		'fill': '#f38ba8', 'opacity': '0.35',
+		'rx': 3, 'ry': 3
+	});
+	sg.appendChild(rect);
+
+	var sLabel = svgEl('text', {
+		'x': 4, 'y': 4,
+		'fill': '#f38ba8',
+		'font-weight': dead.age === HS.const.YOUNG ? 'normal' : 'bold'
+	});
+	sLabel.textContent = '\uD83D\uDC80 ' + dead.name;
+	sg.appendChild(sLabel);
+
+	var tip = svgEl('title');
+	tip.textContent = [
+		'DEAD: ' + dead.name,
+		'Killed by: ' + dead.cause,
+		'At node: ' + (nodeName || '(unnamed)')
+	].join('\n');
+	sg.appendChild(tip);
+
+	// measure text
+	salmonGroup.appendChild(sg);
+	var bbox = sLabel.getBBox();
+	rect.setAttribute('width', bbox.width + 8);
+	salmonGroup.removeChild(sg);
+
+	return sg;
 }
 
 // Event-driven animated salmon rendering
@@ -942,45 +996,21 @@ function animatePhase(moves, salmonEls, onComplete){
 }
 
 function animateDeaths(deaths, salmonEls, onComplete){
-	if (!deaths.length){
-		if (onComplete) onComplete();
-		return;
-	}
-
-	// flash dying salmon red then fade out
-	var dyingEls = [];
+	// Record dead salmon so they persist in the final render until next tick
 	for (var i = 0; i < deaths.length; i++){
-		var entry = salmonEls[deaths[i].salmon];
-		if (entry && entry.el && entry.el.parentNode){
-			dyingEls.push(entry.el);
-			entry.el.setAttribute('class', 'salmon-node dying');
+		var evt = deaths[i];
+		var state = prevSalmonState[evt.salmon];
+		if (state){
+			deadSalmon.push({
+				name: state.name,
+				age: state.age,
+				direction: state.direction,
+				node: evt.node,
+				cause: evt.cause
+			});
 		}
 	}
-
-	if (!dyingEls.length){
-		if (onComplete) onComplete();
-		return;
-	}
-
-	var startTime = performance.now();
-	requestAnimationFrame(function tick(now){
-		var t = Math.min((now - startTime) / DEATH_DURATION, 1);
-
-		// first half: pulse/flash, second half: fade out
-		var opacity;
-		if (t < 0.3){
-			opacity = 1;
-		} else {
-			opacity = 1 - ((t - 0.3) / 0.7);
-		}
-
-		for (var i = 0; i < dyingEls.length; i++){
-			dyingEls[i].setAttribute('opacity', opacity);
-		}
-
-		if (t < 1) requestAnimationFrame(tick);
-		else if (onComplete) onComplete();
-	});
+	if (onComplete) onComplete();
 }
 
 function buildMoveAnimation(sg, fromInfo, toInfo, fromSlot, destPos){
