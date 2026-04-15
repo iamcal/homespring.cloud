@@ -589,6 +589,19 @@ function renderTree(){
 			g.appendChild(stateLabel);
 		}
 
+		// tooltip for river node
+		var tipLines = ['Node: ' + (n.node.name || '(unnamed)')];
+		tipLines.push('Type: ' + (n.node.lname || n.node.name || 'unknown'));
+		if (n.node.is_destroyed) tipLines.push('State: Destroyed');
+		if (n.node.generates_power) tipLines.push('Power: Generating');
+		if (n.node.is_watered) tipLines.push('Watered: Yes');
+		if (n.node.is_snowy) tipLines.push('Snowy: Yes');
+		tipLines.push('Children: ' + n.node.kids.length);
+		if (n.node.salmon && n.node.salmon.length) tipLines.push('Salmon here: ' + n.node.salmon.length);
+		var tip = svgEl('title');
+		tip.textContent = tipLines.join('\n');
+		g.appendChild(tip);
+
 		nodeGroup.appendChild(g);
 
 		// draw salmon at this node
@@ -598,15 +611,16 @@ function renderTree(){
 				var sx = n.x + 20;
 				var sy = n.y + 6 + (s * 18);
 
-				var sg = svgEl('g', { 'class': 'salmon-node', 'transform': 'translate(' + sx + ',' + sy + ')' });
-
 				var isUpstream = sal.direction === HS.const.UPSTREAM;
+				var isYoung = sal.age === HS.const.YOUNG;
 				var salColor = isUpstream ? '#fab387' : '#89b4fa';
+				var dirArrow = isUpstream ? '\u2190' : '\u2192';
+
+				var sg = svgEl('g', { 'class': 'salmon-node', 'transform': 'translate(' + sx + ',' + sy + ')' });
 
 				var rect = svgEl('rect', {
 					'x': 0,
 					'y': -8,
-					'width': 60,
 					'height': 16,
 					'fill': salColor,
 					'opacity': '0.25',
@@ -618,12 +632,27 @@ function renderTree(){
 				var sLabel = svgEl('text', {
 					'x': 4,
 					'y': 4,
-					'fill': salColor
+					'fill': salColor,
+					'font-weight': isYoung ? 'normal' : 'bold'
 				});
-				var dir = isUpstream ? '\u2191' : '\u2193';
-				var age = sal.age === HS.const.YOUNG ? 'y' : 'm';
-				sLabel.textContent = dir + age + ' ' + sal.name;
+				sLabel.textContent = dirArrow + ' ' + sal.name;
 				sg.appendChild(sLabel);
+
+				// size the background rect to fit the text
+				nodeGroup.appendChild(sg);
+				var bbox = sLabel.getBBox();
+				rect.setAttribute('width', bbox.width + 8);
+				nodeGroup.removeChild(sg);
+
+				// tooltip for salmon
+				var salTip = svgEl('title');
+				salTip.textContent = [
+					'Name: ' + sal.name,
+					'Age: ' + (isYoung ? 'Young' : 'Mature'),
+					'Direction: ' + (isUpstream ? 'Upstream' : 'Downstream'),
+					'At node: ' + (n.node.name || '(unnamed)')
+				].join('\n');
+				sg.appendChild(salTip);
 
 				nodeGroup.appendChild(sg);
 			}
