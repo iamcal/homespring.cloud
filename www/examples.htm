@@ -262,6 +262,20 @@ table.examples td.name a:hover {
 	color: var(--accent);
 }
 
+table.examples td.name .src-alt {
+	color: var(--text-dim);
+	font-size: 11px;
+	margin-left: 6px;
+}
+
+table.examples td.name .src-alt a {
+	color: var(--text-dim);
+}
+
+table.examples td.name .src-alt a:hover {
+	color: var(--accent);
+}
+
 table.examples td.desc {
 	color: var(--text-dim);
 	line-height: 1.5;
@@ -326,11 +340,9 @@ table.examples td.compat {
 
 <h1>Example Programs</h1>
 <p class="lead">
-	A collection of example Homespring programs gathered from multiple sources,
-	with a compatibility matrix showing which interpreters can run each one. The
-	raw files live in the
-	<a href="https://github.com/iamcal/homespring.js/tree/master/examples">homespring.js/examples</a>
-	directory.
+	Example Homespring programs collected from the four original sources,
+	with a compatibility matrix showing which interpreters can run each one.
+	Programs are grouped by author and listed under their original filenames.
 </p>
 
 <h2>Interpreters</h2>
@@ -382,7 +394,7 @@ table.examples td.compat {
 		</tr>
 
 		<tr>
-			<td class="name"><a href="homespring.js/examples/add.hs">add.hs</a></td>
+			<td class="name"><a href="examples/2003-jeff-binder/add.hs">add.hs</a></td>
 			<td class="desc">Reads two numbers from input and outputs their sum.</td>
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes</td>
@@ -390,7 +402,7 @@ table.examples td.compat {
 			<td class="compat yes">yes</td>
 		</tr>
 		<tr>
-			<td class="name"><a href="homespring.js/examples/cat.hs">cat.hs</a></td>
+			<td class="name"><a href="examples/2003-jeff-binder/cat.hs">cat.hs</a></td>
 			<td class="desc">Echoes its input straight to output, like the Unix <code>cat</code> utility.</td>
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes</td>
@@ -398,7 +410,7 @@ table.examples td.compat {
 			<td class="compat yes">yes</td>
 		</tr>
 		<tr>
-			<td class="name"><a href="homespring.js/examples/first.hs">first.hs</a></td>
+			<td class="name"><a href="examples/2003-jeff-binder/first.hs">first.hs</a></td>
 			<td class="desc">A minimal "Hello, world" — a single hatchery feeding a bear.</td>
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes</td>
@@ -406,7 +418,7 @@ table.examples td.compat {
 			<td class="compat yes">yes</td>
 		</tr>
 		<tr>
-			<td class="name"><a href="homespring.js/examples/hello-1.hs">hello-1.hs</a></td>
+			<td class="name"><a href="examples/2003-jeff-binder/hello-1.hs">hello-1.hs</a></td>
 			<td class="desc">"Hello, World!" using a universe, a hatchery, and snowmelt-powered rapids.</td>
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes</td>
@@ -414,7 +426,7 @@ table.examples td.compat {
 			<td class="compat yes">yes</td>
 		</tr>
 		<tr>
-			<td class="name"><a href="homespring.js/examples/hello-2.hs">hello-2.hs</a></td>
+			<td class="name"><a href="examples/2003-jeff-binder/hello-2.hs">hello-2.hs</a></td>
 			<td class="desc">"Hello, World!" — an alternative arrangement using the power-override rule.</td>
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes</td>
@@ -422,7 +434,7 @@ table.examples td.compat {
 			<td class="compat yes">yes</td>
 		</tr>
 		<tr>
-			<td class="name"><a href="homespring.js/examples/hello-3.hs">hello-3.hs</a></td>
+			<td class="name"><a href="examples/2003-jeff-binder/hello-3.hs">hello-3.hs</a></td>
 			<td class="desc">"Hello, World!" using marshy force, field-sense shallows, and a hydro-power spring.</td>
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes</td>
@@ -430,7 +442,7 @@ table.examples td.compat {
 			<td class="compat yes">yes</td>
 		</tr>
 		<tr>
-			<td class="name"><a href="homespring.js/examples/hi.hs">hi.hs</a></td>
+			<td class="name"><a href="examples/2003-jeff-binder/hi.hs">hi.hs</a></td>
 			<td class="desc">Prompts the user for their name and greets them back with a "Hi".</td>
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes</td>
@@ -438,7 +450,7 @@ table.examples td.compat {
 			<td class="compat yes">yes</td>
 		</tr>
 		<tr>
-			<td class="name"><a href="homespring.js/examples/name.hs">name.hs</a></td>
+			<td class="name"><a href="examples/2003-jeff-binder/name.hs">name.hs</a></td>
 			<td class="desc">An acrostic program whose node names spell out HOMESPRING line by line.</td>
 			<td class="compat no">—</td>
 			<td class="compat yes">yes</td>
@@ -446,7 +458,7 @@ table.examples td.compat {
 			<td class="compat yes">yes</td>
 		</tr>
 		<tr>
-			<td class="name"><a href="homespring.js/examples/null.hs">null.hs</a></td>
+			<td class="name"><a href="examples/2003-jeff-binder/null.hs">null.hs</a></td>
 			<td class="desc">The empty program — zero bytes, does nothing.</td>
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes</td>
@@ -454,7 +466,7 @@ table.examples td.compat {
 			<td class="compat yes">yes</td>
 		</tr>
 		<tr>
-			<td class="name"><a href="homespring.js/examples/quiz.hs">quiz.hs</a></td>
+			<td class="name"><a href="examples/2003-jeff-binder/quiz.hs">quiz.hs</a></td>
 			<td class="desc">A tiny maths quiz that asks "what's six times four?" and grades the reply.</td>
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes</td>
@@ -462,7 +474,7 @@ table.examples td.compat {
 			<td class="compat yes">yes</td>
 		</tr>
 		<tr>
-			<td class="name"><a href="homespring.js/examples/simple.hs">simple.hs</a></td>
+			<td class="name"><a href="examples/2003-jeff-binder/simple.hs">simple.hs</a></td>
 			<td class="desc">The simplest possible non-empty program — a single node.</td>
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes</td>
@@ -475,7 +487,7 @@ table.examples td.compat {
 		</tr>
 
 		<tr>
-			<td class="name"><a href="homespring.js/examples/flipflop.hs">flipflop.hs</a></td>
+			<td class="name"><a href="examples/2005-joe-neeman/flipflop.hs">flipflop.hs</a></td>
 			<td class="desc">A flip-flop that alternates state using an inverse-lock and a pair of pump/switch nodes.</td>
 			<td class="compat no">—</td>
 			<td class="compat yes">yes</td>
@@ -483,7 +495,7 @@ table.examples td.compat {
 			<td class="compat yes">yes</td>
 		</tr>
 		<tr>
-			<td class="name"><a href="homespring.js/examples/tic.hs">tic.hs</a></td>
+			<td class="name"><a href="examples/2005-joe-neeman/tic.hs">tic.hs</a></td>
 			<td class="desc">A tic-tac-toe implementation — the most elaborate program in the collection.</td>
 			<td class="compat no">—</td>
 			<td class="compat yes">yes</td>
@@ -496,15 +508,15 @@ table.examples td.compat {
 		</tr>
 
 		<tr>
-			<td class="name"><a href="homespring.js/examples/reverse-1.hs">reverse-1.hs</a></td>
-			<td class="desc">Reverses the input using a <code>force.up</code> node and a <code>split</code> — believed not to run under Cal.</td>
+			<td class="name"><a href="examples/2012-quin-kennedy/reverse.hsg">reverse.hsg</a></td>
+			<td class="desc">Reverses the input using a <code>force.up</code> node and a <code>split</code>.</td>
 			<td class="compat unknown">?</td>
 			<td class="compat unknown">?</td>
 			<td class="compat unknown">?</td>
 			<td class="compat broken">broken?</td>
 		</tr>
 		<tr>
-			<td class="name"><a href="homespring.js/examples/reverse-2.hs">reverse-2.hs</a></td>
+			<td class="name"><a href="examples/2012-quin-kennedy/reverse-2.hsg">reverse-2.hsg</a></td>
 			<td class="desc">Reverses the input — a more poetic variant ("split wings calm the ebb and flow").</td>
 			<td class="compat unknown">?</td>
 			<td class="compat unknown">?</td>
@@ -512,7 +524,7 @@ table.examples td.compat {
 			<td class="compat broken">broken?</td>
 		</tr>
 		<tr>
-			<td class="name"><a href="homespring.js/examples/reverse-3.hs">reverse-3.hs</a></td>
+			<td class="name"><a href="examples/2012-quin-kennedy/reverse-3.hsg">reverse-3.hsg</a></td>
 			<td class="desc">Reverses the input — a third variation of the same arrangement.</td>
 			<td class="compat unknown">?</td>
 			<td class="compat unknown">?</td>
@@ -520,8 +532,8 @@ table.examples td.compat {
 			<td class="compat broken">broken?</td>
 		</tr>
 		<tr>
-			<td class="name"><a href="homespring.js/examples/split.hs">split.hs</a></td>
-			<td class="desc">Splits input into pieces — believed not to run under Cal.</td>
+			<td class="name"><a href="examples/2012-quin-kennedy/split.hsg">split.hsg</a></td>
+			<td class="desc">Splits input into pieces.</td>
 			<td class="compat unknown">?</td>
 			<td class="compat unknown">?</td>
 			<td class="compat unknown">?</td>
@@ -529,11 +541,11 @@ table.examples td.compat {
 		</tr>
 
 		<tr class="author-row">
-			<td colspan="6">Benito van der Zander <span class="author-meta">— 2013 · programs collected in <a href="https://github.com/benibela/home-river">home-river</a></span></td>
+			<td colspan="6">Benito van der Zander <span class="author-meta">— 2013 · programs collected in <a href="https://github.com/benibela/home-river">home-river</a>; most are generated from HomeSpringTree (.hst) sources</span></td>
 		</tr>
 
 		<tr>
-			<td class="name"><a href="homespring.js/examples/clock.hs">clock.hs</a></td>
+			<td class="name"><a href="examples/2013-benito-van-der-zander/clock.hs">clock.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/clock.hst">.hst</a>)</span></td>
 			<td class="desc">A ticking clock driven by the <code>time</code> node and a range-switch cascade.</td>
 			<td class="compat no">—</td>
 			<td class="compat yes">yes</td>
@@ -541,7 +553,7 @@ table.examples td.compat {
 			<td class="compat yes">yes</td>
 		</tr>
 		<tr>
-			<td class="name"><a href="homespring.js/examples/count-1.hs">count-1.hs</a></td>
+			<td class="name"><a href="examples/2013-benito-van-der-zander/count.hs">count.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/count.hst">.hst</a>)</span></td>
 			<td class="desc">Counts from 0 to 9 and then to 100 using a bridged bear and hatchery cascade.</td>
 			<td class="compat no">—</td>
 			<td class="compat yes">yes</td>
@@ -549,23 +561,23 @@ table.examples td.compat {
 			<td class="compat yes">yes</td>
 		</tr>
 		<tr>
-			<td class="name"><a href="homespring.js/examples/count-2.hs">count-2.hs</a></td>
-			<td class="desc">A more elaborate counter built from digit generators — believed not to run under Cal.</td>
+			<td class="name"><a href="examples/2013-benito-van-der-zander/count2.hs">count2.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/count2.hst">.hst</a>)</span></td>
+			<td class="desc">A more elaborate counter built from digit generators.</td>
 			<td class="compat unknown">?</td>
 			<td class="compat unknown">?</td>
 			<td class="compat unknown">?</td>
 			<td class="compat broken">broken?</td>
 		</tr>
 		<tr>
-			<td class="name"><a href="homespring.js/examples/count-3.hs">count-3.hs</a></td>
-			<td class="desc">Another counter variant — believed not to run under Cal.</td>
+			<td class="name"><a href="examples/2013-benito-van-der-zander/count3.hs">count3.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/count3.hst">.hst</a>)</span></td>
+			<td class="desc">Another counter variant.</td>
 			<td class="compat unknown">?</td>
 			<td class="compat unknown">?</td>
 			<td class="compat unknown">?</td>
 			<td class="compat broken">broken?</td>
 		</tr>
 		<tr>
-			<td class="name"><a href="homespring.js/examples/count-4.hs">count-4.hs</a></td>
+			<td class="name"><a href="examples/2013-benito-van-der-zander/count4.hs">count4.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/count4.hst">.hst</a>)</span></td>
 			<td class="desc">A larger counter implementation (~10 KB of source).</td>
 			<td class="compat no">—</td>
 			<td class="compat yes">yes</td>
@@ -573,23 +585,23 @@ table.examples td.compat {
 			<td class="compat yes">yes</td>
 		</tr>
 		<tr>
-			<td class="name"><a href="homespring.js/examples/count-5.hs">count-5.hs</a></td>
-			<td class="desc">A counter variant using a different set of river nodes.</td>
+			<td class="name"><a href="examples/2013-benito-van-der-zander/count.poem.hs">count.poem.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/count.poem.hst">.hst</a>)</span></td>
+			<td class="desc">A counter written in the poetic style Homespring is intended to be read in.</td>
 			<td class="compat no">—</td>
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes</td>
 		</tr>
 		<tr>
-			<td class="name"><a href="homespring.js/examples/count-6.hs">count-6.hs</a></td>
-			<td class="desc">Yet another counter — a compact arrangement closely related to count-5.</td>
+			<td class="name"><a href="examples/2013-benito-van-der-zander/count.poem.withfillers.hs">count.poem.withfillers.hs</a></td>
+			<td class="desc">A poetic counter with additional filler words for extra flow.</td>
 			<td class="compat no">—</td>
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes</td>
 		</tr>
 		<tr>
-			<td class="name"><a href="homespring.js/examples/fizzbuzz-1.hs">fizzbuzz-1.hs</a></td>
+			<td class="name"><a href="examples/2013-benito-van-der-zander/fizzbuzz.hs">fizzbuzz.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/fizzbuzz.hst">.hst</a>)</span></td>
 			<td class="desc">Classic FizzBuzz — prints Fizz for multiples of 3, Buzz for 5, FizzBuzz for both.</td>
 			<td class="compat no">—</td>
 			<td class="compat yes">yes</td>
@@ -597,24 +609,24 @@ table.examples td.compat {
 			<td class="compat yes">yes</td>
 		</tr>
 		<tr>
-			<td class="name"><a href="homespring.js/examples/fizzbuzz-2.hs">fizzbuzz-2.hs</a></td>
-			<td class="desc">FizzBuzz — an alternative, considerably longer implementation.</td>
+			<td class="name"><a href="examples/2013-benito-van-der-zander/fizzbuzz.poem.hs">fizzbuzz.poem.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/fizzbuzz.poem.hst">.hst</a>)</span></td>
+			<td class="desc">FizzBuzz written in the poetic style — considerably longer.</td>
 			<td class="compat no">—</td>
 			<td class="compat yes">yes</td>
 			<td class="compat no">—</td>
 			<td class="compat yes">yes</td>
 		</tr>
 		<tr>
-			<td class="name"><a href="homespring.js/examples/fizzbuzz-3.hs">fizzbuzz-3.hs</a></td>
-			<td class="desc">FizzBuzz — a more compact third variation.</td>
+			<td class="name"><a href="examples/2013-benito-van-der-zander/fizzbuzztick.hs">fizzbuzztick.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/fizzbuzztick.hst">.hst</a>)</span></td>
+			<td class="desc">A compact FizzBuzz variant driven by time ticks.</td>
 			<td class="compat no">—</td>
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes</td>
 		</tr>
 		<tr>
-			<td class="name"><a href="homespring.js/examples/hello-4.hs">hello-4.hs</a></td>
-			<td class="desc">A fourth take on "Hello, World!" from the home-river collection.</td>
+			<td class="name"><a href="examples/2013-benito-van-der-zander/helloworld.hs">helloworld.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/helloworld.hst">.hst</a>)</span></td>
+			<td class="desc">A fourth take on "Hello, World!" — generated from a HomeSpringTree source.</td>
 			<td class="compat no">—</td>
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes</td>
@@ -633,8 +645,10 @@ table.examples td.compat {
 
 <p class="footnote">
 	Compatibility data is taken from the upstream
-	<a href="https://github.com/iamcal/homespring.js/blob/master/examples/README.md">examples README</a>.
+	<a href="https://github.com/iamcal/homespring.js/blob/master/examples/README.md">homespring.js examples README</a>.
 	Questionable entries are marked as such in the original.
+	The full source repositories are checked in as submodules under
+	<code>www/interpreters/</code>.
 </p>
 
 </main>
