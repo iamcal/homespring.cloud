@@ -13,3 +13,6 @@
 [submodule "www/interpreters/2013-benito-van-der-zander"]
 	path = www/interpreters/2013-benito-van-der-zander
 	url = https://github.com/benibela/home-river.git
+[submodule "www/interpreters/2003-cal-henderson"]
+	path = www/interpreters/2003-cal-henderson
+	url = https://github.com/iamcal/perl-Language-Homespring.git
