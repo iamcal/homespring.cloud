@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Examples — homespring.cloud</title>
+<style>
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+	--bg: #1e1e2e;
+	--surface: #282840;
+	--surface2: #313150;
+	--border: #3e3e5e;
+	--text: #cdd6f4;
+	--text-dim: #7f849c;
+	--accent: #89b4fa;
+	--accent-hover: #74a8fc;
+	--green: #a6e3a1;
+	--red: #f38ba8;
+	--yellow: #f9e2af;
+	--peach: #fab387;
+	--toolbar-h: 48px;
+	--font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+	--font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+html, body {
+	background: var(--bg);
+	color: var(--text);
+	font-family: var(--font-sans);
+	min-height: 100%;
+}
+
+a {
+	color: var(--accent);
+	text-decoration: none;
+}
+
+a:hover {
+	color: var(--accent-hover);
+	text-decoration: underline;
+}
+
+#toolbar {
+	height: var(--toolbar-h);
+	background: var(--surface);
+	border-bottom: 1px solid var(--border);
+	display: flex;
+	align-items: center;
+	padding: 0 16px;
+	gap: 8px;
+	position: sticky;
+	top: 0;
+	z-index: 10;
+}
+
+#toolbar .brand {
+	font-weight: 700;
+	font-size: 15px;
+	color: var(--accent);
+	margin-right: 16px;
+	user-select: none;
+}
+
+#toolbar .brand a {
+	color: inherit;
+	text-decoration: none;
+}
+
+#toolbar .nav-links {
+	display: flex;
+	gap: 4px;
+}
+
+#toolbar .nav-links a {
+	background: var(--surface2);
+	color: var(--text);
+	border: 1px solid var(--border);
+	border-radius: 6px;
+	padding: 6px 14px;
+	font-size: 13px;
+	transition: background 0.15s, border-color 0.15s;
+}
+
+#toolbar .nav-links a:hover {
+	background: var(--border);
+	border-color: var(--accent);
+	text-decoration: none;
+}
+
+#toolbar .nav-links a.current {
+	background: var(--accent);
+	color: var(--bg);
+	border-color: var(--accent);
+}
+
+main {
+	max-width: 1100px;
+	margin: 0 auto;
+	padding: 40px 24px 80px;
+}
+
+h1 {
+	font-size: 32px;
+	font-weight: 700;
+	margin-bottom: 12px;
+	color: var(--text);
+}
+
+h2 {
+	font-size: 20px;
+	font-weight: 600;
+	margin: 40px 0 16px;
+	color: var(--text);
+	border-bottom: 1px solid var(--border);
+	padding-bottom: 8px;
+}
+
+p.lead {
+	color: var(--text-dim);
+	font-size: 15px;
+	line-height: 1.6;
+	margin-bottom: 8px;
+	max-width: 760px;
+}
+
+p.lead a {
+	font-weight: 500;
+}
+
+/* Interpreter cards */
+
+.interp-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: 12px;
+	margin-top: 8px;
+}
+
+.interp-card {
+	background: var(--surface);
+	border: 1px solid var(--border);
+	border-radius: 8px;
+	padding: 14px 16px;
+}
+
+.interp-card .name {
+	font-size: 15px;
+	font-weight: 600;
+	color: var(--accent);
+	margin-bottom: 4px;
+}
+
+.interp-card .name .year {
+	font-family: var(--font-mono);
+	font-size: 13px;
+	font-weight: 400;
+	color: var(--text-dim);
+	margin-left: 6px;
+}
+
+.interp-card .author {
+	font-size: 13px;
+	color: var(--text);
+	margin-bottom: 8px;
+}
+
+.interp-card a.repo {
+	font-size: 12px;
+	font-family: var(--font-mono);
+	word-break: break-all;
+}
+
+/* Examples table */
+
+table.examples {
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 16px;
+	background: var(--surface);
+	border: 1px solid var(--border);
+	border-radius: 8px;
+	overflow: hidden;
+}
+
+table.examples thead th {
+	background: var(--surface2);
+	color: var(--text-dim);
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	text-align: left;
+	padding: 10px 14px;
+	border-bottom: 1px solid var(--border);
+	font-weight: 600;
+}
+
+table.examples thead th.compat {
+	text-align: center;
+	width: 96px;
+	line-height: 1.35;
+}
+
+table.examples thead th.compat .lang {
+	display: block;
+	font-size: 11px;
+	color: var(--text);
+	text-transform: none;
+	letter-spacing: 0;
+	font-weight: 600;
+}
+
+table.examples thead th.compat .year {
+	display: block;
+	font-family: var(--font-mono);
+	font-size: 11px;
+	color: var(--text-dim);
+	font-weight: 400;
+	margin-top: 1px;
+}
+
+table.examples tbody td {
+	padding: 10px 14px;
+	font-size: 13px;
+	border-bottom: 1px solid var(--border);
+	vertical-align: top;
+}
+
+table.examples tbody tr:last-child td {
+	border-bottom: none;
+}
+
+table.examples tbody tr.author-row td {
+	background: var(--surface2);
+	color: var(--accent);
+	font-weight: 600;
+	font-size: 13px;
+	padding: 10px 14px;
+	letter-spacing: 0.3px;
+}
+
+table.examples tbody tr.author-row td .author-meta {
+	color: var(--text-dim);
+	font-weight: 400;
+	font-size: 12px;
+	margin-left: 8px;
+}
+
+table.examples td.name {
+	font-family: var(--font-mono);
+	font-size: 13px;
+	white-space: nowrap;
+}
+
+table.examples td.name a {
+	color: var(--text);
+}
+
+table.examples td.name a:hover {
+	color: var(--accent);
+}
+
+table.examples td.desc {
+	color: var(--text-dim);
+	line-height: 1.5;
+}
+
+table.examples td.compat {
+	text-align: center;
+	font-family: var(--font-mono);
+	font-size: 13px;
+}
+
+.compat.yes {
+	color: var(--green);
+}
+
+.compat.no {
+	color: var(--text-dim);
+}
+
+.compat.broken {
+	color: var(--red);
+}
+
+.compat.unknown {
+	color: var(--yellow);
+}
+
+.footnote {
+	color: var(--text-dim);
+	font-size: 13px;
+	margin-top: 16px;
+	line-height: 1.6;
+}
+
+.legend-inline {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 16px;
+	margin-top: 12px;
+	font-size: 12px;
+	font-family: var(--font-mono);
+	color: var(--text-dim);
+}
+
+.legend-inline span b {
+	font-weight: 400;
+}
+
+</style>
+</head>
+<body>
+
+<div id="toolbar">
+	<span class="brand"><a href="/">homespring.cloud</a></span>
+	<div class="nav-links">
+		<a href="home.htm">Debugger</a>
+		<a href="examples.htm" class="current">Examples</a>
+	</div>
+</div>
+
+<main>
+
+<h1>Example Programs</h1>
+<p class="lead">
+	A collection of example Homespring programs gathered from multiple sources,
+	with a compatibility matrix showing which interpreters can run each one. The
+	raw files live in the
+	<a href="https://github.com/iamcal/homespring.js/tree/master/examples">homespring.js/examples</a>
+	directory.
+</p>
+
+<h2>Interpreters</h2>
+<div class="interp-grid">
+
+	<div class="interp-card">
+		<div class="name">Guile Scheme <span class="year">2003</span></div>
+		<div class="author">Jeff Binder</div>
+		<a class="repo" href="https://github.com/iamcal/Homespring">github.com/iamcal/Homespring</a>
+	</div>
+
+	<div class="interp-card">
+		<div class="name">OCaml <span class="year">2005</span></div>
+		<div class="author">Joe Neeman</div>
+		<a class="repo" href="https://github.com/jneem/homespring">github.com/jneem/homespring</a>
+	</div>
+
+	<div class="interp-card">
+		<div class="name">JavaScript <span class="year">2012</span></div>
+		<div class="author">Quin Kennedy</div>
+		<a class="repo" href="https://github.com/quinkennedy/Homespring">github.com/quinkennedy/Homespring</a>
+	</div>
+
+	<div class="interp-card">
+		<div class="name">JavaScript <span class="year">2017</span></div>
+		<div class="author">Cal Henderson</div>
+		<a class="repo" href="https://github.com/iamcal/homespring.js">github.com/iamcal/homespring.js</a>
+	</div>
+
+</div>
+
+<h2>Programs</h2>
+
+<table class="examples">
+	<thead>
+		<tr>
+			<th>Example</th>
+			<th>Description</th>
+			<th class="compat"><span class="lang">Scheme</span><span class="year">2003</span></th>
+			<th class="compat"><span class="lang">OCaml</span><span class="year">2005</span></th>
+			<th class="compat"><span class="lang">JavaScript</span><span class="year">2012</span></th>
+			<th class="compat"><span class="lang">JavaScript</span><span class="year">2017</span></th>
+		</tr>
+	</thead>
+	<tbody>
+
+		<tr class="author-row">
+			<td colspan="6">Jeff Binder <span class="author-meta">— 2003 · author of Homespring and its original Scheme interpreter</span></td>
+		</tr>
+
+		<tr>
+			<td class="name"><a href="homespring.js/examples/add.hs">add.hs</a></td>
+			<td class="desc">Reads two numbers from input and outputs their sum.</td>
+			<td class="compat yes">yes</td>
+			<td class="compat yes">yes</td>
+			<td class="compat yes">yes</td>
+			<td class="compat yes">yes</td>
+		</tr>
+		<tr>
+			<td class="name"><a href="homespring.js/examples/cat.hs">cat.hs</a></td>
+			<td class="desc">Echoes its input straight to output, like the Unix <code>cat</code> utility.</td>
+			<td class="compat yes">yes</td>
+			<td class="compat yes">yes</td>
+			<td class="compat yes">yes</td>
+			<td class="compat yes">yes</td>
+		</tr>
+		<tr>
+			<td class="name"><a href="homespring.js/examples/first.hs">first.hs</a></td>
+			<td class="desc">A minimal "Hello, world" — a single hatchery feeding a bear.</td>
+			<td class="compat yes">yes</td>
+			<td class="compat yes">yes</td>
+			<td class="compat yes">yes</td>
+			<td class="compat yes">yes</td>
+		</tr>
+		<tr>
+			<td class="name"><a href="homespring.js/examples/hello-1.hs">hello-1.hs</a></td>
+			<td class="desc">"Hello, World!" using a universe, a hatchery, and snowmelt-powered rapids.</td>
+			<td class="compat yes">yes</td>
+			<td class="compat yes">yes</td>
+			<td class="compat yes">yes</td>
+			<td class="compat yes">yes</td>
+		</tr>
+		<tr>
+			<td class="name"><a href="homespring.js/examples/hello-2.hs">hello-2.hs</a></td>
+			<td class="desc">"Hello, World!" — an alternative arrangement using the power-override rule.</td>
+			<td class="compat yes">yes</td>
+			<td class="compat yes">yes</td>
+			<td class="compat yes">yes</td>
+			<td class="compat yes">yes</td>
+		</tr>
+		<tr>
+			<td class="name"><a href="homespring.js/examples/hello-3.hs">hello-3.hs</a></td>
+			<td class="desc">"Hello, World!" using marshy force, field-sense shallows, and a hydro-power spring.</td>
+			<td class="compat yes">yes</td>
+			<td class="compat yes">yes</td>
+			<td class="compat yes">yes</td>
+			<td class="compat yes">yes</td>
+		</tr>
+		<tr>
+			<td class="name"><a href="homespring.js/examples/hi.hs">hi.hs</a></td>
+			<td class="desc">Prompts the user for their name and greets them back with a "Hi".</td>
+			<td class="compat yes">yes</td>
+			<td class="compat yes">yes</td>
+			<td class="compat yes">yes</td>
+			<td class="compat yes">yes</td>
+		</tr>
+		<tr>
+			<td class="name"><a href="homespring.js/examples/name.hs">name.hs</a></td>
+			<td class="desc">An acrostic program whose node names spell out HOMESPRING line by line.</td>
+			<td class="compat no">—</td>
+			<td class="compat yes">yes</td>
+			<td class="compat no">—</td>
+			<td class="compat yes">yes</td>
+		</tr>
+		<tr>
+			<td class="name"><a href="homespring.js/examples/null.hs">null.hs</a></td>
+			<td class="desc">The empty program — zero bytes, does nothing.</td>
+			<td class="compat yes">yes</td>
+			<td class="compat yes">yes</td>
+			<td class="compat yes">yes</td>
+			<td class="compat yes">yes</td>
+		</tr>
+		<tr>
+			<td class="name"><a href="homespring.js/examples/quiz.hs">quiz.hs</a></td>
+			<td class="desc">A tiny maths quiz that asks "what's six times four?" and grades the reply.</td>
+			<td class="compat yes">yes</td>
+			<td class="compat yes">yes</td>
+			<td class="compat yes">yes</td>
+			<td class="compat yes">yes</td>
+		</tr>
+		<tr>
+			<td class="name"><a href="homespring.js/examples/simple.hs">simple.hs</a></td>
+			<td class="desc">The simplest possible non-empty program — a single node.</td>
+			<td class="compat yes">yes</td>
+			<td class="compat yes">yes</td>
+			<td class="compat yes">yes</td>
+			<td class="compat yes">yes</td>
+		</tr>
+
+		<tr class="author-row">
+			<td colspan="6">Joe Neeman <span class="author-meta">— 2005 · author of the <a href="https://github.com/jneem/homespring">OCaml interpreter</a></span></td>
+		</tr>
+
+		<tr>
+			<td class="name"><a href="homespring.js/examples/flipflop.hs">flipflop.hs</a></td>
+			<td class="desc">A flip-flop that alternates state using an inverse-lock and a pair of pump/switch nodes.</td>
+			<td class="compat no">—</td>
+			<td class="compat yes">yes</td>
+			<td class="compat no">—</td>
+			<td class="compat yes">yes</td>
+		</tr>
+		<tr>
+			<td class="name"><a href="homespring.js/examples/tic.hs">tic.hs</a></td>
+			<td class="desc">A tic-tac-toe implementation — the most elaborate program in the collection.</td>
+			<td class="compat no">—</td>
+			<td class="compat yes">yes</td>
+			<td class="compat no">—</td>
+			<td class="compat yes">yes</td>
+		</tr>
+
+		<tr class="author-row">
+			<td colspan="6">Quin Kennedy <span class="author-meta">— 2012 · author of a <a href="https://github.com/quinkennedy/Homespring">JavaScript interpreter</a> and HomeSpringTree compiler</span></td>
+		</tr>
+
+		<tr>
+			<td class="name"><a href="homespring.js/examples/reverse-1.hs">reverse-1.hs</a></td>
+			<td class="desc">Reverses the input using a <code>force.up</code> node and a <code>split</code> — believed not to run under Cal.</td>
+			<td class="compat unknown">?</td>
+			<td class="compat unknown">?</td>
+			<td class="compat unknown">?</td>
+			<td class="compat broken">broken?</td>
+		</tr>
+		<tr>
+			<td class="name"><a href="homespring.js/examples/reverse-2.hs">reverse-2.hs</a></td>
+			<td class="desc">Reverses the input — a more poetic variant ("split wings calm the ebb and flow").</td>
+			<td class="compat unknown">?</td>
+			<td class="compat unknown">?</td>
+			<td class="compat unknown">?</td>
+			<td class="compat broken">broken?</td>
+		</tr>
+		<tr>
+			<td class="name"><a href="homespring.js/examples/reverse-3.hs">reverse-3.hs</a></td>
+			<td class="desc">Reverses the input — a third variation of the same arrangement.</td>
+			<td class="compat unknown">?</td>
+			<td class="compat unknown">?</td>
+			<td class="compat unknown">?</td>
+			<td class="compat broken">broken?</td>
+		</tr>
+		<tr>
+			<td class="name"><a href="homespring.js/examples/split.hs">split.hs</a></td>
+			<td class="desc">Splits input into pieces — believed not to run under Cal.</td>
+			<td class="compat unknown">?</td>
+			<td class="compat unknown">?</td>
+			<td class="compat unknown">?</td>
+			<td class="compat broken">broken?</td>
+		</tr>
+
+		<tr class="author-row">
+			<td colspan="6">Benito van der Zander <span class="author-meta">— 2013 · programs collected in <a href="https://github.com/benibela/home-river">home-river</a></span></td>
+		</tr>
+
+		<tr>
+			<td class="name"><a href="homespring.js/examples/clock.hs">clock.hs</a></td>
+			<td class="desc">A ticking clock driven by the <code>time</code> node and a range-switch cascade.</td>
+			<td class="compat no">—</td>
+			<td class="compat yes">yes</td>
+			<td class="compat yes">yes</td>
+			<td class="compat yes">yes</td>
+		</tr>
+		<tr>
+			<td class="name"><a href="homespring.js/examples/count-1.hs">count-1.hs</a></td>
+			<td class="desc">Counts from 0 to 9 and then to 100 using a bridged bear and hatchery cascade.</td>
+			<td class="compat no">—</td>
+			<td class="compat yes">yes</td>
+			<td class="compat yes">yes</td>
+			<td class="compat yes">yes</td>
+		</tr>
+		<tr>
+			<td class="name"><a href="homespring.js/examples/count-2.hs">count-2.hs</a></td>
+			<td class="desc">A more elaborate counter built from digit generators — believed not to run under Cal.</td>
+			<td class="compat unknown">?</td>
+			<td class="compat unknown">?</td>
+			<td class="compat unknown">?</td>
+			<td class="compat broken">broken?</td>
+		</tr>
+		<tr>
+			<td class="name"><a href="homespring.js/examples/count-3.hs">count-3.hs</a></td>
+			<td class="desc">Another counter variant — believed not to run under Cal.</td>
+			<td class="compat unknown">?</td>
+			<td class="compat unknown">?</td>
+			<td class="compat unknown">?</td>
+			<td class="compat broken">broken?</td>
+		</tr>
+		<tr>
+			<td class="name"><a href="homespring.js/examples/count-4.hs">count-4.hs</a></td>
+			<td class="desc">A larger counter implementation (~10 KB of source).</td>
+			<td class="compat no">—</td>
+			<td class="compat yes">yes</td>
+			<td class="compat no">—</td>
+			<td class="compat yes">yes</td>
+		</tr>
+		<tr>
+			<td class="name"><a href="homespring.js/examples/count-5.hs">count-5.hs</a></td>
+			<td class="desc">A counter variant using a different set of river nodes.</td>
+			<td class="compat no">—</td>
+			<td class="compat yes">yes</td>
+			<td class="compat yes">yes</td>
+			<td class="compat yes">yes</td>
+		</tr>
+		<tr>
+			<td class="name"><a href="homespring.js/examples/count-6.hs">count-6.hs</a></td>
+			<td class="desc">Yet another counter — a compact arrangement closely related to count-5.</td>
+			<td class="compat no">—</td>
+			<td class="compat yes">yes</td>
+			<td class="compat yes">yes</td>
+			<td class="compat yes">yes</td>
+		</tr>
+		<tr>
+			<td class="name"><a href="homespring.js/examples/fizzbuzz-1.hs">fizzbuzz-1.hs</a></td>
+			<td class="desc">Classic FizzBuzz — prints Fizz for multiples of 3, Buzz for 5, FizzBuzz for both.</td>
+			<td class="compat no">—</td>
+			<td class="compat yes">yes</td>
+			<td class="compat no">—</td>
+			<td class="compat yes">yes</td>
+		</tr>
+		<tr>
+			<td class="name"><a href="homespring.js/examples/fizzbuzz-2.hs">fizzbuzz-2.hs</a></td>
+			<td class="desc">FizzBuzz — an alternative, considerably longer implementation.</td>
+			<td class="compat no">—</td>
+			<td class="compat yes">yes</td>
+			<td class="compat no">—</td>
+			<td class="compat yes">yes</td>
+		</tr>
+		<tr>
+			<td class="name"><a href="homespring.js/examples/fizzbuzz-3.hs">fizzbuzz-3.hs</a></td>
+			<td class="desc">FizzBuzz — a more compact third variation.</td>
+			<td class="compat no">—</td>
+			<td class="compat yes">yes</td>
+			<td class="compat yes">yes</td>
+			<td class="compat yes">yes</td>
+		</tr>
+		<tr>
+			<td class="name"><a href="homespring.js/examples/hello-4.hs">hello-4.hs</a></td>
+			<td class="desc">A fourth take on "Hello, World!" from the home-river collection.</td>
+			<td class="compat no">—</td>
+			<td class="compat yes">yes</td>
+			<td class="compat yes">yes</td>
+			<td class="compat yes">yes</td>
+		</tr>
+
+	</tbody>
+</table>
+
+<div class="legend-inline">
+	<span><b class="compat yes">yes</b> &nbsp;runs correctly</span>
+	<span><b class="compat no">—</b> &nbsp;not tested / not supported</span>
+	<span><b class="compat broken">broken?</b> &nbsp;appears not to run</span>
+	<span><b class="compat unknown">?</b> &nbsp;unknown</span>
+</div>
+
+<p class="footnote">
+	Compatibility data is taken from the upstream
+	<a href="https://github.com/iamcal/homespring.js/blob/master/examples/README.md">examples README</a>.
+	Questionable entries are marked as such in the original.
+</p>
+
+</main>
+
+</body>
+</html>
