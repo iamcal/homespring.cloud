@@ -7,7 +7,7 @@
   "expected_output": "Hello, world.\nHello, world.\nHello, world.\n",
   "overrides": {
     "2003-cal-henderson": {
-      "notes": "Perl module emits the first line one tick later than others."
+      "notes": "Emits the first line one tick later than others."
     }
   },
   "normalize": "prefix"
