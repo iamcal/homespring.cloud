@@ -91,7 +91,7 @@ def cell(res, slug, aid):
         if aid == '2012-quin-kennedy' and slug not in QUIN_STAR_SKIP:
             label = 'yes<sup>*</sup>'
         elif aid == '2003-cal-henderson' and slug in PERL_DOUBLE_STAR:
-            label = 'yes<sup>**</sup>'
+            label = 'yes<sup>&dagger;</sup>'
         return f'<td class="compat yes">{label}</td>'
     if status == 'skip' and presumed:
         # "Pass in spirit" — harness can't verify but the author's own
