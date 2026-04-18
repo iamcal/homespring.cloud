@@ -5,9 +5,6 @@
   "expected_output": "Hello, World!\n",
   "timeout": 5,
   "overrides": {
-    "2005-joe-neeman": {
-      "notes": "OCaml emits 'force FieldHello, World!' \u2014 the blocking force-field node's name leaks into the output."
-    },
     "2003-cal-henderson": {
       "skip": true,
       "skip_reason": "Does not support sense / shallows / force field"

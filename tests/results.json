@@ -1,5 +1,5 @@
 {
-  "generated_at": 1776479810,
+  "generated_at": 1776534396,
   "adapters": [
     {
       "id": "2005-joe-neeman",
@@ -189,7 +189,7 @@
       "expected_ticks": 53,
       "actual_ticks": 53,
       "notes": [],
-      "wall_time_ms": 9,
+      "wall_time_ms": 8,
       "presumed_pass": false
     },
     {
@@ -229,7 +229,7 @@
       "expected_ticks": 53,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 142,
+      "wall_time_ms": 126,
       "presumed_pass": false
     },
     {
@@ -241,7 +241,7 @@
       "expected_ticks": 53,
       "actual_ticks": 53,
       "notes": [],
-      "wall_time_ms": 147,
+      "wall_time_ms": 120,
       "presumed_pass": false
     },
     {
@@ -253,7 +253,7 @@
       "expected_ticks": 39,
       "actual_ticks": 39,
       "notes": [],
-      "wall_time_ms": 11,
+      "wall_time_ms": 26,
       "presumed_pass": false
     },
     {
@@ -293,7 +293,7 @@
       "expected_ticks": 39,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 116,
+      "wall_time_ms": 126,
       "presumed_pass": false
     },
     {
@@ -305,7 +305,7 @@
       "expected_ticks": 39,
       "actual_ticks": 39,
       "notes": [],
-      "wall_time_ms": 105,
+      "wall_time_ms": 142,
       "presumed_pass": false
     },
     {
@@ -317,7 +317,7 @@
       "expected_ticks": 39,
       "actual_ticks": 39,
       "notes": [],
-      "wall_time_ms": 21,
+      "wall_time_ms": 16,
       "presumed_pass": false
     },
     {
@@ -357,7 +357,7 @@
       "expected_ticks": 39,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 111,
+      "wall_time_ms": 142,
       "presumed_pass": false
     },
     {
@@ -369,7 +369,7 @@
       "expected_ticks": 39,
       "actual_ticks": 39,
       "notes": [],
-      "wall_time_ms": 101,
+      "wall_time_ms": 139,
       "presumed_pass": false
     },
     {
@@ -381,7 +381,7 @@
       "expected_ticks": 51,
       "actual_ticks": 51,
       "notes": [],
-      "wall_time_ms": 12,
+      "wall_time_ms": 13,
       "presumed_pass": false
     },
     {
@@ -421,7 +421,7 @@
       "expected_ticks": 51,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 123,
+      "wall_time_ms": 131,
       "presumed_pass": false
     },
     {
@@ -433,7 +433,7 @@
       "expected_ticks": 51,
       "actual_ticks": 51,
       "notes": [],
-      "wall_time_ms": 112,
+      "wall_time_ms": 108,
       "presumed_pass": false
     },
     {
@@ -445,7 +445,7 @@
       "expected_ticks": null,
       "actual_ticks": 80,
       "notes": [],
-      "wall_time_ms": 43,
+      "wall_time_ms": 40,
       "presumed_pass": false
     },
     {
@@ -499,7 +499,7 @@
       "expected_ticks": null,
       "actual_ticks": 80,
       "notes": [],
-      "wall_time_ms": 226,
+      "wall_time_ms": 179,
       "presumed_pass": false
     },
     {
@@ -511,7 +511,7 @@
       "expected_ticks": null,
       "actual_ticks": 80,
       "notes": [],
-      "wall_time_ms": 17,
+      "wall_time_ms": 14,
       "presumed_pass": false
     },
     {
@@ -565,7 +565,7 @@
       "expected_ticks": null,
       "actual_ticks": 80,
       "notes": [],
-      "wall_time_ms": 165,
+      "wall_time_ms": 146,
       "presumed_pass": false
     },
     {
@@ -577,7 +577,7 @@
       "expected_ticks": null,
       "actual_ticks": 80,
       "notes": [],
-      "wall_time_ms": 43,
+      "wall_time_ms": 42,
       "presumed_pass": false
     },
     {
@@ -631,7 +631,7 @@
       "expected_ticks": null,
       "actual_ticks": 80,
       "notes": [],
-      "wall_time_ms": 253,
+      "wall_time_ms": 187,
       "presumed_pass": false
     },
     {
@@ -699,7 +699,7 @@
       "expected_ticks": null,
       "actual_ticks": 1500,
       "notes": [],
-      "wall_time_ms": 2304,
+      "wall_time_ms": 2164,
       "presumed_pass": false
     },
     {
@@ -767,7 +767,7 @@
       "expected_ticks": 2207,
       "actual_ticks": 2207,
       "notes": [],
-      "wall_time_ms": 3169,
+      "wall_time_ms": 3004,
       "presumed_pass": false
     },
     {
@@ -779,7 +779,7 @@
       "expected_ticks": null,
       "actual_ticks": 200,
       "notes": [],
-      "wall_time_ms": 74,
+      "wall_time_ms": 76,
       "presumed_pass": false
     },
     {
@@ -833,7 +833,7 @@
       "expected_ticks": null,
       "actual_ticks": 200,
       "notes": [],
-      "wall_time_ms": 324,
+      "wall_time_ms": 372,
       "presumed_pass": false
     },
     {
@@ -845,7 +845,7 @@
       "expected_ticks": 9,
       "actual_ticks": 9,
       "notes": [],
-      "wall_time_ms": 8,
+      "wall_time_ms": 22,
       "presumed_pass": false
     },
     {
@@ -885,7 +885,7 @@
       "expected_ticks": 9,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 62,
+      "wall_time_ms": 140,
       "presumed_pass": false
     },
     {
@@ -897,7 +897,7 @@
       "expected_ticks": 9,
       "actual_ticks": 9,
       "notes": [],
-      "wall_time_ms": 50,
+      "wall_time_ms": 78,
       "presumed_pass": false
     },
     {
@@ -909,7 +909,7 @@
       "expected_ticks": 7,
       "actual_ticks": 7,
       "notes": [],
-      "wall_time_ms": 6,
+      "wall_time_ms": 11,
       "presumed_pass": false
     },
     {
@@ -933,7 +933,7 @@
       "expected_ticks": 6,
       "actual_ticks": 6,
       "notes": [],
-      "wall_time_ms": 18,
+      "wall_time_ms": 22,
       "presumed_pass": false
     },
     {
@@ -945,7 +945,7 @@
       "expected_ticks": 7,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 59,
+      "wall_time_ms": 74,
       "presumed_pass": false
     },
     {
@@ -957,7 +957,7 @@
       "expected_ticks": 7,
       "actual_ticks": 7,
       "notes": [],
-      "wall_time_ms": 48,
+      "wall_time_ms": 58,
       "presumed_pass": false
     },
     {
@@ -969,7 +969,7 @@
       "expected_ticks": null,
       "actual_ticks": 200,
       "notes": [],
-      "wall_time_ms": 17,
+      "wall_time_ms": 37,
       "presumed_pass": false
     },
     {
@@ -1009,7 +1009,7 @@
       "expected_ticks": null,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 308,
+      "wall_time_ms": 289,
       "presumed_pass": false
     },
     {
@@ -1021,7 +1021,7 @@
       "expected_ticks": null,
       "actual_ticks": 200,
       "notes": [],
-      "wall_time_ms": 271,
+      "wall_time_ms": 282,
       "presumed_pass": false
     },
     {
@@ -1033,7 +1033,7 @@
       "expected_ticks": null,
       "actual_ticks": 20,
       "notes": [],
-      "wall_time_ms": 8,
+      "wall_time_ms": 6,
       "presumed_pass": false
     },
     {
@@ -1073,7 +1073,7 @@
       "expected_ticks": null,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 77,
+      "wall_time_ms": 75,
       "presumed_pass": false
     },
     {
@@ -1085,7 +1085,7 @@
       "expected_ticks": null,
       "actual_ticks": 20,
       "notes": [],
-      "wall_time_ms": 71,
+      "wall_time_ms": 66,
       "presumed_pass": false
     },
     {
@@ -1093,7 +1093,7 @@
       "adapter": "2005-joe-neeman",
       "status": "pass",
       "expected_output": "Hello, world.\nHello, world.\nHello, world.\n",
-      "actual_output": "Hello, world.\nHello, world.\nHello, world.\nHello, world.\nHello, world.\nHello, world.\nHello, world.\nHello, world.\nHello, world.\nHello, world.\nHello, world.\nHello, world.\nHello, world.\nHello, world.\nHello, world.\nHello, world.\n",
+      "actual_output": "Hello, world.\nHello, world.\nHello, world.\nHello, world.\nHello, world.\nHello, world.\nHello, world.\nHello, world.\nHello, world.\nHello, world.\nHello, world.\nHello, world.\nHello, world.\nHello, world.\nHello, world.\n",
       "expected_ticks": null,
       "actual_ticks": 20,
       "notes": [],
@@ -1137,7 +1137,7 @@
       "expected_ticks": null,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 98,
+      "wall_time_ms": 79,
       "presumed_pass": false
     },
     {
@@ -1149,7 +1149,7 @@
       "expected_ticks": null,
       "actual_ticks": 20,
       "notes": [],
-      "wall_time_ms": 72,
+      "wall_time_ms": 61,
       "presumed_pass": false
     },
     {
@@ -1173,7 +1173,7 @@
       "expected_ticks": 7,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 4007,
+      "wall_time_ms": 4004,
       "presumed_pass": false
     },
     {
@@ -1185,7 +1185,7 @@
       "expected_ticks": 6,
       "actual_ticks": 6,
       "notes": [],
-      "wall_time_ms": 19,
+      "wall_time_ms": 20,
       "presumed_pass": false
     },
     {
@@ -1197,7 +1197,7 @@
       "expected_ticks": 7,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 109,
+      "wall_time_ms": 63,
       "presumed_pass": false
     },
     {
@@ -1209,7 +1209,7 @@
       "expected_ticks": 7,
       "actual_ticks": 7,
       "notes": [],
-      "wall_time_ms": 98,
+      "wall_time_ms": 51,
       "presumed_pass": false
     },
     {
@@ -1245,7 +1245,7 @@
       "expected_ticks": 9,
       "actual_ticks": 9,
       "notes": [],
-      "wall_time_ms": 22,
+      "wall_time_ms": 20,
       "presumed_pass": false
     },
     {
@@ -1257,7 +1257,7 @@
       "expected_ticks": 10,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 84,
+      "wall_time_ms": 64,
       "presumed_pass": false
     },
     {
@@ -1275,15 +1275,13 @@
     {
       "program": "jeff-hello-3",
       "adapter": "2005-joe-neeman",
-      "status": "fail",
+      "status": "pass",
       "expected_output": "Hello, World!\n",
-      "actual_output": "force FieldHello, World!\n",
+      "actual_output": "Hello, World!\n",
       "expected_ticks": 16,
       "actual_ticks": 16,
-      "notes": [
-        "OCaml emits 'force FieldHello, World!' \u2014 the blocking force-field node's name leaks into the output."
-      ],
-      "wall_time_ms": 5,
+      "notes": [],
+      "wall_time_ms": 7,
       "presumed_pass": false
     },
     {
@@ -1295,7 +1293,7 @@
       "expected_ticks": 16,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 6003,
+      "wall_time_ms": 6006,
       "presumed_pass": false
     },
     {
@@ -1321,7 +1319,7 @@
       "expected_ticks": 16,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 84,
+      "wall_time_ms": 95,
       "presumed_pass": false
     },
     {
@@ -1333,21 +1331,19 @@
       "expected_ticks": 16,
       "actual_ticks": 16,
       "notes": [],
-      "wall_time_ms": 57,
+      "wall_time_ms": 61,
       "presumed_pass": false
     },
     {
       "program": "jeff-hi",
       "adapter": "2005-joe-neeman",
-      "status": "skip",
+      "status": "pass",
       "expected_output": "Hi. What's your name? Hi, World!\n",
-      "actual_output": "",
+      "actual_output": "Hi. What's your name? Hi, World!\n",
       "expected_ticks": null,
-      "actual_ticks": null,
-      "notes": [
-        "Runs one tick past the greeting, emitting an extra 'Hi, ' as if starting a second response"
-      ],
-      "wall_time_ms": 0,
+      "actual_ticks": 32,
+      "notes": [],
+      "wall_time_ms": 7,
       "presumed_pass": false
     },
     {
@@ -1359,7 +1355,7 @@
       "expected_ticks": null,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 6004,
+      "wall_time_ms": 6003,
       "presumed_pass": false
     },
     {
@@ -1385,7 +1381,7 @@
       "expected_ticks": null,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 116,
+      "wall_time_ms": 88,
       "presumed_pass": false
     },
     {
@@ -1397,7 +1393,7 @@
       "expected_ticks": null,
       "actual_ticks": 33,
       "notes": [],
-      "wall_time_ms": 77,
+      "wall_time_ms": 84,
       "presumed_pass": false
     },
     {
@@ -1491,7 +1487,7 @@
       "expected_ticks": 0,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 4004,
+      "wall_time_ms": 4003,
       "presumed_pass": false
     },
     {
@@ -1517,7 +1513,7 @@
       "expected_ticks": 0,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 55,
+      "wall_time_ms": 71,
       "presumed_pass": false
     },
     {
@@ -1529,7 +1525,7 @@
       "expected_ticks": 0,
       "actual_ticks": 0,
       "notes": [],
-      "wall_time_ms": 46,
+      "wall_time_ms": 42,
       "presumed_pass": false
     },
     {
@@ -1541,7 +1537,7 @@
       "expected_ticks": null,
       "actual_ticks": 29,
       "notes": [],
-      "wall_time_ms": 6,
+      "wall_time_ms": 7,
       "presumed_pass": false
     },
     {
@@ -1553,7 +1549,7 @@
       "expected_ticks": null,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 6003,
+      "wall_time_ms": 6005,
       "presumed_pass": false
     },
     {
@@ -1579,7 +1575,7 @@
       "expected_ticks": null,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 126,
+      "wall_time_ms": 112,
       "presumed_pass": false
     },
     {
@@ -1591,7 +1587,7 @@
       "expected_ticks": null,
       "actual_ticks": 29,
       "notes": [],
-      "wall_time_ms": 115,
+      "wall_time_ms": 88,
       "presumed_pass": false
     },
     {
@@ -1603,7 +1599,7 @@
       "expected_ticks": null,
       "actual_ticks": 20,
       "notes": [],
-      "wall_time_ms": 9,
+      "wall_time_ms": 6,
       "presumed_pass": false
     },
     {
@@ -1615,7 +1611,7 @@
       "expected_ticks": null,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 4008,
+      "wall_time_ms": 4004,
       "presumed_pass": false
     },
     {
@@ -1627,7 +1623,7 @@
       "expected_ticks": null,
       "actual_ticks": 20,
       "notes": [],
-      "wall_time_ms": 41,
+      "wall_time_ms": 18,
       "presumed_pass": false
     },
     {
@@ -1639,7 +1635,7 @@
       "expected_ticks": null,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 91,
+      "wall_time_ms": 85,
       "presumed_pass": false
     },
     {
@@ -1651,7 +1647,7 @@
       "expected_ticks": null,
       "actual_ticks": 20,
       "notes": [],
-      "wall_time_ms": 68,
+      "wall_time_ms": 66,
       "presumed_pass": false
     },
     {
@@ -1717,26 +1713,26 @@
       "expected_ticks": null,
       "actual_ticks": 60,
       "notes": [],
-      "wall_time_ms": 119,
+      "wall_time_ms": 109,
       "presumed_pass": false
     },
     {
       "program": "joe-tic",
       "adapter": "2005-joe-neeman",
       "status": "pass",
-      "expected_output": " | | | |\n-----\n\n-----\n | | | |\n-----\n\n-----\n",
-      "actual_output": " | | | |\n-----\n\n-----\n | | | |\n-----\n\n-----\n",
+      "expected_output": " | |\n-----\n | |\n-----\n",
+      "actual_output": " | |\n-----\n | |\n-----\n",
       "expected_ticks": null,
       "actual_ticks": 200,
       "notes": [],
-      "wall_time_ms": 21,
+      "wall_time_ms": 20,
       "presumed_pass": false
     },
     {
       "program": "joe-tic",
       "adapter": "2003-jeff-binder",
       "status": "skip",
-      "expected_output": " | | | |\n-----\n\n-----\n | | | |\n-----\n\n-----\n",
+      "expected_output": " | |\n-----\n | |\n-----\n",
       "actual_output": "",
       "expected_ticks": null,
       "actual_ticks": null,
@@ -1750,7 +1746,7 @@
       "program": "joe-tic",
       "adapter": "2003-cal-henderson",
       "status": "skip",
-      "expected_output": " | | | |\n-----\n\n-----\n | | | |\n-----\n\n-----\n",
+      "expected_output": " | |\n-----\n | |\n-----\n",
       "actual_output": "",
       "expected_ticks": null,
       "actual_ticks": null,
@@ -1764,7 +1760,7 @@
       "program": "joe-tic",
       "adapter": "2012-quin-kennedy",
       "status": "skip",
-      "expected_output": " | | | |\n-----\n\n-----\n | | | |\n-----\n\n-----\n",
+      "expected_output": " | |\n-----\n | |\n-----\n",
       "actual_output": "",
       "expected_ticks": null,
       "actual_ticks": null,
@@ -1777,15 +1773,13 @@
     {
       "program": "joe-tic",
       "adapter": "2017-cal-henderson-js",
-      "status": "skip",
-      "expected_output": " | | | |\n-----\n\n-----\n | | | |\n-----\n\n-----\n",
-      "actual_output": "",
+      "status": "pass",
+      "expected_output": " | |\n-----\n | |\n-----\n",
+      "actual_output": " | |\n-----\n | |\n-----\n",
       "expected_ticks": null,
-      "actual_ticks": null,
-      "notes": [
-        "Emits a different board layout ('2-cell rows') than the OCaml reference's 3-cell rows"
-      ],
-      "wall_time_ms": 0,
+      "actual_ticks": 200,
+      "notes": [],
+      "wall_time_ms": 307,
       "presumed_pass": false
     },
     {
@@ -2070,10 +2064,10 @@
     }
   ],
   "summary": {
-    "pass": 72,
-    "fail": 1,
+    "pass": 75,
+    "fail": 0,
     "error": 0,
     "timeout": 0,
-    "skip": 72
+    "skip": 70
   }
 }

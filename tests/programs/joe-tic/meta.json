@@ -4,7 +4,7 @@
   "input": "hello\n",
   "tick_limit": 200,
   "timeout": 8,
-  "expected_output": " | | | |\n-----\n\n-----\n | | | |\n-----\n\n-----\n",
+  "expected_output": " | |\n-----\n | |\n-----\n",
   "overrides": {
     "2003-jeff-binder": {
       "skip": true,
@@ -17,10 +17,6 @@
     "2012-quin-kennedy": {
       "skip": true,
       "skip_reason": "Emits nothing for this program"
-    },
-    "2017-cal-henderson-js": {
-      "skip": true,
-      "skip_reason": "Emits a different board layout ('2-cell rows') than the OCaml reference's 3-cell rows"
     }
   }
 }

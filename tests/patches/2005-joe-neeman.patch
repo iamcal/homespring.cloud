@@ -24,34 +24,65 @@ index 97c5264..f96fc1b 100644
      let newline = Str.regexp ".*\\.\n" in
      let read_token pos =
 diff --git a/src/hsrun.ml b/src/hsrun.ml
-index b746123..1f4cfcb 100644
+index b746123..57cbde1 100644
 --- a/src/hsrun.ml
 +++ b/src/hsrun.ml
-@@ -2,31 +2,48 @@ open Homespring;;
+@@ -1,32 +1,78 @@
+ open Homespring;;
  
++(* The Unix select() syscall reports a stdin fd as "readable" when it's at
++   EOF as well as when it has actual bytes pending. The spec says the input
++   tick fires only "if any input is available" — meaning real data, not a
++   closed pipe — so we peek a byte before declaring ready. Any byte we peek
++   is kept in [buf] so subsequent reads get it back. Mixing Unix.read with
++   Stdlib's buffered stdin channel is unsafe, so we read byte-by-byte via
++   Unix.read throughout. *)
++
  class io =
-     object
+-    object
++    object (self)
 +    val mutable eof = false
++    val buf = Buffer.create 16
      method print s = print_string s
-     method ready =
--        try
+-    method ready =
++    method private try_read_one =
+         try
 -            match Unix.select [Unix.stdin] [] [] 0.0 with
 -                (x::xs, [], []) -> true
 -              | _ -> false
 -        with
 -            _ -> false
 -    method get = read_line ()
++            let b = Bytes.create 1 in
++            let n = Unix.read Unix.stdin b 0 1 in
++            if n = 0 then (eof <- true; false)
++            else (Buffer.add_char buf (Bytes.get b 0); true)
++        with _ -> false
++    method ready =
 +        if eof then false
++        else if Buffer.length buf > 0 then true
 +        else
 +            try
 +                match Unix.select [Unix.stdin] [] [] 0.0 with
-+                    (_::_, [], []) -> true
++                    (_::_, [], []) -> self#try_read_one
 +                  | _ -> false
-+            with
-+                _ -> false
++            with _ -> false
 +    method get =
-+        try read_line ()
-+        with End_of_file -> eof <- true; ""
++        let line = Buffer.create 16 in
++        let finished = ref false in
++        while not !finished do
++            if Buffer.length buf = 0 && not (self#try_read_one) then
++                finished := true
++            else begin
++                let c = Buffer.nth buf 0 in
++                let rest = Buffer.sub buf 1 (Buffer.length buf - 1) in
++                Buffer.clear buf;
++                Buffer.add_string buf rest;
++                if c = '\n' then finished := true
++                else Buffer.add_char line c
++            end
++        done;
++        Buffer.contents line
  end;;
  
 +let quiet = try Sys.getenv "HS_QUIET" <> "" with Not_found -> false;;
