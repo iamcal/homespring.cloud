@@ -1,0 +1,15 @@
+diff --git a/hs b/hs
+old mode 100644
+new mode 100755
+index 3697353..1297af5
+--- a/hs
++++ b/hs
+@@ -160,7 +160,7 @@ The --syntax option allows you to specify the tree directly in LISP syntax.
+ 	 (if (char-ready?)
+ 	     (let ((line (read-line)))
+ 	       (if (eof-object? line)
+-		   (exit 0)
++		   #f
+ 		   (vector-set! (car tree) 4
+ 				(cons
+ 				 (allocate-salmon!!!! line #t #t)

@@ -1,0 +1,15 @@
+{
+  "description": "Interactive greeter — asks 'What's your name?' and responds 'Hi, <name>!'.",
+  "source": "program.hs",
+  "input": "World\n",
+  "tick_limit": 50,
+  "timeout": 5,
+  "expected_output": "Hi. What's your name? Hi, World!\n",
+  "normalize": "prefix",
+  "overrides": {
+    "2003-cal-henderson": {
+      "skip": true,
+      "skip_reason": "Perl module has no input support"
+    }
+  }
+}

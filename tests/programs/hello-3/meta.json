@@ -1,0 +1,18 @@
+{
+  "description": "Hello World #3 — uses a hydro power + spring source, force field, shallows, and sense nodes.",
+  "source": "program.hs",
+  "input": "",
+  "expected_output": "Hello, World!\n",
+  "expected_ticks": null,
+  "timeout": 5,
+  "overrides": {
+    "2005-joe-neeman": {
+      "expected_output": "force FieldHello, World!\n",
+      "notes": "OCaml interpreter prints the blocking force-field token before the salmon."
+    },
+    "2003-cal-henderson": {
+      "skip": true,
+      "skip_reason": "Perl module does not support sense / shallows / force field"
+    }
+  }
+}

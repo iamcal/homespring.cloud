@@ -1,0 +1,13 @@
+{
+  "description": "Zero-byte program — the null program is specially trapped and is not a quine.",
+  "source": "program.hs",
+  "input": "",
+  "expected_output": "In Homespring, the null program is not a quine.\n",
+  "expected_ticks": null,
+  "timeout": 3,
+  "overrides": {
+    "2003-jeff-binder": { "skip": true, "skip_reason": "null byte refused by guile script" },
+    "2003-cal-henderson": { "skip": true, "skip_reason": "Perl module treats null as empty tree (no output)" },
+    "2012-quin-kennedy": { "skip": true, "skip_reason": "Quin's interpreter does not handle the null program" }
+  }
+}

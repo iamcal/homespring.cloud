@@ -1,0 +1,11 @@
+{
+  "description": "Hello World #1 — minimal hatchery + bear + powers + marshy + snowmelt.",
+  "source": "program.hs",
+  "input": "",
+  "expected_output": "Hello World!\n",
+  "expected_ticks": 7,
+  "timeout": 3,
+  "overrides": {
+    "2003-cal-henderson": { "expected_ticks": 6, "expected_output": "Hello World!\n" }
+  }
+}

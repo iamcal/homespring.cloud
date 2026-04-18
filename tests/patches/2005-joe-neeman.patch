@@ -1,0 +1,87 @@
+diff --git a/src/homespring.ml b/src/homespring.ml
+index 97c5264..f96fc1b 100644
+--- a/src/homespring.ml
++++ b/src/homespring.ml
+@@ -580,7 +580,7 @@ and young_range_switch name parent io =
+ end
+ 
+ let make_node name =
+-    match (String.lowercase name) with
++    match (String.lowercase_ascii name) with
+         "hatchery" -> new hatchery name
+       | "hydro power" -> new hydro_power name
+       | "snowmelt" -> new snowmelt name
+@@ -633,8 +633,9 @@ let make_node name =
+ (* return a list of all the tokens in the file *)
+ let parse_file filename =
+     let ch = open_in filename in
+-    let s = String.make (in_channel_length ch) ' ' in
+-    really_input ch s 0 (in_channel_length ch);
++    let b = Bytes.make (in_channel_length ch) ' ' in
++    really_input ch b 0 (in_channel_length ch);
++    let s = Bytes.to_string b in
+     let r = Str.regexp "\\(\\. \\| \\.\\|[^ \n\\.]\\)*\\.?[ \n]" in
+     let newline = Str.regexp ".*\\.\n" in
+     let read_token pos =
+diff --git a/src/hsrun.ml b/src/hsrun.ml
+index b746123..1f4cfcb 100644
+--- a/src/hsrun.ml
++++ b/src/hsrun.ml
+@@ -2,31 +2,48 @@ open Homespring;;
+ 
+ class io =
+     object
++    val mutable eof = false
+     method print s = print_string s
+     method ready =
+-        try
+-            match Unix.select [Unix.stdin] [] [] 0.0 with
+-                (x::xs, [], []) -> true
+-              | _ -> false
+-        with
+-            _ -> false
+-    method get = read_line ()
++        if eof then false
++        else
++            try
++                match Unix.select [Unix.stdin] [] [] 0.0 with
++                    (_::_, [], []) -> true
++                  | _ -> false
++            with
++                _ -> false
++    method get =
++        try read_line ()
++        with End_of_file -> eof <- true; ""
+ end;;
+ 
++let quiet = try Sys.getenv "HS_QUIET" <> "" with Not_found -> false;;
++let report_ticks = try Sys.getenv "HS_TICKS" <> "" with Not_found -> false;;
++let tick_limit =
++    try int_of_string (Sys.getenv "HS_LIMIT")
++    with _ -> max_int;;
++
+ if Array.length Sys.argv = 1 then
+     print_string "error: you must supply a filename\n"
+ else
++    let ticks = ref 0 in
+     let run n =
+-        while not n#isFinished do
++        while not n#isFinished && !ticks < tick_limit do
+             n#snowTick;
+             n#waterTick;
+             n#powerTick;
+             n#fishTick;
+             n#miscTick;
+             n#inputTick;
++            incr ticks;
+             flush Pervasives.stdout;
+         done
+     in
+     match build_tree Sys.argv.(1) (new io) with
+         None -> print_string "In Homespring, the null program is not a quine.\n"
+-      | Some n -> n#printTree 0; run n
++      | Some n ->
++            if not quiet then n#printTree 0;
++            run n;
++            if report_ticks then
++                Printf.eprintf "TICKS:%d\n" !ticks

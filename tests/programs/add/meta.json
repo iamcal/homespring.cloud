@@ -1,0 +1,19 @@
+{
+  "description": "Single-digit adder — pipes two digits through a unary counter. Famously slow.",
+  "source": "program.hs",
+  "input": "2\n3\n",
+  "tick_limit": 200,
+  "timeout": 10,
+  "expected_output": "? + ",
+  "normalize": "prefix",
+  "overrides": {
+    "2003-cal-henderson": {
+      "skip": true,
+      "skip_reason": "Perl module cannot handle the full add program"
+    },
+    "2003-jeff-binder": {
+      "skip": true,
+      "skip_reason": "Jeff's interpreter hangs on this program with our simple line-at-a-time stdin feeding"
+    }
+  }
+}

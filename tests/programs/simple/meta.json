@@ -1,0 +1,9 @@
+{
+  "description": "Trivial one-byte program (a lone newline): parses to a tree with no active nodes; produces no output.",
+  "source": "program.hs",
+  "input": "",
+  "expected_output": "",
+  "expected_ticks": null,
+  "tick_limit": 20,
+  "timeout": 3
+}

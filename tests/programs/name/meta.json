@@ -1,0 +1,23 @@
+{
+  "description": "Prints the HOMESPRING acronym. Behaviour varies wildly across interpreters.",
+  "source": "program.hs",
+  "input": "",
+  "tick_limit": 50,
+  "timeout": 5,
+  "expected_output": "GreatGreat",
+  "normalize": "prefix",
+  "overrides": {
+    "2005-joe-neeman": {
+      "expected_output": "GreatGreat",
+      "notes": "OCaml prints 'Great'/'homeless' repeatedly; we only check a prefix."
+    },
+    "2003-jeff-binder": {
+      "expected_output": "Hatcheryhomeless",
+      "notes": "Jeff's interpreter produces 'Hatcheryhomeless' pairs forever."
+    },
+    "2003-cal-henderson": {
+      "skip": true,
+      "skip_reason": "Perl module output is empty for this program"
+    }
+  }
+}

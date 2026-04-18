@@ -1,0 +1,14 @@
+{
+  "description": "Quiz — asks 'what's six times four?' and validates the answer. '24' terminates silently; other input yields 'you lie!'.",
+  "source": "program.hs",
+  "input": "World\n",
+  "tick_limit": 100,
+  "timeout": 5,
+  "expected_output": "what's six times four? you lie!\n",
+  "overrides": {
+    "2003-cal-henderson": {
+      "skip": true,
+      "skip_reason": "Perl module has no input support"
+    }
+  }
+}

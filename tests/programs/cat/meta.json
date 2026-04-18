@@ -1,0 +1,19 @@
+{
+  "description": "One-line cat — an empty/newline program that echoes stdin to stdout.",
+  "source": "program.hs",
+  "input": "hello\n",
+  "tick_limit": 20,
+  "timeout": 3,
+  "expected_output": "hello\n",
+  "normalize": "prefix",
+  "overrides": {
+    "2003-cal-henderson": {
+      "skip": true,
+      "skip_reason": "Perl module has no input support"
+    },
+    "2003-jeff-binder": {
+      "skip": true,
+      "skip_reason": "Jeff's interpreter reads input only after the program starts emitting; the null-tree cat never emits"
+    }
+  }
+}
