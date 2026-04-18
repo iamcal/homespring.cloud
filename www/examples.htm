@@ -295,6 +295,9 @@ table.examples td.compat {
 	font-style: italic;
 	color: var(--green);
 	opacity: 0.75;
+}
+
+.compat.yes.presumed[title] i {
 	cursor: help;
 }
 
@@ -319,8 +322,8 @@ table.examples td.compat {
 
 .legend-inline {
 	display: flex;
-	flex-wrap: wrap;
-	gap: 16px;
+	flex-direction: column;
+	gap: 6px;
 	margin-top: 12px;
 	font-size: 12px;
 	font-family: var(--font-mono);
@@ -694,7 +697,7 @@ table.examples td.compat {
 
 <div class="legend-inline">
 	<span><b class="compat yes">yes</b> &nbsp;runs correctly</span>
-	<span class="compat yes presumed"><b><i>yes</i></b> &nbsp;runs correctly in principle but not under the harness (hover for details)</span>
+	<span><b class="compat yes presumed"><i>yes</i></b> &nbsp;runs correctly in principle but not under the harness (hover for details)</span>
 	<span><b class="compat no">no</b> &nbsp;does not run correctly (hover for details)</span>
 	<span><b class="compat unknown">?</b> &nbsp;no canonical expected output</span>
 </div>
