@@ -1,6 +1,6 @@
 {
   "description": "Tic-tac-toe \u2014 needs stdin input to start. Prints the board frames between moves.",
-  "source": "program.hs",
+  "source": "www/examples/2005-joe-neeman/tic.hs",
   "input": "hello\n",
   "tick_limit": 200,
   "timeout": 8,

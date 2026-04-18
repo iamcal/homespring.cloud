@@ -1,6 +1,6 @@
 {
   "description": "Counter written in Benito's poetic Homespring style.",
-  "source": "program.hs",
+  "source": "www/examples/2013-benito-van-der-zander/count.poem.hs",
   "input": "",
   "tick_limit": 100,
   "timeout": 6,

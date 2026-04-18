@@ -1,6 +1,6 @@
 {
   "description": "Interactive greeter \u2014 asks 'What's your name?' and responds 'Hi, <name>!'.",
-  "source": "program.hs",
+  "source": "www/examples/2003-jeff-binder/hi.hs",
   "input": "World\n",
   "tick_limit": 50,
   "timeout": 5,

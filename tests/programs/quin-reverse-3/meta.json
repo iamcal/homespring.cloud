@@ -1,6 +1,6 @@
 {
-  "description": "Reverse — third variation of the arrangement.",
-  "source": "program.hs",
+  "description": "Reverse \u2014 third variation of the arrangement.",
+  "source": "www/examples/2012-quin-kennedy/reverse-3.hsg",
   "input": "hello\n",
   "tick_limit": 60,
   "timeout": 4,

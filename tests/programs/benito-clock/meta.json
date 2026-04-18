@@ -1,6 +1,6 @@
 {
   "description": "Ticking clock \u2014 each cycle prints eight X's followed by a 'y'. We verify the first couple of cycles.",
-  "source": "program.hs",
+  "source": "www/examples/2013-benito-van-der-zander/clock.hs",
   "input": "",
   "tick_limit": 80,
   "timeout": 5,

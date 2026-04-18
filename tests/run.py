@@ -306,8 +306,11 @@ def load_programs(programs_dir: Path) -> list[Program]:
         if not meta_path.exists():
             continue
         meta = json.loads(meta_path.read_text())
-        source_name = meta.get("source", "program.hs")
-        source = sub / source_name
+        source_name = meta["source"]
+        # meta.json's "source" is resolved relative to the repo root so that
+        # every program can point directly at www/examples/<author>/… without
+        # needing a local copy under tests/programs/.
+        source = (REPO / source_name).resolve()
         if not source.exists():
             print(f"skipping {sub.name}: source {source} missing",
                   file=sys.stderr)

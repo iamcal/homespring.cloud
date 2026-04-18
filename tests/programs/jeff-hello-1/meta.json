@@ -1,6 +1,6 @@
 {
   "description": "Hello World #1 \u2014 minimal hatchery + bear + powers + marshy + snowmelt.",
-  "source": "program.hs",
+  "source": "www/examples/2003-jeff-binder/hello-1.hs",
   "input": "",
   "expected_output": "Hello World!\n",
   "timeout": 3,

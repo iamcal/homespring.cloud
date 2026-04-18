@@ -1,6 +1,6 @@
 {
   "description": "Quiz \u2014 asks 'what's six times four?' and validates the answer. '24' terminates silently; other input yields 'you lie!'.",
-  "source": "program.hs",
+  "source": "www/examples/2003-jeff-binder/quiz.hs",
   "input": "World\n",
   "tick_limit": 100,
   "timeout": 5,

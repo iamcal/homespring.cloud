@@ -1,6 +1,6 @@
 {
   "description": "Large counter (~10 KB of source) \u2014 emits a '0\\n1\\n2\\n\u2026' sequence with no stdin.",
-  "source": "program.hs",
+  "source": "www/examples/2013-benito-van-der-zander/count4.hs",
   "input": "",
   "tick_limit": 80,
   "timeout": 5,

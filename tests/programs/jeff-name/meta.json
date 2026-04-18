@@ -1,6 +1,6 @@
 {
-  "description": "Prints the HOMESPRING acronym — an acrostic program with no canonical output.",
-  "source": "program.hs",
+  "description": "Prints the HOMESPRING acronym \u2014 an acrostic program with no canonical output.",
+  "source": "www/examples/2003-jeff-binder/name.hs",
   "input": "",
   "tick_limit": 50,
   "timeout": 5,

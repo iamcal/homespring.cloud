@@ -1,6 +1,6 @@
 {
   "description": "FizzBuzz in the poetic style \u2014 considerably longer source than fizzbuzz.hs.",
-  "source": "program.hs",
+  "source": "www/examples/2013-benito-van-der-zander/fizzbuzz.poem.hs",
   "input": "",
   "tick_limit": 3000,
   "timeout": 45,

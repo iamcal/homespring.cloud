@@ -1,6 +1,6 @@
 {
   "description": "Hello World #3 \u2014 uses a hydro power + spring source, force field, shallows, and sense nodes.",
-  "source": "program.hs",
+  "source": "www/examples/2003-jeff-binder/hello-3.hs",
   "input": "",
   "expected_output": "Hello, World!\n",
   "timeout": 5,

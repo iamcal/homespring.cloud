@@ -1,6 +1,6 @@
 {
   "description": "Compact Hello World \u2014 the example shipped with Cal's Perl interpreter.",
-  "source": "program.hs",
+  "source": "www/examples/2003-cal-henderson/hello2.hs",
   "input": "",
   "tick_limit": 20,
   "timeout": 3,

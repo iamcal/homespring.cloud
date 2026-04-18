@@ -1,6 +1,6 @@
 {
   "description": "One-line cat \u2014 an empty/newline program that echoes stdin to stdout.",
-  "source": "program.hs",
+  "source": "www/examples/2003-jeff-binder/cat.hs",
   "input": "hello\n",
   "tick_limit": 20,
   "timeout": 3,

@@ -1,6 +1,6 @@
 {
   "description": "Benito's 'Hello World' \u2014 emitted as 'hello world' by the complete interpreters.",
-  "source": "program.hs",
+  "source": "www/examples/2013-benito-van-der-zander/helloworld.hs",
   "input": "",
   "tick_limit": 60,
   "timeout": 4,

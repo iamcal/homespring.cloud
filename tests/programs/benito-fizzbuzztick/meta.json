@@ -1,6 +1,6 @@
 {
   "description": "Compact FizzBuzz driven by a time node \u2014 emits tick markers between the numbers.",
-  "source": "program.hs",
+  "source": "www/examples/2013-benito-van-der-zander/fizzbuzztick.hs",
   "input": "",
   "tick_limit": 200,
   "timeout": 8,

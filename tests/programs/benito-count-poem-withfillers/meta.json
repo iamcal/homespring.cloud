@@ -1,6 +1,6 @@
 {
   "description": "Poetic counter with additional filler words \u2014 takes longer to start emitting.",
-  "source": "program.hs",
+  "source": "www/examples/2013-benito-van-der-zander/count.poem.withfillers.hs",
   "input": "",
   "tick_limit": 250,
   "timeout": 10,

@@ -1,6 +1,6 @@
 {
   "description": "Elaborate counter built from digit generators \u2014 prints an underscore ramp first.",
-  "source": "program.hs",
+  "source": "www/examples/2013-benito-van-der-zander/count2.hs",
   "input": "",
   "tick_limit": 80,
   "timeout": 5,

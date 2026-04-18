@@ -1,6 +1,6 @@
 {
-  "description": "Reverse variant — 'split wings calm the ebb and flow'.",
-  "source": "program.hs",
+  "description": "Reverse variant \u2014 'split wings calm the ebb and flow'.",
+  "source": "www/examples/2012-quin-kennedy/reverse-2.hsg",
   "input": "hello\n",
   "tick_limit": 60,
   "timeout": 4,

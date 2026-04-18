@@ -1,6 +1,6 @@
 {
   "description": "Hello World #2 \u2014 variation with extra filler words between the meaningful tokens.",
-  "source": "program.hs",
+  "source": "www/examples/2003-jeff-binder/hello-2.hs",
   "input": "",
   "expected_output": "Hello World!\n",
   "timeout": 3,

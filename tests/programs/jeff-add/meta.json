@@ -1,6 +1,6 @@
 {
   "description": "Single-digit adder \u2014 pipes two digits through a unary counter. Famously slow.",
-  "source": "program.hs",
+  "source": "www/examples/2003-jeff-binder/add.hs",
   "input": "2\n3\n",
   "tick_limit": 200,
   "timeout": 10,

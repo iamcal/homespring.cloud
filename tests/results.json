@@ -1,5 +1,5 @@
 {
-  "generated_at": 1776534396,
+  "generated_at": 1776534643,
   "adapters": [
     {
       "id": "2005-joe-neeman",
@@ -36,147 +36,147 @@
     {
       "slug": "benito-clock",
       "description": "Ticking clock \u2014 each cycle prints eight X's followed by a 'y'. We verify the first couple of cycles.",
-      "source": "tests/programs/benito-clock/program.hs"
+      "source": "www/examples/2013-benito-van-der-zander/clock.hs"
     },
     {
       "slug": "benito-count",
       "description": "Counts up from 1 \u2014 the simplest of Benito's counter programs.",
-      "source": "tests/programs/benito-count/program.hs"
+      "source": "www/examples/2013-benito-van-der-zander/count.hs"
     },
     {
       "slug": "benito-count-poem",
       "description": "Counter written in Benito's poetic Homespring style.",
-      "source": "tests/programs/benito-count-poem/program.hs"
+      "source": "www/examples/2013-benito-van-der-zander/count.poem.hs"
     },
     {
       "slug": "benito-count-poem-withfillers",
       "description": "Poetic counter with additional filler words \u2014 takes longer to start emitting.",
-      "source": "tests/programs/benito-count-poem-withfillers/program.hs"
+      "source": "www/examples/2013-benito-van-der-zander/count.poem.withfillers.hs"
     },
     {
       "slug": "benito-count2",
       "description": "Elaborate counter built from digit generators \u2014 prints an underscore ramp first.",
-      "source": "tests/programs/benito-count2/program.hs"
+      "source": "www/examples/2013-benito-van-der-zander/count2.hs"
     },
     {
       "slug": "benito-count3",
       "description": "Counter variant \u2014 prints underscores then an x-prefixed alphabet ramp.",
-      "source": "tests/programs/benito-count3/program.hs"
+      "source": "www/examples/2013-benito-van-der-zander/count3.hs"
     },
     {
       "slug": "benito-count4",
       "description": "Large counter (~10 KB of source) \u2014 emits a '0\\n1\\n2\\n\u2026' sequence with no stdin.",
-      "source": "tests/programs/benito-count4/program.hs"
+      "source": "www/examples/2013-benito-van-der-zander/count4.hs"
     },
     {
       "slug": "benito-fizzbuzz",
       "description": "FizzBuzz \u2014 Fizz for multiples of 3, Buzz for 5, FizzBuzz for both. Slow to start on homespring.js.",
-      "source": "tests/programs/benito-fizzbuzz/program.hs"
+      "source": "www/examples/2013-benito-van-der-zander/fizzbuzz.hs"
     },
     {
       "slug": "benito-fizzbuzz-poem",
       "description": "FizzBuzz in the poetic style \u2014 considerably longer source than fizzbuzz.hs.",
-      "source": "tests/programs/benito-fizzbuzz-poem/program.hs"
+      "source": "www/examples/2013-benito-van-der-zander/fizzbuzz.poem.hs"
     },
     {
       "slug": "benito-fizzbuzztick",
       "description": "Compact FizzBuzz driven by a time node \u2014 emits tick markers between the numbers.",
-      "source": "tests/programs/benito-fizzbuzztick/program.hs"
+      "source": "www/examples/2013-benito-van-der-zander/fizzbuzztick.hs"
     },
     {
       "slug": "benito-helloworld",
       "description": "Benito's 'Hello World' \u2014 emitted as 'hello world' by the complete interpreters.",
-      "source": "tests/programs/benito-helloworld/program.hs"
+      "source": "www/examples/2013-benito-van-der-zander/helloworld.hs"
     },
     {
       "slug": "cal-hello2",
       "description": "Compact Hello World \u2014 the example shipped with Cal's Perl interpreter.",
-      "source": "tests/programs/cal-hello2/program.hs"
+      "source": "www/examples/2003-cal-henderson/hello2.hs"
     },
     {
       "slug": "jeff-add",
       "description": "Single-digit adder \u2014 pipes two digits through a unary counter. Famously slow.",
-      "source": "tests/programs/jeff-add/program.hs"
+      "source": "www/examples/2003-jeff-binder/add.hs"
     },
     {
       "slug": "jeff-cat",
       "description": "One-line cat \u2014 an empty/newline program that echoes stdin to stdout.",
-      "source": "tests/programs/jeff-cat/program.hs"
+      "source": "www/examples/2003-jeff-binder/cat.hs"
     },
     {
       "slug": "jeff-first",
       "description": "Infinite spring \u2014 repeatedly emits 'Hello, world.' until interrupted. We cap ticks and verify a prefix.",
-      "source": "tests/programs/jeff-first/program.hs"
+      "source": "www/examples/2003-jeff-binder/first.hs"
     },
     {
       "slug": "jeff-hello-1",
       "description": "Hello World #1 \u2014 minimal hatchery + bear + powers + marshy + snowmelt.",
-      "source": "tests/programs/jeff-hello-1/program.hs"
+      "source": "www/examples/2003-jeff-binder/hello-1.hs"
     },
     {
       "slug": "jeff-hello-2",
       "description": "Hello World #2 \u2014 variation with extra filler words between the meaningful tokens.",
-      "source": "tests/programs/jeff-hello-2/program.hs"
+      "source": "www/examples/2003-jeff-binder/hello-2.hs"
     },
     {
       "slug": "jeff-hello-3",
       "description": "Hello World #3 \u2014 uses a hydro power + spring source, force field, shallows, and sense nodes.",
-      "source": "tests/programs/jeff-hello-3/program.hs"
+      "source": "www/examples/2003-jeff-binder/hello-3.hs"
     },
     {
       "slug": "jeff-hi",
       "description": "Interactive greeter \u2014 asks 'What's your name?' and responds 'Hi, <name>!'.",
-      "source": "tests/programs/jeff-hi/program.hs"
+      "source": "www/examples/2003-jeff-binder/hi.hs"
     },
     {
       "slug": "jeff-name",
       "description": "Prints the HOMESPRING acronym \u2014 an acrostic program with no canonical output.",
-      "source": "tests/programs/jeff-name/program.hs"
+      "source": "www/examples/2003-jeff-binder/name.hs"
     },
     {
       "slug": "jeff-null",
       "description": "Zero-byte program \u2014 the null program is specially trapped and is not a quine.",
-      "source": "tests/programs/jeff-null/program.hs"
+      "source": "www/examples/2003-jeff-binder/null.hs"
     },
     {
       "slug": "jeff-quiz",
       "description": "Quiz \u2014 asks 'what's six times four?' and validates the answer. '24' terminates silently; other input yields 'you lie!'.",
-      "source": "tests/programs/jeff-quiz/program.hs"
+      "source": "www/examples/2003-jeff-binder/quiz.hs"
     },
     {
       "slug": "jeff-simple",
       "description": "Trivial one-byte program (a lone newline): parses to a tree with no active nodes; produces no output.",
-      "source": "tests/programs/jeff-simple/program.hs"
+      "source": "www/examples/2003-jeff-binder/simple.hs"
     },
     {
       "slug": "joe-flipflop",
       "description": "Flip-flop toggle using an inverse-lock and a pair of pump/switch nodes.",
-      "source": "tests/programs/joe-flipflop/program.hs"
+      "source": "www/examples/2005-joe-neeman/flipflop.hs"
     },
     {
       "slug": "joe-tic",
       "description": "Tic-tac-toe \u2014 needs stdin input to start. Prints the board frames between moves.",
-      "source": "tests/programs/joe-tic/program.hs"
+      "source": "www/examples/2005-joe-neeman/tic.hs"
     },
     {
       "slug": "quin-reverse",
       "description": "Reverse \u2014 uses force.up and split. Every interpreter produces a different output.",
-      "source": "tests/programs/quin-reverse/program.hs"
+      "source": "www/examples/2012-quin-kennedy/reverse.hsg"
     },
     {
       "slug": "quin-reverse-2",
       "description": "Reverse variant \u2014 'split wings calm the ebb and flow'.",
-      "source": "tests/programs/quin-reverse-2/program.hs"
+      "source": "www/examples/2012-quin-kennedy/reverse-2.hsg"
     },
     {
       "slug": "quin-reverse-3",
       "description": "Reverse \u2014 third variation of the arrangement.",
-      "source": "tests/programs/quin-reverse-3/program.hs"
+      "source": "www/examples/2012-quin-kennedy/reverse-3.hsg"
     },
     {
       "slug": "quin-split",
       "description": "Splits input into pieces. We can't verify expected output automatically.",
-      "source": "tests/programs/quin-split/program.hs"
+      "source": "www/examples/2012-quin-kennedy/split.hsg"
     }
   ],
   "results": [
@@ -189,7 +189,7 @@
       "expected_ticks": 53,
       "actual_ticks": 53,
       "notes": [],
-      "wall_time_ms": 8,
+      "wall_time_ms": 7,
       "presumed_pass": false
     },
     {
@@ -229,7 +229,7 @@
       "expected_ticks": 53,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 126,
+      "wall_time_ms": 114,
       "presumed_pass": false
     },
     {
@@ -241,7 +241,7 @@
       "expected_ticks": 53,
       "actual_ticks": 53,
       "notes": [],
-      "wall_time_ms": 120,
+      "wall_time_ms": 110,
       "presumed_pass": false
     },
     {
@@ -253,7 +253,7 @@
       "expected_ticks": 39,
       "actual_ticks": 39,
       "notes": [],
-      "wall_time_ms": 26,
+      "wall_time_ms": 11,
       "presumed_pass": false
     },
     {
@@ -293,7 +293,7 @@
       "expected_ticks": 39,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 126,
+      "wall_time_ms": 106,
       "presumed_pass": false
     },
     {
@@ -305,7 +305,7 @@
       "expected_ticks": 39,
       "actual_ticks": 39,
       "notes": [],
-      "wall_time_ms": 142,
+      "wall_time_ms": 116,
       "presumed_pass": false
     },
     {
@@ -317,7 +317,7 @@
       "expected_ticks": 39,
       "actual_ticks": 39,
       "notes": [],
-      "wall_time_ms": 16,
+      "wall_time_ms": 10,
       "presumed_pass": false
     },
     {
@@ -357,7 +357,7 @@
       "expected_ticks": 39,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 142,
+      "wall_time_ms": 109,
       "presumed_pass": false
     },
     {
@@ -369,7 +369,7 @@
       "expected_ticks": 39,
       "actual_ticks": 39,
       "notes": [],
-      "wall_time_ms": 139,
+      "wall_time_ms": 107,
       "presumed_pass": false
     },
     {
@@ -381,7 +381,7 @@
       "expected_ticks": 51,
       "actual_ticks": 51,
       "notes": [],
-      "wall_time_ms": 13,
+      "wall_time_ms": 11,
       "presumed_pass": false
     },
     {
@@ -421,7 +421,7 @@
       "expected_ticks": 51,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 131,
+      "wall_time_ms": 134,
       "presumed_pass": false
     },
     {
@@ -433,7 +433,7 @@
       "expected_ticks": 51,
       "actual_ticks": 51,
       "notes": [],
-      "wall_time_ms": 108,
+      "wall_time_ms": 122,
       "presumed_pass": false
     },
     {
@@ -445,7 +445,7 @@
       "expected_ticks": null,
       "actual_ticks": 80,
       "notes": [],
-      "wall_time_ms": 40,
+      "wall_time_ms": 41,
       "presumed_pass": false
     },
     {
@@ -499,7 +499,7 @@
       "expected_ticks": null,
       "actual_ticks": 80,
       "notes": [],
-      "wall_time_ms": 179,
+      "wall_time_ms": 235,
       "presumed_pass": false
     },
     {
@@ -511,7 +511,7 @@
       "expected_ticks": null,
       "actual_ticks": 80,
       "notes": [],
-      "wall_time_ms": 14,
+      "wall_time_ms": 17,
       "presumed_pass": false
     },
     {
@@ -565,7 +565,7 @@
       "expected_ticks": null,
       "actual_ticks": 80,
       "notes": [],
-      "wall_time_ms": 146,
+      "wall_time_ms": 187,
       "presumed_pass": false
     },
     {
@@ -631,7 +631,7 @@
       "expected_ticks": null,
       "actual_ticks": 80,
       "notes": [],
-      "wall_time_ms": 187,
+      "wall_time_ms": 210,
       "presumed_pass": false
     },
     {
@@ -699,7 +699,7 @@
       "expected_ticks": null,
       "actual_ticks": 1500,
       "notes": [],
-      "wall_time_ms": 2164,
+      "wall_time_ms": 2368,
       "presumed_pass": false
     },
     {
@@ -767,7 +767,7 @@
       "expected_ticks": 2207,
       "actual_ticks": 2207,
       "notes": [],
-      "wall_time_ms": 3004,
+      "wall_time_ms": 3291,
       "presumed_pass": false
     },
     {
@@ -779,7 +779,7 @@
       "expected_ticks": null,
       "actual_ticks": 200,
       "notes": [],
-      "wall_time_ms": 76,
+      "wall_time_ms": 86,
       "presumed_pass": false
     },
     {
@@ -833,7 +833,7 @@
       "expected_ticks": null,
       "actual_ticks": 200,
       "notes": [],
-      "wall_time_ms": 372,
+      "wall_time_ms": 331,
       "presumed_pass": false
     },
     {
@@ -845,7 +845,7 @@
       "expected_ticks": 9,
       "actual_ticks": 9,
       "notes": [],
-      "wall_time_ms": 22,
+      "wall_time_ms": 5,
       "presumed_pass": false
     },
     {
@@ -885,7 +885,7 @@
       "expected_ticks": 9,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 140,
+      "wall_time_ms": 63,
       "presumed_pass": false
     },
     {
@@ -897,7 +897,7 @@
       "expected_ticks": 9,
       "actual_ticks": 9,
       "notes": [],
-      "wall_time_ms": 78,
+      "wall_time_ms": 59,
       "presumed_pass": false
     },
     {
@@ -909,7 +909,7 @@
       "expected_ticks": 7,
       "actual_ticks": 7,
       "notes": [],
-      "wall_time_ms": 11,
+      "wall_time_ms": 6,
       "presumed_pass": false
     },
     {
@@ -921,7 +921,7 @@
       "expected_ticks": 7,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 4004,
+      "wall_time_ms": 4007,
       "presumed_pass": false
     },
     {
@@ -933,7 +933,7 @@
       "expected_ticks": 6,
       "actual_ticks": 6,
       "notes": [],
-      "wall_time_ms": 22,
+      "wall_time_ms": 27,
       "presumed_pass": false
     },
     {
@@ -945,7 +945,7 @@
       "expected_ticks": 7,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 74,
+      "wall_time_ms": 85,
       "presumed_pass": false
     },
     {
@@ -957,7 +957,7 @@
       "expected_ticks": 7,
       "actual_ticks": 7,
       "notes": [],
-      "wall_time_ms": 58,
+      "wall_time_ms": 50,
       "presumed_pass": false
     },
     {
@@ -969,7 +969,7 @@
       "expected_ticks": null,
       "actual_ticks": 200,
       "notes": [],
-      "wall_time_ms": 37,
+      "wall_time_ms": 17,
       "presumed_pass": false
     },
     {
@@ -1009,7 +1009,7 @@
       "expected_ticks": null,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 289,
+      "wall_time_ms": 291,
       "presumed_pass": false
     },
     {
@@ -1021,7 +1021,7 @@
       "expected_ticks": null,
       "actual_ticks": 200,
       "notes": [],
-      "wall_time_ms": 282,
+      "wall_time_ms": 286,
       "presumed_pass": false
     },
     {
@@ -1033,7 +1033,7 @@
       "expected_ticks": null,
       "actual_ticks": 20,
       "notes": [],
-      "wall_time_ms": 6,
+      "wall_time_ms": 5,
       "presumed_pass": false
     },
     {
@@ -1073,7 +1073,7 @@
       "expected_ticks": null,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 75,
+      "wall_time_ms": 81,
       "presumed_pass": false
     },
     {
@@ -1085,7 +1085,7 @@
       "expected_ticks": null,
       "actual_ticks": 20,
       "notes": [],
-      "wall_time_ms": 66,
+      "wall_time_ms": 65,
       "presumed_pass": false
     },
     {
@@ -1097,7 +1097,7 @@
       "expected_ticks": null,
       "actual_ticks": 20,
       "notes": [],
-      "wall_time_ms": 5,
+      "wall_time_ms": 8,
       "presumed_pass": false
     },
     {
@@ -1125,7 +1125,7 @@
       "notes": [
         "Perl module emits the first line one tick later than others."
       ],
-      "wall_time_ms": 22,
+      "wall_time_ms": 20,
       "presumed_pass": false
     },
     {
@@ -1137,7 +1137,7 @@
       "expected_ticks": null,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 79,
+      "wall_time_ms": 76,
       "presumed_pass": false
     },
     {
@@ -1149,7 +1149,7 @@
       "expected_ticks": null,
       "actual_ticks": 20,
       "notes": [],
-      "wall_time_ms": 61,
+      "wall_time_ms": 72,
       "presumed_pass": false
     },
     {
@@ -1161,7 +1161,7 @@
       "expected_ticks": 7,
       "actual_ticks": 7,
       "notes": [],
-      "wall_time_ms": 5,
+      "wall_time_ms": 6,
       "presumed_pass": false
     },
     {
@@ -1197,7 +1197,7 @@
       "expected_ticks": 7,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 63,
+      "wall_time_ms": 83,
       "presumed_pass": false
     },
     {
@@ -1209,7 +1209,7 @@
       "expected_ticks": 7,
       "actual_ticks": 7,
       "notes": [],
-      "wall_time_ms": 51,
+      "wall_time_ms": 83,
       "presumed_pass": false
     },
     {
@@ -1221,7 +1221,7 @@
       "expected_ticks": 10,
       "actual_ticks": 10,
       "notes": [],
-      "wall_time_ms": 7,
+      "wall_time_ms": 6,
       "presumed_pass": false
     },
     {
@@ -1233,7 +1233,7 @@
       "expected_ticks": 10,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 4004,
+      "wall_time_ms": 4003,
       "presumed_pass": false
     },
     {
@@ -1245,7 +1245,7 @@
       "expected_ticks": 9,
       "actual_ticks": 9,
       "notes": [],
-      "wall_time_ms": 20,
+      "wall_time_ms": 28,
       "presumed_pass": false
     },
     {
@@ -1257,7 +1257,7 @@
       "expected_ticks": 10,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 64,
+      "wall_time_ms": 84,
       "presumed_pass": false
     },
     {
@@ -1269,7 +1269,7 @@
       "expected_ticks": 10,
       "actual_ticks": 10,
       "notes": [],
-      "wall_time_ms": 59,
+      "wall_time_ms": 61,
       "presumed_pass": false
     },
     {
@@ -1293,7 +1293,7 @@
       "expected_ticks": 16,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 6006,
+      "wall_time_ms": 6004,
       "presumed_pass": false
     },
     {
@@ -1319,7 +1319,7 @@
       "expected_ticks": 16,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 95,
+      "wall_time_ms": 72,
       "presumed_pass": false
     },
     {
@@ -1331,7 +1331,7 @@
       "expected_ticks": 16,
       "actual_ticks": 16,
       "notes": [],
-      "wall_time_ms": 61,
+      "wall_time_ms": 81,
       "presumed_pass": false
     },
     {
@@ -1343,7 +1343,7 @@
       "expected_ticks": null,
       "actual_ticks": 32,
       "notes": [],
-      "wall_time_ms": 7,
+      "wall_time_ms": 5,
       "presumed_pass": false
     },
     {
@@ -1381,7 +1381,7 @@
       "expected_ticks": null,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 88,
+      "wall_time_ms": 118,
       "presumed_pass": false
     },
     {
@@ -1391,9 +1391,9 @@
       "expected_output": "Hi. What's your name? Hi, World!\n",
       "actual_output": "Hi. What's your name? Hi, World!\n",
       "expected_ticks": null,
-      "actual_ticks": 33,
+      "actual_ticks": 32,
       "notes": [],
-      "wall_time_ms": 84,
+      "wall_time_ms": 88,
       "presumed_pass": false
     },
     {
@@ -1513,7 +1513,7 @@
       "expected_ticks": 0,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 71,
+      "wall_time_ms": 55,
       "presumed_pass": false
     },
     {
@@ -1525,7 +1525,7 @@
       "expected_ticks": 0,
       "actual_ticks": 0,
       "notes": [],
-      "wall_time_ms": 42,
+      "wall_time_ms": 57,
       "presumed_pass": false
     },
     {
@@ -1549,7 +1549,7 @@
       "expected_ticks": null,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 6005,
+      "wall_time_ms": 6004,
       "presumed_pass": false
     },
     {
@@ -1575,7 +1575,7 @@
       "expected_ticks": null,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 112,
+      "wall_time_ms": 194,
       "presumed_pass": false
     },
     {
@@ -1587,7 +1587,7 @@
       "expected_ticks": null,
       "actual_ticks": 29,
       "notes": [],
-      "wall_time_ms": 88,
+      "wall_time_ms": 98,
       "presumed_pass": false
     },
     {
@@ -1599,7 +1599,7 @@
       "expected_ticks": null,
       "actual_ticks": 20,
       "notes": [],
-      "wall_time_ms": 6,
+      "wall_time_ms": 10,
       "presumed_pass": false
     },
     {
@@ -1623,7 +1623,7 @@
       "expected_ticks": null,
       "actual_ticks": 20,
       "notes": [],
-      "wall_time_ms": 18,
+      "wall_time_ms": 22,
       "presumed_pass": false
     },
     {
@@ -1635,7 +1635,7 @@
       "expected_ticks": null,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 85,
+      "wall_time_ms": 80,
       "presumed_pass": false
     },
     {
@@ -1647,7 +1647,7 @@
       "expected_ticks": null,
       "actual_ticks": 20,
       "notes": [],
-      "wall_time_ms": 66,
+      "wall_time_ms": 67,
       "presumed_pass": false
     },
     {
@@ -1713,7 +1713,7 @@
       "expected_ticks": null,
       "actual_ticks": 60,
       "notes": [],
-      "wall_time_ms": 109,
+      "wall_time_ms": 138,
       "presumed_pass": false
     },
     {
@@ -1725,7 +1725,7 @@
       "expected_ticks": null,
       "actual_ticks": 200,
       "notes": [],
-      "wall_time_ms": 20,
+      "wall_time_ms": 21,
       "presumed_pass": false
     },
     {
@@ -1779,7 +1779,7 @@
       "expected_ticks": null,
       "actual_ticks": 200,
       "notes": [],
-      "wall_time_ms": 307,
+      "wall_time_ms": 348,
       "presumed_pass": false
     },
     {

@@ -1,6 +1,6 @@
 {
-  "description": "Reverse — uses force.up and split. Every interpreter produces a different output.",
-  "source": "program.hs",
+  "description": "Reverse \u2014 uses force.up and split. Every interpreter produces a different output.",
+  "source": "www/examples/2012-quin-kennedy/reverse.hsg",
   "input": "hello\n",
   "tick_limit": 60,
   "timeout": 4,

@@ -84,16 +84,16 @@ their `actual_ticks` field is `null`.
 
 ```
 tests/programs/<slug>/
-├── program.hs
 └── meta.json
 ```
 
-`meta.json` schema:
+`meta.json` points at an existing source file under `www/examples/` —
+no per-test copy is kept.
 
 ```jsonc
 {
   "description": "one-line summary",
-  "source": "program.hs",        // optional; defaults to program.hs
+  "source": "www/examples/<author>/<file>.hs",   // repo-root relative
   "input": "",                   // what to pipe to stdin
   "tick_limit": 50,              // optional; cap per interpreter
   "timeout": 5,                  // wall-clock seconds before we kill the run

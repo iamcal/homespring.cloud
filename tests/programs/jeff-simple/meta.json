@@ -1,6 +1,6 @@
 {
   "description": "Trivial one-byte program (a lone newline): parses to a tree with no active nodes; produces no output.",
-  "source": "program.hs",
+  "source": "www/examples/2003-jeff-binder/simple.hs",
   "input": "",
   "expected_output": "",
   "tick_limit": 20,

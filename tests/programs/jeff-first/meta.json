@@ -1,6 +1,6 @@
 {
   "description": "Infinite spring \u2014 repeatedly emits 'Hello, world.' until interrupted. We cap ticks and verify a prefix.",
-  "source": "program.hs",
+  "source": "www/examples/2003-jeff-binder/first.hs",
   "input": "",
   "tick_limit": 20,
   "timeout": 3,

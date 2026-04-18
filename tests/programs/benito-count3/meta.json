@@ -1,6 +1,6 @@
 {
   "description": "Counter variant \u2014 prints underscores then an x-prefixed alphabet ramp.",
-  "source": "program.hs",
+  "source": "www/examples/2013-benito-van-der-zander/count3.hs",
   "input": "",
   "tick_limit": 80,
   "timeout": 5,

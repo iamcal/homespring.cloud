@@ -1,6 +1,6 @@
 {
   "description": "Flip-flop toggle using an inverse-lock and a pair of pump/switch nodes.",
-  "source": "program.hs",
+  "source": "www/examples/2005-joe-neeman/flipflop.hs",
   "input": "hello\n",
   "tick_limit": 60,
   "timeout": 4,

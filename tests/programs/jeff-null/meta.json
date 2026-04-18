@@ -1,6 +1,6 @@
 {
   "description": "Zero-byte program \u2014 the null program is specially trapped and is not a quine.",
-  "source": "program.hs",
+  "source": "www/examples/2003-jeff-binder/null.hs",
   "input": "",
   "expected_output": "In Homespring, the null program is not a quine.\n",
   "timeout": 3,

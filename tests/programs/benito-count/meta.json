@@ -1,6 +1,6 @@
 {
   "description": "Counts up from 1 \u2014 the simplest of Benito's counter programs.",
-  "source": "program.hs",
+  "source": "www/examples/2013-benito-van-der-zander/count.hs",
   "input": "",
   "tick_limit": 100,
   "timeout": 6,
