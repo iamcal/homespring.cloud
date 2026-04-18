@@ -5,7 +5,7 @@ import json
 RESULTS = '/mnt/webroot/homespring.cloud/tests/results.json'
 
 SECTIONS = [
-    ('Jeff Binder', '— 2003 · author of Homespring and its original Scheme interpreter', [
+    ('Jeff Binder', '— 2003 · author of Homespring and its <a href="https://github.com/iamcal/Homespring">original Scheme interpreter</a>', [
         ('jeff-add',     'examples/2003-jeff-binder/add.hs',     'add.hs',     'Reads two numbers from input and outputs their sum.'),
         ('jeff-cat',     'examples/2003-jeff-binder/cat.hs',     'cat.hs',     'Echoes its input straight to output, like the Unix <code>cat</code> utility.'),
         ('jeff-first',   'examples/2003-jeff-binder/first.hs',   'first.hs',   'A minimal "Hello, world" — a single hatchery feeding a bear.'),
@@ -25,13 +25,13 @@ SECTIONS = [
         ('joe-flipflop', 'examples/2005-joe-neeman/flipflop.hs', 'flipflop.hs','A flip-flop that alternates state using an inverse-lock and a pair of pump/switch nodes.'),
         ('joe-tic',      'examples/2005-joe-neeman/tic.hs',      'tic.hs',     'A tic-tac-toe implementation — the most elaborate program in the collection.'),
     ]),
-    ('Quin Kennedy', '— 2012 · author of a <a href="https://github.com/quinkennedy/Homespring">JavaScript interpreter</a> and HomeSpringTree compiler', [
+    ('Quin Kennedy', '— 2012 · author of a <a href="https://github.com/quinkennedy/Homespring">JavaScript interpreter</a>', [
         ('quin-reverse',   'examples/2012-quin-kennedy/reverse.hsg',   'reverse.hsg',   'Reverses the input using a <code>force.up</code> node and a <code>split</code>.'),
         ('quin-reverse-2', 'examples/2012-quin-kennedy/reverse-2.hsg', 'reverse-2.hsg', 'Reverses the input — a more poetic variant ("split wings calm the ebb and flow").'),
         ('quin-reverse-3', 'examples/2012-quin-kennedy/reverse-3.hsg', 'reverse-3.hsg', 'Reverses the input — a third variation of the same arrangement.'),
         ('quin-split',     'examples/2012-quin-kennedy/split.hsg',     'split.hsg',     'Splits input into pieces.'),
     ]),
-    ('Benito van der Zander', '— 2013 · programs collected in <a href="https://github.com/benibela/home-river">home-river</a>; most are generated from HomeSpringTree (.hst) sources', [
+    ('Benito van der Zander', '— 2013 · author of the <a href="https://github.com/benibela/home-river">HomeSpringTree compiler</a>; most are generated from HomeSpringTree (.hst) sources', [
         ('benito-clock',    'examples/2013-benito-van-der-zander/clock.hs',    'clock.hs',    'A ticking clock driven by the <code>time</code> node and a range-switch cascade.'),
         ('benito-count',    'examples/2013-benito-van-der-zander/count.hs',    'count.hs',    'Counts from 0 to 9 and then to 100 using a bridged bear and hatchery cascade.'),
         ('benito-count2',   'examples/2013-benito-van-der-zander/count2.hs',   'count2.hs',   'A more elaborate counter built from digit generators.'),
