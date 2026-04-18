@@ -82,13 +82,8 @@ their `actual_ticks` field is `null`.
 
 ## Adding a program
 
-```
-tests/programs/<slug>/
-└── meta.json
-```
-
-`meta.json` points at an existing source file under `www/examples/` —
-no per-test copy is kept.
+Drop a single file `tests/programs/<slug>.json` that points at an
+existing source under `www/examples/` — no per-test copy is kept.
 
 ```jsonc
 {

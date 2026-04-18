@@ -1,5 +1,5 @@
 {
-  "generated_at": 1776534643,
+  "generated_at": 1776534783,
   "adapters": [
     {
       "id": "2005-joe-neeman",
@@ -39,9 +39,9 @@
       "source": "www/examples/2013-benito-van-der-zander/clock.hs"
     },
     {
-      "slug": "benito-count",
-      "description": "Counts up from 1 \u2014 the simplest of Benito's counter programs.",
-      "source": "www/examples/2013-benito-van-der-zander/count.hs"
+      "slug": "benito-count-poem-withfillers",
+      "description": "Poetic counter with additional filler words \u2014 takes longer to start emitting.",
+      "source": "www/examples/2013-benito-van-der-zander/count.poem.withfillers.hs"
     },
     {
       "slug": "benito-count-poem",
@@ -49,9 +49,9 @@
       "source": "www/examples/2013-benito-van-der-zander/count.poem.hs"
     },
     {
-      "slug": "benito-count-poem-withfillers",
-      "description": "Poetic counter with additional filler words \u2014 takes longer to start emitting.",
-      "source": "www/examples/2013-benito-van-der-zander/count.poem.withfillers.hs"
+      "slug": "benito-count",
+      "description": "Counts up from 1 \u2014 the simplest of Benito's counter programs.",
+      "source": "www/examples/2013-benito-van-der-zander/count.hs"
     },
     {
       "slug": "benito-count2",
@@ -69,14 +69,14 @@
       "source": "www/examples/2013-benito-van-der-zander/count4.hs"
     },
     {
-      "slug": "benito-fizzbuzz",
-      "description": "FizzBuzz \u2014 Fizz for multiples of 3, Buzz for 5, FizzBuzz for both. Slow to start on homespring.js.",
-      "source": "www/examples/2013-benito-van-der-zander/fizzbuzz.hs"
-    },
-    {
       "slug": "benito-fizzbuzz-poem",
       "description": "FizzBuzz in the poetic style \u2014 considerably longer source than fizzbuzz.hs.",
       "source": "www/examples/2013-benito-van-der-zander/fizzbuzz.poem.hs"
+    },
+    {
+      "slug": "benito-fizzbuzz",
+      "description": "FizzBuzz \u2014 Fizz for multiples of 3, Buzz for 5, FizzBuzz for both. Slow to start on homespring.js.",
+      "source": "www/examples/2013-benito-van-der-zander/fizzbuzz.hs"
     },
     {
       "slug": "benito-fizzbuzztick",
@@ -159,11 +159,6 @@
       "source": "www/examples/2005-joe-neeman/tic.hs"
     },
     {
-      "slug": "quin-reverse",
-      "description": "Reverse \u2014 uses force.up and split. Every interpreter produces a different output.",
-      "source": "www/examples/2012-quin-kennedy/reverse.hsg"
-    },
-    {
       "slug": "quin-reverse-2",
       "description": "Reverse variant \u2014 'split wings calm the ebb and flow'.",
       "source": "www/examples/2012-quin-kennedy/reverse-2.hsg"
@@ -172,6 +167,11 @@
       "slug": "quin-reverse-3",
       "description": "Reverse \u2014 third variation of the arrangement.",
       "source": "www/examples/2012-quin-kennedy/reverse-3.hsg"
+    },
+    {
+      "slug": "quin-reverse",
+      "description": "Reverse \u2014 uses force.up and split. Every interpreter produces a different output.",
+      "source": "www/examples/2012-quin-kennedy/reverse.hsg"
     },
     {
       "slug": "quin-split",
@@ -189,7 +189,7 @@
       "expected_ticks": 53,
       "actual_ticks": 53,
       "notes": [],
-      "wall_time_ms": 7,
+      "wall_time_ms": 6,
       "presumed_pass": false
     },
     {
@@ -229,7 +229,7 @@
       "expected_ticks": 53,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 114,
+      "wall_time_ms": 119,
       "presumed_pass": false
     },
     {
@@ -241,135 +241,7 @@
       "expected_ticks": 53,
       "actual_ticks": 53,
       "notes": [],
-      "wall_time_ms": 110,
-      "presumed_pass": false
-    },
-    {
-      "program": "benito-count",
-      "adapter": "2005-joe-neeman",
-      "status": "pass",
-      "expected_output": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n40\n41\n42\n43\n44\n45\n46\n47\n48\n49\n50\n51\n52\n53\n54\n55\n56\n57\n58\n59\n60\n61\n62\n63\n64\n65\n66\n67\n68\n69\n70\n71\n72\n73\n74\n75\n76\n77\n78\n79\n80\n81\n82\n83\n84\n85\n86\n87\n88\n89\n90\n91\n92\n93\n94\n95\n96\n97\n98\n99\n100\n",
-      "actual_output": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n40\n41\n42\n43\n44\n45\n46\n47\n48\n49\n50\n51\n52\n53\n54\n55\n56\n57\n58\n59\n60\n61\n62\n63\n64\n65\n66\n67\n68\n69\n70\n71\n72\n73\n74\n75\n76\n77\n78\n79\n80\n81\n82\n83\n84\n85\n86\n87\n88\n89\n90\n91\n92\n93\n94\n95\n96\n97\n98\n99\n100\n",
-      "expected_ticks": 39,
-      "actual_ticks": 39,
-      "notes": [],
-      "wall_time_ms": 11,
-      "presumed_pass": false
-    },
-    {
-      "program": "benito-count",
-      "adapter": "2003-jeff-binder",
-      "status": "skip",
-      "expected_output": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n40\n41\n42\n43\n44\n45\n46\n47\n48\n49\n50\n51\n52\n53\n54\n55\n56\n57\n58\n59\n60\n61\n62\n63\n64\n65\n66\n67\n68\n69\n70\n71\n72\n73\n74\n75\n76\n77\n78\n79\n80\n81\n82\n83\n84\n85\n86\n87\n88\n89\n90\n91\n92\n93\n94\n95\n96\n97\n98\n99\n100\n",
-      "actual_output": "",
-      "expected_ticks": 39,
-      "actual_ticks": null,
-      "notes": [
-        "Produces a broken, non-monotonic counter ('9\\n10\\n19\\n20\\n29\\n30\\n\u2026') instead of 1,2,3,\u2026"
-      ],
-      "wall_time_ms": 0,
-      "presumed_pass": false
-    },
-    {
-      "program": "benito-count",
-      "adapter": "2003-cal-henderson",
-      "status": "skip",
-      "expected_output": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n40\n41\n42\n43\n44\n45\n46\n47\n48\n49\n50\n51\n52\n53\n54\n55\n56\n57\n58\n59\n60\n61\n62\n63\n64\n65\n66\n67\n68\n69\n70\n71\n72\n73\n74\n75\n76\n77\n78\n79\n80\n81\n82\n83\n84\n85\n86\n87\n88\n89\n90\n91\n92\n93\n94\n95\n96\n97\n98\n99\n100\n",
-      "actual_output": "",
-      "expected_ticks": 39,
-      "actual_ticks": null,
-      "notes": [
-        "Produces a broken counter ('1,2,..9,0,11,2,..')"
-      ],
-      "wall_time_ms": 0,
-      "presumed_pass": false
-    },
-    {
-      "program": "benito-count",
-      "adapter": "2012-quin-kennedy",
-      "status": "pass",
-      "expected_output": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n40\n41\n42\n43\n44\n45\n46\n47\n48\n49\n50\n51\n52\n53\n54\n55\n56\n57\n58\n59\n60\n61\n62\n63\n64\n65\n66\n67\n68\n69\n70\n71\n72\n73\n74\n75\n76\n77\n78\n79\n80\n81\n82\n83\n84\n85\n86\n87\n88\n89\n90\n91\n92\n93\n94\n95\n96\n97\n98\n99\n100\n\n",
-      "actual_output": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n40\n41\n42\n43\n44\n45\n46\n47\n48\n49\n50\n51\n52\n53\n54\n55\n56\n57\n58\n59\n60\n61\n62\n63\n64\n65\n66\n67\n68\n69\n70\n71\n72\n73\n74\n75\n76\n77\n78\n79\n80\n81\n82\n83\n84\n85\n86\n87\n88\n89\n90\n91\n92\n93\n94\n95\n96\n97\n98\n99\n100\n\n",
-      "expected_ticks": 39,
-      "actual_ticks": null,
-      "notes": [],
-      "wall_time_ms": 106,
-      "presumed_pass": false
-    },
-    {
-      "program": "benito-count",
-      "adapter": "2017-cal-henderson-js",
-      "status": "pass",
-      "expected_output": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n40\n41\n42\n43\n44\n45\n46\n47\n48\n49\n50\n51\n52\n53\n54\n55\n56\n57\n58\n59\n60\n61\n62\n63\n64\n65\n66\n67\n68\n69\n70\n71\n72\n73\n74\n75\n76\n77\n78\n79\n80\n81\n82\n83\n84\n85\n86\n87\n88\n89\n90\n91\n92\n93\n94\n95\n96\n97\n98\n99\n100\n",
-      "actual_output": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n40\n41\n42\n43\n44\n45\n46\n47\n48\n49\n50\n51\n52\n53\n54\n55\n56\n57\n58\n59\n60\n61\n62\n63\n64\n65\n66\n67\n68\n69\n70\n71\n72\n73\n74\n75\n76\n77\n78\n79\n80\n81\n82\n83\n84\n85\n86\n87\n88\n89\n90\n91\n92\n93\n94\n95\n96\n97\n98\n99\n100\n",
-      "expected_ticks": 39,
-      "actual_ticks": 39,
-      "notes": [],
-      "wall_time_ms": 116,
-      "presumed_pass": false
-    },
-    {
-      "program": "benito-count-poem",
-      "adapter": "2005-joe-neeman",
-      "status": "pass",
-      "expected_output": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n40\n41\n42\n43\n44\n45\n46\n47\n48\n49\n50\n51\n52\n53\n54\n55\n56\n57\n58\n59\n60\n61\n62\n63\n64\n65\n66\n67\n68\n69\n70\n71\n72\n73\n74\n75\n76\n77\n78\n79\n80\n81\n82\n83\n84\n85\n86\n87\n88\n89\n90\n91\n92\n93\n94\n95\n96\n97\n98\n99\n100\n",
-      "actual_output": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n40\n41\n42\n43\n44\n45\n46\n47\n48\n49\n50\n51\n52\n53\n54\n55\n56\n57\n58\n59\n60\n61\n62\n63\n64\n65\n66\n67\n68\n69\n70\n71\n72\n73\n74\n75\n76\n77\n78\n79\n80\n81\n82\n83\n84\n85\n86\n87\n88\n89\n90\n91\n92\n93\n94\n95\n96\n97\n98\n99\n100\n",
-      "expected_ticks": 39,
-      "actual_ticks": 39,
-      "notes": [],
-      "wall_time_ms": 10,
-      "presumed_pass": false
-    },
-    {
-      "program": "benito-count-poem",
-      "adapter": "2003-jeff-binder",
-      "status": "skip",
-      "expected_output": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n40\n41\n42\n43\n44\n45\n46\n47\n48\n49\n50\n51\n52\n53\n54\n55\n56\n57\n58\n59\n60\n61\n62\n63\n64\n65\n66\n67\n68\n69\n70\n71\n72\n73\n74\n75\n76\n77\n78\n79\n80\n81\n82\n83\n84\n85\n86\n87\n88\n89\n90\n91\n92\n93\n94\n95\n96\n97\n98\n99\n100\n",
-      "actual_output": "",
-      "expected_ticks": 39,
-      "actual_ticks": null,
-      "notes": [
-        "Produces a broken, non-monotonic counter ('9\\n10\\n19\\n20\\n29\\n30\\n\u2026') instead of 1,2,3,\u2026"
-      ],
-      "wall_time_ms": 0,
-      "presumed_pass": false
-    },
-    {
-      "program": "benito-count-poem",
-      "adapter": "2003-cal-henderson",
-      "status": "skip",
-      "expected_output": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n40\n41\n42\n43\n44\n45\n46\n47\n48\n49\n50\n51\n52\n53\n54\n55\n56\n57\n58\n59\n60\n61\n62\n63\n64\n65\n66\n67\n68\n69\n70\n71\n72\n73\n74\n75\n76\n77\n78\n79\n80\n81\n82\n83\n84\n85\n86\n87\n88\n89\n90\n91\n92\n93\n94\n95\n96\n97\n98\n99\n100\n",
-      "actual_output": "",
-      "expected_ticks": 39,
-      "actual_ticks": null,
-      "notes": [
-        "Produces a broken counter"
-      ],
-      "wall_time_ms": 0,
-      "presumed_pass": false
-    },
-    {
-      "program": "benito-count-poem",
-      "adapter": "2012-quin-kennedy",
-      "status": "pass",
-      "expected_output": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n40\n41\n42\n43\n44\n45\n46\n47\n48\n49\n50\n51\n52\n53\n54\n55\n56\n57\n58\n59\n60\n61\n62\n63\n64\n65\n66\n67\n68\n69\n70\n71\n72\n73\n74\n75\n76\n77\n78\n79\n80\n81\n82\n83\n84\n85\n86\n87\n88\n89\n90\n91\n92\n93\n94\n95\n96\n97\n98\n99\n100\n\n",
-      "actual_output": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n40\n41\n42\n43\n44\n45\n46\n47\n48\n49\n50\n51\n52\n53\n54\n55\n56\n57\n58\n59\n60\n61\n62\n63\n64\n65\n66\n67\n68\n69\n70\n71\n72\n73\n74\n75\n76\n77\n78\n79\n80\n81\n82\n83\n84\n85\n86\n87\n88\n89\n90\n91\n92\n93\n94\n95\n96\n97\n98\n99\n100\n\n",
-      "expected_ticks": 39,
-      "actual_ticks": null,
-      "notes": [],
-      "wall_time_ms": 109,
-      "presumed_pass": false
-    },
-    {
-      "program": "benito-count-poem",
-      "adapter": "2017-cal-henderson-js",
-      "status": "pass",
-      "expected_output": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n40\n41\n42\n43\n44\n45\n46\n47\n48\n49\n50\n51\n52\n53\n54\n55\n56\n57\n58\n59\n60\n61\n62\n63\n64\n65\n66\n67\n68\n69\n70\n71\n72\n73\n74\n75\n76\n77\n78\n79\n80\n81\n82\n83\n84\n85\n86\n87\n88\n89\n90\n91\n92\n93\n94\n95\n96\n97\n98\n99\n100\n",
-      "actual_output": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n40\n41\n42\n43\n44\n45\n46\n47\n48\n49\n50\n51\n52\n53\n54\n55\n56\n57\n58\n59\n60\n61\n62\n63\n64\n65\n66\n67\n68\n69\n70\n71\n72\n73\n74\n75\n76\n77\n78\n79\n80\n81\n82\n83\n84\n85\n86\n87\n88\n89\n90\n91\n92\n93\n94\n95\n96\n97\n98\n99\n100\n",
-      "expected_ticks": 39,
-      "actual_ticks": 39,
-      "notes": [],
-      "wall_time_ms": 107,
+      "wall_time_ms": 117,
       "presumed_pass": false
     },
     {
@@ -381,7 +253,7 @@
       "expected_ticks": 51,
       "actual_ticks": 51,
       "notes": [],
-      "wall_time_ms": 11,
+      "wall_time_ms": 12,
       "presumed_pass": false
     },
     {
@@ -421,7 +293,7 @@
       "expected_ticks": 51,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 134,
+      "wall_time_ms": 120,
       "presumed_pass": false
     },
     {
@@ -433,7 +305,135 @@
       "expected_ticks": 51,
       "actual_ticks": 51,
       "notes": [],
-      "wall_time_ms": 122,
+      "wall_time_ms": 113,
+      "presumed_pass": false
+    },
+    {
+      "program": "benito-count-poem",
+      "adapter": "2005-joe-neeman",
+      "status": "pass",
+      "expected_output": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n40\n41\n42\n43\n44\n45\n46\n47\n48\n49\n50\n51\n52\n53\n54\n55\n56\n57\n58\n59\n60\n61\n62\n63\n64\n65\n66\n67\n68\n69\n70\n71\n72\n73\n74\n75\n76\n77\n78\n79\n80\n81\n82\n83\n84\n85\n86\n87\n88\n89\n90\n91\n92\n93\n94\n95\n96\n97\n98\n99\n100\n",
+      "actual_output": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n40\n41\n42\n43\n44\n45\n46\n47\n48\n49\n50\n51\n52\n53\n54\n55\n56\n57\n58\n59\n60\n61\n62\n63\n64\n65\n66\n67\n68\n69\n70\n71\n72\n73\n74\n75\n76\n77\n78\n79\n80\n81\n82\n83\n84\n85\n86\n87\n88\n89\n90\n91\n92\n93\n94\n95\n96\n97\n98\n99\n100\n",
+      "expected_ticks": 39,
+      "actual_ticks": 39,
+      "notes": [],
+      "wall_time_ms": 12,
+      "presumed_pass": false
+    },
+    {
+      "program": "benito-count-poem",
+      "adapter": "2003-jeff-binder",
+      "status": "skip",
+      "expected_output": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n40\n41\n42\n43\n44\n45\n46\n47\n48\n49\n50\n51\n52\n53\n54\n55\n56\n57\n58\n59\n60\n61\n62\n63\n64\n65\n66\n67\n68\n69\n70\n71\n72\n73\n74\n75\n76\n77\n78\n79\n80\n81\n82\n83\n84\n85\n86\n87\n88\n89\n90\n91\n92\n93\n94\n95\n96\n97\n98\n99\n100\n",
+      "actual_output": "",
+      "expected_ticks": 39,
+      "actual_ticks": null,
+      "notes": [
+        "Produces a broken, non-monotonic counter ('9\\n10\\n19\\n20\\n29\\n30\\n\u2026') instead of 1,2,3,\u2026"
+      ],
+      "wall_time_ms": 0,
+      "presumed_pass": false
+    },
+    {
+      "program": "benito-count-poem",
+      "adapter": "2003-cal-henderson",
+      "status": "skip",
+      "expected_output": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n40\n41\n42\n43\n44\n45\n46\n47\n48\n49\n50\n51\n52\n53\n54\n55\n56\n57\n58\n59\n60\n61\n62\n63\n64\n65\n66\n67\n68\n69\n70\n71\n72\n73\n74\n75\n76\n77\n78\n79\n80\n81\n82\n83\n84\n85\n86\n87\n88\n89\n90\n91\n92\n93\n94\n95\n96\n97\n98\n99\n100\n",
+      "actual_output": "",
+      "expected_ticks": 39,
+      "actual_ticks": null,
+      "notes": [
+        "Produces a broken counter"
+      ],
+      "wall_time_ms": 0,
+      "presumed_pass": false
+    },
+    {
+      "program": "benito-count-poem",
+      "adapter": "2012-quin-kennedy",
+      "status": "pass",
+      "expected_output": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n40\n41\n42\n43\n44\n45\n46\n47\n48\n49\n50\n51\n52\n53\n54\n55\n56\n57\n58\n59\n60\n61\n62\n63\n64\n65\n66\n67\n68\n69\n70\n71\n72\n73\n74\n75\n76\n77\n78\n79\n80\n81\n82\n83\n84\n85\n86\n87\n88\n89\n90\n91\n92\n93\n94\n95\n96\n97\n98\n99\n100\n\n",
+      "actual_output": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n40\n41\n42\n43\n44\n45\n46\n47\n48\n49\n50\n51\n52\n53\n54\n55\n56\n57\n58\n59\n60\n61\n62\n63\n64\n65\n66\n67\n68\n69\n70\n71\n72\n73\n74\n75\n76\n77\n78\n79\n80\n81\n82\n83\n84\n85\n86\n87\n88\n89\n90\n91\n92\n93\n94\n95\n96\n97\n98\n99\n100\n\n",
+      "expected_ticks": 39,
+      "actual_ticks": null,
+      "notes": [],
+      "wall_time_ms": 123,
+      "presumed_pass": false
+    },
+    {
+      "program": "benito-count-poem",
+      "adapter": "2017-cal-henderson-js",
+      "status": "pass",
+      "expected_output": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n40\n41\n42\n43\n44\n45\n46\n47\n48\n49\n50\n51\n52\n53\n54\n55\n56\n57\n58\n59\n60\n61\n62\n63\n64\n65\n66\n67\n68\n69\n70\n71\n72\n73\n74\n75\n76\n77\n78\n79\n80\n81\n82\n83\n84\n85\n86\n87\n88\n89\n90\n91\n92\n93\n94\n95\n96\n97\n98\n99\n100\n",
+      "actual_output": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n40\n41\n42\n43\n44\n45\n46\n47\n48\n49\n50\n51\n52\n53\n54\n55\n56\n57\n58\n59\n60\n61\n62\n63\n64\n65\n66\n67\n68\n69\n70\n71\n72\n73\n74\n75\n76\n77\n78\n79\n80\n81\n82\n83\n84\n85\n86\n87\n88\n89\n90\n91\n92\n93\n94\n95\n96\n97\n98\n99\n100\n",
+      "expected_ticks": 39,
+      "actual_ticks": 39,
+      "notes": [],
+      "wall_time_ms": 120,
+      "presumed_pass": false
+    },
+    {
+      "program": "benito-count",
+      "adapter": "2005-joe-neeman",
+      "status": "pass",
+      "expected_output": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n40\n41\n42\n43\n44\n45\n46\n47\n48\n49\n50\n51\n52\n53\n54\n55\n56\n57\n58\n59\n60\n61\n62\n63\n64\n65\n66\n67\n68\n69\n70\n71\n72\n73\n74\n75\n76\n77\n78\n79\n80\n81\n82\n83\n84\n85\n86\n87\n88\n89\n90\n91\n92\n93\n94\n95\n96\n97\n98\n99\n100\n",
+      "actual_output": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n40\n41\n42\n43\n44\n45\n46\n47\n48\n49\n50\n51\n52\n53\n54\n55\n56\n57\n58\n59\n60\n61\n62\n63\n64\n65\n66\n67\n68\n69\n70\n71\n72\n73\n74\n75\n76\n77\n78\n79\n80\n81\n82\n83\n84\n85\n86\n87\n88\n89\n90\n91\n92\n93\n94\n95\n96\n97\n98\n99\n100\n",
+      "expected_ticks": 39,
+      "actual_ticks": 39,
+      "notes": [],
+      "wall_time_ms": 10,
+      "presumed_pass": false
+    },
+    {
+      "program": "benito-count",
+      "adapter": "2003-jeff-binder",
+      "status": "skip",
+      "expected_output": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n40\n41\n42\n43\n44\n45\n46\n47\n48\n49\n50\n51\n52\n53\n54\n55\n56\n57\n58\n59\n60\n61\n62\n63\n64\n65\n66\n67\n68\n69\n70\n71\n72\n73\n74\n75\n76\n77\n78\n79\n80\n81\n82\n83\n84\n85\n86\n87\n88\n89\n90\n91\n92\n93\n94\n95\n96\n97\n98\n99\n100\n",
+      "actual_output": "",
+      "expected_ticks": 39,
+      "actual_ticks": null,
+      "notes": [
+        "Produces a broken, non-monotonic counter ('9\\n10\\n19\\n20\\n29\\n30\\n\u2026') instead of 1,2,3,\u2026"
+      ],
+      "wall_time_ms": 0,
+      "presumed_pass": false
+    },
+    {
+      "program": "benito-count",
+      "adapter": "2003-cal-henderson",
+      "status": "skip",
+      "expected_output": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n40\n41\n42\n43\n44\n45\n46\n47\n48\n49\n50\n51\n52\n53\n54\n55\n56\n57\n58\n59\n60\n61\n62\n63\n64\n65\n66\n67\n68\n69\n70\n71\n72\n73\n74\n75\n76\n77\n78\n79\n80\n81\n82\n83\n84\n85\n86\n87\n88\n89\n90\n91\n92\n93\n94\n95\n96\n97\n98\n99\n100\n",
+      "actual_output": "",
+      "expected_ticks": 39,
+      "actual_ticks": null,
+      "notes": [
+        "Produces a broken counter ('1,2,..9,0,11,2,..')"
+      ],
+      "wall_time_ms": 0,
+      "presumed_pass": false
+    },
+    {
+      "program": "benito-count",
+      "adapter": "2012-quin-kennedy",
+      "status": "pass",
+      "expected_output": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n40\n41\n42\n43\n44\n45\n46\n47\n48\n49\n50\n51\n52\n53\n54\n55\n56\n57\n58\n59\n60\n61\n62\n63\n64\n65\n66\n67\n68\n69\n70\n71\n72\n73\n74\n75\n76\n77\n78\n79\n80\n81\n82\n83\n84\n85\n86\n87\n88\n89\n90\n91\n92\n93\n94\n95\n96\n97\n98\n99\n100\n\n",
+      "actual_output": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n40\n41\n42\n43\n44\n45\n46\n47\n48\n49\n50\n51\n52\n53\n54\n55\n56\n57\n58\n59\n60\n61\n62\n63\n64\n65\n66\n67\n68\n69\n70\n71\n72\n73\n74\n75\n76\n77\n78\n79\n80\n81\n82\n83\n84\n85\n86\n87\n88\n89\n90\n91\n92\n93\n94\n95\n96\n97\n98\n99\n100\n\n",
+      "expected_ticks": 39,
+      "actual_ticks": null,
+      "notes": [],
+      "wall_time_ms": 111,
+      "presumed_pass": false
+    },
+    {
+      "program": "benito-count",
+      "adapter": "2017-cal-henderson-js",
+      "status": "pass",
+      "expected_output": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n40\n41\n42\n43\n44\n45\n46\n47\n48\n49\n50\n51\n52\n53\n54\n55\n56\n57\n58\n59\n60\n61\n62\n63\n64\n65\n66\n67\n68\n69\n70\n71\n72\n73\n74\n75\n76\n77\n78\n79\n80\n81\n82\n83\n84\n85\n86\n87\n88\n89\n90\n91\n92\n93\n94\n95\n96\n97\n98\n99\n100\n",
+      "actual_output": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n40\n41\n42\n43\n44\n45\n46\n47\n48\n49\n50\n51\n52\n53\n54\n55\n56\n57\n58\n59\n60\n61\n62\n63\n64\n65\n66\n67\n68\n69\n70\n71\n72\n73\n74\n75\n76\n77\n78\n79\n80\n81\n82\n83\n84\n85\n86\n87\n88\n89\n90\n91\n92\n93\n94\n95\n96\n97\n98\n99\n100\n",
+      "expected_ticks": 39,
+      "actual_ticks": 39,
+      "notes": [],
+      "wall_time_ms": 102,
       "presumed_pass": false
     },
     {
@@ -499,7 +499,7 @@
       "expected_ticks": null,
       "actual_ticks": 80,
       "notes": [],
-      "wall_time_ms": 235,
+      "wall_time_ms": 187,
       "presumed_pass": false
     },
     {
@@ -511,7 +511,7 @@
       "expected_ticks": null,
       "actual_ticks": 80,
       "notes": [],
-      "wall_time_ms": 17,
+      "wall_time_ms": 16,
       "presumed_pass": false
     },
     {
@@ -565,7 +565,7 @@
       "expected_ticks": null,
       "actual_ticks": 80,
       "notes": [],
-      "wall_time_ms": 187,
+      "wall_time_ms": 156,
       "presumed_pass": false
     },
     {
@@ -577,7 +577,7 @@
       "expected_ticks": null,
       "actual_ticks": 80,
       "notes": [],
-      "wall_time_ms": 42,
+      "wall_time_ms": 41,
       "presumed_pass": false
     },
     {
@@ -631,75 +631,7 @@
       "expected_ticks": null,
       "actual_ticks": 80,
       "notes": [],
-      "wall_time_ms": 210,
-      "presumed_pass": false
-    },
-    {
-      "program": "benito-fizzbuzz",
-      "adapter": "2005-joe-neeman",
-      "status": "skip",
-      "expected_output": "1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\n13\n14\nFizzBuzz\n16\n17\nFizz\n19\nBuzz\nFizz\n22\n23\nFizz\nBuzz\n26\nFizz\n28\n29\nFizzBuzz\n31\n32\nFizz\n34\nBuzz\nFizz\n37\n38\nFizz\nBuzz\n41\nFizz\n43\n44\nFizzBuzz\n46\n47\nFizz\n49\nBuzz\nFizz\n52\n53\nFizz\nBuzz\n56\nFizz\n58\n59\nFizzBuzz\n",
-      "actual_output": "",
-      "expected_ticks": null,
-      "actual_ticks": null,
-      "notes": [
-        "Emits letter placeholders ('f\\nf\\nFizz\\nf\\nBuzz\u2026') where it should emit digits"
-      ],
-      "wall_time_ms": 0,
-      "presumed_pass": false
-    },
-    {
-      "program": "benito-fizzbuzz",
-      "adapter": "2003-jeff-binder",
-      "status": "skip",
-      "expected_output": "1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\n13\n14\nFizzBuzz\n16\n17\nFizz\n19\nBuzz\nFizz\n22\n23\nFizz\nBuzz\n26\nFizz\n28\n29\nFizzBuzz\n31\n32\nFizz\n34\nBuzz\nFizz\n37\n38\nFizz\nBuzz\n41\nFizz\n43\n44\nFizzBuzz\n46\n47\nFizz\n49\nBuzz\nFizz\n52\n53\nFizz\nBuzz\n56\nFizz\n58\n59\nFizzBuzz\n",
-      "actual_output": "",
-      "expected_ticks": null,
-      "actual_ticks": null,
-      "notes": [
-        "Raises a runtime backtrace"
-      ],
-      "wall_time_ms": 0,
-      "presumed_pass": false
-    },
-    {
-      "program": "benito-fizzbuzz",
-      "adapter": "2003-cal-henderson",
-      "status": "skip",
-      "expected_output": "1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\n13\n14\nFizzBuzz\n16\n17\nFizz\n19\nBuzz\nFizz\n22\n23\nFizz\nBuzz\n26\nFizz\n28\n29\nFizzBuzz\n31\n32\nFizz\n34\nBuzz\nFizz\n37\n38\nFizz\nBuzz\n41\nFizz\n43\n44\nFizzBuzz\n46\n47\nFizz\n49\nBuzz\nFizz\n52\n53\nFizz\nBuzz\n56\nFizz\n58\n59\nFizzBuzz\n",
-      "actual_output": "",
-      "expected_ticks": null,
-      "actual_ticks": null,
-      "notes": [
-        "Overflows (deep recursion)"
-      ],
-      "wall_time_ms": 0,
-      "presumed_pass": false
-    },
-    {
-      "program": "benito-fizzbuzz",
-      "adapter": "2012-quin-kennedy",
-      "status": "skip",
-      "expected_output": "1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\n13\n14\nFizzBuzz\n16\n17\nFizz\n19\nBuzz\nFizz\n22\n23\nFizz\nBuzz\n26\nFizz\n28\n29\nFizzBuzz\n31\n32\nFizz\n34\nBuzz\nFizz\n37\n38\nFizz\nBuzz\n41\nFizz\n43\n44\nFizzBuzz\n46\n47\nFizz\n49\nBuzz\nFizz\n52\n53\nFizz\nBuzz\n56\nFizz\n58\n59\nFizzBuzz\n",
-      "actual_output": "",
-      "expected_ticks": null,
-      "actual_ticks": null,
-      "notes": [
-        "Emits placeholder tokens ('c_\\nc_\\nFizz\\nc_\\nBuzz\u2026') where it should emit digits"
-      ],
-      "wall_time_ms": 0,
-      "presumed_pass": false
-    },
-    {
-      "program": "benito-fizzbuzz",
-      "adapter": "2017-cal-henderson-js",
-      "status": "pass",
-      "expected_output": "1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\n13\n14\nFizzBuzz\n16\n17\nFizz\n19\nBuzz\nFizz\n22\n23\nFizz\nBuzz\n26\nFizz\n28\n29\nFizzBuzz\n31\n32\nFizz\n34\nBuzz\nFizz\n37\n38\nFizz\nBuzz\n41\nFizz\n43\n44\nFizzBuzz\n46\n47\nFizz\n49\nBuzz\nFizz\n52\n53\nFizz\nBuzz\n56\nFizz\n58\n59\nFizzBuzz\n",
-      "actual_output": "1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\n13\n14\nFizzBuzz\n16\n17\nFizz\n19\nBuzz\nFizz\n22\n23\nFizz\nBuzz\n26\nFizz\n28\n29\nFizzBuzz\n31\n32\nFizz\n34\nBuzz\nFizz\n37\n38\nFizz\nBuzz\n41\nFizz\n43\n44\nFizzBuzz\n46\n47\nFizz\n49\nBuzz\nFizz\n52\n53\nFizz\nBuzz\n56\nFizz\n58\n59\nFizzBuzz\n",
-      "expected_ticks": null,
-      "actual_ticks": 1500,
-      "notes": [],
-      "wall_time_ms": 2368,
+      "wall_time_ms": 228,
       "presumed_pass": false
     },
     {
@@ -767,7 +699,75 @@
       "expected_ticks": 2207,
       "actual_ticks": 2207,
       "notes": [],
-      "wall_time_ms": 3291,
+      "wall_time_ms": 2987,
+      "presumed_pass": false
+    },
+    {
+      "program": "benito-fizzbuzz",
+      "adapter": "2005-joe-neeman",
+      "status": "skip",
+      "expected_output": "1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\n13\n14\nFizzBuzz\n16\n17\nFizz\n19\nBuzz\nFizz\n22\n23\nFizz\nBuzz\n26\nFizz\n28\n29\nFizzBuzz\n31\n32\nFizz\n34\nBuzz\nFizz\n37\n38\nFizz\nBuzz\n41\nFizz\n43\n44\nFizzBuzz\n46\n47\nFizz\n49\nBuzz\nFizz\n52\n53\nFizz\nBuzz\n56\nFizz\n58\n59\nFizzBuzz\n",
+      "actual_output": "",
+      "expected_ticks": null,
+      "actual_ticks": null,
+      "notes": [
+        "Emits letter placeholders ('f\\nf\\nFizz\\nf\\nBuzz\u2026') where it should emit digits"
+      ],
+      "wall_time_ms": 0,
+      "presumed_pass": false
+    },
+    {
+      "program": "benito-fizzbuzz",
+      "adapter": "2003-jeff-binder",
+      "status": "skip",
+      "expected_output": "1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\n13\n14\nFizzBuzz\n16\n17\nFizz\n19\nBuzz\nFizz\n22\n23\nFizz\nBuzz\n26\nFizz\n28\n29\nFizzBuzz\n31\n32\nFizz\n34\nBuzz\nFizz\n37\n38\nFizz\nBuzz\n41\nFizz\n43\n44\nFizzBuzz\n46\n47\nFizz\n49\nBuzz\nFizz\n52\n53\nFizz\nBuzz\n56\nFizz\n58\n59\nFizzBuzz\n",
+      "actual_output": "",
+      "expected_ticks": null,
+      "actual_ticks": null,
+      "notes": [
+        "Raises a runtime backtrace"
+      ],
+      "wall_time_ms": 0,
+      "presumed_pass": false
+    },
+    {
+      "program": "benito-fizzbuzz",
+      "adapter": "2003-cal-henderson",
+      "status": "skip",
+      "expected_output": "1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\n13\n14\nFizzBuzz\n16\n17\nFizz\n19\nBuzz\nFizz\n22\n23\nFizz\nBuzz\n26\nFizz\n28\n29\nFizzBuzz\n31\n32\nFizz\n34\nBuzz\nFizz\n37\n38\nFizz\nBuzz\n41\nFizz\n43\n44\nFizzBuzz\n46\n47\nFizz\n49\nBuzz\nFizz\n52\n53\nFizz\nBuzz\n56\nFizz\n58\n59\nFizzBuzz\n",
+      "actual_output": "",
+      "expected_ticks": null,
+      "actual_ticks": null,
+      "notes": [
+        "Overflows (deep recursion)"
+      ],
+      "wall_time_ms": 0,
+      "presumed_pass": false
+    },
+    {
+      "program": "benito-fizzbuzz",
+      "adapter": "2012-quin-kennedy",
+      "status": "skip",
+      "expected_output": "1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\n13\n14\nFizzBuzz\n16\n17\nFizz\n19\nBuzz\nFizz\n22\n23\nFizz\nBuzz\n26\nFizz\n28\n29\nFizzBuzz\n31\n32\nFizz\n34\nBuzz\nFizz\n37\n38\nFizz\nBuzz\n41\nFizz\n43\n44\nFizzBuzz\n46\n47\nFizz\n49\nBuzz\nFizz\n52\n53\nFizz\nBuzz\n56\nFizz\n58\n59\nFizzBuzz\n",
+      "actual_output": "",
+      "expected_ticks": null,
+      "actual_ticks": null,
+      "notes": [
+        "Emits placeholder tokens ('c_\\nc_\\nFizz\\nc_\\nBuzz\u2026') where it should emit digits"
+      ],
+      "wall_time_ms": 0,
+      "presumed_pass": false
+    },
+    {
+      "program": "benito-fizzbuzz",
+      "adapter": "2017-cal-henderson-js",
+      "status": "pass",
+      "expected_output": "1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\n13\n14\nFizzBuzz\n16\n17\nFizz\n19\nBuzz\nFizz\n22\n23\nFizz\nBuzz\n26\nFizz\n28\n29\nFizzBuzz\n31\n32\nFizz\n34\nBuzz\nFizz\n37\n38\nFizz\nBuzz\n41\nFizz\n43\n44\nFizzBuzz\n46\n47\nFizz\n49\nBuzz\nFizz\n52\n53\nFizz\nBuzz\n56\nFizz\n58\n59\nFizzBuzz\n",
+      "actual_output": "1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\n13\n14\nFizzBuzz\n16\n17\nFizz\n19\nBuzz\nFizz\n22\n23\nFizz\nBuzz\n26\nFizz\n28\n29\nFizzBuzz\n31\n32\nFizz\n34\nBuzz\nFizz\n37\n38\nFizz\nBuzz\n41\nFizz\n43\n44\nFizzBuzz\n46\n47\nFizz\n49\nBuzz\nFizz\n52\n53\nFizz\nBuzz\n56\nFizz\n58\n59\nFizzBuzz\n",
+      "expected_ticks": null,
+      "actual_ticks": 1500,
+      "notes": [],
+      "wall_time_ms": 2185,
       "presumed_pass": false
     },
     {
@@ -779,7 +779,7 @@
       "expected_ticks": null,
       "actual_ticks": 200,
       "notes": [],
-      "wall_time_ms": 86,
+      "wall_time_ms": 72,
       "presumed_pass": false
     },
     {
@@ -833,7 +833,7 @@
       "expected_ticks": null,
       "actual_ticks": 200,
       "notes": [],
-      "wall_time_ms": 331,
+      "wall_time_ms": 324,
       "presumed_pass": false
     },
     {
@@ -845,7 +845,7 @@
       "expected_ticks": 9,
       "actual_ticks": 9,
       "notes": [],
-      "wall_time_ms": 5,
+      "wall_time_ms": 7,
       "presumed_pass": false
     },
     {
@@ -885,7 +885,7 @@
       "expected_ticks": 9,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 63,
+      "wall_time_ms": 66,
       "presumed_pass": false
     },
     {
@@ -897,7 +897,7 @@
       "expected_ticks": 9,
       "actual_ticks": 9,
       "notes": [],
-      "wall_time_ms": 59,
+      "wall_time_ms": 55,
       "presumed_pass": false
     },
     {
@@ -909,7 +909,7 @@
       "expected_ticks": 7,
       "actual_ticks": 7,
       "notes": [],
-      "wall_time_ms": 6,
+      "wall_time_ms": 5,
       "presumed_pass": false
     },
     {
@@ -921,7 +921,7 @@
       "expected_ticks": 7,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 4007,
+      "wall_time_ms": 4010,
       "presumed_pass": false
     },
     {
@@ -933,7 +933,7 @@
       "expected_ticks": 6,
       "actual_ticks": 6,
       "notes": [],
-      "wall_time_ms": 27,
+      "wall_time_ms": 18,
       "presumed_pass": false
     },
     {
@@ -945,7 +945,7 @@
       "expected_ticks": 7,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 85,
+      "wall_time_ms": 65,
       "presumed_pass": false
     },
     {
@@ -957,7 +957,7 @@
       "expected_ticks": 7,
       "actual_ticks": 7,
       "notes": [],
-      "wall_time_ms": 50,
+      "wall_time_ms": 48,
       "presumed_pass": false
     },
     {
@@ -969,7 +969,7 @@
       "expected_ticks": null,
       "actual_ticks": 200,
       "notes": [],
-      "wall_time_ms": 17,
+      "wall_time_ms": 20,
       "presumed_pass": false
     },
     {
@@ -1021,7 +1021,7 @@
       "expected_ticks": null,
       "actual_ticks": 200,
       "notes": [],
-      "wall_time_ms": 286,
+      "wall_time_ms": 283,
       "presumed_pass": false
     },
     {
@@ -1033,7 +1033,7 @@
       "expected_ticks": null,
       "actual_ticks": 20,
       "notes": [],
-      "wall_time_ms": 5,
+      "wall_time_ms": 6,
       "presumed_pass": false
     },
     {
@@ -1073,7 +1073,7 @@
       "expected_ticks": null,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 81,
+      "wall_time_ms": 83,
       "presumed_pass": false
     },
     {
@@ -1085,7 +1085,7 @@
       "expected_ticks": null,
       "actual_ticks": 20,
       "notes": [],
-      "wall_time_ms": 65,
+      "wall_time_ms": 64,
       "presumed_pass": false
     },
     {
@@ -1097,7 +1097,7 @@
       "expected_ticks": null,
       "actual_ticks": 20,
       "notes": [],
-      "wall_time_ms": 8,
+      "wall_time_ms": 5,
       "presumed_pass": false
     },
     {
@@ -1125,7 +1125,7 @@
       "notes": [
         "Perl module emits the first line one tick later than others."
       ],
-      "wall_time_ms": 20,
+      "wall_time_ms": 19,
       "presumed_pass": false
     },
     {
@@ -1137,7 +1137,7 @@
       "expected_ticks": null,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 76,
+      "wall_time_ms": 82,
       "presumed_pass": false
     },
     {
@@ -1149,7 +1149,7 @@
       "expected_ticks": null,
       "actual_ticks": 20,
       "notes": [],
-      "wall_time_ms": 72,
+      "wall_time_ms": 76,
       "presumed_pass": false
     },
     {
@@ -1161,7 +1161,7 @@
       "expected_ticks": 7,
       "actual_ticks": 7,
       "notes": [],
-      "wall_time_ms": 6,
+      "wall_time_ms": 9,
       "presumed_pass": false
     },
     {
@@ -1173,7 +1173,7 @@
       "expected_ticks": 7,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 4004,
+      "wall_time_ms": 4005,
       "presumed_pass": false
     },
     {
@@ -1185,7 +1185,7 @@
       "expected_ticks": 6,
       "actual_ticks": 6,
       "notes": [],
-      "wall_time_ms": 20,
+      "wall_time_ms": 28,
       "presumed_pass": false
     },
     {
@@ -1197,7 +1197,7 @@
       "expected_ticks": 7,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 83,
+      "wall_time_ms": 79,
       "presumed_pass": false
     },
     {
@@ -1209,7 +1209,7 @@
       "expected_ticks": 7,
       "actual_ticks": 7,
       "notes": [],
-      "wall_time_ms": 83,
+      "wall_time_ms": 56,
       "presumed_pass": false
     },
     {
@@ -1221,7 +1221,7 @@
       "expected_ticks": 10,
       "actual_ticks": 10,
       "notes": [],
-      "wall_time_ms": 6,
+      "wall_time_ms": 12,
       "presumed_pass": false
     },
     {
@@ -1233,7 +1233,7 @@
       "expected_ticks": 10,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 4003,
+      "wall_time_ms": 4005,
       "presumed_pass": false
     },
     {
@@ -1245,7 +1245,7 @@
       "expected_ticks": 9,
       "actual_ticks": 9,
       "notes": [],
-      "wall_time_ms": 28,
+      "wall_time_ms": 20,
       "presumed_pass": false
     },
     {
@@ -1257,7 +1257,7 @@
       "expected_ticks": 10,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 84,
+      "wall_time_ms": 62,
       "presumed_pass": false
     },
     {
@@ -1269,7 +1269,7 @@
       "expected_ticks": 10,
       "actual_ticks": 10,
       "notes": [],
-      "wall_time_ms": 61,
+      "wall_time_ms": 52,
       "presumed_pass": false
     },
     {
@@ -1293,7 +1293,7 @@
       "expected_ticks": 16,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 6004,
+      "wall_time_ms": 6003,
       "presumed_pass": false
     },
     {
@@ -1319,7 +1319,7 @@
       "expected_ticks": 16,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 72,
+      "wall_time_ms": 74,
       "presumed_pass": false
     },
     {
@@ -1331,7 +1331,7 @@
       "expected_ticks": 16,
       "actual_ticks": 16,
       "notes": [],
-      "wall_time_ms": 81,
+      "wall_time_ms": 57,
       "presumed_pass": false
     },
     {
@@ -1343,7 +1343,7 @@
       "expected_ticks": null,
       "actual_ticks": 32,
       "notes": [],
-      "wall_time_ms": 5,
+      "wall_time_ms": 7,
       "presumed_pass": false
     },
     {
@@ -1355,7 +1355,7 @@
       "expected_ticks": null,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 6003,
+      "wall_time_ms": 6007,
       "presumed_pass": false
     },
     {
@@ -1381,7 +1381,7 @@
       "expected_ticks": null,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 118,
+      "wall_time_ms": 104,
       "presumed_pass": false
     },
     {
@@ -1393,7 +1393,7 @@
       "expected_ticks": null,
       "actual_ticks": 32,
       "notes": [],
-      "wall_time_ms": 88,
+      "wall_time_ms": 95,
       "presumed_pass": false
     },
     {
@@ -1487,7 +1487,7 @@
       "expected_ticks": 0,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 4003,
+      "wall_time_ms": 4006,
       "presumed_pass": false
     },
     {
@@ -1513,7 +1513,7 @@
       "expected_ticks": 0,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 55,
+      "wall_time_ms": 54,
       "presumed_pass": false
     },
     {
@@ -1525,7 +1525,7 @@
       "expected_ticks": 0,
       "actual_ticks": 0,
       "notes": [],
-      "wall_time_ms": 57,
+      "wall_time_ms": 44,
       "presumed_pass": false
     },
     {
@@ -1537,7 +1537,7 @@
       "expected_ticks": null,
       "actual_ticks": 29,
       "notes": [],
-      "wall_time_ms": 7,
+      "wall_time_ms": 6,
       "presumed_pass": false
     },
     {
@@ -1549,7 +1549,7 @@
       "expected_ticks": null,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 6004,
+      "wall_time_ms": 6003,
       "presumed_pass": false
     },
     {
@@ -1575,7 +1575,7 @@
       "expected_ticks": null,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 194,
+      "wall_time_ms": 102,
       "presumed_pass": false
     },
     {
@@ -1587,7 +1587,7 @@
       "expected_ticks": null,
       "actual_ticks": 29,
       "notes": [],
-      "wall_time_ms": 98,
+      "wall_time_ms": 70,
       "presumed_pass": false
     },
     {
@@ -1599,7 +1599,7 @@
       "expected_ticks": null,
       "actual_ticks": 20,
       "notes": [],
-      "wall_time_ms": 10,
+      "wall_time_ms": 6,
       "presumed_pass": false
     },
     {
@@ -1623,7 +1623,7 @@
       "expected_ticks": null,
       "actual_ticks": 20,
       "notes": [],
-      "wall_time_ms": 22,
+      "wall_time_ms": 19,
       "presumed_pass": false
     },
     {
@@ -1635,7 +1635,7 @@
       "expected_ticks": null,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 80,
+      "wall_time_ms": 75,
       "presumed_pass": false
     },
     {
@@ -1647,7 +1647,7 @@
       "expected_ticks": null,
       "actual_ticks": 20,
       "notes": [],
-      "wall_time_ms": 67,
+      "wall_time_ms": 68,
       "presumed_pass": false
     },
     {
@@ -1659,7 +1659,7 @@
       "expected_ticks": null,
       "actual_ticks": 60,
       "notes": [],
-      "wall_time_ms": 6,
+      "wall_time_ms": 7,
       "presumed_pass": false
     },
     {
@@ -1713,7 +1713,7 @@
       "expected_ticks": null,
       "actual_ticks": 60,
       "notes": [],
-      "wall_time_ms": 138,
+      "wall_time_ms": 119,
       "presumed_pass": false
     },
     {
@@ -1779,77 +1779,7 @@
       "expected_ticks": null,
       "actual_ticks": 200,
       "notes": [],
-      "wall_time_ms": 348,
-      "presumed_pass": false
-    },
-    {
-      "program": "quin-reverse",
-      "adapter": "2005-joe-neeman",
-      "status": "skip",
-      "expected_output": "",
-      "actual_output": "",
-      "expected_ticks": null,
-      "actual_ticks": null,
-      "notes": [
-        "Three-way disagreement between Quin (author), OCaml, and homespring.js. Jeff crashes; Perl emits nothing. No canonical expected output."
-      ],
-      "wall_time_ms": 0,
-      "presumed_pass": false
-    },
-    {
-      "program": "quin-reverse",
-      "adapter": "2003-jeff-binder",
-      "status": "skip",
-      "expected_output": "",
-      "actual_output": "",
-      "expected_ticks": null,
-      "actual_ticks": null,
-      "notes": [
-        "Three-way disagreement between Quin (author), OCaml, and homespring.js. Jeff crashes; Perl emits nothing. No canonical expected output."
-      ],
-      "wall_time_ms": 0,
-      "presumed_pass": false
-    },
-    {
-      "program": "quin-reverse",
-      "adapter": "2003-cal-henderson",
-      "status": "skip",
-      "expected_output": "",
-      "actual_output": "",
-      "expected_ticks": null,
-      "actual_ticks": null,
-      "notes": [
-        "Three-way disagreement between Quin (author), OCaml, and homespring.js. Jeff crashes; Perl emits nothing. No canonical expected output."
-      ],
-      "wall_time_ms": 0,
-      "presumed_pass": false
-    },
-    {
-      "program": "quin-reverse",
-      "adapter": "2012-quin-kennedy",
-      "status": "skip",
-      "expected_output": "",
-      "actual_output": "",
-      "expected_ticks": null,
-      "actual_ticks": null,
-      "notes": [
-        "Three-way disagreement between Quin (author), OCaml, and homespring.js. Jeff crashes; Perl emits nothing. No canonical expected output."
-      ],
-      "wall_time_ms": 0,
-      "presumed_pass": false
-    },
-    {
-      "program": "quin-reverse",
-      "adapter": "2017-cal-henderson-js",
-      "status": "skip",
-      "expected_output": "",
-      "actual_output": "",
-      "expected_ticks": null,
-      "actual_ticks": null,
-      "notes": [
-        "Three-way disagreement between Quin (author), OCaml, and homespring.js. Jeff crashes; Perl emits nothing. No canonical expected output."
-      ],
-      "wall_time_ms": 0,
+      "wall_time_ms": 292,
       "presumed_pass": false
     },
     {
@@ -1988,6 +1918,76 @@
       "actual_ticks": null,
       "notes": [
         "Three-way disagreement; homespring.js output is particularly divergent ('helloforce up')."
+      ],
+      "wall_time_ms": 0,
+      "presumed_pass": false
+    },
+    {
+      "program": "quin-reverse",
+      "adapter": "2005-joe-neeman",
+      "status": "skip",
+      "expected_output": "",
+      "actual_output": "",
+      "expected_ticks": null,
+      "actual_ticks": null,
+      "notes": [
+        "Three-way disagreement between Quin (author), OCaml, and homespring.js. Jeff crashes; Perl emits nothing. No canonical expected output."
+      ],
+      "wall_time_ms": 0,
+      "presumed_pass": false
+    },
+    {
+      "program": "quin-reverse",
+      "adapter": "2003-jeff-binder",
+      "status": "skip",
+      "expected_output": "",
+      "actual_output": "",
+      "expected_ticks": null,
+      "actual_ticks": null,
+      "notes": [
+        "Three-way disagreement between Quin (author), OCaml, and homespring.js. Jeff crashes; Perl emits nothing. No canonical expected output."
+      ],
+      "wall_time_ms": 0,
+      "presumed_pass": false
+    },
+    {
+      "program": "quin-reverse",
+      "adapter": "2003-cal-henderson",
+      "status": "skip",
+      "expected_output": "",
+      "actual_output": "",
+      "expected_ticks": null,
+      "actual_ticks": null,
+      "notes": [
+        "Three-way disagreement between Quin (author), OCaml, and homespring.js. Jeff crashes; Perl emits nothing. No canonical expected output."
+      ],
+      "wall_time_ms": 0,
+      "presumed_pass": false
+    },
+    {
+      "program": "quin-reverse",
+      "adapter": "2012-quin-kennedy",
+      "status": "skip",
+      "expected_output": "",
+      "actual_output": "",
+      "expected_ticks": null,
+      "actual_ticks": null,
+      "notes": [
+        "Three-way disagreement between Quin (author), OCaml, and homespring.js. Jeff crashes; Perl emits nothing. No canonical expected output."
+      ],
+      "wall_time_ms": 0,
+      "presumed_pass": false
+    },
+    {
+      "program": "quin-reverse",
+      "adapter": "2017-cal-henderson-js",
+      "status": "skip",
+      "expected_output": "",
+      "actual_output": "",
+      "expected_ticks": null,
+      "actual_ticks": null,
+      "notes": [
+        "Three-way disagreement between Quin (author), OCaml, and homespring.js. Jeff crashes; Perl emits nothing. No canonical expected output."
       ],
       "wall_time_ms": 0,
       "presumed_pass": false

@@ -299,23 +299,18 @@ class Program:
 
 def load_programs(programs_dir: Path) -> list[Program]:
     programs = []
-    for sub in sorted(programs_dir.iterdir()):
-        if not sub.is_dir():
-            continue
-        meta_path = sub / "meta.json"
-        if not meta_path.exists():
-            continue
+    for meta_path in sorted(programs_dir.glob("*.json")):
+        slug = meta_path.stem
         meta = json.loads(meta_path.read_text())
         source_name = meta["source"]
-        # meta.json's "source" is resolved relative to the repo root so that
-        # every program can point directly at www/examples/<author>/… without
-        # needing a local copy under tests/programs/.
+        # "source" is resolved relative to the repo root so that every program
+        # can point directly at www/examples/<author>/… without needing a
+        # local copy under tests/programs/.
         source = (REPO / source_name).resolve()
         if not source.exists():
-            print(f"skipping {sub.name}: source {source} missing",
-                  file=sys.stderr)
+            print(f"skipping {slug}: source {source} missing", file=sys.stderr)
             continue
-        programs.append(Program(slug=sub.name, dir=sub, source=source,
+        programs.append(Program(slug=slug, dir=meta_path.parent, source=source,
                                 meta=meta))
     return programs
 
