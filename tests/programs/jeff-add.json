@@ -13,7 +13,7 @@
     "2003-jeff-binder": {
       "skip": true,
       "presumed_pass": true,
-      "skip_reason": "Runs this program correctly under an interactive terminal \u2014 typing `2` then `3` at the prompts produces `? + 5` \u2014 but the harness's one-shot piped stdin closes before the slow unary counter finishes. Count this as a pass-in-spirit."
+      "skip_reason": "Runs this program correctly under an interactive terminal \u2014 typing `2` then `3` at the prompts produces `? + 5` \u2014 but the harness's one-shot piped stdin closes before the slow unary counter finishes."
     },
     "2012-quin-kennedy": {
       "extra_newlines": [
