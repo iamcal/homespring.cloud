@@ -7,8 +7,7 @@
   "timeout": 5,
   "overrides": {
     "2005-joe-neeman": {
-      "expected_output": "force FieldHello, World!\n",
-      "notes": "OCaml interpreter prints the blocking force-field token before the salmon."
+      "notes": "OCaml emits 'force FieldHello, World!' — the blocking force-field node's name leaks into the output."
     },
     "2003-cal-henderson": {
       "skip": true,
