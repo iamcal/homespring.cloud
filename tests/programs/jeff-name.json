@@ -1,16 +1,19 @@
 {
-  "description": "Prints the HOMESPRING acronym \u2014 an acrostic program with no canonical output.",
+  "description": "Prints the HOMESPRING acronym. The complete interpreters (OCaml and homespring.js) agree on an output; the others each produce their own divergent pattern.",
   "source": "www/examples/2003-jeff-binder/name.hs",
   "input": "",
   "tick_limit": 50,
   "timeout": 5,
-  "expected_output": "",
-  "skip": [
-    "2005-joe-neeman",
-    "2003-jeff-binder",
-    "2003-cal-henderson",
-    "2012-quin-kennedy",
-    "2017-cal-henderson-js"
-  ],
-  "skip_reason": "Every interpreter produces a different mix of 'Great', 'homeless', 'Hatchery' tokens; there is no canonical expected output to verify against."
+  "expected_output": "GreatGreatGreatGreathomelessGreathomelessGreatGreat",
+  "overrides": {
+    "2003-jeff-binder": {
+      "notes": "Emits a 'HatcheryHatcheryhomeless' cycle indefinitely instead of the OCaml/JS 'Great'/'homeless' pattern — completely different salmon naming."
+    },
+    "2003-cal-henderson": {
+      "notes": "Starts with 'homelesshomelessGreat' and keeps alternating 'homeless'/'Great' forever, where OCaml/JS stop after ten tokens."
+    },
+    "2012-quin-kennedy": {
+      "notes": "Matches the first ten tokens exactly, but continues emitting 'homeless'/'Great' pairs indefinitely where OCaml/JS stop."
+    }
+  }
 }
