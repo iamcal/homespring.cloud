@@ -1,5 +1,5 @@
 {
-  "description": "Ticking clock — each cycle prints eight X's followed by a 'y'. We verify the first couple of cycles.",
+  "description": "Ticking clock \u2014 each cycle prints eight X's followed by a 'y'. We verify the first couple of cycles.",
   "source": "program.hs",
   "input": "",
   "tick_limit": 80,
@@ -15,5 +15,6 @@
       "skip": true,
       "skip_reason": "Perl module does not support the node types used"
     }
-  }
+  },
+  "expected_ticks": 53
 }

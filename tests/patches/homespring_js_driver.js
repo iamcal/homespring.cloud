@@ -23,14 +23,15 @@ if (!file) {
 const source = fs.readFileSync(file, 'utf8');
 const p = new HS.Program(source, { strictmode: false });
 
-let ticks = 0;
 p.onOutput = (s) => process.stdout.write(s);
 p.onTerminate = () => {
-    if (reportTicks) process.stderr.write('TICKS:' + ticks + '\n');
+    // Use the interpreter's own counter (self.tickNum) instead of counting
+    // onTickEnd callbacks — those can race with termination and occasionally
+    // register one extra tick.
+    if (reportTicks) process.stderr.write('TICKS:' + p.tickNum + '\n');
     // Drain stdin listener so node exits
     if (process.stdin && process.stdin.destroy) process.stdin.destroy();
 };
-p.onTickEnd = () => { ticks++; };
 
 process.stdin.setEncoding('utf8');
 process.stdin.on('data', (chunk) => {

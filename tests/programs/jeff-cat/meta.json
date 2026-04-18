@@ -1,5 +1,5 @@
 {
-  "description": "One-line cat — an empty/newline program that echoes stdin to stdout.",
+  "description": "One-line cat \u2014 an empty/newline program that echoes stdin to stdout.",
   "source": "program.hs",
   "input": "hello\n",
   "tick_limit": 20,

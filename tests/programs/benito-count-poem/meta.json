@@ -15,5 +15,6 @@
       "skip": true,
       "skip_reason": "Perl module produces a broken counter"
     }
-  }
+  },
+  "expected_ticks": 39
 }

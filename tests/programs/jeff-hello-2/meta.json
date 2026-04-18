@@ -1,11 +1,13 @@
 {
-  "description": "Hello World #2 — variation with extra filler words between the meaningful tokens.",
+  "description": "Hello World #2 \u2014 variation with extra filler words between the meaningful tokens.",
   "source": "program.hs",
   "input": "",
   "expected_output": "Hello World!\n",
-  "expected_ticks": 10,
   "timeout": 3,
+  "expected_ticks": 10,
   "overrides": {
-    "2003-cal-henderson": { "expected_ticks": 9 }
+    "2003-cal-henderson": {
+      "expected_ticks": 9
+    }
   }
 }

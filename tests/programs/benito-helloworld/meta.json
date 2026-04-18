@@ -1,5 +1,5 @@
 {
-  "description": "Benito's 'Hello World' — emitted as 'hello world' by the complete interpreters.",
+  "description": "Benito's 'Hello World' \u2014 emitted as 'hello world' by the complete interpreters.",
   "source": "program.hs",
   "input": "",
   "tick_limit": 60,
@@ -15,5 +15,6 @@
       "skip": true,
       "skip_reason": "Perl module does not support the node types used"
     }
-  }
+  },
+  "expected_ticks": 9
 }

@@ -1,5 +1,5 @@
 {
-  "description": "Quiz — asks 'what's six times four?' and validates the answer. '24' terminates silently; other input yields 'you lie!'.",
+  "description": "Quiz \u2014 asks 'what's six times four?' and validates the answer. '24' terminates silently; other input yields 'you lie!'.",
   "source": "program.hs",
   "input": "World\n",
   "tick_limit": 100,

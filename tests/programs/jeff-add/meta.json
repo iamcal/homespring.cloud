@@ -1,5 +1,5 @@
 {
-  "description": "Single-digit adder — pipes two digits through a unary counter. Famously slow.",
+  "description": "Single-digit adder \u2014 pipes two digits through a unary counter. Famously slow.",
   "source": "program.hs",
   "input": "2\n3\n",
   "tick_limit": 200,

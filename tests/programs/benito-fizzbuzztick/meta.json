@@ -1,5 +1,5 @@
 {
-  "description": "Compact FizzBuzz driven by a time node — emits tick markers between the numbers.",
+  "description": "Compact FizzBuzz driven by a time node \u2014 emits tick markers between the numbers.",
   "source": "program.hs",
   "input": "",
   "tick_limit": 200,

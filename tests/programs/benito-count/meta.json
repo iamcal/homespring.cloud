@@ -1,5 +1,5 @@
 {
-  "description": "Counts up from 1 — the simplest of Benito's counter programs.",
+  "description": "Counts up from 1 \u2014 the simplest of Benito's counter programs.",
   "source": "program.hs",
   "input": "",
   "tick_limit": 100,
@@ -15,5 +15,6 @@
       "skip": true,
       "skip_reason": "Perl module produces a broken counter ('1,2,..9,0,11,2,..')"
     }
-  }
+  },
+  "expected_ticks": 39
 }

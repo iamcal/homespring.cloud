@@ -1,8 +1,14 @@
 {
-  "description": "Compact Hello World — the example shipped with Cal's Perl interpreter.",
+  "description": "Compact Hello World \u2014 the example shipped with Cal's Perl interpreter.",
   "source": "program.hs",
   "input": "",
   "tick_limit": 20,
   "timeout": 3,
-  "expected_output": "Hello, world!\n"
+  "expected_output": "Hello, world!\n",
+  "expected_ticks": 7,
+  "overrides": {
+    "2003-cal-henderson": {
+      "expected_ticks": 6
+    }
+  }
 }

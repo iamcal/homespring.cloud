@@ -1,5 +1,5 @@
 {
-  "description": "Poetic counter with additional filler words — takes longer to start emitting.",
+  "description": "Poetic counter with additional filler words \u2014 takes longer to start emitting.",
   "source": "program.hs",
   "input": "",
   "tick_limit": 250,
@@ -23,5 +23,6 @@
       "skip": true,
       "skip_reason": "homespring.js emits nothing within a reasonable tick budget"
     }
-  }
+  },
+  "expected_ticks": 51
 }

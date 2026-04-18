@@ -1,5 +1,5 @@
 {
-  "description": "Elaborate counter built from digit generators — prints an underscore ramp first.",
+  "description": "Elaborate counter built from digit generators \u2014 prints an underscore ramp first.",
   "source": "program.hs",
   "input": "",
   "tick_limit": 80,

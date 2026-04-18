@@ -1,5 +1,5 @@
 {
-  "description": "Large counter (~10 KB of source) — emits a '0\\n1\\n2\\n…' sequence with no stdin.",
+  "description": "Large counter (~10 KB of source) \u2014 emits a '0\\n1\\n2\\n\u2026' sequence with no stdin.",
   "source": "program.hs",
   "input": "",
   "tick_limit": 80,
@@ -17,7 +17,7 @@
     },
     "2012-quin-kennedy": {
       "skip": true,
-      "skip_reason": "Quin's interpreter emits a reordered prefix ('numberhello…')"
+      "skip_reason": "Quin's interpreter emits a reordered prefix ('numberhello\u2026')"
     }
   }
 }

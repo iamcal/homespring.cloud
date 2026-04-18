@@ -1,5 +1,5 @@
 {
-  "description": "FizzBuzz in the poetic style — considerably longer source than fizzbuzz.hs.",
+  "description": "FizzBuzz in the poetic style \u2014 considerably longer source than fizzbuzz.hs.",
   "source": "program.hs",
   "input": "",
   "tick_limit": 3000,
@@ -9,7 +9,7 @@
   "overrides": {
     "2005-joe-neeman": {
       "skip": true,
-      "skip_reason": "OCaml leaks an 'and' prefix into the output ('and1\\n2\\nFizz\\n…')"
+      "skip_reason": "OCaml leaks an 'and' prefix into the output ('and1\\n2\\nFizz\\n\u2026')"
     },
     "2003-jeff-binder": {
       "skip": true,
@@ -23,5 +23,6 @@
       "skip": true,
       "skip_reason": "Quin's interpreter does not produce output within a reasonable tick budget"
     }
-  }
+  },
+  "expected_ticks": 2207
 }

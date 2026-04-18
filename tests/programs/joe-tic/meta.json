@@ -1,5 +1,5 @@
 {
-  "description": "Tic-tac-toe — needs stdin input to start. Prints the board frames between moves.",
+  "description": "Tic-tac-toe \u2014 needs stdin input to start. Prints the board frames between moves.",
   "source": "program.hs",
   "input": "hello\n",
   "tick_limit": 200,

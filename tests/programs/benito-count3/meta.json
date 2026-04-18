@@ -1,5 +1,5 @@
 {
-  "description": "Counter variant — prints underscores then an x-prefixed alphabet ramp.",
+  "description": "Counter variant \u2014 prints underscores then an x-prefixed alphabet ramp.",
   "source": "program.hs",
   "input": "",
   "tick_limit": 80,
@@ -17,7 +17,7 @@
     },
     "2012-quin-kennedy": {
       "skip": true,
-      "skip_reason": "Quin's interpreter produces '_________9_9A_9B…' instead of '________x_xA…'"
+      "skip_reason": "Quin's interpreter produces '_________9_9A_9B\u2026' instead of '________x_xA\u2026'"
     }
   }
 }

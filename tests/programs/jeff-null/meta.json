@@ -1,14 +1,14 @@
 {
-  "description": "Zero-byte program — the null program is specially trapped and is not a quine.",
+  "description": "Zero-byte program \u2014 the null program is specially trapped and is not a quine.",
   "source": "program.hs",
   "input": "",
   "expected_output": "In Homespring, the null program is not a quine.\n",
-  "expected_ticks": null,
   "timeout": 3,
   "overrides": {
     "2003-cal-henderson": {
       "skip": true,
       "skip_reason": "Perl module has no special handling for the null program and silently produces nothing"
     }
-  }
+  },
+  "expected_ticks": 0
 }
