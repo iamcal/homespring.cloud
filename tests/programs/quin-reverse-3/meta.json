@@ -1,0 +1,16 @@
+{
+  "description": "Reverse — third variation of the arrangement.",
+  "source": "program.hs",
+  "input": "hello\n",
+  "tick_limit": 60,
+  "timeout": 4,
+  "expected_output": "",
+  "skip": [
+    "2005-joe-neeman",
+    "2003-jeff-binder",
+    "2003-cal-henderson",
+    "2012-quin-kennedy",
+    "2017-cal-henderson-js"
+  ],
+  "skip_reason": "Three-way disagreement; homespring.js output is particularly divergent ('helloforce up')."
+}

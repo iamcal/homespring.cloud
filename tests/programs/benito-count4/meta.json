@@ -1,0 +1,23 @@
+{
+  "description": "Large counter (~10 KB of source) — emits a '0\\n1\\n2\\n…' sequence with no stdin.",
+  "source": "program.hs",
+  "input": "",
+  "tick_limit": 80,
+  "timeout": 5,
+  "expected_output": "0\n1\n2\n",
+  "normalize": "prefix",
+  "overrides": {
+    "2003-jeff-binder": {
+      "skip": true,
+      "skip_reason": "Jeff's interpreter raises a runtime backtrace"
+    },
+    "2003-cal-henderson": {
+      "skip": true,
+      "skip_reason": "Perl module overflows (deep recursion)"
+    },
+    "2012-quin-kennedy": {
+      "skip": true,
+      "skip_reason": "Quin's interpreter emits a reordered prefix ('numberhello…')"
+    }
+  }
+}

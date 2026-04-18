@@ -1,0 +1,27 @@
+{
+  "description": "FizzBuzz — Fizz for multiples of 3, Buzz for 5, FizzBuzz for both. Slow to start on homespring.js.",
+  "source": "program.hs",
+  "input": "",
+  "tick_limit": 1500,
+  "timeout": 30,
+  "expected_output": "1\n2\nFizz\n4\n",
+  "normalize": "prefix",
+  "overrides": {
+    "2005-joe-neeman": {
+      "skip": true,
+      "skip_reason": "OCaml emits letter placeholders ('f\\nf\\nFizz\\nf\\nBuzz…') where it should emit digits"
+    },
+    "2003-jeff-binder": {
+      "skip": true,
+      "skip_reason": "Jeff's interpreter raises a runtime backtrace"
+    },
+    "2003-cal-henderson": {
+      "skip": true,
+      "skip_reason": "Perl module overflows (deep recursion)"
+    },
+    "2012-quin-kennedy": {
+      "skip": true,
+      "skip_reason": "Quin's interpreter does not produce output within a reasonable tick budget"
+    }
+  }
+}

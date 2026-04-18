@@ -1,0 +1,19 @@
+{
+  "description": "Ticking clock — each cycle prints eight X's followed by a 'y'. We verify the first couple of cycles.",
+  "source": "program.hs",
+  "input": "",
+  "tick_limit": 80,
+  "timeout": 5,
+  "expected_output": "XXXXXXXXy\nXXXXXXXXy\n",
+  "normalize": "prefix",
+  "overrides": {
+    "2003-jeff-binder": {
+      "skip": true,
+      "skip_reason": "Benito's programs rely on nodes Jeff's interpreter doesn't model"
+    },
+    "2003-cal-henderson": {
+      "skip": true,
+      "skip_reason": "Perl module does not support the node types used"
+    }
+  }
+}

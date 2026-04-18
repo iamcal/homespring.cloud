@@ -1,0 +1,19 @@
+{
+  "description": "Counts up from 1 — the simplest of Benito's counter programs.",
+  "source": "program.hs",
+  "input": "",
+  "tick_limit": 100,
+  "timeout": 6,
+  "expected_output": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n",
+  "normalize": "prefix",
+  "overrides": {
+    "2003-jeff-binder": {
+      "skip": true,
+      "skip_reason": "Jeff's interpreter emits nothing for this program"
+    },
+    "2003-cal-henderson": {
+      "skip": true,
+      "skip_reason": "Perl module produces a broken counter ('1,2,..9,0,11,2,..')"
+    }
+  }
+}

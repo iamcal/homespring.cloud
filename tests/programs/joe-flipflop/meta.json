@@ -1,0 +1,23 @@
+{
+  "description": "Flip-flop toggle using an inverse-lock and a pair of pump/switch nodes.",
+  "source": "program.hs",
+  "input": "hello\n",
+  "tick_limit": 60,
+  "timeout": 4,
+  "expected_output": "helloo",
+  "normalize": "prefix",
+  "overrides": {
+    "2003-jeff-binder": {
+      "skip": true,
+      "skip_reason": "Jeff's Scheme interpreter emits nothing for this program"
+    },
+    "2003-cal-henderson": {
+      "skip": true,
+      "skip_reason": "Perl module does not support inverse-lock / pump / switch"
+    },
+    "2012-quin-kennedy": {
+      "skip": true,
+      "skip_reason": "Quin's interpreter emits 'hello' (one 'o' short of the OCaml/JS reference)"
+    }
+  }
+}

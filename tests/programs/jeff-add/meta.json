@@ -13,7 +13,7 @@
     },
     "2003-jeff-binder": {
       "skip": true,
-      "skip_reason": "Jeff's interpreter hangs on this program with our simple line-at-a-time stdin feeding"
+      "skip_reason": "The program is interactive and slow; Jeff's Guile interpreter produces output when driven from a terminal but not through the harness's piped stdin"
     }
   }
 }

@@ -147,11 +147,28 @@ class JeffBinderAdapter(Adapter):
         return True, "ok"
 
     def run(self, program_path, stdin, timeout_s, tick_limit):
-        # The Guile interpreter doesn't expose tick counts; we don't get them.
-        # The script's shebang invokes `-e main -s`; mirror that here.
-        return self._exec(["guile", "-e", "main", "-s",
-                           str(self.script), str(program_path)],
-                          stdin, timeout_s)
+        # Jeff's interpreter doesn't expose tick counts. It also reads stdin
+        # with (char-ready?) + read-line, so once the input pipe closes it
+        # stops consuming — which breaks programs like add.hs that expect
+        # successive lines to arrive while the tree is running. We hold the
+        # stdin pipe open for the full timeout by piping the payload through
+        # a subshell that then sleeps, and use GNU timeout(1) to kill the
+        # interpreter at the end.
+        inner_timeout = max(timeout_s - 0.5, 0.5)
+        script = (
+            f'printf %s "$1"; sleep {timeout_s + 1}'
+        )
+        cmd = [
+            "bash", "-c",
+            (f'({script}) | '
+             f'timeout -k 0.1 {inner_timeout:.2f} '
+             f'guile -e main -s "$2" "$3"'),
+            "--",
+            stdin,
+            str(self.script),
+            str(program_path),
+        ]
+        return self._exec(cmd, "", timeout_s + 2)
 
 
 class CalHendersonAdapter(Adapter):
@@ -358,6 +375,11 @@ def run_one(program: Program, adapter: Adapter) -> TestOutcome:
 
     notes = []
     matched = compare(expected, result.stdout, normalize)
+    # Surface any human-authored explanation from the per-adapter override so
+    # that downstream consumers (e.g. the HTML renderer) can use it as a tooltip.
+    override_note = override.get("notes")
+    if override_note:
+        notes.append(override_note)
     if result.timed_out:
         notes.append(f"timed out after {timeout_s}s")
     if result.error:

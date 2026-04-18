@@ -1,0 +1,16 @@
+{
+  "description": "Splits input into pieces. We can't verify expected output automatically.",
+  "source": "program.hs",
+  "input": "hello,world\n",
+  "tick_limit": 60,
+  "timeout": 4,
+  "expected_output": "",
+  "skip": [
+    "2005-joe-neeman",
+    "2003-jeff-binder",
+    "2003-cal-henderson",
+    "2012-quin-kennedy",
+    "2017-cal-henderson-js"
+  ],
+  "skip_reason": "Four interpreters emit nothing, one emits garbage — no canonical expected output to verify."
+}

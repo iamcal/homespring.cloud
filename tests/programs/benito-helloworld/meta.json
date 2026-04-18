@@ -1,0 +1,19 @@
+{
+  "description": "Benito's 'Hello World' — emitted as 'hello world' by the complete interpreters.",
+  "source": "program.hs",
+  "input": "",
+  "tick_limit": 60,
+  "timeout": 4,
+  "expected_output": "hello world",
+  "normalize": "prefix",
+  "overrides": {
+    "2003-jeff-binder": {
+      "skip": true,
+      "skip_reason": "Jeff's interpreter loops 'o world' indefinitely"
+    },
+    "2003-cal-henderson": {
+      "skip": true,
+      "skip_reason": "Perl module does not support the node types used"
+    }
+  }
+}

@@ -7,8 +7,8 @@
   "timeout": 3,
   "overrides": {
     "2003-cal-henderson": {
-      "expected_output": "",
-      "notes": "Perl module has no special handling for the null program and silently produces nothing."
+      "skip": true,
+      "skip_reason": "Perl module has no special handling for the null program and silently produces nothing"
     }
   }
 }

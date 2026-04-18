@@ -13,7 +13,7 @@
     },
     "2003-jeff-binder": {
       "skip": true,
-      "skip_reason": "Jeff's interpreter reads input only after the program starts emitting; the null-tree cat never emits"
+      "skip_reason": "Jeff's Guile interpreter echoes input when stdin is a continuous stream (e.g. `yes hello | hs cat.hs`) but produces no output from the harness's piped single-shot stdin"
     }
   }
 }

@@ -1,0 +1,19 @@
+{
+  "description": "Elaborate counter built from digit generators — prints an underscore ramp first.",
+  "source": "program.hs",
+  "input": "",
+  "tick_limit": 80,
+  "timeout": 5,
+  "expected_output": "__________",
+  "normalize": "prefix",
+  "overrides": {
+    "2003-jeff-binder": {
+      "skip": true,
+      "skip_reason": "Jeff's interpreter raises a runtime backtrace on this program"
+    },
+    "2003-cal-henderson": {
+      "skip": true,
+      "skip_reason": "Perl module overflows its node walker (deep recursion)"
+    }
+  }
+}

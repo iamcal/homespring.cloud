@@ -1,15 +1,28 @@
 diff --git a/hs b/hs
 old mode 100644
 new mode 100755
-index 3697353..1297af5
+index 3697353..9591daf
 --- a/hs
 +++ b/hs
-@@ -160,7 +160,7 @@ The --syntax option allows you to specify the tree directly in LISP syntax.
- 	 (if (char-ready?)
+@@ -145,6 +145,8 @@ The --syntax option allows you to specify the tree directly in LISP syntax.
+      tree)
+     tree))
+ 
++(define stdin-eof? #f)
++
+ (define (run tree)
+   (while #t
+ 	 (if make-sense?
+@@ -157,10 +159,10 @@ The --syntax option allows you to specify the tree directly in LISP syntax.
+ 	 (process-electricity! tree)
+ 	 (process-salmon! tree)
+ 	 (process-etc.! tree)
+-	 (if (char-ready?)
++	 (if (and (not stdin-eof?) (char-ready?))
  	     (let ((line (read-line)))
  	       (if (eof-object? line)
 -		   (exit 0)
-+		   #f
++		   (set! stdin-eof? #t)
  		   (vector-set! (car tree) 4
  				(cons
  				 (allocate-salmon!!!! line #t #t)

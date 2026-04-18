@@ -1,0 +1,16 @@
+{
+  "description": "Reverse variant — 'split wings calm the ebb and flow'.",
+  "source": "program.hs",
+  "input": "hello\n",
+  "tick_limit": 60,
+  "timeout": 4,
+  "expected_output": "",
+  "skip": [
+    "2005-joe-neeman",
+    "2003-jeff-binder",
+    "2003-cal-henderson",
+    "2012-quin-kennedy",
+    "2017-cal-henderson-js"
+  ],
+  "skip_reason": "Three-way disagreement between Quin, OCaml, and homespring.js on output."
+}

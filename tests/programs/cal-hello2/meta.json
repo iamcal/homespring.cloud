@@ -1,0 +1,8 @@
+{
+  "description": "Compact Hello World — the example shipped with Cal's Perl interpreter.",
+  "source": "program.hs",
+  "input": "",
+  "tick_limit": 20,
+  "timeout": 3,
+  "expected_output": "Hello, world!\n"
+}

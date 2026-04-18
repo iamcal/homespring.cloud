@@ -1,0 +1,27 @@
+{
+  "description": "FizzBuzz in the poetic style — considerably longer source than fizzbuzz.hs.",
+  "source": "program.hs",
+  "input": "",
+  "tick_limit": 3000,
+  "timeout": 45,
+  "expected_output": "1\n2\nFizz\n4\n",
+  "normalize": "prefix",
+  "overrides": {
+    "2005-joe-neeman": {
+      "skip": true,
+      "skip_reason": "OCaml leaks an 'and' prefix into the output ('and1\\n2\\nFizz\\n…')"
+    },
+    "2003-jeff-binder": {
+      "skip": true,
+      "skip_reason": "Jeff's interpreter raises a runtime backtrace"
+    },
+    "2003-cal-henderson": {
+      "skip": true,
+      "skip_reason": "Perl module overflows (deep recursion)"
+    },
+    "2012-quin-kennedy": {
+      "skip": true,
+      "skip_reason": "Quin's interpreter does not produce output within a reasonable tick budget"
+    }
+  }
+}
