@@ -15,7 +15,9 @@
       "skip_reason": "Does not terminate; produces 'XXXXXXXXy\\n' indefinitely instead of stopping after the clock's 5-cycle run"
     },
     "2012-quin-kennedy": {
-      "expected_output": "XXXXXXXXy\nXXXXXXXXy\nXXXXXXXXy\nXXXXXXXXy\nXXXXXXX\n"
+      "extra_newlines": [
+        47
+      ]
     }
   },
   "expected_ticks": 53

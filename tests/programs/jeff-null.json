@@ -10,7 +10,9 @@
       "skip_reason": "Has no special handling for the null program and silently produces nothing"
     },
     "2012-quin-kennedy": {
-      "expected_output": "In Homespring, the null program is not a quine.\n\n"
+      "extra_newlines": [
+        48
+      ]
     }
   },
   "expected_ticks": 0

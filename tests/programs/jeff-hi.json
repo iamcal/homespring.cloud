@@ -11,7 +11,9 @@
       "skip_reason": "Has no input support"
     },
     "2012-quin-kennedy": {
-      "expected_output": "Hi. What's your name? Hi, World!\n\n"
+      "extra_newlines": [
+        33
+      ]
     }
   }
 }

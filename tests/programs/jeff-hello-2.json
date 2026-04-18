@@ -8,10 +8,12 @@
   "overrides": {
     "2003-cal-henderson": {
       "expected_ticks": 9,
-      "notes": "Finishes in 9 ticks instead of the OCaml reference's 10 — a minor phase-ordering difference."
+      "notes": "Finishes in 9 ticks instead of the OCaml reference's 10 \u2014 a minor phase-ordering difference."
     },
     "2012-quin-kennedy": {
-      "expected_output": "Hello World!\n\n"
+      "extra_newlines": [
+        13
+      ]
     }
   }
 }

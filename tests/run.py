@@ -352,9 +352,30 @@ def compare(expected: str, actual: str, normalize: str | None) -> bool:
     return expected == actual
 
 
+def apply_extra_newlines(canonical: str, positions: list[int]) -> str:
+    """Return [canonical] with a '\\n' inserted at each position in the array.
+    Positions index the original canonical string; applied left-to-right so
+    the positions refer to canonical offsets, not modified-string offsets."""
+    out = []
+    last = 0
+    for p in sorted(positions):
+        out.append(canonical[last:p])
+        out.append("\n")
+        last = p
+    out.append(canonical[last:])
+    return "".join(out)
+
+
 def run_one(program: Program, adapter: Adapter) -> TestOutcome:
     override = program.override_for(adapter.id)
     expected = override.get("expected_output", program.expected_output)
+    # Quin Kennedy's interpreter appends newlines in places where the other
+    # interpreters don't. Instead of writing out the whole divergent output,
+    # the meta.json can list the character positions (in the canonical string)
+    # at which extra newlines should be inserted.
+    extra_nls = override.get("extra_newlines")
+    if extra_nls:
+        expected = apply_extra_newlines(expected, extra_nls)
     expected_ticks = override.get("expected_ticks", program.expected_ticks)
     normalize = override.get("normalize", program.meta.get("normalize"))
 

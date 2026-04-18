@@ -7,7 +7,9 @@
   "timeout": 3,
   "overrides": {
     "2012-quin-kennedy": {
-      "expected_output": "\n"
+      "extra_newlines": [
+        0
+      ]
     }
   }
 }

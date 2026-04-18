@@ -10,7 +10,9 @@
       "skip_reason": "Does not support sense / shallows / force field"
     },
     "2012-quin-kennedy": {
-      "expected_output": "Hello, World!\n\n"
+      "extra_newlines": [
+        14
+      ]
     }
   },
   "expected_ticks": 16

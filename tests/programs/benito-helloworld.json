@@ -15,7 +15,9 @@
       "skip_reason": "Does not support the node types used"
     },
     "2012-quin-kennedy": {
-      "expected_output": "hello world\n\n"
+      "extra_newlines": [
+        12
+      ]
     }
   },
   "expected_ticks": 9
