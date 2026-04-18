@@ -432,7 +432,7 @@ table.examples td.compat {
 		<tr>
 			<td class="name"><a href="examples/2003-jeff-binder/first.hs">first.hs</a></td>
 			<td class="desc">A minimal "Hello, world" — a single hatchery feeding a bear.</td>
-			<td class="compat yes">yes</td>
+			<td class="compat no" title="Runs without a tick limit, so the amount of output varies with wall-clock timing; not practical to pin an exact expected output.">no</td>
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
@@ -470,7 +470,7 @@ table.examples td.compat {
 			<td class="desc">Prompts the user for their name and greets them back with a "Hi".</td>
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Has no input support">no</td>
-			<td class="compat yes">yes</td>
+			<td class="compat no" title="Runs one tick past the greeting, emitting an extra 'Hi, ' as if starting a second response">no</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
 		</tr>
@@ -545,7 +545,7 @@ table.examples td.compat {
 			<td class="compat no" title="Does not support the node types used">no</td>
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Emits nothing for this program">no</td>
-			<td class="compat yes">yes</td>
+			<td class="compat no" title="Emits a different board layout ('2-cell rows') than the OCaml reference's 3-cell rows">no</td>
 		</tr>
 
 		<tr class="author-row">
@@ -596,7 +596,7 @@ table.examples td.compat {
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/clock.hs">clock.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/clock.hst">.hst</a>)</span></td>
 			<td class="desc">A ticking clock driven by the <code>time</code> node and a range-switch cascade.</td>
-			<td class="compat yes">yes</td>
+			<td class="compat no" title="Does not terminate; produces 'XXXXXXXXy\n' indefinitely instead of stopping after the clock's 5-cycle run">no</td>
 			<td class="compat no" title="Does not support the node types used">no</td>
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
@@ -617,7 +617,7 @@ table.examples td.compat {
 			<td class="compat no" title="Raises a runtime backtrace on this program">no</td>
 			<td class="compat no" title="Overflows its node walker (deep recursion)">no</td>
 			<td class="compat yes">yes</td>
-			<td class="compat yes">yes<sup>*</sup></td>
+			<td class="compat no" title="Produces '..._A8________A7________A6_' (reversed digits) instead of '..._A1________A2________A3_'">no</td>
 			<td class="compat yes">yes</td>
 		</tr>
 		<tr>

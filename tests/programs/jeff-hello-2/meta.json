@@ -8,6 +8,9 @@
   "overrides": {
     "2003-cal-henderson": {
       "expected_ticks": 9
+    },
+    "2012-quin-kennedy": {
+      "expected_output": "Hello World!\n\n"
     }
   }
 }

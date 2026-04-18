@@ -5,11 +5,17 @@
   "tick_limit": 50,
   "timeout": 5,
   "expected_output": "Hi. What's your name? Hi, World!\n",
-  "normalize": "prefix",
   "overrides": {
     "2003-cal-henderson": {
       "skip": true,
       "skip_reason": "Has no input support"
+    },
+    "2012-quin-kennedy": {
+      "expected_output": "Hi. What's your name? Hi, World!\n\n"
+    },
+    "2005-joe-neeman": {
+      "skip": true,
+      "skip_reason": "Runs one tick past the greeting, emitting an extra 'Hi, ' as if starting a second response"
     }
   }
 }

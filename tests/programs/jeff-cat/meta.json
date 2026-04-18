@@ -5,7 +5,6 @@
   "tick_limit": 20,
   "timeout": 3,
   "expected_output": "hello\n",
-  "normalize": "prefix",
   "overrides": {
     "2003-cal-henderson": {
       "skip": true,
@@ -15,6 +14,9 @@
       "skip": true,
       "presumed_pass": true,
       "skip_reason": "Does echo stdin (verify with `yes hello | hs cat.hs`), but it requires a continuously-open stdin stream; the harness's piped single-shot input closes too quickly for the interpreter's poll-based reader to pick up the data. Count as pass-in-spirit."
+    },
+    "2012-quin-kennedy": {
+      "expected_output": "hello\n\n"
     }
   }
 }

@@ -8,6 +8,9 @@
     "2003-cal-henderson": {
       "skip": true,
       "skip_reason": "Has no special handling for the null program and silently produces nothing"
+    },
+    "2012-quin-kennedy": {
+      "expected_output": "In Homespring, the null program is not a quine.\n\n"
     }
   },
   "expected_ticks": 0

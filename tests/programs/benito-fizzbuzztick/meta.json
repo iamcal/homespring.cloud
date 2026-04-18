@@ -4,8 +4,7 @@
   "input": "",
   "tick_limit": 200,
   "timeout": 8,
-  "expected_output": "FizzBuzz\ntick\ntick\nFizz3",
-  "normalize": "prefix",
+  "expected_output": "FizzBuzz\ntick\ntick\nFizz3\ntick\nBuzz5\nFizz6\ntick\ntick\nFizz9\nBuzz10\ntick\nFizz12\ntick\ntick\nFizzBuzz15\ntick\ntick\nFizz18\ntick\nBuzz20\nFizz21\ntick\ntick\nFizz24\nBuzz25\ntick\nFizz27\ntick\ntick\nFizzBuzz30\ntick\ntick\nFizz33\ntick\nBuzz35\nFizz36\ntick\ntick\nFizz39\nBuzz40\ntick\nFizz42\ntick\ntick\nFizzBuzz\ntick\ntick\nFizz3\ntick\nBuzz5\nFizz6\ntick\ntick\nFizz9\nBuzz10\ntick\nFizz12\ntick\ntick\nFizzBuzz15\ntick\ntick\nFizz18\ntick\nBuzz20\nFizz21\ntick\ntick\nFizz24\nBuzz25\ntick\nFizz27\ntick\ntick\nFizzBuzz30\ntick\ntick\nFizz33\ntick\nBuzz35\nFizz36\ntick\ntick\nFizz39\nBuzz40\ntick\nFizz42\ntick\ntick\nFizzBuzz\ntick\ntick\nFizz3\ntick\nBuzz5\nFizz6\ntick\ntick\nFizz9\nBuzz10\ntick\nFizz12\ntick\ntick\nFizzBuzz15\ntick\ntick\nFizz18\ntick\nBuzz20\nFizz21\ntick\ntick\nFizz24\nBuzz25\ntick\nFizz27\ntick\ntick\nFizzBuzz30\ntick\ntick\nFizz33\ntick\nBuzz35\nFizz36\ntick\ntick\nFizz39\nBuzz40\ntick\nFizz42\ntick\ntick\nFizzBuzz\ntick\ntick\nFizz3\ntick\n",
   "overrides": {
     "2003-jeff-binder": {
       "skip": true,

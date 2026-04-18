@@ -4,8 +4,7 @@
   "input": "",
   "tick_limit": 80,
   "timeout": 5,
-  "expected_output": "________________________x_xA_xB_xC",
-  "normalize": "prefix",
+  "expected_output": "________________________x_xA_xB_xC_xD_xE_xF_xG_xH_xI_0I_1I_2I_3I_4I_5I_6I_7I_9I_0H_1H_2H_3H_4H_5H_6H_7H_9H_0G_1G_2G_3G_4G_5G_6G_7G_9G_0F_1F_2F_3F_4F_5F_6F_7F_9F_0E_1E_",
   "overrides": {
     "2003-jeff-binder": {
       "skip": true,

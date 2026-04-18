@@ -340,14 +340,18 @@ class TestOutcome:
 
 
 def compare(expected: str, actual: str, normalize: str | None) -> bool:
-    if normalize == "exact":
-        return expected == actual
+    # Default: byte-for-byte. Any extra output — stray newlines, stray
+    # tokens — counts as a failure unless the meta.json explicitly
+    # spells it out as a per-adapter expected_output override.
+    # normalize: "strip"  — ignore leading/trailing whitespace.
+    # normalize: "prefix" — actual must *start with* expected; use only
+    # for genuinely infinite programs whose termination point is
+    # arbitrary (e.g. jeff-first).
     if normalize == "strip":
         return expected.strip() == actual.strip()
     if normalize == "prefix":
-        return actual.rstrip().startswith(expected.rstrip())
-    # Default: trailing-whitespace-tolerant match.
-    return expected.rstrip() == actual.rstrip()
+        return actual.startswith(expected)
+    return expected == actual
 
 
 def run_one(program: Program, adapter: Adapter) -> TestOutcome:

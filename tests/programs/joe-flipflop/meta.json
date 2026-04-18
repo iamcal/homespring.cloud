@@ -5,7 +5,6 @@
   "tick_limit": 60,
   "timeout": 4,
   "expected_output": "helloo",
-  "normalize": "prefix",
   "overrides": {
     "2003-jeff-binder": {
       "skip": true,

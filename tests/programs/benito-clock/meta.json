@@ -4,12 +4,18 @@
   "input": "",
   "tick_limit": 80,
   "timeout": 5,
-  "expected_output": "XXXXXXXXy\nXXXXXXXXy\n",
-  "normalize": "prefix",
+  "expected_output": "XXXXXXXXy\nXXXXXXXXy\nXXXXXXXXy\nXXXXXXXXy\nXXXXXXX",
   "overrides": {
     "2003-cal-henderson": {
       "skip": true,
       "skip_reason": "Does not support the node types used"
+    },
+    "2003-jeff-binder": {
+      "skip": true,
+      "skip_reason": "Does not terminate; produces 'XXXXXXXXy\\n' indefinitely instead of stopping after the clock's 5-cycle run"
+    },
+    "2012-quin-kennedy": {
+      "expected_output": "XXXXXXXXy\nXXXXXXXXy\nXXXXXXXXy\nXXXXXXXXy\nXXXXXXX\n"
     }
   },
   "expected_ticks": 53

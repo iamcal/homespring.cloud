@@ -11,6 +11,9 @@
     "2003-cal-henderson": {
       "skip": true,
       "skip_reason": "Does not support sense / shallows / force field"
+    },
+    "2012-quin-kennedy": {
+      "expected_output": "Hello, World!\n\n"
     }
   },
   "expected_ticks": 16

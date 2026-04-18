@@ -4,8 +4,7 @@
   "input": "",
   "tick_limit": 60,
   "timeout": 4,
-  "expected_output": "hello world",
-  "normalize": "prefix",
+  "expected_output": "hello world\n",
   "overrides": {
     "2003-jeff-binder": {
       "skip": true,
@@ -14,6 +13,9 @@
     "2003-cal-henderson": {
       "skip": true,
       "skip_reason": "Does not support the node types used"
+    },
+    "2012-quin-kennedy": {
+      "expected_output": "hello world\n\n"
     }
   },
   "expected_ticks": 9

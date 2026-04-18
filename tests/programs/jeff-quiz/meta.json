@@ -9,6 +9,9 @@
     "2003-cal-henderson": {
       "skip": true,
       "skip_reason": "Has no input support"
+    },
+    "2012-quin-kennedy": {
+      "expected_output": "what's six times four? you lie!\n\n"
     }
   }
 }

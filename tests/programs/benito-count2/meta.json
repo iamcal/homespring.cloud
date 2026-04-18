@@ -4,8 +4,7 @@
   "input": "",
   "tick_limit": 80,
   "timeout": 5,
-  "expected_output": "__________",
-  "normalize": "prefix",
+  "expected_output": "_________________________________________________A1________A2________A3_",
   "overrides": {
     "2003-jeff-binder": {
       "skip": true,
@@ -14,6 +13,10 @@
     "2003-cal-henderson": {
       "skip": true,
       "skip_reason": "Overflows its node walker (deep recursion)"
+    },
+    "2012-quin-kennedy": {
+      "skip": true,
+      "skip_reason": "Produces '..._A8________A7________A6_' (reversed digits) instead of '..._A1________A2________A3_'"
     }
   }
 }

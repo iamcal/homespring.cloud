@@ -6,8 +6,10 @@
   "timeout": 3,
   "overrides": {
     "2003-cal-henderson": {
-      "expected_output": "Hello World!\n",
       "expected_ticks": 6
+    },
+    "2012-quin-kennedy": {
+      "expected_output": "Hello World!\n\n"
     }
   },
   "expected_ticks": 7

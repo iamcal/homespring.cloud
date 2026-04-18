@@ -4,5 +4,10 @@
   "input": "",
   "expected_output": "",
   "tick_limit": 20,
-  "timeout": 3
+  "timeout": 3,
+  "overrides": {
+    "2012-quin-kennedy": {
+      "expected_output": "\n"
+    }
+  }
 }
