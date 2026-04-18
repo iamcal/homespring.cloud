@@ -6,8 +6,9 @@
   "expected_ticks": null,
   "timeout": 3,
   "overrides": {
-    "2003-jeff-binder": { "skip": true, "skip_reason": "null byte refused by guile script" },
-    "2003-cal-henderson": { "skip": true, "skip_reason": "Perl module treats null as empty tree (no output)" },
-    "2012-quin-kennedy": { "skip": true, "skip_reason": "Quin's interpreter does not handle the null program" }
+    "2003-cal-henderson": {
+      "expected_output": "",
+      "notes": "Perl module has no special handling for the null program and silently produces nothing."
+    }
   }
 }
