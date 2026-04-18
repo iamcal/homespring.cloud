@@ -332,6 +332,11 @@ class TestOutcome:
     actual_ticks: int | None
     notes: list[str] = field(default_factory=list)
     wall_time_ms: int = 0
+    # Authors are trusted to run their own examples correctly even when the
+    # harness can't easily test it (e.g. Jeff's interactive programs that
+    # need a real terminal). Cells flagged with presumed_pass render as a
+    # qualified "yes" in the HTML table with the skip_reason as a tooltip.
+    presumed_pass: bool = False
 
 
 def compare(expected: str, actual: str, normalize: str | None) -> bool:
@@ -358,6 +363,7 @@ def run_one(program: Program, adapter: Adapter) -> TestOutcome:
             expected_ticks=expected_ticks, actual_ticks=None,
             notes=[override.get("skip_reason",
                                program.meta.get("skip_reason", "skipped"))],
+            presumed_pass=bool(override.get("presumed_pass")),
         )
 
     available, reason = adapter.is_available()

@@ -291,12 +291,19 @@ table.examples td.compat {
 	color: var(--green);
 }
 
-.compat.no {
-	color: var(--text-dim);
+.compat.yes.presumed i {
+	font-style: italic;
+	color: var(--green);
+	opacity: 0.75;
+	cursor: help;
 }
 
-.compat.broken {
+.compat.no {
 	color: var(--red);
+}
+
+.compat.no[title] {
+	cursor: help;
 }
 
 .compat.unknown {
@@ -403,8 +410,8 @@ table.examples td.compat {
 		<tr>
 			<td class="name"><a href="examples/2003-jeff-binder/add.hs">add.hs</a></td>
 			<td class="desc">Reads two numbers from input and outputs their sum.</td>
-			<td class="compat no" title="The program is interactive and slow; Jeff's Guile interpreter produces output when driven from a terminal but not through the harness's piped stdin">—</td>
-			<td class="compat no" title="Perl module cannot handle the full add program">—</td>
+			<td class="compat yes presumed" title="Jeff's Guile interpreter runs this program correctly under an interactive terminal — typing `2` then `3` at the prompts produces `? + 5` — but the harness's one-shot piped stdin closes before the slow unary counter finishes. Count this as a pass-in-spirit."><i>yes</i></td>
+			<td class="compat no" title="Perl module cannot handle the full add program">no</td>
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
@@ -412,8 +419,8 @@ table.examples td.compat {
 		<tr>
 			<td class="name"><a href="examples/2003-jeff-binder/cat.hs">cat.hs</a></td>
 			<td class="desc">Echoes its input straight to output, like the Unix <code>cat</code> utility.</td>
-			<td class="compat no" title="Jeff's Guile interpreter echoes input when stdin is a continuous stream (e.g. `yes hello | hs cat.hs`) but produces no output from the harness's piped single-shot stdin">—</td>
-			<td class="compat no" title="Perl module has no input support">—</td>
+			<td class="compat yes presumed" title="Jeff's Guile interpreter does echo stdin (verify with `yes hello | hs cat.hs`), but it requires a continuously-open stdin stream; the harness's piped single-shot input closes too quickly for the interpreter's poll-based reader to pick up the data. Count as pass-in-spirit."><i>yes</i></td>
+			<td class="compat no" title="Perl module has no input support">no</td>
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
@@ -449,8 +456,8 @@ table.examples td.compat {
 			<td class="name"><a href="examples/2003-jeff-binder/hello-3.hs">hello-3.hs</a></td>
 			<td class="desc">"Hello, World!" using marshy force, field-sense shallows, and a hydro-power spring.</td>
 			<td class="compat yes">yes</td>
-			<td class="compat no" title="Perl module does not support sense / shallows / force field">—</td>
-			<td class="compat no" title="OCaml emits 'force FieldHello, World!' — the blocking force-field node's name leaks into the output.">—</td>
+			<td class="compat no" title="Perl module does not support sense / shallows / force field">no</td>
+			<td class="compat no" title="OCaml emits 'force FieldHello, World!' — the blocking force-field node's name leaks into the output.">no</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
 		</tr>
@@ -458,7 +465,7 @@ table.examples td.compat {
 			<td class="name"><a href="examples/2003-jeff-binder/hi.hs">hi.hs</a></td>
 			<td class="desc">Prompts the user for their name and greets them back with a "Hi".</td>
 			<td class="compat yes">yes</td>
-			<td class="compat no" title="Perl module has no input support">—</td>
+			<td class="compat no" title="Perl module has no input support">no</td>
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
@@ -476,7 +483,7 @@ table.examples td.compat {
 			<td class="name"><a href="examples/2003-jeff-binder/null.hs">null.hs</a></td>
 			<td class="desc">The empty program — zero bytes, does nothing.</td>
 			<td class="compat yes">yes</td>
-			<td class="compat no" title="Perl module has no special handling for the null program and silently produces nothing">—</td>
+			<td class="compat no" title="Perl module has no special handling for the null program and silently produces nothing">no</td>
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
@@ -485,7 +492,7 @@ table.examples td.compat {
 			<td class="name"><a href="examples/2003-jeff-binder/quiz.hs">quiz.hs</a></td>
 			<td class="desc">A tiny maths quiz that asks "what's six times four?" and grades the reply.</td>
 			<td class="compat yes">yes</td>
-			<td class="compat no" title="Perl module has no input support">—</td>
+			<td class="compat no" title="Perl module has no input support">no</td>
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
@@ -521,19 +528,19 @@ table.examples td.compat {
 		<tr>
 			<td class="name"><a href="examples/2005-joe-neeman/flipflop.hs">flipflop.hs</a></td>
 			<td class="desc">A flip-flop that alternates state using an inverse-lock and a pair of pump/switch nodes.</td>
-			<td class="compat no" title="Jeff's Scheme interpreter emits nothing for this program">—</td>
-			<td class="compat no" title="Perl module does not support inverse-lock / pump / switch">—</td>
+			<td class="compat no" title="Jeff's Scheme interpreter emits nothing for this program">no</td>
+			<td class="compat no" title="Perl module does not support inverse-lock / pump / switch">no</td>
 			<td class="compat yes">yes</td>
-			<td class="compat no" title="Quin's interpreter emits 'hello' (one 'o' short of the OCaml/JS reference)">—</td>
+			<td class="compat no" title="Quin's interpreter emits 'hello' (one 'o' short of the OCaml/JS reference)">no</td>
 			<td class="compat yes">yes</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2005-joe-neeman/tic.hs">tic.hs</a></td>
 			<td class="desc">A tic-tac-toe implementation — the most elaborate program in the collection.</td>
-			<td class="compat no" title="Jeff's Scheme interpreter emits nothing for this program">—</td>
-			<td class="compat no" title="Perl module does not support the node types used">—</td>
+			<td class="compat no" title="Jeff's Scheme interpreter emits nothing for this program">no</td>
+			<td class="compat no" title="Perl module does not support the node types used">no</td>
 			<td class="compat yes">yes</td>
-			<td class="compat no" title="Quin's interpreter emits nothing for this program">—</td>
+			<td class="compat no" title="Quin's interpreter emits nothing for this program">no</td>
 			<td class="compat yes">yes</td>
 		</tr>
 
@@ -585,8 +592,8 @@ table.examples td.compat {
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/clock.hs">clock.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/clock.hst">.hst</a>)</span></td>
 			<td class="desc">A ticking clock driven by the <code>time</code> node and a range-switch cascade.</td>
-			<td class="compat no" title="Benito's programs rely on nodes Jeff's interpreter doesn't model">—</td>
-			<td class="compat no" title="Perl module does not support the node types used">—</td>
+			<td class="compat no" title="Benito's programs rely on nodes Jeff's interpreter doesn't model">no</td>
+			<td class="compat no" title="Perl module does not support the node types used">no</td>
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
@@ -594,8 +601,8 @@ table.examples td.compat {
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/count.hs">count.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/count.hst">.hst</a>)</span></td>
 			<td class="desc">Counts from 0 to 9 and then to 100 using a bridged bear and hatchery cascade.</td>
-			<td class="compat no" title="Jeff's interpreter emits nothing for this program">—</td>
-			<td class="compat no" title="Perl module produces a broken counter ('1,2,..9,0,11,2,..')">—</td>
+			<td class="compat no" title="Jeff's interpreter emits nothing for this program">no</td>
+			<td class="compat no" title="Perl module produces a broken counter ('1,2,..9,0,11,2,..')">no</td>
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
@@ -603,8 +610,8 @@ table.examples td.compat {
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/count2.hs">count2.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/count2.hst">.hst</a>)</span></td>
 			<td class="desc">A more elaborate counter built from digit generators.</td>
-			<td class="compat no" title="Jeff's interpreter raises a runtime backtrace on this program">—</td>
-			<td class="compat no" title="Perl module overflows its node walker (deep recursion)">—</td>
+			<td class="compat no" title="Jeff's interpreter raises a runtime backtrace on this program">no</td>
+			<td class="compat no" title="Perl module overflows its node walker (deep recursion)">no</td>
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
@@ -612,26 +619,26 @@ table.examples td.compat {
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/count3.hs">count3.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/count3.hst">.hst</a>)</span></td>
 			<td class="desc">Another counter variant.</td>
-			<td class="compat no" title="Jeff's interpreter raises a runtime backtrace">—</td>
-			<td class="compat no" title="Perl module overflows (deep recursion)">—</td>
+			<td class="compat no" title="Jeff's interpreter raises a runtime backtrace">no</td>
+			<td class="compat no" title="Perl module overflows (deep recursion)">no</td>
 			<td class="compat yes">yes</td>
-			<td class="compat no" title="Quin's interpreter produces '_________9_9A_9B…' instead of '________x_xA…'">—</td>
+			<td class="compat no" title="Quin's interpreter produces '_________9_9A_9B…' instead of '________x_xA…'">no</td>
 			<td class="compat yes">yes</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/count4.hs">count4.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/count4.hst">.hst</a>)</span></td>
 			<td class="desc">A larger counter implementation (~10 KB of source).</td>
-			<td class="compat no" title="Jeff's interpreter raises a runtime backtrace">—</td>
-			<td class="compat no" title="Perl module overflows (deep recursion)">—</td>
+			<td class="compat no" title="Jeff's interpreter raises a runtime backtrace">no</td>
+			<td class="compat no" title="Perl module overflows (deep recursion)">no</td>
 			<td class="compat yes">yes</td>
-			<td class="compat no" title="Quin's interpreter emits a reordered prefix ('numberhello…')">—</td>
+			<td class="compat no" title="Quin's interpreter emits a reordered prefix ('numberhello…')">no</td>
 			<td class="compat yes">yes</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/count.poem.hs">count.poem.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/count.poem.hst">.hst</a>)</span></td>
 			<td class="desc">A counter written in the poetic style Homespring is intended to be read in.</td>
-			<td class="compat no" title="Jeff's interpreter emits nothing for this program">—</td>
-			<td class="compat no" title="Perl module produces a broken counter">—</td>
+			<td class="compat no" title="Jeff's interpreter emits nothing for this program">no</td>
+			<td class="compat no" title="Perl module produces a broken counter">no</td>
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
@@ -639,44 +646,44 @@ table.examples td.compat {
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/count.poem.withfillers.hs">count.poem.withfillers.hs</a></td>
 			<td class="desc">A poetic counter with additional filler words for extra flow.</td>
-			<td class="compat no" title="Jeff's interpreter emits unrelated output for this program">—</td>
-			<td class="compat no" title="Perl module produces a broken counter">—</td>
+			<td class="compat no" title="Jeff's interpreter emits unrelated output for this program">no</td>
+			<td class="compat no" title="Perl module produces a broken counter">no</td>
 			<td class="compat yes">yes</td>
-			<td class="compat no" title="Quin's interpreter emits nothing within a reasonable tick budget">—</td>
-			<td class="compat no" title="homespring.js emits nothing within a reasonable tick budget">—</td>
+			<td class="compat no" title="Quin's interpreter emits nothing within a reasonable tick budget">no</td>
+			<td class="compat no" title="homespring.js emits nothing within a reasonable tick budget">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/fizzbuzz.hs">fizzbuzz.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/fizzbuzz.hst">.hst</a>)</span></td>
 			<td class="desc">Classic FizzBuzz — prints Fizz for multiples of 3, Buzz for 5, FizzBuzz for both.</td>
-			<td class="compat no" title="Jeff's interpreter raises a runtime backtrace">—</td>
-			<td class="compat no" title="Perl module overflows (deep recursion)">—</td>
-			<td class="compat no" title="OCaml emits letter placeholders ('f\nf\nFizz\nf\nBuzz…') where it should emit digits">—</td>
-			<td class="compat no" title="Quin's interpreter does not produce output within a reasonable tick budget">—</td>
+			<td class="compat no" title="Jeff's interpreter raises a runtime backtrace">no</td>
+			<td class="compat no" title="Perl module overflows (deep recursion)">no</td>
+			<td class="compat no" title="OCaml emits letter placeholders ('f\nf\nFizz\nf\nBuzz…') where it should emit digits">no</td>
+			<td class="compat no" title="Quin's interpreter does not produce output within a reasonable tick budget">no</td>
 			<td class="compat yes">yes</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/fizzbuzz.poem.hs">fizzbuzz.poem.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/fizzbuzz.poem.hst">.hst</a>)</span></td>
 			<td class="desc">FizzBuzz written in the poetic style — considerably longer.</td>
-			<td class="compat no" title="Jeff's interpreter raises a runtime backtrace">—</td>
-			<td class="compat no" title="Perl module overflows (deep recursion)">—</td>
-			<td class="compat no" title="OCaml leaks an 'and' prefix into the output ('and1\n2\nFizz\n…')">—</td>
-			<td class="compat no" title="Quin's interpreter does not produce output within a reasonable tick budget">—</td>
+			<td class="compat no" title="Jeff's interpreter raises a runtime backtrace">no</td>
+			<td class="compat no" title="Perl module overflows (deep recursion)">no</td>
+			<td class="compat no" title="OCaml leaks an 'and' prefix into the output ('and1\n2\nFizz\n…')">no</td>
+			<td class="compat no" title="Quin's interpreter does not produce output within a reasonable tick budget">no</td>
 			<td class="compat yes">yes</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/fizzbuzztick.hs">fizzbuzztick.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/fizzbuzztick.hst">.hst</a>)</span></td>
 			<td class="desc">A compact FizzBuzz variant driven by time ticks.</td>
-			<td class="compat no" title="Jeff's interpreter emits only 'tick' lines, not the Fizz/Buzz numbers">—</td>
-			<td class="compat no" title="Perl module overflows (deep recursion)">—</td>
+			<td class="compat no" title="Jeff's interpreter emits only 'tick' lines, not the Fizz/Buzz numbers">no</td>
+			<td class="compat no" title="Perl module overflows (deep recursion)">no</td>
 			<td class="compat yes">yes</td>
-			<td class="compat no" title="Quin's interpreter starts with 'tick' and reorders the output">—</td>
+			<td class="compat no" title="Quin's interpreter starts with 'tick' and reorders the output">no</td>
 			<td class="compat yes">yes</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/helloworld.hs">helloworld.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/helloworld.hst">.hst</a>)</span></td>
 			<td class="desc">A fourth take on "Hello, World!" — generated from a HomeSpringTree source.</td>
-			<td class="compat no" title="Jeff's interpreter loops 'o world' indefinitely">—</td>
-			<td class="compat no" title="Perl module does not support the node types used">—</td>
+			<td class="compat no" title="Jeff's interpreter loops 'o world' indefinitely">no</td>
+			<td class="compat no" title="Perl module does not support the node types used">no</td>
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
@@ -687,7 +694,8 @@ table.examples td.compat {
 
 <div class="legend-inline">
 	<span><b class="compat yes">yes</b> &nbsp;runs correctly</span>
-	<span><b class="compat no">—</b> &nbsp;does not run correctly (hover for details)</span>
+	<span class="compat yes presumed"><b><i>yes</i></b> &nbsp;runs correctly in principle but not under the harness (hover for details)</span>
+	<span><b class="compat no">no</b> &nbsp;does not run correctly (hover for details)</span>
 	<span><b class="compat unknown">?</b> &nbsp;no canonical expected output</span>
 </div>
 

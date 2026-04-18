@@ -81,7 +81,11 @@ def html_escape(s):
              .replace('<', '&lt;').replace('>', '&gt;'))
 
 
-def cell(status, note, slug, aid):
+def cell(res, slug, aid):
+    status = res['status'] if res else None
+    note = (res.get('notes') or [''])[0] if res else ''
+    presumed = bool(res.get('presumed_pass')) if res else False
+
     if status == 'pass':
         label = 'yes'
         if aid == '2012-quin-kennedy' and slug not in QUIN_STAR_SKIP:
@@ -89,13 +93,18 @@ def cell(status, note, slug, aid):
         elif aid == '2003-cal-henderson' and slug in PERL_DOUBLE_STAR:
             label = 'yes<sup>**</sup>'
         return f'<td class="compat yes">{label}</td>'
+    if status == 'skip' and presumed:
+        # "Pass in spirit" — harness can't verify but the author's own
+        # interpreter is known to run the program correctly.
+        title = f' title="{html_escape(note)}"' if note else ''
+        return f'<td class="compat yes presumed"{title}><i>yes</i></td>'
     if status == 'skip' and is_disagreement_skip(note):
         return '<td class="compat unknown">?</td>'
-    # status is fail/skip/timeout/error — render "—" and attach the reason
+    # status is fail/skip/timeout/error — render "no" and attach the reason
     # (if we have one) as a tooltip.
     if note:
-        return f'<td class="compat no" title="{html_escape(note)}">—</td>'
-    return '<td class="compat no">—</td>'
+        return f'<td class="compat no" title="{html_escape(note)}">no</td>'
+    return '<td class="compat no">no</td>'
 
 
 def main():
@@ -121,8 +130,7 @@ def main():
                 if not res:
                     cells.append('<td class="compat unknown">?</td>')
                 else:
-                    note = (res.get('notes') or [''])[0]
-                    cells.append(cell(res['status'], note, slug, aid))
+                    cells.append(cell(res, slug, aid))
             print('\t\t<tr>')
             print(f'\t\t\t<td class="name">{name_cell}</td>')
             print(f'\t\t\t<td class="desc">{desc}</td>')
