@@ -9,7 +9,7 @@
   "overrides": {
     "2003-cal-henderson": {
       "skip": true,
-      "skip_reason": "Perl module does not support the node types used"
+      "skip_reason": "Does not support the node types used"
     }
   },
   "expected_ticks": 53

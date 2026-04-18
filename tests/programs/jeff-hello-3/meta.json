@@ -10,7 +10,7 @@
     },
     "2003-cal-henderson": {
       "skip": true,
-      "skip_reason": "Perl module does not support sense / shallows / force field"
+      "skip_reason": "Does not support sense / shallows / force field"
     }
   },
   "expected_ticks": 16

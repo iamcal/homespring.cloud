@@ -7,7 +7,7 @@
   "overrides": {
     "2003-cal-henderson": {
       "skip": true,
-      "skip_reason": "Perl module has no special handling for the null program and silently produces nothing"
+      "skip_reason": "Has no special handling for the null program and silently produces nothing"
     }
   },
   "expected_ticks": 0

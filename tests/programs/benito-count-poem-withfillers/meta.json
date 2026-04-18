@@ -9,11 +9,11 @@
   "overrides": {
     "2003-jeff-binder": {
       "skip": true,
-      "skip_reason": "Jeff's interpreter emits unrelated output for this program"
+      "skip_reason": "Emits unrelated output for this program"
     },
     "2003-cal-henderson": {
       "skip": true,
-      "skip_reason": "Perl module produces a broken counter"
+      "skip_reason": "Produces a broken counter"
     }
   },
   "expected_ticks": 51

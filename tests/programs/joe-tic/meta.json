@@ -9,15 +9,15 @@
   "overrides": {
     "2003-jeff-binder": {
       "skip": true,
-      "skip_reason": "Jeff's Scheme interpreter emits nothing for this program"
+      "skip_reason": "Emits nothing for this program"
     },
     "2003-cal-henderson": {
       "skip": true,
-      "skip_reason": "Perl module does not support the node types used"
+      "skip_reason": "Does not support the node types used"
     },
     "2012-quin-kennedy": {
       "skip": true,
-      "skip_reason": "Quin's interpreter emits nothing for this program"
+      "skip_reason": "Emits nothing for this program"
     }
   }
 }

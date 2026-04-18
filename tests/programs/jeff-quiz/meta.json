@@ -8,7 +8,7 @@
   "overrides": {
     "2003-cal-henderson": {
       "skip": true,
-      "skip_reason": "Perl module has no input support"
+      "skip_reason": "Has no input support"
     }
   }
 }

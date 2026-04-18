@@ -9,11 +9,11 @@
   "overrides": {
     "2003-jeff-binder": {
       "skip": true,
-      "skip_reason": "Jeff's interpreter loops 'o world' indefinitely"
+      "skip_reason": "Loops 'o world' indefinitely"
     },
     "2003-cal-henderson": {
       "skip": true,
-      "skip_reason": "Perl module does not support the node types used"
+      "skip_reason": "Does not support the node types used"
     }
   },
   "expected_ticks": 9

@@ -9,11 +9,11 @@
   "overrides": {
     "2003-jeff-binder": {
       "skip": true,
-      "skip_reason": "Jeff's interpreter raises a runtime backtrace on this program"
+      "skip_reason": "Raises a runtime backtrace on this program"
     },
     "2003-cal-henderson": {
       "skip": true,
-      "skip_reason": "Perl module overflows its node walker (deep recursion)"
+      "skip_reason": "Overflows its node walker (deep recursion)"
     }
   }
 }

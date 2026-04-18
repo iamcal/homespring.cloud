@@ -9,15 +9,15 @@
   "overrides": {
     "2003-jeff-binder": {
       "skip": true,
-      "skip_reason": "Jeff's Scheme interpreter emits 'hello' followed by an infinite 'homeless' loop instead of the expected 'helloo'"
+      "skip_reason": "Emits 'hello' followed by an infinite 'homeless' loop instead of the expected 'helloo'"
     },
     "2003-cal-henderson": {
       "skip": true,
-      "skip_reason": "Perl module does not support inverse-lock / pump / switch"
+      "skip_reason": "Does not support inverse-lock / pump / switch"
     },
     "2012-quin-kennedy": {
       "skip": true,
-      "skip_reason": "Quin's interpreter emits 'hello' (one 'o' short of the OCaml/JS reference)"
+      "skip_reason": "Emits 'hello' (one 'o' short of the OCaml/JS reference)"
     }
   }
 }

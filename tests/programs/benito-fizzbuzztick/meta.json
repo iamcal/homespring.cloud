@@ -9,15 +9,15 @@
   "overrides": {
     "2003-jeff-binder": {
       "skip": true,
-      "skip_reason": "Jeff's interpreter emits only 'tick' lines, not the Fizz/Buzz numbers"
+      "skip_reason": "Emits only 'tick' lines, not the Fizz/Buzz numbers"
     },
     "2003-cal-henderson": {
       "skip": true,
-      "skip_reason": "Perl module overflows (deep recursion)"
+      "skip_reason": "Overflows (deep recursion)"
     },
     "2012-quin-kennedy": {
       "skip": true,
-      "skip_reason": "Quin's interpreter starts with 'tick' and reorders the output"
+      "skip_reason": "Starts with 'tick' and reorders the output"
     }
   }
 }
