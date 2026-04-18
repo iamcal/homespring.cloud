@@ -68,7 +68,6 @@ ADAPTERS = [
 ]
 
 QUIN_STAR_SKIP = {'jeff-simple'}
-PERL_DOUBLE_STAR = {'jeff-hello-1', 'jeff-hello-2'}
 
 
 def is_disagreement_skip(note):
@@ -90,8 +89,6 @@ def cell(res, slug, aid):
         label = 'yes'
         if aid == '2012-quin-kennedy' and slug not in QUIN_STAR_SKIP:
             label = 'yes<sup>*</sup>'
-        elif aid == '2003-cal-henderson' and slug in PERL_DOUBLE_STAR:
-            label = 'yes<sup>&dagger;</sup>'
         if note:
             # Pass with a meta-recorded caveat — italic "yes" with tooltip.
             title = f' title="{html_escape(note)}"'

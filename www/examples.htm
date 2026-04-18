@@ -439,7 +439,7 @@ table.examples td.compat sup {
 			<td class="name"><a href="examples/2003-jeff-binder/first.hs">first.hs</a></td>
 			<td class="desc">A minimal "Hello, world" — a single hatchery feeding a bear.</td>
 			<td class="compat yes">yes</td>
-			<td class="compat yes presumed" title="Perl module emits the first line one tick later than others."><i>yes</i></td>
+			<td class="compat yes presumed" title="Emits the first line one tick later than others."><i>yes</i></td>
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
@@ -448,7 +448,7 @@ table.examples td.compat sup {
 			<td class="name"><a href="examples/2003-jeff-binder/hello-1.hs">hello-1.hs</a></td>
 			<td class="desc">"Hello, World!" using a universe, a hatchery, and snowmelt-powered rapids.</td>
 			<td class="compat yes">yes</td>
-			<td class="compat yes">yes<sup>&dagger;</sup></td>
+			<td class="compat yes presumed" title="Finishes in 6 ticks instead of the OCaml reference's 7 — a minor phase-ordering difference."><i>yes</i></td>
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
@@ -457,7 +457,7 @@ table.examples td.compat sup {
 			<td class="name"><a href="examples/2003-jeff-binder/hello-2.hs">hello-2.hs</a></td>
 			<td class="desc">"Hello, World!" — an alternative arrangement using the power-override rule.</td>
 			<td class="compat yes">yes</td>
-			<td class="compat yes">yes<sup>&dagger;</sup></td>
+			<td class="compat yes presumed" title="Finishes in 9 ticks instead of the OCaml reference's 10 — a minor phase-ordering difference."><i>yes</i></td>
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
@@ -525,7 +525,7 @@ table.examples td.compat sup {
 			<td class="name"><a href="examples/2003-cal-henderson/hello2.hs">hello2.hs</a></td>
 			<td class="desc">A compact "Hello, World!" — shipped with the Perl interpreter as a test program.</td>
 			<td class="compat yes">yes</td>
-			<td class="compat yes">yes</td>
+			<td class="compat yes presumed" title="Finishes in 6 ticks instead of the OCaml reference's 7 — a minor phase-ordering difference."><i>yes</i></td>
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
@@ -713,14 +713,6 @@ table.examples td.compat sup {
 	<sup>*</sup> Quin Kennedy's interpreter appends an extra newline to every
 	output — the program produces the correct text but with one trailing
 	<code>\n</code> beyond what the other interpreters emit.
-</p>
-
-<p class="footnote">
-	<sup>&dagger;</sup> Cal Henderson's Perl module finishes the simple hello-world
-	programs one tick earlier than the OCaml reference (6 vs 7 for
-	<code>hello-1</code>, 9 vs 10 for <code>hello-2</code>). The output is
-	identical; the tick-count off-by-one is from a minor phase-ordering
-	difference.
 </p>
 
 <p class="footnote">
