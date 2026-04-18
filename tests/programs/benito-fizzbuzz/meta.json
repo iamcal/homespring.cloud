@@ -21,7 +21,7 @@
     },
     "2012-quin-kennedy": {
       "skip": true,
-      "skip_reason": "Quin's interpreter does not produce output within a reasonable tick budget"
+      "skip_reason": "Quin's interpreter emits placeholder tokens ('c_\\nc_\\nFizz\\nc_\\nBuzz\u2026') where it should emit digits"
     }
   }
 }

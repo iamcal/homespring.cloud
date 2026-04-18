@@ -7,10 +7,6 @@
   "expected_output": "XXXXXXXXy\nXXXXXXXXy\n",
   "normalize": "prefix",
   "overrides": {
-    "2003-jeff-binder": {
-      "skip": true,
-      "skip_reason": "Benito's programs rely on nodes Jeff's interpreter doesn't model"
-    },
     "2003-cal-henderson": {
       "skip": true,
       "skip_reason": "Perl module does not support the node types used"

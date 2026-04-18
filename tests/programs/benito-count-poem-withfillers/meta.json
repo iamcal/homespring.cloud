@@ -4,7 +4,7 @@
   "input": "",
   "tick_limit": 250,
   "timeout": 10,
-  "expected_output": "1\n2\n3\n4\n5\n",
+  "expected_output": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n",
   "normalize": "prefix",
   "overrides": {
     "2003-jeff-binder": {
@@ -14,14 +14,6 @@
     "2003-cal-henderson": {
       "skip": true,
       "skip_reason": "Perl module produces a broken counter"
-    },
-    "2012-quin-kennedy": {
-      "skip": true,
-      "skip_reason": "Quin's interpreter emits nothing within a reasonable tick budget"
-    },
-    "2017-cal-henderson-js": {
-      "skip": true,
-      "skip_reason": "homespring.js emits nothing within a reasonable tick budget"
     }
   },
   "expected_ticks": 51

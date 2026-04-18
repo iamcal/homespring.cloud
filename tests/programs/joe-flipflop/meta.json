@@ -9,7 +9,7 @@
   "overrides": {
     "2003-jeff-binder": {
       "skip": true,
-      "skip_reason": "Jeff's Scheme interpreter emits nothing for this program"
+      "skip_reason": "Jeff's Scheme interpreter emits 'hello' followed by an infinite 'homeless' loop instead of the expected 'helloo'"
     },
     "2003-cal-henderson": {
       "skip": true,

@@ -9,7 +9,7 @@
   "overrides": {
     "2003-jeff-binder": {
       "skip": true,
-      "skip_reason": "Jeff's interpreter emits nothing for this program"
+      "skip_reason": "Jeff's interpreter produces a broken, non-monotonic counter ('9\\n10\\n19\\n20\\n29\\n30\\n\u2026') instead of 1,2,3,\u2026"
     },
     "2003-cal-henderson": {
       "skip": true,
