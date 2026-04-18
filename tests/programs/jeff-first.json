@@ -8,10 +8,6 @@
   "overrides": {
     "2003-cal-henderson": {
       "notes": "Perl module emits the first line one tick later than others."
-    },
-    "2003-jeff-binder": {
-      "skip": true,
-      "skip_reason": "Runs without a tick limit, so the amount of output varies with wall-clock timing; not practical to pin an exact expected output."
     }
   },
   "normalize": "prefix"
