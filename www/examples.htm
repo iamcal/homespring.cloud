@@ -287,6 +287,12 @@ table.examples td.compat {
 	font-size: 13px;
 }
 
+/* Keep the baseline aligned across all cells in a row, regardless of
+   whether the cell contains a <sup> footnote marker. */
+table.examples td.compat sup {
+	line-height: 0;
+}
+
 .compat.yes {
 	color: var(--green);
 }
