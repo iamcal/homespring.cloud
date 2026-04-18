@@ -92,6 +92,10 @@ def cell(res, slug, aid):
             label = 'yes<sup>*</sup>'
         elif aid == '2003-cal-henderson' and slug in PERL_DOUBLE_STAR:
             label = 'yes<sup>&dagger;</sup>'
+        if note:
+            # Pass with a meta-recorded caveat — italic "yes" with tooltip.
+            title = f' title="{html_escape(note)}"'
+            return f'<td class="compat yes presumed"{title}><i>{label}</i></td>'
         return f'<td class="compat yes">{label}</td>'
     if status == 'skip' and presumed:
         # "Pass in spirit" — harness can't verify but the author's own
