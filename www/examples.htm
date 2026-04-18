@@ -420,7 +420,7 @@ table.examples td.compat sup {
 		<tr>
 			<td class="name"><a href="examples/2003-jeff-binder/add.hs">add.hs</a></td>
 			<td class="desc">Reads two numbers from input and outputs their sum.</td>
-			<td class="compat yes presumed" title="Runs this program correctly under an interactive terminal — typing `2` then `3` at the prompts produces `? + 5` — but the harness's one-shot piped stdin closes before the slow unary counter finishes. Count this as a pass-in-spirit."><i>yes</i></td>
+			<td class="compat yes presumed" title="Runs this program correctly under an interactive terminal — typing `2` then `3` at the prompts produces `? + 5` — but the harness's one-shot piped stdin closes before the slow unary counter finishes."><i>yes</i></td>
 			<td class="compat no" title="Cannot handle the full add program">no</td>
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
@@ -429,7 +429,7 @@ table.examples td.compat sup {
 		<tr>
 			<td class="name"><a href="examples/2003-jeff-binder/cat.hs">cat.hs</a></td>
 			<td class="desc">Echoes its input straight to output, like the Unix <code>cat</code> utility.</td>
-			<td class="compat yes presumed" title="Does echo stdin (verify with `yes hello | hs cat.hs`), but it requires a continuously-open stdin stream; the harness's piped single-shot input closes too quickly for the interpreter's poll-based reader to pick up the data. Count as pass-in-spirit."><i>yes</i></td>
+			<td class="compat yes presumed" title="Does echo stdin (verify with `yes hello | hs cat.hs`), but it requires a continuously-open stdin stream; the harness's piped single-shot input closes too quickly for the interpreter's poll-based reader to pick up the data."><i>yes</i></td>
 			<td class="compat no" title="Has no input support">no</td>
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
