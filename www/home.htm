@@ -70,7 +70,7 @@ html, body {
 	transition: background 0.15s, border-color 0.15s;
 }
 
-#toolbar button:hover {
+#toolbar button:hover:not(:disabled) {
 	background: var(--border);
 	border-color: var(--accent);
 }
@@ -79,6 +79,15 @@ html, body {
 	background: var(--accent);
 	color: var(--bg);
 	border-color: var(--accent);
+}
+
+#toolbar button:disabled {
+	opacity: 0.4;
+	cursor: not-allowed;
+}
+
+#toolbar button:disabled .btn-icon {
+	filter: grayscale(1);
 }
 
 #toolbar button .btn-icon {
@@ -315,7 +324,7 @@ html, body {
 	<button id="btn-reset" title="Reset program"><span class="btn-icon">🔄</span>Reset</button>
 	<button id="btn-step" title="Step one tick"><span class="btn-icon">⤵️</span>Step</button>
 	<button id="btn-play" title="Run program"><span class="btn-icon">▶️</span>Play</button>
-	<button id="btn-stop" title="Stop execution" disabled><span class="btn-icon">⏸️</span>Stop</button>
+	<button id="btn-stop" title="Pause execution" disabled><span class="btn-icon">⏸️</span>Pause</button>
 	<div class="sep"></div>
 	<label class="speed-control" title="Playback speed">
 		<span class="speed-icon">🐢</span>
@@ -528,8 +537,10 @@ function updateButtonStates(){
 	btnPlay.disabled = running || terminated;
 	btnStop.disabled = !running;
 	btnStep.disabled = running || animating || terminated;
-	// Reset is always available.
-	btnReset.disabled = false;
+	// Reset is only meaningful once at least one tick has been executed —
+	// a fresh program (initial load, after reset, or after a source edit)
+	// has nothing to reset to.
+	btnReset.disabled = !program || program.tickNum === 0;
 }
 
 function doTick(onComplete){
