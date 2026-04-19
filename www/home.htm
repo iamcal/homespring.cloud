@@ -88,6 +88,25 @@ html, body {
 	margin: 0 4px;
 }
 
+#toolbar .speed-control {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 0 4px;
+}
+
+#toolbar .speed-icon {
+	font-size: 14px;
+	user-select: none;
+	line-height: 1;
+}
+
+#toolbar #speed-slider {
+	width: 120px;
+	cursor: pointer;
+	accent-color: var(--accent);
+}
+
 #toolbar .tick-counter {
 	margin-left: auto;
 	font-family: var(--font-mono);
@@ -287,6 +306,12 @@ html, body {
 	<button id="btn-play" title="Run program">Play</button>
 	<button id="btn-stop" title="Stop execution" disabled>Stop</button>
 	<div class="sep"></div>
+	<label class="speed-control" title="Playback speed">
+		<span class="speed-icon">🐢</span>
+		<input id="speed-slider" type="range" min="0" max="100" value="53">
+		<span class="speed-icon">🐇</span>
+	</label>
+	<div class="sep"></div>
 	<span class="tick-counter">Tick: <span id="tick-num">0</span></span>
 </div>
 
@@ -395,7 +420,12 @@ var SPRING_DESCRIPTION = 'The name of the node determines its behaviour; a list 
 var program = null;
 var running = false;
 var runInterval = null;
-var ANIM_DURATION = 350; // ms for salmon travel animation
+// ANIM_DURATION is the ms spent animating salmon movement; PAUSE_DURATION is
+// the quiet ms between animations when running. Together they set the total
+// ms per tick when playing. Both are recomputed by updateSpeed() from the
+// toolbar's speed slider.
+var ANIM_DURATION = 350;
+var PAUSE_DURATION = 100;
 
 // ---- Persistent layout state ----
 
@@ -421,7 +451,27 @@ var btnReset = document.getElementById('btn-reset');
 var btnStep = document.getElementById('btn-step');
 var btnPlay = document.getElementById('btn-play');
 var btnStop = document.getElementById('btn-stop');
+var speedSlider = document.getElementById('speed-slider');
 var treeSvg = document.getElementById('tree-canvas');
+
+// ---- Speed control ----
+// Slider: 0 = turtle (slow, 900ms/tick), 100 = rabbit (fast, 50ms/tick).
+// The default value of 53 lands on ~450ms/tick, matching the original hand-
+// tuned ratio (350ms animation + 100ms pause). Both durations scale with the
+// total so the feel stays proportional at every speed.
+var TICK_MS_SLOW = 900;
+var TICK_MS_FAST = 50;
+var ANIM_FRACTION = 350 / 450;
+var PAUSE_FRACTION = 100 / 450;
+
+function updateSpeed(){
+	var s = parseInt(speedSlider.value, 10);
+	var total = TICK_MS_SLOW - (s / 100) * (TICK_MS_SLOW - TICK_MS_FAST);
+	ANIM_DURATION = total * ANIM_FRACTION;
+	PAUSE_DURATION = total * PAUSE_FRACTION;
+}
+speedSlider.addEventListener('input', updateSpeed);
+updateSpeed();
 
 // ---- Program management ----
 
@@ -500,7 +550,7 @@ function startRunning(){
 			return;
 		}
 		doTick(function(){
-			if (running) runInterval = setTimeout(playTick, 100);
+			if (running) runInterval = setTimeout(playTick, PAUSE_DURATION);
 		});
 	}
 	playTick();
