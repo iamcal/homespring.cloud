@@ -636,7 +636,7 @@ table.examples td.compat sup {
 			<td class="desc">Classic FizzBuzz — prints Fizz for multiples of 3, Buzz for 5, FizzBuzz for both.</td>
 			<td class="compat no" title="Raises a runtime backtrace">no</td>
 			<td class="compat no" title="Overflows (deep recursion)">no</td>
-			<td class="compat no" title="Emits letter placeholders ('f\nf\nFizz\nf\nBuzz…') where it should emit digits">no</td>
+			<td class="compat yes">yes</td>
 			<td class="compat no" title="Emits placeholder tokens ('c_\nc_\nFizz\nc_\nBuzz…') where it should emit digits">no</td>
 			<td class="compat yes">yes</td>
 			<td class="compat no">no</td>
@@ -646,7 +646,7 @@ table.examples td.compat sup {
 			<td class="desc">FizzBuzz written in the poetic style — considerably longer.</td>
 			<td class="compat no" title="Raises a runtime backtrace">no</td>
 			<td class="compat no" title="Overflows (deep recursion)">no</td>
-			<td class="compat no" title="Leaks an 'and' prefix into the output ('and1\n2\nFizz\n…')">no</td>
+			<td class="compat yes">yes</td>
 			<td class="compat no" title="Emits placeholder tokens ('c_\nc_\nFizz\nc_\nBuzz…') where it should emit digits">no</td>
 			<td class="compat yes">yes</td>
 			<td class="compat no">no</td>
