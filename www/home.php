@@ -1,4 +1,4 @@
-<?php include 'include/header.php'; ?>
+<?php $current = 'debugger'; include 'include/header.php'; ?>
 <script src="homespring.js/lib/homespring.js?v=2"></script>
 <style>
 
@@ -9,9 +9,19 @@ html, body {
 	overflow: hidden;
 }
 
-/* ---- Toolbar additions ---- */
+/* ---- Debugger controls toolbar (second row under the top nav) ---- */
 
-#toolbar button {
+#debug-toolbar {
+	height: var(--toolbar-h);
+	background: var(--surface);
+	border-bottom: 1px solid var(--border);
+	display: flex;
+	align-items: center;
+	padding: 0 16px;
+	gap: 8px;
+}
+
+#debug-toolbar button {
 	background: var(--surface2);
 	color: var(--text);
 	border: 1px solid var(--border);
@@ -26,51 +36,51 @@ html, body {
 	transition: background 0.15s, border-color 0.15s;
 }
 
-#toolbar button:hover:not(:disabled) {
+#debug-toolbar button:hover:not(:disabled) {
 	background: var(--border);
 	border-color: var(--accent);
 }
 
-#toolbar button.active {
+#debug-toolbar button.active {
 	background: var(--accent);
 	color: var(--bg);
 	border-color: var(--accent);
 }
 
-#toolbar button:disabled {
+#debug-toolbar button:disabled {
 	opacity: 0.4;
 	cursor: not-allowed;
 }
 
-#toolbar button:disabled .btn-icon {
+#debug-toolbar button:disabled .btn-icon {
 	filter: grayscale(1);
 }
 
-#toolbar button .btn-icon {
+#debug-toolbar button .btn-icon {
 	font-size: 13px;
 	line-height: 1;
 }
 
-#toolbar .speed-control {
+#debug-toolbar .speed-control {
 	display: flex;
 	align-items: center;
 	gap: 8px;
 	padding: 0 4px;
 }
 
-#toolbar .speed-icon {
+#debug-toolbar .speed-icon {
 	font-size: 14px;
 	user-select: none;
 	line-height: 1;
 }
 
-#toolbar #speed-slider {
+#debug-toolbar #speed-slider {
 	width: 120px;
 	cursor: pointer;
 	accent-color: var(--accent);
 }
 
-#toolbar .tick-counter {
+#debug-toolbar .tick-counter {
 	margin-left: auto;
 	font-family: var(--font-mono);
 	font-size: 13px;
@@ -82,7 +92,8 @@ html, body {
 #main {
 	display: flex;
 	flex-direction: column;
-	height: calc(100% - var(--toolbar-h));
+	/* Leave room for the top nav and the debug toolbar. */
+	height: calc(100% - 2 * var(--toolbar-h));
 }
 
 #top-row {
@@ -266,10 +277,10 @@ html, body {
 </head>
 <body>
 
-<!-- Toolbar -->
-<div id="toolbar">
-	<span class="brand">homespring.cloud</span>
-	<div class="sep"></div>
+<?php include 'include/nav.php'; ?>
+
+<!-- Debugger controls -->
+<div id="debug-toolbar">
 	<button id="btn-reset" title="Reset program"><span class="btn-icon">🔄</span>Reset</button>
 	<button id="btn-step" title="Step one tick"><span class="btn-icon">⤵️</span>Step</button>
 	<button id="btn-play" title="Run program"><span class="btn-icon">▶️</span>Play</button>

@@ -1,0 +1,5 @@
+DirectoryIndex home.php index.htm
+
+RewriteEngine on
+RewriteRule ^interpreters$	/interpreters.php	[L]
+RewriteRule ^about$		/about.php		[L]

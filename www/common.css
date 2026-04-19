@@ -95,6 +95,74 @@ a:hover {
 	border-color: var(--accent);
 }
 
+/* Top nav strip (include/nav.php) — always present above any page's own
+   toolbars or content. Holds the brand and the site-wide tabs. */
+
+#top-nav {
+	height: var(--toolbar-h);
+	background: var(--surface2);
+	border-bottom: 1px solid var(--border);
+	display: flex;
+	align-items: flex-end;
+	padding: 0 16px;
+	gap: 12px;
+}
+
+#top-nav .brand {
+	align-self: center;
+	font-weight: 700;
+	font-size: 15px;
+	color: var(--accent);
+	user-select: none;
+}
+
+#top-nav .brand a {
+	color: inherit;
+	text-decoration: none;
+}
+
+#top-nav .brand a:hover {
+	color: var(--accent-hover);
+	text-decoration: none;
+}
+
+#top-nav .nav-tabs {
+	display: flex;
+	align-items: flex-end;
+	gap: 2px;
+	margin-left: auto;
+	/* Pull the tabs down by 1px so the active tab's missing bottom border
+	   overlaps the nav's bottom border and visually merges into whatever
+	   content sits below. */
+	margin-bottom: -1px;
+}
+
+#top-nav .nav-tab {
+	padding: 9px 18px 10px;
+	background: transparent;
+	border: 1px solid transparent;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	color: var(--text-dim);
+	font-size: 13px;
+	font-weight: 500;
+	text-decoration: none;
+	transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+#top-nav .nav-tab:hover {
+	color: var(--text);
+	background: var(--surface);
+	text-decoration: none;
+}
+
+#top-nav .nav-tab.active {
+	background: var(--surface);
+	border-color: var(--border);
+	border-bottom-color: var(--surface);
+	color: var(--text);
+}
+
 /* Inline <code> slugs */
 
 code {

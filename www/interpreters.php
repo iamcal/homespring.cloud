@@ -1,17 +1,8 @@
-<?php $title = 'Examples — homespring.cloud'; include 'include/header.php'; ?>
+<?php $title = 'Interpreters — homespring.cloud'; $current = 'interpreters'; include 'include/header.php'; ?>
 <style>
 
-/* Examples-specific: make the page scrollable vertically (the
-   debugger pins overflow to hidden, which we don't want here) and
-   keep the toolbar stuck to the top while the table scrolls under. */
 html, body {
 	min-height: 100%;
-}
-
-#toolbar {
-	position: sticky;
-	top: 0;
-	z-index: 10;
 }
 
 main {
@@ -282,13 +273,7 @@ table.examples td.compat sup {
 </head>
 <body>
 
-<div id="toolbar">
-	<span class="brand"><a href="/">homespring.cloud</a></span>
-	<div class="nav-links">
-		<a href="home.php">Debugger</a>
-		<a href="examples.php" class="current">Examples</a>
-	</div>
-</div>
+<?php include 'include/nav.php'; ?>
 
 <main>
 
