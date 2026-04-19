@@ -175,6 +175,30 @@ code {
 	color: var(--text);
 }
 
+/* Hanging-indent list items: bullet sits where normal paragraph text
+   starts, and the item's text (including wrapped continuation lines) is
+   indented so the content aligns with itself. */
+ul, ol {
+	padding-left: 0;
+	margin: 12px 0;
+}
+
+ul li, ol li {
+	list-style-position: inside;
+	padding-left: 20px;
+	text-indent: -20px;
+	margin-bottom: 4px;
+}
+
+h2 {
+	font-size: 20px;
+	font-weight: 600;
+	margin: 40px 0 16px;
+	color: var(--text);
+	border-bottom: 1px solid var(--border);
+	padding-bottom: 8px;
+}
+
 pre {
 	background: var(--surface2);
 	border: 1px solid var(--border);

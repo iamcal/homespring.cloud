@@ -18,15 +18,6 @@ h1 {
 	color: var(--text);
 }
 
-h2 {
-	font-size: 20px;
-	font-weight: 600;
-	margin: 40px 0 16px;
-	color: var(--text);
-	border-bottom: 1px solid var(--border);
-	padding-bottom: 8px;
-}
-
 p.lead {
 	color: var(--text-dim);
 	font-size: 15px;
