@@ -81,6 +81,11 @@ html, body {
 	border-color: var(--accent);
 }
 
+#toolbar button .btn-icon {
+	font-size: 13px;
+	line-height: 1;
+}
+
 #toolbar .sep {
 	width: 1px;
 	height: 24px;
@@ -307,10 +312,10 @@ html, body {
 <div id="toolbar">
 	<span class="brand">homespring.cloud</span>
 	<div class="sep"></div>
-	<button id="btn-reset" title="Reset program">Reset</button>
-	<button id="btn-step" title="Step one tick">Step</button>
-	<button id="btn-play" title="Run program">Play</button>
-	<button id="btn-stop" title="Stop execution" disabled>Stop</button>
+	<button id="btn-reset" title="Reset program"><span class="btn-icon">🔄</span>Reset</button>
+	<button id="btn-step" title="Step one tick"><span class="btn-icon">⤵️</span>Step</button>
+	<button id="btn-play" title="Run program"><span class="btn-icon">▶️</span>Play</button>
+	<button id="btn-stop" title="Stop execution" disabled><span class="btn-icon">⏸️</span>Stop</button>
 	<div class="sep"></div>
 	<label class="speed-control" title="Playback speed">
 		<span class="speed-icon">🐢</span>
