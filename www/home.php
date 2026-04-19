@@ -1,6 +1,6 @@
 <?php
 	$current = 'debugger';
-	include 'include/header.php';
+	include '../include/header.php';
 ?>
 <script src="homespring.js/lib/homespring.js?v=2"></script>
 <style>
@@ -280,7 +280,7 @@ html, body {
 </head>
 <body>
 
-<?php include 'include/nav.php'; ?>
+<?php include '../include/nav.php'; ?>
 
 <!-- Debugger controls -->
 <div id="debug-toolbar">
@@ -1308,4 +1308,4 @@ window.addEventListener('resize', function(){
 createProgram();
 
 </script>
-<?php include 'include/footer.php'; ?>
+<?php include '../include/footer.php'; ?>

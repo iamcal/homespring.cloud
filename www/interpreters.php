@@ -1,7 +1,7 @@
 <?php
 	$title = 'Interpreters';
 	$current = 'interpreters';
-	include 'include/header.php';
+	include '../include/header.php';
 ?>
 <style>
 
@@ -268,7 +268,7 @@ table.examples td.compat sup {
 </head>
 <body>
 
-<?php include 'include/nav.php'; ?>
+<?php include '../include/nav.php'; ?>
 
 <main>
 
@@ -637,4 +637,4 @@ table.examples td.compat sup {
 
 </main>
 
-<?php include 'include/footer.php'; ?>
+<?php include '../include/footer.php'; ?>

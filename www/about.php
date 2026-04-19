@@ -1,7 +1,7 @@
 <?php
 	$title = 'About';
 	$current = 'about';
-	include 'include/header.php';
+	include '../include/header.php';
 ?>
 <style>
 
@@ -32,7 +32,7 @@ main p {
 </head>
 <body>
 
-<?php include 'include/nav.php'; ?>
+<?php include '../include/nav.php'; ?>
 
 <main>
 	<h1>About Homespring.cloud</h1>
@@ -87,4 +87,4 @@ Universe bear hatchery Hello. World!.
 
 </main>
 
-<?php include 'include/footer.php'; ?>
+<?php include '../include/footer.php'; ?>
