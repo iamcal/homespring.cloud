@@ -683,6 +683,7 @@ examplesModal.querySelectorAll('.examples-list li').forEach(function(li){
 			if (!r.ok) throw new Error('HTTP ' + r.status);
 			return r.text();
 		}).then(function(text){
+			stopRunning();
 			srcEditor.value = text;
 			inputArea.value = li.dataset.input || '';
 			closeExamples();
