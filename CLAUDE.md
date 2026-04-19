@@ -10,7 +10,7 @@ A visual debugger and learning tool for the [Homespring](https://esolangs.org/wi
 
 - **Deployment**: Apache virtual host with SSL (Let's Encrypt). Config in `site.conf` / `ssl.conf`. Served from `/var/www/html/homespring.cloud/www`.
 - **`www/homespring.js/`**: Git submodule (`git@github.com:iamcal/homespring.js.git`) — the interpreter. This is a separate project; do not edit files here directly.
-- **`www/home.htm`**: Main page — 4-pane layout (source editor, input, output, tree visualization) with toolbar. Uses plain SVG for tree rendering, Catppuccin-inspired dark theme. Accessible at `https://homespring.cloud/home.htm`.
+- **`www/index.php`**: Main page — 4-pane layout (source editor, input, output, tree visualization) with toolbar. Uses plain SVG for tree rendering, Catppuccin-inspired dark theme. Served at `https://homespring.cloud/` via DirectoryIndex.
 - **`www/d.htm`**: Earlier prototype of the visual debugger — uses SVG.js. Kept as reference.
 - **`www/index.htm`**: Earlier D3.js-based tree visualizer (static, no interactivity).
 - **`www/simple.htm`**: Minimal console-only test page.
