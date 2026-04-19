@@ -1021,8 +1021,23 @@ function renderSalmonAnimated(onComplete){
 		salmonEls[uid] = { el: sg, nodeUid: nodeUid, slot: slot };
 	}
 
+	// Pre-compute the slot each surviving salmon will occupy at its
+	// destination post-tick. When multiple salmon move from one node to
+	// another together, the animation interpolates each salmon's slot from
+	// start to end linearly so the group stays as a vertical stack, even
+	// while reordering — instead of all collapsing to slot 0.
+	var endSlots = {};
+	for (var i = 0; i < ld.nodeList.length; i++){
+		var nInfo = ld.nodeList[i];
+		var node = nInfo.node;
+		if (!node.salmon) continue;
+		for (var s = 0; s < node.salmon.length; s++){
+			endSlots[node.salmon[s].uid] = s;
+		}
+	}
+
 	// Phase 1: Animate movements
-	animatePhase(moves, salmonEls, function(){
+	animatePhase(moves, salmonEls, endSlots, function(){
 		// Phase 2: Animate deaths (flash and fade)
 		animateDeaths(deaths, salmonEls, function(){
 			// Phase 3: Show final state
@@ -1033,7 +1048,7 @@ function renderSalmonAnimated(onComplete){
 	});
 }
 
-function animatePhase(moves, salmonEls, onComplete){
+function animatePhase(moves, salmonEls, endSlots, onComplete){
 	if (!moves.length){
 		if (onComplete) onComplete();
 		return;
@@ -1052,11 +1067,10 @@ function animatePhase(moves, salmonEls, onComplete){
 		if (!fromInfo || !toInfo) continue;
 
 		var sg = entry.el;
+		var endSlot = endSlots[evt.salmon];
+		if (endSlot === undefined) endSlot = 0;
 
-		// compute destination (approximate slot 0 at target node)
-		var destPos = salmonRestPos(toInfo, 0);
-
-		var anim = buildMoveAnimation(sg, fromInfo, toInfo, entry.slot, destPos);
+		var anim = buildMoveAnimation(sg, fromInfo, toInfo, entry.slot, endSlot);
 		if (anim) animations.push(anim);
 	}
 
@@ -1094,7 +1108,15 @@ function animatePhase(moves, salmonEls, onComplete){
 				};
 			}
 
-			if (pos) anim.el.setAttribute('transform', 'translate(' + pos.x + ',' + pos.y + ')');
+			if (pos){
+				// Add the per-frame slot offset so groups move as a stack and
+				// reorder smoothly rather than collapsing onto a single point.
+				if (anim.startSlot !== undefined && anim.endSlot !== undefined){
+					var slot = anim.startSlot + (anim.endSlot - anim.startSlot) * eased;
+					pos.y += slot * 18;
+				}
+				anim.el.setAttribute('transform', 'translate(' + pos.x + ',' + pos.y + ')');
+			}
 
 			if (t >= 1) anim.done = true;
 			else anyRunning = true;
@@ -1123,7 +1145,7 @@ function animateDeaths(deaths, salmonEls, onComplete){
 	if (onComplete) onComplete();
 }
 
-function buildMoveAnimation(sg, fromInfo, toInfo, fromSlot, destPos){
+function buildMoveAnimation(sg, fromInfo, toInfo, fromSlot, toSlot){
 	var parentInfo, childInfo;
 	var ox = 20, oy = 6;
 
@@ -1136,30 +1158,36 @@ function buildMoveAnimation(sg, fromInfo, toInfo, fromSlot, destPos){
 	} else {
 		var path = findPath(fromInfo, toInfo);
 		if (!path || path.length < 2) return null;
-		return buildMultiSegmentAnimation(sg, path, destPos);
+		return buildMultiSegmentAnimation(sg, path, fromSlot, toSlot);
 	}
 
+	// The bezier runs between node centers (no slot offset); the per-frame
+	// y adjustment in animatePhase adds startSlot→endSlot interpolation.
 	var pp = getPathPoints(parentInfo, childInfo);
 	var animPoints;
 
 	if (fromInfo === parentInfo){
 		animPoints = {
-			p0x: pp.p0x + ox, p0y: pp.p0y + oy + (fromSlot * 18),
+			p0x: pp.p0x + ox, p0y: pp.p0y + oy,
 			p1x: pp.p1x + ox, p1y: pp.p1y + oy,
 			p2x: pp.p2x + ox, p2y: pp.p2y + oy,
-			p3x: destPos.x,   p3y: destPos.y
+			p3x: pp.p3x + ox, p3y: pp.p3y + oy
 		};
 	} else {
 		animPoints = {
-			p0x: pp.p3x + ox, p0y: pp.p3y + oy + (fromSlot * 18),
+			p0x: pp.p3x + ox, p0y: pp.p3y + oy,
 			p1x: pp.p2x + ox, p1y: pp.p2y + oy,
 			p2x: pp.p1x + ox, p2y: pp.p1y + oy,
-			p3x: destPos.x,   p3y: destPos.y
+			p3x: pp.p0x + ox, p3y: pp.p0y + oy
 		};
 	}
 
-	sg.setAttribute('transform', 'translate(' + animPoints.p0x + ',' + animPoints.p0y + ')');
-	return { el: sg, points: animPoints, done: false };
+	sg.setAttribute('transform',
+		'translate(' + animPoints.p0x + ',' + (animPoints.p0y + fromSlot * 18) + ')');
+	return {
+		el: sg, points: animPoints, done: false,
+		startSlot: fromSlot, endSlot: toSlot
+	};
 }
 
 function findPath(fromInfo, toInfo){
@@ -1193,7 +1221,7 @@ function findPath(fromInfo, toInfo){
 	return upPath.concat(downPath);
 }
 
-function buildMultiSegmentAnimation(sg, path, destPos){
+function buildMultiSegmentAnimation(sg, path, fromSlot, toSlot){
 	var segments = [];
 	var ox = 20, oy = 6;
 
@@ -1227,15 +1255,14 @@ function buildMultiSegmentAnimation(sg, path, destPos){
 		}
 	}
 
-	if (segments.length){
-		segments[segments.length - 1].p3x = destPos.x;
-		segments[segments.length - 1].p3y = destPos.y;
-	}
-
 	var startPos = segments[0];
-	sg.setAttribute('transform', 'translate(' + startPos.p0x + ',' + startPos.p0y + ')');
+	sg.setAttribute('transform',
+		'translate(' + startPos.p0x + ',' + (startPos.p0y + fromSlot * 18) + ')');
 
-	return { el: sg, segments: segments, done: false, segmented: true };
+	return {
+		el: sg, segments: segments, done: false, segmented: true,
+		startSlot: fromSlot, endSlot: toSlot
+	};
 }
 
 // ---- Resize handling ----
