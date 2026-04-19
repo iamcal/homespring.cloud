@@ -1,0 +1,6 @@
+<p>Quin's example files don't run correctly on compliant interpreters, due to two important mistakes in the implementation.</p>
+
+<p>The `reverse*.hsg` examples rely on the `force up` node allowing upstream salmon to move to the first child, which it should be blocking.</p>
+
+<p>The `split.hsg` example relies on an incorrect implementation of `append up` where the appending logic is supposed to run in the misc tick,
+but instead runs in the fish tick down, before any upstream salmon have had a chance to arrive (or leave, from the previous tick).</p>

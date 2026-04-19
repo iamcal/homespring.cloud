@@ -3,6 +3,7 @@
 import json
 
 RESULTS = '/mnt/webroot/homespring.cloud/tests/results.json'
+QUIN_EXPLANATION = '/mnt/webroot/homespring.cloud/tests/quin_test_explanation.txt'
 
 SECTIONS = [
     ('Jeff Binder', '— 2003 · author of Homespring and its <a href="https://github.com/iamcal/Homespring">original Scheme interpreter</a>', [
@@ -134,8 +135,12 @@ def main():
             print(f'\t\t\t<td class="desc">{desc}</td>')
             if merge_block:
                 if j == 0:
+                    explanation = open(QUIN_EXPLANATION).read().rstrip()
                     print(f'\t\t\t<td class="compat-merged" colspan="5" '
-                          f'rowspan="{len(progs)}">foo</td>')
+                          f'rowspan="{len(progs)}">')
+                    for line in explanation.splitlines():
+                        print(f'\t\t\t\t{line}')
+                    print('\t\t\t</td>')
                 # j > 0: no compat cells — covered by the rowspan above.
             else:
                 cells = []

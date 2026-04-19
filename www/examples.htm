@@ -321,10 +321,23 @@ table.examples td.compat sup {
 }
 
 .compat-merged {
-	text-align: center;
 	color: var(--text-dim);
-	font-style: italic;
 	padding: 14px 20px !important;
+	line-height: 1.5;
+	font-size: 12px;
+}
+
+.compat-merged p {
+	margin-bottom: 8px;
+}
+
+.compat-merged p:last-child {
+	margin-bottom: 0;
+}
+
+.compat-merged code {
+	font-family: var(--font-mono);
+	font-size: 11px;
 }
 
 .footnote {
@@ -568,7 +581,14 @@ table.examples td.compat sup {
 		<tr>
 			<td class="name"><a href="examples/2012-quin-kennedy/reverse.hsg">reverse.hsg</a></td>
 			<td class="desc">Reverses the input using a <code>force.up</code> node and a <code>split</code>.</td>
-			<td class="compat-merged" colspan="5" rowspan="4">foo</td>
+			<td class="compat-merged" colspan="5" rowspan="4">
+				<p>Quin's example files don't run correctly on compliant interpreters, due to two important mistakes in the implementation.</p>
+				
+				<p>The `reverse*.hsg` examples rely on the `force up` node allowing upstream salmon to move to the first child, which it should be blocking.</p>
+				
+				<p>The `split.hsg` example relies on an incorrect implementation of `append up` where the appending logic is supposed to run in the misc tick,
+				but instead runs in the fish tick down, before any upstream salmon have had a chance to arrive (or leave, from the previous tick).</p>
+			</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2012-quin-kennedy/reverse-2.hsg">reverse-2.hsg</a></td>
