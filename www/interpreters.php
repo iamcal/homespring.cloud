@@ -272,14 +272,20 @@ table.examples td.compat sup {
 
 <main>
 
-<h1>Example Programs</h1>
+<h1>Interpreters</h1>
 <p class="lead">
-	Example Homespring programs collected from the five original sources,
-	with a compatibility matrix showing which interpreters can run each one.
+	The original Homespring specification shipped with an interpreter
+	and another implementation was created the next day. This page documents
+	all of the known interpreter implementations, along with a compatibility
+	matrix showing which interpreters can run which of the collected example
+	programs.
+</p>
+
+<p class="lead">
 	Programs are grouped by author and listed under their original filenames.
 </p>
 
-<h2>Interpreters</h2>
+<h2>The Interpreters</h2>
 <div class="interp-grid">
 
 	<div class="interp-card">
@@ -314,7 +320,7 @@ table.examples td.compat sup {
 
 </div>
 
-<h2>Programs</h2>
+<h2>The Example Programs</h2>
 
 <table class="examples">
 	<thead>
