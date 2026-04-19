@@ -13,7 +13,7 @@
 		['lang' => 'Perl',         'date' => '2003-04-15', 'author' => 'Cal Henderson', 'url' => 'https://github.com/iamcal/perl-Language-Homespring', 'repo' => 'github.com/iamcal/perl-Language-Homespring', 'desc' => 'The first third party interpreter, including a tree visualizer.'],
 		['lang' => 'OCaml',        'date' => '2005-11-24', 'author' => 'Joe Neeman',    'url' => 'https://github.com/jneem/homespring',                'repo' => 'github.com/jneem/homespring',                'desc' => 'Released along with an updated spec.'],
 		['lang' => 'JavaScript',   'date' => '2012-10-30', 'author' => 'Quin Kennedy',  'url' => 'https://github.com/quinkennedy/Homespring',          'repo' => 'github.com/quinkennedy/Homespring',          'desc' => 'The first JavaScript implementation.'],
-		['lang' => 'JavaScript',   'date' => '2017-01-29', 'author' => 'Cal Henderson', 'url' => 'https://github.com/iamcal/homespring.js',            'repo' => 'github.com/iamcal/homespring.js',            'desc' => 'The most complete implementation, powers this website.'],
+		['lang' => 'JavaScript',   'date' => '2017-01-29', 'author' => 'Cal Henderson', 'url' => 'https://github.com/iamcal/homespring.js',            'repo' => 'github.com/iamcal/homespring.js',            'desc' => 'The implementation that powers this website.'],
 		['lang' => 'JavaScript',   'date' => '2018-05-30', 'author' => 'Martijn Arts',  'url' => 'https://github.com/martijnarts/homespring-js',       'repo' => 'github.com/martijnarts/homespring-js',       'desc' => 'A demo implementation with HTML visualizer.'],
 	];
 	foreach ($interpreters as &$_i) { $_i['yes'] = 0; $_i['total'] = 0; }
