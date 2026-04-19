@@ -2,6 +2,40 @@
 	$title = 'Interpreters';
 	$current = 'interpreters';
 	include '../include/header.php';
+
+	// Cards below the h1 show a compatibility score in the top-right. The
+	// yes/total counts are parsed out of the <tbody> further down so the
+	// score always matches the table. Rows with a merged compat-merged
+	// cell (Quin's 4 programs) are skipped — they have no per-interpreter
+	// result.
+	$interpreters = [
+		['lang' => 'Guile Scheme', 'date' => '2003-04-14', 'author' => 'Jeff Binder',   'url' => 'https://github.com/iamcal/Homespring',               'repo' => 'github.com/iamcal/Homespring'],
+		['lang' => 'Perl',         'date' => '2003-04-15', 'author' => 'Cal Henderson', 'url' => 'https://github.com/iamcal/perl-Language-Homespring', 'repo' => 'github.com/iamcal/perl-Language-Homespring'],
+		['lang' => 'OCaml',        'date' => '2005-11-24', 'author' => 'Joe Neeman',    'url' => 'https://github.com/jneem/homespring',                'repo' => 'github.com/jneem/homespring'],
+		['lang' => 'JavaScript',   'date' => '2012-10-30', 'author' => 'Quin Kennedy',  'url' => 'https://github.com/quinkennedy/Homespring',          'repo' => 'github.com/quinkennedy/Homespring'],
+		['lang' => 'JavaScript',   'date' => '2017-01-29', 'author' => 'Cal Henderson', 'url' => 'https://github.com/iamcal/homespring.js',            'repo' => 'github.com/iamcal/homespring.js'],
+	];
+	foreach ($interpreters as &$_i) { $_i['yes'] = 0; $_i['total'] = 0; }
+	unset($_i);
+
+	$_src = file_get_contents(__FILE__);
+	if (preg_match('/<tbody>(.*?)<\/tbody>/s', $_src, $_m)) {
+		preg_match_all('/<tr(?![^>]*class="author-row")[^>]*>(.*?)<\/tr>/s', $_m[1], $_rows);
+		foreach ($_rows[1] as $_row) {
+			if (strpos($_row, 'compat-merged') !== false) continue;
+			preg_match_all('/<td class="compat\s+([^"]*)"/', $_row, $_cells);
+			if (count($_cells[1]) !== count($interpreters)) continue;
+			foreach ($_cells[1] as $_col => $_cls) {
+				$_classes = preg_split('/\s+/', $_cls);
+				if (in_array('yes', $_classes, true)) {
+					$interpreters[$_col]['yes']++;
+					$interpreters[$_col]['total']++;
+				} elseif (in_array('no', $_classes, true)) {
+					$interpreters[$_col]['total']++;
+				}
+			}
+		}
+	}
 ?>
 <style>
 
@@ -48,6 +82,7 @@ p.lead a {
 	border: 1px solid var(--border);
 	border-radius: 8px;
 	padding: 14px 16px;
+	position: relative;
 }
 
 .interp-card .name {
@@ -55,6 +90,18 @@ p.lead a {
 	font-weight: 600;
 	color: var(--accent);
 	margin-bottom: 4px;
+	padding-right: 50px;
+}
+
+.interp-card .score {
+	position: absolute;
+	top: 12px;
+	right: 14px;
+	font-family: var(--font-mono);
+	font-size: 14px;
+	font-weight: 600;
+	color: var(--green);
+	cursor: help;
 }
 
 .interp-card .name .year {
@@ -287,37 +334,17 @@ table.examples td.compat sup {
 
 <h2>The Interpreters</h2>
 <div class="interp-grid">
-
+<?php foreach ($interpreters as $i):
+	$pct = $i['total'] > 0 ? round(100 * $i['yes'] / $i['total']) : 0;
+	$tip = $i['yes'] . '/' . $i['total'] . ' examples run correctly';
+?>
 	<div class="interp-card">
-		<div class="name">Guile Scheme <span class="year">2003-04-14</span></div>
-		<div class="author">Jeff Binder</div>
-		<a class="repo" href="https://github.com/iamcal/Homespring">github.com/iamcal/Homespring</a>
+		<div class="score" title="<?= htmlspecialchars($tip) ?>"><?= $pct ?>%</div>
+		<div class="name"><?= htmlspecialchars($i['lang']) ?> <span class="year"><?= $i['date'] ?></span></div>
+		<div class="author"><?= htmlspecialchars($i['author']) ?></div>
+		<a class="repo" href="<?= htmlspecialchars($i['url']) ?>"><?= htmlspecialchars($i['repo']) ?></a>
 	</div>
-
-	<div class="interp-card">
-		<div class="name">Perl <span class="year">2003-04-15</span></div>
-		<div class="author">Cal Henderson</div>
-		<a class="repo" href="https://github.com/iamcal/perl-Language-Homespring">github.com/iamcal/perl-Language-Homespring</a>
-	</div>
-
-	<div class="interp-card">
-		<div class="name">OCaml <span class="year">2005-11-24</span></div>
-		<div class="author">Joe Neeman</div>
-		<a class="repo" href="https://github.com/jneem/homespring">github.com/jneem/homespring</a>
-	</div>
-
-	<div class="interp-card">
-		<div class="name">JavaScript <span class="year">2012-10-30</span></div>
-		<div class="author">Quin Kennedy</div>
-		<a class="repo" href="https://github.com/quinkennedy/Homespring">github.com/quinkennedy/Homespring</a>
-	</div>
-
-	<div class="interp-card">
-		<div class="name">JavaScript <span class="year">2017-01-29</span></div>
-		<div class="author">Cal Henderson</div>
-		<a class="repo" href="https://github.com/iamcal/homespring.js">github.com/iamcal/homespring.js</a>
-	</div>
-
+<?php endforeach; ?>
 </div>
 
 <h2>The Example Programs</h2>
