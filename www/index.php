@@ -277,6 +277,7 @@ html, body {
 #tree-pane {
 	width: 100%;
 	height: 100%;
+	flex: 1;
 }
 
 #tree-pane .pane-body {
@@ -459,6 +460,74 @@ html, body {
 	line-height: 1.4;
 }
 
+/* ---- Small / short viewports ----
+   Phone-sized or short landscape windows can't afford the fixed
+   40/60 split: the tree pane gets squashed below its 200px min-height
+   and ends up off-screen. On narrow or short viewports we let the
+   toolbar wrap, stack the four panes vertically, and allow the page
+   to scroll. */
+@media (max-width: 720px), (max-height: 600px) {
+	html, body {
+		height: auto;
+		overflow-y: auto;
+	}
+
+	#debug-toolbar {
+		flex-wrap: wrap;
+		height: auto;
+		min-height: var(--toolbar-h);
+		padding: 8px 12px;
+		row-gap: 6px;
+	}
+
+	#debug-toolbar button {
+		padding: 6px 10px;
+	}
+
+	#debug-toolbar .tick-counter {
+		margin-left: 0;
+	}
+
+	#debug-toolbar .sep {
+		display: none;
+	}
+
+	#main {
+		height: auto;
+	}
+
+	#top-row {
+		flex-direction: column;
+		flex: 0 0 auto;
+		min-height: 0;
+	}
+
+	#source-pane,
+	#right-col {
+		flex: 0 0 auto;
+		border-right: none;
+	}
+
+	#source-pane {
+		border-bottom: 2px solid var(--border);
+		min-height: 140px;
+	}
+
+	#input-pane {
+		min-height: 80px;
+	}
+
+	#output-pane {
+		min-height: 80px;
+	}
+
+	#bottom-row {
+		display: flex;
+		flex: 0 0 auto;
+		height: 400px;
+	}
+}
+
 </style>
 </head>
 <body>
@@ -545,7 +614,7 @@ html, body {
 
 	<!-- Bottom row: tree visualization -->
 	<div id="bottom-row">
-		<div id="tree-pane" class="pane" style="height:100%">
+		<div id="tree-pane" class="pane">
 			<div class="pane-header">River System</div>
 			<div class="pane-body">
 				<svg id="tree-canvas"></svg>
