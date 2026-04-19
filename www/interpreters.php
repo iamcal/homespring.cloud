@@ -289,31 +289,31 @@ table.examples td.compat sup {
 <div class="interp-grid">
 
 	<div class="interp-card">
-		<div class="name">Guile Scheme <span class="year">2003</span></div>
+		<div class="name">Guile Scheme <span class="year">2003-04-14</span></div>
 		<div class="author">Jeff Binder</div>
 		<a class="repo" href="https://github.com/iamcal/Homespring">github.com/iamcal/Homespring</a>
 	</div>
 
 	<div class="interp-card">
-		<div class="name">Perl <span class="year">2003</span></div>
+		<div class="name">Perl <span class="year">2003-04-15</span></div>
 		<div class="author">Cal Henderson</div>
 		<a class="repo" href="https://github.com/iamcal/perl-Language-Homespring">github.com/iamcal/perl-Language-Homespring</a>
 	</div>
 
 	<div class="interp-card">
-		<div class="name">OCaml <span class="year">2005</span></div>
+		<div class="name">OCaml <span class="year">2005-11-24</span></div>
 		<div class="author">Joe Neeman</div>
 		<a class="repo" href="https://github.com/jneem/homespring">github.com/jneem/homespring</a>
 	</div>
 
 	<div class="interp-card">
-		<div class="name">JavaScript <span class="year">2012</span></div>
+		<div class="name">JavaScript <span class="year">2012-10-30</span></div>
 		<div class="author">Quin Kennedy</div>
 		<a class="repo" href="https://github.com/quinkennedy/Homespring">github.com/quinkennedy/Homespring</a>
 	</div>
 
 	<div class="interp-card">
-		<div class="name">JavaScript <span class="year">2017</span></div>
+		<div class="name">JavaScript <span class="year">2017-01-29</span></div>
 		<div class="author">Cal Henderson</div>
 		<a class="repo" href="https://github.com/iamcal/homespring.js">github.com/iamcal/homespring.js</a>
 	</div>
