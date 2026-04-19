@@ -1,5 +1,5 @@
-## Installation
+## Homespring.cloud
 
-    ./install.php https://github.com/iamcal/homespring.cloud
+An online interactive debugger for Homespring programs. Based on [homespring.js](https://github.com/iamcal/homespring.js).
 
-Maybe try http://sigmajs.org next?
+View the [about page](https://homespring.cloud/about) for more information.
