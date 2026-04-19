@@ -664,7 +664,19 @@ function computeLayout(){
 		nodeMap[nodeList[i].node.uid] = nodeList[i];
 	}
 
-	layoutData = { nodeList: nodeList, nodeMap: nodeMap, maxDepth: maxDepth, depthCounts: depthCounts, W: W, H: H };
+	// If vertical row spacing at any depth gets tight, node labels will
+	// overlap — so we flag renderTree() to draw them at 45° up-right
+	// instead of horizontally centered above the circle.
+	var minRowSpacing = Infinity;
+	for (var d in depthCounts){
+		var rows = depthCounts[d];
+		if (rows <= 1) continue;
+		var spacing = usableH / (rows - 1);
+		if (spacing < minRowSpacing) minRowSpacing = spacing;
+	}
+	var tiltLabels = minRowSpacing < 22;
+
+	layoutData = { nodeList: nodeList, nodeMap: nodeMap, maxDepth: maxDepth, depthCounts: depthCounts, W: W, H: H, tiltLabels: tiltLabels };
 }
 
 // ---- Bezier math for path animation ----
@@ -786,11 +798,17 @@ function renderTree(){
 			'stroke': nodeStroke(n.node)
 		}));
 
-		var label = svgEl('text', {
+		var labelAttrs = {
 			'x': 0, 'y': -14,
-			'text-anchor': 'middle',
+			'text-anchor': ld.tiltLabels ? 'start' : 'middle',
 			'fill': n.node.is_destroyed ? '#585b70' : '#cdd6f4'
-		});
+		};
+		if (ld.tiltLabels){
+			// Rotate -45° around the text anchor (0,-14) so the label
+			// extends up-and-to-the-right instead of horizontally.
+			labelAttrs.transform = 'rotate(-45 0 -14)';
+		}
+		var label = svgEl('text', labelAttrs);
 		label.textContent = n.node.name || '(unnamed)';
 		g.appendChild(label);
 
