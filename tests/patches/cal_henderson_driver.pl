@@ -7,8 +7,8 @@
 use strict;
 use warnings;
 use FindBin qw($Bin);
-use lib "$Bin/../../www/interpreters/2003-cal-henderson";
-use lib "$Bin/../../www/interpreters/2003-cal-henderson/blib/lib";
+use lib "$Bin/../../interpreters/2003-cal-henderson";
+use lib "$Bin/../../interpreters/2003-cal-henderson/blib/lib";
 use Language::Homespring;
 
 my $file = shift @ARGV or die "usage: $0 <program.hs>\n";

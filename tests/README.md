@@ -48,7 +48,7 @@ tests/
 | id                       | language    | year | build step                                                   |
 |--------------------------|-------------|------|--------------------------------------------------------------|
 | `2005-joe-neeman`        | OCaml       | 2005 | `./configure && make -C src hsrun_opt` (patched)             |
-| `2003-jeff-binder`       | Guile Scheme| 2003 | none — invoked as `guile -e main -s www/interpreters/…/hs`   |
+| `2003-jeff-binder`       | Guile Scheme| 2003 | none — invoked as `guile -e main -s interpreters/…/hs`        |
 | `2003-cal-henderson`     | Perl        | 2003 | `perl Makefile.PL && make` — used via `perl -Mblib`          |
 | `2012-quin-kennedy`      | Node.js     | 2012 | none — `node homespring.js [-n LIMIT] <file>`                |
 | `2017-cal-henderson-js`  | Node.js     | 2017 | none — driver in `patches/homespring_js_driver.js`           |
@@ -117,7 +117,7 @@ Defaults:
 ## Adding an interpreter
 
 1. Vendor the source (usually as a git submodule under
-   `www/interpreters/<year>-<name>/`).
+   `interpreters/<year>-<name>/`).
 2. Add any one-time build step to `tests/setup.sh` (keep it idempotent).
 3. Subclass `Adapter` in `tests/run.py` and register it in the `ADAPTERS`
    list. You need:

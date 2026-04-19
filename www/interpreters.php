@@ -631,7 +631,7 @@ table.examples td.compat sup {
 	interpreter and writes <code>tests/results.json</code>. Hover over a
 	cell for further details about that specific result.
 	The full interpreter source repositories are
-	checked in as submodules under <code>www/interpreters/</code>.
+	checked in as submodules under <code>interpreters/</code>.
 </p>
 
 </main>

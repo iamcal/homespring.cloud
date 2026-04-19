@@ -6,9 +6,9 @@
 set -u
 
 REPO="$(cd "$(dirname "$0")/.." && pwd)"
-HSRUN="$REPO/www/interpreters/2005-joe-neeman/src/hsrun_opt"
-JEFF="$REPO/www/interpreters/2003-jeff-binder/hs"
-QUIN="$REPO/www/interpreters/2012-quin-kennedy/homespring.js"
+HSRUN="$REPO/interpreters/2005-joe-neeman/src/hsrun_opt"
+JEFF="$REPO/interpreters/2003-jeff-binder/hs"
+QUIN="$REPO/interpreters/2012-quin-kennedy/homespring.js"
 PERL_DRV="$REPO/tests/patches/cal_henderson_driver.pl"
 JS_DRV="$REPO/tests/patches/homespring_js_driver.js"
 

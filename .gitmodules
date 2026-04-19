@@ -2,17 +2,17 @@
 	path = www/homespring.js
 	url = git@github.com:iamcal/homespring.js.git
 [submodule "www/interpreters/2003-jeff-binder"]
-	path = www/interpreters/2003-jeff-binder
+	path = interpreters/2003-jeff-binder
 	url = https://github.com/iamcal/Homespring.git
 [submodule "www/interpreters/2005-joe-neeman"]
-	path = www/interpreters/2005-joe-neeman
+	path = interpreters/2005-joe-neeman
 	url = https://github.com/jneem/homespring.git
 [submodule "www/interpreters/2012-quin-kennedy"]
-	path = www/interpreters/2012-quin-kennedy
+	path = interpreters/2012-quin-kennedy
 	url = https://github.com/quinkennedy/Homespring.git
 [submodule "www/interpreters/2013-benito-van-der-zander"]
-	path = www/interpreters/2013-benito-van-der-zander
+	path = interpreters/2013-benito-van-der-zander
 	url = https://github.com/benibela/home-river.git
 [submodule "www/interpreters/2003-cal-henderson"]
-	path = www/interpreters/2003-cal-henderson
+	path = interpreters/2003-cal-henderson
 	url = https://github.com/iamcal/perl-Language-Homespring.git

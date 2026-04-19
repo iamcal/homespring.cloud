@@ -25,7 +25,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parent
 REPO = ROOT.parent
-INTERP_DIR = REPO / "www" / "interpreters"
+INTERP_DIR = REPO / "interpreters"
 
 
 # ---------------------------------------------------------------------------

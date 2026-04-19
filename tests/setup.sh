@@ -6,7 +6,7 @@ set -euo pipefail
 
 here="$(cd "$(dirname "$0")" && pwd)"
 repo="$(cd "$here/.." && pwd)"
-interp="$repo/www/interpreters"
+interp="$repo/interpreters"
 
 log() { printf '\033[36m==>\033[0m %s\n' "$*"; }
 warn() { printf '\033[33m[warn]\033[0m %s\n' "$*"; }
