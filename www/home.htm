@@ -648,28 +648,32 @@ function computeLayout(){
 		if (di > maxDepth) maxDepth = di;
 	}
 
-	var padX = 80, padY = 50;
+	var padX = 80;
 	var usableW = W - padX * 2;
-	var usableH = H - padY * 2;
+
+	// If the per-depth column spacing gets tight, horizontal labels drawn
+	// above adjacent-column nodes will collide into each other. When that
+	// happens, flag renderTree() to draw labels at 45° up-right so they
+	// fan out of their columns instead of stacking against each other.
+	// Tilted labels rise higher above each node, so reserve extra top
+	// padding so they don't clip off the top of the canvas.
+	var columnSpacing = maxDepth > 0 ? usableW / maxDepth : usableW;
+	var tiltLabels = columnSpacing < 60;
+	var padTop = tiltLabels ? 110 : 50;
+	var padBottom = 50;
+	var usableH = H - padTop - padBottom;
 
 	for (var i = 0; i < nodeList.length; i++){
 		var n = nodeList[i];
 		var rows = depthCounts[n.depth];
 		n.x = padX + (maxDepth > 0 ? (n.depth / maxDepth) * usableW : usableW / 2);
-		n.y = padY + (rows > 1 ? (n.idx / (rows - 1)) * usableH : usableH / 2);
+		n.y = padTop + (rows > 1 ? (n.idx / (rows - 1)) * usableH : usableH / 2);
 	}
 
 	var nodeMap = {};
 	for (var i = 0; i < nodeList.length; i++){
 		nodeMap[nodeList[i].node.uid] = nodeList[i];
 	}
-
-	// If the per-depth column spacing gets tight, horizontal labels drawn
-	// above adjacent-column nodes will collide into each other. When that
-	// happens, flag renderTree() to draw labels at 45° up-right so they
-	// fan out of their columns instead of stacking against each other.
-	var columnSpacing = maxDepth > 0 ? usableW / maxDepth : usableW;
-	var tiltLabels = columnSpacing < 60;
 
 	layoutData = { nodeList: nodeList, nodeMap: nodeMap, maxDepth: maxDepth, depthCounts: depthCounts, W: W, H: H, tiltLabels: tiltLabels };
 }
