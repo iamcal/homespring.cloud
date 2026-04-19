@@ -653,25 +653,39 @@ function computeLayout(){
 
 	var depthCounts = {};
 	var nodeList = [];
+	var nextLeafSlot = 0;
+	var maxDepth = 0;
 
+	// Post-order layout: leaves each claim a fresh y-slot; internal nodes
+	// take the centroid of their children's slots. A non-branching chain
+	// is thus a run of nodes all sharing the one slot of the eventual leaf,
+	// so the river stays on a single horizontal line instead of weaving
+	// up and down as other depth rows fill in.
 	function layoutNode(node, depth){
 		if (!depthCounts[depth]) depthCounts[depth] = 0;
-		var idx = depthCounts[depth]++;
-		var info = { node: node, depth: depth, idx: idx, children: [] };
+		depthCounts[depth]++;
+		if (depth > maxDepth) maxDepth = depth;
+
+		var info = { node: node, depth: depth, children: [] };
 		nodeList.push(info);
-		for (var i = 0; i < node.kids.length; i++){
-			info.children.push(layoutNode(node.kids[i], depth + 1));
+
+		if (!node.kids.length){
+			info.ySlot = nextLeafSlot++;
+		} else {
+			var sum = 0;
+			for (var i = 0; i < node.kids.length; i++){
+				var child = layoutNode(node.kids[i], depth + 1);
+				info.children.push(child);
+				sum += child.ySlot;
+			}
+			info.ySlot = sum / node.kids.length;
 		}
 		return info;
 	}
 
 	layoutNode(program.root, 0);
 
-	var maxDepth = 0;
-	for (var d in depthCounts){
-		var di = parseInt(d);
-		if (di > maxDepth) maxDepth = di;
-	}
+	var leafCount = nextLeafSlot || 1;
 
 	var padX = 80;
 	var usableW = W - padX * 2;
@@ -690,9 +704,8 @@ function computeLayout(){
 
 	for (var i = 0; i < nodeList.length; i++){
 		var n = nodeList[i];
-		var rows = depthCounts[n.depth];
 		n.x = padX + (maxDepth > 0 ? (n.depth / maxDepth) * usableW : usableW / 2);
-		n.y = padTop + (rows > 1 ? (n.idx / (rows - 1)) * usableH : usableH / 2);
+		n.y = padTop + (leafCount > 1 ? (n.ySlot / (leafCount - 1)) * usableH : usableH / 2);
 	}
 
 	var nodeMap = {};
