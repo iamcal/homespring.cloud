@@ -172,6 +172,12 @@ html, body {
 	border-right: 2px solid var(--border);
 }
 
+/* The textarea provides its own scrollbar; the wrapping .pane-body
+   shouldn't add a second one. */
+#source-pane .pane-body {
+	overflow: hidden;
+}
+
 #source-editor {
 	width: 100%;
 	height: 100%;
