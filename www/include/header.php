@@ -12,4 +12,6 @@ $title = isset($title) ? $title : 'homespring.cloud';
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title><?= htmlspecialchars($title) ?></title>
-<link rel="stylesheet" href="common.css">
+<style>
+<?php include(__DIR__.'/../common.css'); ?>
+</style>
