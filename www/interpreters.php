@@ -1,4 +1,8 @@
-<?php $title = 'Interpreters — homespring.cloud'; $current = 'interpreters'; include 'include/header.php'; ?>
+<?php
+	$title = 'Interpreters';
+	$current = 'interpreters';
+	include 'include/header.php';
+?>
 <style>
 
 html, body {

@@ -10,7 +10,7 @@ $tabs = [
 ];
 ?>
 <div id="top-nav">
-	<span class="brand"><a href="/">homespring.cloud</a></span>
+	<span class="brand"><a href="/">Homespring.cloud</a></span>
 	<div class="nav-tabs">
 <?php foreach ($tabs as $tab): ?>
 		<a class="nav-tab<?= $tab['key'] === $current ? ' active' : '' ?>" href="<?= $tab['href'] ?>"><?= htmlspecialchars($tab['label']) ?></a>

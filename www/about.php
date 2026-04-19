@@ -1,4 +1,8 @@
-<?php $title = 'About — homespring.cloud'; $current = 'about'; include 'include/header.php'; ?>
+<?php
+	$title = 'About';
+	$current = 'about';
+	include 'include/header.php';
+?>
 <style>
 
 html, body {

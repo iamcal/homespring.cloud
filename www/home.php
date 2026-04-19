@@ -1,4 +1,7 @@
-<?php $current = 'debugger'; include 'include/header.php'; ?>
+<?php
+	$current = 'debugger';
+	include 'include/header.php';
+?>
 <script src="homespring.js/lib/homespring.js?v=2"></script>
 <style>
 

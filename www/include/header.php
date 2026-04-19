@@ -5,7 +5,7 @@
 //
 // Variables the including page may set before include:
 //   $title   — the <title> contents (defaults to 'homespring.cloud')
-$title = isset($title) ? $title : 'homespring.cloud';
+$title = isset($title) ? $title . ' - Homespring.cloud' : 'Homespring.cloud';
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
