@@ -43,8 +43,8 @@
 		],
 		'Miscellaneous' => [
 			['name' => 'name.hs',     'path' => 'examples/2003-jeff-binder/name.hs',     'desc' => 'An acrostic program whose node names spell out HOMESPRING line by line.'],
-			['name' => 'flipflop.hs', 'path' => 'examples/2005-joe-neeman/flipflop.hs', 'desc' => 'A flip-flop that alternates state using an inverse-lock and a pair of pump/switch nodes.'],
-			['name' => 'tic.hs',      'path' => 'examples/2005-joe-neeman/tic.hs',      'desc' => 'Tic-tac-toe — by far the most elaborate program in the collection. Requires specific move-notation input; see the source header for the expected format. Takes several seconds per board frame.'],
+			['name' => 'flipflop.hs', 'path' => 'examples/2005-joe-neeman/flipflop.hs', 'desc' => 'A flip-flop that alternates state using an inverse-lock and a pair of pump/switch nodes. Enter input to trigger a cycle, which will be appended with x, then o, then x, etc'],
+			['name' => 'tic.hs',      'path' => 'examples/2005-joe-neeman/tic.hs',      'desc' => 'Tic-tac-toe — by far the most elaborate program in the collection. A simple game of tic-tac-toe. To make a move, enter 1-9 (corresponding to a position on the grid, starting top left, reading across the rows, then down the columns). o goes first, then x. It takes around 240 ticks to process each turn. Wait for the board to fully render before making the next move. The game does not terminate when someone wins. Invalid inputs count as a wasted turn.'],
 		],
 	];
 
