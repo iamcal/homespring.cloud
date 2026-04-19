@@ -664,17 +664,12 @@ function computeLayout(){
 		nodeMap[nodeList[i].node.uid] = nodeList[i];
 	}
 
-	// If vertical row spacing at any depth gets tight, node labels will
-	// overlap — so we flag renderTree() to draw them at 45° up-right
-	// instead of horizontally centered above the circle.
-	var minRowSpacing = Infinity;
-	for (var d in depthCounts){
-		var rows = depthCounts[d];
-		if (rows <= 1) continue;
-		var spacing = usableH / (rows - 1);
-		if (spacing < minRowSpacing) minRowSpacing = spacing;
-	}
-	var tiltLabels = minRowSpacing < 22;
+	// If the per-depth column spacing gets tight, horizontal labels drawn
+	// above adjacent-column nodes will collide into each other. When that
+	// happens, flag renderTree() to draw labels at 45° up-right so they
+	// fan out of their columns instead of stacking against each other.
+	var columnSpacing = maxDepth > 0 ? usableW / maxDepth : usableW;
+	var tiltLabels = columnSpacing < 60;
 
 	layoutData = { nodeList: nodeList, nodeMap: nodeMap, maxDepth: maxDepth, depthCounts: depthCounts, W: W, H: H, tiltLabels: tiltLabels };
 }
