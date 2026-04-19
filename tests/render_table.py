@@ -121,22 +121,32 @@ def main():
         print(f'\t\t\t<td colspan="7">{author} <span class="author-meta">{meta}</span></td>')
         print('\t\t</tr>')
         print()
+        # Quin Kennedy's four programs are all "invalid" for harness
+        # purposes — see the explanation cell. Merge the whole result block
+        # into a single cell spanning 5 cols × len(progs) rows.
+        merge_block = (author == 'Quin Kennedy')
         for j, (slug, href, name, desc) in enumerate(progs):
             name_cell = f'<a href="{href}">{name}</a>'
             if slug in HST_LINK:
                 name_cell += f'<span class="src-alt">(<a href="{HST_LINK[slug]}">.hst</a>)</span>'
-            cells = []
-            for aid in ADAPTERS:
-                res = by_prog.get(slug, {}).get(aid)
-                if not res:
-                    cells.append('<td class="compat unknown">?</td>')
-                else:
-                    cells.append(cell(res, slug, aid))
             print('\t\t<tr>')
             print(f'\t\t\t<td class="name">{name_cell}</td>')
             print(f'\t\t\t<td class="desc">{desc}</td>')
-            for c in cells:
-                print(f'\t\t\t{c}')
+            if merge_block:
+                if j == 0:
+                    print(f'\t\t\t<td class="compat-merged" colspan="5" '
+                          f'rowspan="{len(progs)}">foo</td>')
+                # j > 0: no compat cells — covered by the rowspan above.
+            else:
+                cells = []
+                for aid in ADAPTERS:
+                    res = by_prog.get(slug, {}).get(aid)
+                    if not res:
+                        cells.append('<td class="compat unknown">?</td>')
+                    else:
+                        cells.append(cell(res, slug, aid))
+                for c in cells:
+                    print(f'\t\t\t{c}')
             print('\t\t</tr>')
 
 
