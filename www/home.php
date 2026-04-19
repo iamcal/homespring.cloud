@@ -22,10 +22,10 @@
 			['name' => 'helloworld.hs','path' => 'examples/2013-benito-van-der-zander/helloworld.hs','desc' => 'A fourth take on "Hello, World!" — generated from HomeSpringTree source.'],
 		],
 		'Interactive' => [
-			['name' => 'cat.hs',  'path' => 'examples/2003-jeff-binder/cat.hs',  'desc' => 'Echoes its input back to output, like the Unix cat utility.', 'input' => "abc\n"],
-			['name' => 'add.hs',  'path' => 'examples/2003-jeff-binder/add.hs',  'desc' => 'Reads two single-digit numbers on separate lines and outputs their sum.', 'input' => "2\n3\n"],
-			['name' => 'hi.hs',   'path' => 'examples/2003-jeff-binder/hi.hs',   'desc' => 'Prompts for your name and greets you back with "Hi".', 'input' => "Cal\n"],
-			['name' => 'quiz.hs', 'path' => 'examples/2003-jeff-binder/quiz.hs', 'desc' => 'Asks "what is six times four?" — answer "24" to terminate silently, anything else gets "you lie!".', 'input' => "24\n"],
+			['name' => 'cat.hs',  'path' => 'examples/2003-jeff-binder/cat.hs',  'desc' => 'Echoes its input back to output, like the Unix cat utility.'],
+			['name' => 'add.hs',  'path' => 'examples/2003-jeff-binder/add.hs',  'desc' => 'Reads two single-digit numbers on separate lines and outputs their sum.'],
+			['name' => 'hi.hs',   'path' => 'examples/2003-jeff-binder/hi.hs',   'desc' => 'Prompts for your name and greets you back with "Hi".'],
+			['name' => 'quiz.hs', 'path' => 'examples/2003-jeff-binder/quiz.hs', 'desc' => 'Asks "what is six times four?" — answer "24" to terminate silently, anything else gets "you lie!".'],
 		],
 		'Counters & clocks' => [
 			['name' => 'count.hs',                   'path' => 'examples/2013-benito-van-der-zander/count.hs',                   'desc' => 'Counts from 0 to 9 then up to 100 using a bridged bear + hatchery cascade.'],
@@ -37,9 +37,9 @@
 			['name' => 'clock.hs',                   'path' => 'examples/2013-benito-van-der-zander/clock.hs',                   'desc' => 'A ticking clock driven by the time node and a range-switch cascade.'],
 		],
 		'FizzBuzz' => [
-			['name' => 'fizzbuzz.hs',      'path' => 'examples/2013-benito-van-der-zander/fizzbuzz.hs',      'desc' => 'Classic FizzBuzz — multiples of 3 → Fizz, 5 → Buzz, both → FizzBuzz.'],
-			['name' => 'fizzbuzz.poem.hs', 'path' => 'examples/2013-benito-van-der-zander/fizzbuzz.poem.hs', 'desc' => 'FizzBuzz written in the poetic style — considerably longer.'],
-			['name' => 'fizzbuzztick.hs',  'path' => 'examples/2013-benito-van-der-zander/fizzbuzztick.hs',  'desc' => 'A compact FizzBuzz variant driven by time ticks.'],
+			['name' => 'fizzbuzz.hs',      'path' => 'examples/2013-benito-van-der-zander/fizzbuzz.hs',      'desc' => 'Classic FizzBuzz — multiples of 3 → Fizz, 5 → Buzz, both → FizzBuzz. Very very slow, due to rendering a giant tree. First output appears around tick 450, which will take several minutes. Gets much faster after that.'],
+			['name' => 'fizzbuzz.poem.hs', 'path' => 'examples/2013-benito-van-der-zander/fizzbuzz.poem.hs', 'desc' => 'FizzBuzz written in the poetic style — considerably longer. Very very slow, due to rendering a giant tree. First output appears around tick 420, which will take several minutes. Gets faster after that.'],
+			['name' => 'fizzbuzztick.hs',  'path' => 'examples/2013-benito-van-der-zander/fizzbuzztick.hs',  'desc' => 'A compact FizzBuzz variant driven by time ticks. Much much faster than the other FizzBuzz examples, but without numbers.'],
 		],
 		'Miscellaneous' => [
 			['name' => 'name.hs',     'path' => 'examples/2003-jeff-binder/name.hs',     'desc' => 'An acrostic program whose node names spell out HOMESPRING line by line.'],
@@ -1235,9 +1235,21 @@ function makeDeadSalmonEl(dead, nodeName){
 	return sg;
 }
 
+// Skip the per-tick salmon animation once the tree gets big enough that
+// tweening the cubic beziers starts costing real frames. The big Benito
+// counters push past 500 nodes and visibly stutter; 200 is well under
+// that and still leaves headroom on slower machines.
+var ANIMATION_NODE_LIMIT = 200;
+
 // Event-driven animated salmon rendering
 function renderSalmonAnimated(onComplete){
 	if (!salmonGroup || !layoutData || !program) {
+		if (onComplete) onComplete();
+		return;
+	}
+
+	if (layoutData.nodeList.length > ANIMATION_NODE_LIMIT){
+		renderSalmonStatic();
 		if (onComplete) onComplete();
 		return;
 	}
