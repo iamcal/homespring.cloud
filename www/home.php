@@ -115,6 +115,13 @@ html, body {
 	line-height: 1;
 }
 
+#debug-toolbar button svg.btn-icon {
+	width: 14px;
+	height: 14px;
+	display: block;
+	flex-shrink: 0;
+}
+
 #debug-toolbar .speed-control {
 	display: flex;
 	align-items: center;
@@ -460,10 +467,10 @@ html, body {
 
 <!-- Debugger controls -->
 <div id="debug-toolbar">
-	<button id="btn-reset" title="Reset program"><span class="btn-icon">🔄</span>Reset</button>
-	<button id="btn-step" title="Step one tick"><span class="btn-icon">⤵️</span>Step</button>
-	<button id="btn-play" title="Run program"><span class="btn-icon">▶️</span>Play</button>
-	<button id="btn-stop" title="Pause execution" disabled><span class="btn-icon">⏸️</span>Pause</button>
+	<button id="btn-reset" title="Reset program"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>Reset</button>
+	<button id="btn-step" title="Step one tick"><svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19"/></svg>Step</button>
+	<button id="btn-play" title="Run program"><svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>Play</button>
+	<button id="btn-stop" title="Pause execution" disabled><svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>Pause</button>
 	<div class="sep"></div>
 	<label class="speed-control" title="Playback speed">
 		<span class="speed-icon">🐢</span>
