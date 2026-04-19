@@ -499,6 +499,7 @@ function createProgram(){
 		layoutData = null;
 		clearSvg();
 		updateTickDisplay();
+		updateButtonStates();
 		return;
 	}
 
@@ -512,11 +513,23 @@ function createProgram(){
 	renderTree();
 	renderSalmonStatic();
 	updateTickDisplay();
+	updateButtonStates();
 }
 
 function resetProgram(){
 	stopRunning();
 	createProgram();
+}
+
+// Single source of truth for toolbar button enable/disable state. Call this
+// any time `running`, `animating`, `program`, or `program.terminated` change.
+function updateButtonStates(){
+	var terminated = !program || program.terminated;
+	btnPlay.disabled = running || terminated;
+	btnStop.disabled = !running;
+	btnStep.disabled = running || animating || terminated;
+	// Reset is always available.
+	btnReset.disabled = false;
 }
 
 function doTick(onComplete){
@@ -532,12 +545,12 @@ function doTick(onComplete){
 	updateTickDisplay();
 
 	animating = true;
-	btnStep.disabled = true;
 	deadSalmon = [];
+	updateButtonStates();
 
 	renderSalmonAnimated(function(){
 		animating = false;
-		if (!running) btnStep.disabled = false;
+		updateButtonStates();
 		if (onComplete) onComplete();
 	});
 }
@@ -550,10 +563,8 @@ function startRunning(){
 	if (!program || program.terminated) return;
 	running = true;
 	btnPlay.classList.add('active');
-	btnPlay.disabled = true;
-	btnStop.disabled = false;
-	btnStep.disabled = true;
 	srcEditor.disabled = true;
+	updateButtonStates();
 
 	function playTick(){
 		if (!running || !program || program.terminated){
@@ -574,10 +585,8 @@ function stopRunning(){
 		runInterval = null;
 	}
 	btnPlay.classList.remove('active');
-	btnPlay.disabled = false;
-	btnStop.disabled = true;
-	btnStep.disabled = false;
 	srcEditor.disabled = false;
+	updateButtonStates();
 }
 
 function updateTickDisplay(){
