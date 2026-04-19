@@ -1,6 +1,57 @@
 <?php
 	$current = 'debugger';
 	include '../include/header.php';
+
+	// Programs offered in the "Examples" modal. Grouped by function so the
+	// list reads as a tour rather than a dump. Only programs that run
+	// correctly under homespring.js (the interpreter embedded in this page)
+	// are listed — Quin Kennedy's reverse/split variants are excluded
+	// because their published outputs disagree with every other conforming
+	// interpreter. File sizes are looked up live from disk.
+	$example_groups = [
+		'Simple demos' => [
+			['name' => 'simple.hs',   'path' => 'examples/2003-jeff-binder/simple.hs', 'desc' => 'The smallest non-empty program: a single newline character.'],
+			['name' => 'null.hs',     'path' => 'examples/2003-jeff-binder/null.hs',   'desc' => 'The empty program — zero bytes. Specially trapped by the interpreter.'],
+		],
+		'Hello World' => [
+			['name' => 'first.hs',    'path' => 'examples/2003-jeff-binder/first.hs',  'desc' => 'Minimal "Hello, world!" — a single hatchery feeding a bear. Runs forever.'],
+			['name' => 'hello-1.hs',  'path' => 'examples/2003-jeff-binder/hello-1.hs','desc' => '"Hello, World!" using a universe, a hatchery, and snowmelt-powered rapids.'],
+			['name' => 'hello-2.hs',  'path' => 'examples/2003-jeff-binder/hello-2.hs','desc' => 'An alternative arrangement using the power-override rule.'],
+			['name' => 'hello-3.hs',  'path' => 'examples/2003-jeff-binder/hello-3.hs','desc' => 'Uses marshy force, field-sense shallows, and a hydro-power spring.'],
+			['name' => 'hello2.hs',   'path' => 'examples/2003-cal-henderson/hello2.hs','desc' => 'A compact "Hello, World!" shipped as a test for the Perl interpreter.'],
+			['name' => 'helloworld.hs','path' => 'examples/2013-benito-van-der-zander/helloworld.hs','desc' => 'A fourth take on "Hello, World!" — generated from HomeSpringTree source.'],
+		],
+		'Interactive' => [
+			['name' => 'cat.hs',  'path' => 'examples/2003-jeff-binder/cat.hs',  'desc' => 'Echoes its input back to output, like the Unix cat utility.', 'input' => "abc\n"],
+			['name' => 'add.hs',  'path' => 'examples/2003-jeff-binder/add.hs',  'desc' => 'Reads two single-digit numbers on separate lines and outputs their sum.', 'input' => "2\n3\n"],
+			['name' => 'hi.hs',   'path' => 'examples/2003-jeff-binder/hi.hs',   'desc' => 'Prompts for your name and greets you back with "Hi".', 'input' => "Cal\n"],
+			['name' => 'quiz.hs', 'path' => 'examples/2003-jeff-binder/quiz.hs', 'desc' => 'Asks "what is six times four?" — answer "24" to terminate silently, anything else gets "you lie!".', 'input' => "24\n"],
+		],
+		'Counters & clocks' => [
+			['name' => 'count.hs',                   'path' => 'examples/2013-benito-van-der-zander/count.hs',                   'desc' => 'Counts from 0 to 9 then up to 100 using a bridged bear + hatchery cascade.'],
+			['name' => 'count2.hs',                  'path' => 'examples/2013-benito-van-der-zander/count2.hs',                  'desc' => 'A more elaborate counter built from digit generators.'],
+			['name' => 'count3.hs',                  'path' => 'examples/2013-benito-van-der-zander/count3.hs',                  'desc' => 'Another counter variant, in the same family.'],
+			['name' => 'count4.hs',                  'path' => 'examples/2013-benito-van-der-zander/count4.hs',                  'desc' => 'A larger counter implementation — ~10 KB of generated source.'],
+			['name' => 'count.poem.hs',              'path' => 'examples/2013-benito-van-der-zander/count.poem.hs',              'desc' => 'A counter written in the poetic style Homespring is intended to be read in.'],
+			['name' => 'count.poem.withfillers.hs',  'path' => 'examples/2013-benito-van-der-zander/count.poem.withfillers.hs',  'desc' => 'A poetic counter with additional filler words for extra flow.'],
+			['name' => 'clock.hs',                   'path' => 'examples/2013-benito-van-der-zander/clock.hs',                   'desc' => 'A ticking clock driven by the time node and a range-switch cascade.'],
+		],
+		'FizzBuzz' => [
+			['name' => 'fizzbuzz.hs',      'path' => 'examples/2013-benito-van-der-zander/fizzbuzz.hs',      'desc' => 'Classic FizzBuzz — multiples of 3 → Fizz, 5 → Buzz, both → FizzBuzz.'],
+			['name' => 'fizzbuzz.poem.hs', 'path' => 'examples/2013-benito-van-der-zander/fizzbuzz.poem.hs', 'desc' => 'FizzBuzz written in the poetic style — considerably longer.'],
+			['name' => 'fizzbuzztick.hs',  'path' => 'examples/2013-benito-van-der-zander/fizzbuzztick.hs',  'desc' => 'A compact FizzBuzz variant driven by time ticks.'],
+		],
+		'Miscellaneous' => [
+			['name' => 'name.hs',     'path' => 'examples/2003-jeff-binder/name.hs',     'desc' => 'An acrostic program whose node names spell out HOMESPRING line by line.'],
+			['name' => 'flipflop.hs', 'path' => 'examples/2005-joe-neeman/flipflop.hs', 'desc' => 'A flip-flop that alternates state using an inverse-lock and a pair of pump/switch nodes.'],
+			['name' => 'tic.hs',      'path' => 'examples/2005-joe-neeman/tic.hs',      'desc' => 'Tic-tac-toe — by far the most elaborate program in the collection. Requires specific move-notation input; see the source header for the expected format. Takes several seconds per board frame.'],
+		],
+	];
+
+	function _example_size($b) {
+		if ($b < 1024) return $b . ' B';
+		return number_format($b / 1024, 1) . ' KB';
+	}
 ?>
 <script src="homespring.js/lib/homespring.js?v=2"></script>
 <style>
@@ -276,6 +327,131 @@ html, body {
 	fill: #f38ba8 !important;
 }
 
+/* ---- Examples modal ---- */
+
+#examples-modal {
+	position: fixed;
+	inset: 0;
+	z-index: 1000;
+}
+
+#examples-modal[hidden] {
+	display: none;
+}
+
+#examples-modal .modal-backdrop {
+	position: absolute;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.55);
+}
+
+#examples-modal .modal-box {
+	position: relative;
+	margin: 5vh auto;
+	max-width: 720px;
+	max-height: 90vh;
+	background: var(--surface);
+	border: 1px solid var(--border);
+	border-radius: 8px;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+#examples-modal .modal-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 14px 20px;
+	border-bottom: 1px solid var(--border);
+}
+
+#examples-modal .modal-header h3 {
+	font-size: 16px;
+	font-weight: 600;
+	color: var(--text);
+	margin: 0;
+}
+
+#examples-modal .modal-close {
+	background: transparent;
+	border: none;
+	color: var(--text-dim);
+	font-size: 22px;
+	line-height: 1;
+	cursor: pointer;
+	padding: 0 8px;
+}
+
+#examples-modal .modal-close:hover {
+	color: var(--text);
+}
+
+#examples-modal .modal-body {
+	padding: 12px 20px 20px;
+	overflow-y: auto;
+}
+
+#examples-modal h4 {
+	color: var(--accent);
+	font-size: 11px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	margin: 16px 0 6px;
+	border: none;
+	padding: 0;
+}
+
+#examples-modal h4:first-child {
+	margin-top: 0;
+}
+
+#examples-modal .examples-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+#examples-modal .examples-list li {
+	padding: 8px 10px;
+	border-radius: 4px;
+	cursor: pointer;
+	list-style: none;
+	text-indent: 0;
+}
+
+#examples-modal .examples-list li:hover {
+	background: var(--surface2);
+}
+
+#examples-modal .examples-list .row {
+	display: flex;
+	align-items: baseline;
+	gap: 8px;
+}
+
+#examples-modal .examples-list .name {
+	font-family: var(--font-mono);
+	font-size: 13px;
+	color: var(--text);
+}
+
+#examples-modal .examples-list .size {
+	font-family: var(--font-mono);
+	font-size: 11px;
+	color: var(--text-dim);
+	margin-left: auto;
+}
+
+#examples-modal .examples-list .desc {
+	font-size: 12px;
+	color: var(--text-dim);
+	margin-top: 2px;
+	line-height: 1.4;
+}
+
 </style>
 </head>
 <body>
@@ -295,7 +471,38 @@ html, body {
 		<span class="speed-icon">🐇</span>
 	</label>
 	<div class="sep"></div>
+	<button id="btn-examples" title="Load an example program"><span class="btn-icon">📚</span>Examples</button>
 	<span class="tick-counter">Tick: <span id="tick-num">0</span></span>
+</div>
+
+<!-- Examples modal -->
+<div id="examples-modal" hidden>
+	<div class="modal-backdrop"></div>
+	<div class="modal-box">
+		<div class="modal-header">
+			<h3>Example Programs</h3>
+			<button type="button" class="modal-close" aria-label="Close">&times;</button>
+		</div>
+		<div class="modal-body">
+<?php foreach ($example_groups as $group => $items): ?>
+			<h4><?= htmlspecialchars($group) ?></h4>
+			<ul class="examples-list">
+<?php foreach ($items as $e):
+	$abs = __DIR__ . '/' . $e['path'];
+	$size = file_exists($abs) ? _example_size(filesize($abs)) : '';
+?>
+				<li data-path="<?= htmlspecialchars($e['path']) ?>"<?php if (isset($e['input'])): ?> data-input="<?= htmlspecialchars($e['input']) ?>"<?php endif; ?>>
+					<div class="row">
+						<span class="name"><?= htmlspecialchars($e['name']) ?></span>
+						<span class="size"><?= $size ?></span>
+					</div>
+					<div class="desc"><?= htmlspecialchars($e['desc']) ?></div>
+				</li>
+<?php endforeach; ?>
+			</ul>
+<?php endforeach; ?>
+		</div>
+	</div>
 </div>
 
 <!-- Main layout -->
@@ -455,6 +662,37 @@ function updateSpeed(){
 }
 speedSlider.addEventListener('input', updateSpeed);
 updateSpeed();
+
+// ---- Examples modal ----
+
+var examplesModal = document.getElementById('examples-modal');
+document.getElementById('btn-examples').addEventListener('click', function(){
+	examplesModal.hidden = false;
+});
+function closeExamples(){ examplesModal.hidden = true; }
+examplesModal.querySelector('.modal-close').addEventListener('click', closeExamples);
+examplesModal.querySelector('.modal-backdrop').addEventListener('click', closeExamples);
+document.addEventListener('keydown', function(e){
+	if (e.key === 'Escape' && !examplesModal.hidden) closeExamples();
+});
+
+examplesModal.querySelectorAll('.examples-list li').forEach(function(li){
+	li.addEventListener('click', function(){
+		var path = li.dataset.path;
+		fetch('/' + path).then(function(r){
+			if (!r.ok) throw new Error('HTTP ' + r.status);
+			return r.text();
+		}).then(function(text){
+			srcEditor.value = text;
+			inputArea.value = li.dataset.input || '';
+			closeExamples();
+			createProgram();
+		}).catch(function(err){
+			outputLog.textContent = 'Failed to load ' + path + ': ' + err.message;
+			closeExamples();
+		});
+	});
+});
 
 // ---- Program management ----
 
