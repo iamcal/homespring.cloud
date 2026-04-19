@@ -808,7 +808,7 @@ function renderTree(){
 			labelAttrs.transform = 'rotate(-45 0 -14)';
 		}
 		var label = svgEl('text', labelAttrs);
-		label.textContent = n.node.name || '(unnamed)';
+		label.textContent = n.node.name || '';
 		g.appendChild(label);
 
 		var stateLabel = svgEl('text', {
