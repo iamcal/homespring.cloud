@@ -9,12 +9,12 @@
 	// cell (Quin's 4 programs) are skipped — they have no per-interpreter
 	// result.
 	$interpreters = [
-		['lang' => 'Guile Scheme', 'date' => '2003-04-14', 'author' => 'Jeff Binder',   'url' => 'https://github.com/iamcal/Homespring',               'repo' => 'github.com/iamcal/Homespring'],
-		['lang' => 'Perl',         'date' => '2003-04-15', 'author' => 'Cal Henderson', 'url' => 'https://github.com/iamcal/perl-Language-Homespring', 'repo' => 'github.com/iamcal/perl-Language-Homespring'],
-		['lang' => 'OCaml',        'date' => '2005-11-24', 'author' => 'Joe Neeman',    'url' => 'https://github.com/jneem/homespring',                'repo' => 'github.com/jneem/homespring'],
-		['lang' => 'JavaScript',   'date' => '2012-10-30', 'author' => 'Quin Kennedy',  'url' => 'https://github.com/quinkennedy/Homespring',          'repo' => 'github.com/quinkennedy/Homespring'],
-		['lang' => 'JavaScript',   'date' => '2017-01-29', 'author' => 'Cal Henderson', 'url' => 'https://github.com/iamcal/homespring.js',            'repo' => 'github.com/iamcal/homespring.js'],
-		['lang' => 'JavaScript',   'date' => '2018-05-30', 'author' => 'Martijn Arts',  'url' => 'https://github.com/martijnarts/homespring-js',       'repo' => 'github.com/martijnarts/homespring-js'],
+		['lang' => 'Guile Scheme', 'date' => '2003-04-14', 'author' => 'Jeff Binder',   'url' => 'https://github.com/iamcal/Homespring',               'repo' => 'github.com/iamcal/Homespring',               'desc' => 'The original reference implementation.'],
+		['lang' => 'Perl',         'date' => '2003-04-15', 'author' => 'Cal Henderson', 'url' => 'https://github.com/iamcal/perl-Language-Homespring', 'repo' => 'github.com/iamcal/perl-Language-Homespring', 'desc' => 'The first third party interpreter, including a tree visualizer.'],
+		['lang' => 'OCaml',        'date' => '2005-11-24', 'author' => 'Joe Neeman',    'url' => 'https://github.com/jneem/homespring',                'repo' => 'github.com/jneem/homespring',                'desc' => 'Released along with an updated spec.'],
+		['lang' => 'JavaScript',   'date' => '2012-10-30', 'author' => 'Quin Kennedy',  'url' => 'https://github.com/quinkennedy/Homespring',          'repo' => 'github.com/quinkennedy/Homespring',          'desc' => 'The first JavaScript implementation.'],
+		['lang' => 'JavaScript',   'date' => '2017-01-29', 'author' => 'Cal Henderson', 'url' => 'https://github.com/iamcal/homespring.js',            'repo' => 'github.com/iamcal/homespring.js',            'desc' => 'The most complete implementation, powers this website.'],
+		['lang' => 'JavaScript',   'date' => '2018-05-30', 'author' => 'Martijn Arts',  'url' => 'https://github.com/martijnarts/homespring-js',       'repo' => 'github.com/martijnarts/homespring-js',       'desc' => 'A partial implementation with HTML visualizer.'],
 	];
 	foreach ($interpreters as &$_i) { $_i['yes'] = 0; $_i['total'] = 0; }
 	unset($_i);
@@ -73,7 +73,7 @@ p.lead a {
 
 .interp-grid {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 	gap: 12px;
 	margin-top: 8px;
 }
@@ -123,6 +123,13 @@ p.lead a {
 	font-size: 12px;
 	font-family: var(--font-mono);
 	word-break: break-all;
+}
+
+.interp-card .blurb {
+	margin-top: 8px;
+	color: var(--text-dim);
+	font-size: 12px;
+	line-height: 1.4;
 }
 
 /* Examples table */
@@ -344,6 +351,7 @@ table.examples td.compat sup {
 		<div class="name"><?= htmlspecialchars($i['lang']) ?> <span class="year"><?= $i['date'] ?></span></div>
 		<div class="author"><?= htmlspecialchars($i['author']) ?></div>
 		<a class="repo" href="<?= htmlspecialchars($i['url']) ?>"><?= htmlspecialchars($i['repo']) ?></a>
+		<div class="blurb"><?= htmlspecialchars($i['desc']) ?></div>
 	</div>
 <?php endforeach; ?>
 </div>
