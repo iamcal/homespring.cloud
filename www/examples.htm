@@ -335,8 +335,17 @@ table.examples td.compat sup {
 	margin-bottom: 0;
 }
 
-.compat-merged code {
+code {
+	background: var(--surface2);
+	border: 1px solid var(--border);
+	border-radius: 4px;
+	padding: 1px 6px;
 	font-family: var(--font-mono);
+	font-size: 0.9em;
+	color: var(--text);
+}
+
+.compat-merged code {
 	font-size: 11px;
 }
 
@@ -584,9 +593,9 @@ table.examples td.compat sup {
 			<td class="compat-merged" colspan="5" rowspan="4">
 				<p>Quin's example files don't run correctly on compliant interpreters, due to two important mistakes in the implementation.</p>
 				
-				<p>The `reverse*.hsg` examples rely on the `force up` node allowing upstream salmon to move to the first child, which it should be blocking.</p>
+				<p>The <code>reverse*.hsg</code> examples rely on the <code>force up</code> node allowing upstream salmon to move to the first child, which it should be blocking.</p>
 				
-				<p>The `split.hsg` example relies on an incorrect implementation of `append up` where the appending logic is supposed to run in the misc tick,
+				<p>The <code>split.hsg</code> example relies on an incorrect implementation of <code>append up</code> where the appending logic is supposed to run in the misc tick,
 				but instead runs in the fish tick down, before any upstream salmon have had a chance to arrive (or leave, from the previous tick).</p>
 			</td>
 		</tr>
