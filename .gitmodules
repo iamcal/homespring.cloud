@@ -16,3 +16,6 @@
 [submodule "www/interpreters/2003-cal-henderson"]
 	path = interpreters/2003-cal-henderson
 	url = https://github.com/iamcal/perl-Language-Homespring.git
+[submodule "interpreters/2018-martijn-arts"]
+	path = interpreters/2018-martijn-arts
+	url = https://github.com/martijnarts/homespring-js.git

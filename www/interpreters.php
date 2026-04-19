@@ -14,6 +14,7 @@
 		['lang' => 'OCaml',        'date' => '2005-11-24', 'author' => 'Joe Neeman',    'url' => 'https://github.com/jneem/homespring',                'repo' => 'github.com/jneem/homespring'],
 		['lang' => 'JavaScript',   'date' => '2012-10-30', 'author' => 'Quin Kennedy',  'url' => 'https://github.com/quinkennedy/Homespring',          'repo' => 'github.com/quinkennedy/Homespring'],
 		['lang' => 'JavaScript',   'date' => '2017-01-29', 'author' => 'Cal Henderson', 'url' => 'https://github.com/iamcal/homespring.js',            'repo' => 'github.com/iamcal/homespring.js'],
+		['lang' => 'JavaScript',   'date' => '2018-05-30', 'author' => 'Martijn Arts',  'url' => 'https://github.com/martijnarts/homespring-js',       'repo' => 'github.com/martijnarts/homespring-js'],
 	];
 	foreach ($interpreters as &$_i) { $_i['yes'] = 0; $_i['total'] = 0; }
 	unset($_i);
@@ -359,12 +360,13 @@ table.examples td.compat sup {
 			<th class="compat"><span class="lang">OCaml</span><span class="year">2005</span></th>
 			<th class="compat"><span class="lang">JavaScript</span><span class="year">2012</span></th>
 			<th class="compat"><span class="lang">JavaScript</span><span class="year">2017</span></th>
+			<th class="compat"><span class="lang">JavaScript</span><span class="year">2018</span></th>
 		</tr>
 	</thead>
 	<tbody>
 
 		<tr class="author-row">
-			<td colspan="7">Jeff Binder <span class="author-meta">— 2003 · author of Homespring and its <a href="https://github.com/iamcal/Homespring">original Scheme interpreter</a></span></td>
+			<td colspan="8">Jeff Binder <span class="author-meta">— 2003 · author of Homespring and its <a href="https://github.com/iamcal/Homespring">original Scheme interpreter</a></span></td>
 		</tr>
 
 		<tr>
@@ -375,6 +377,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
+			<td class="compat unknown">?</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2003-jeff-binder/cat.hs">cat.hs</a></td>
@@ -384,6 +387,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
+			<td class="compat unknown">?</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2003-jeff-binder/first.hs">first.hs</a></td>
@@ -393,6 +397,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
+			<td class="compat unknown">?</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2003-jeff-binder/hello-1.hs">hello-1.hs</a></td>
@@ -402,6 +407,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
+			<td class="compat unknown">?</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2003-jeff-binder/hello-2.hs">hello-2.hs</a></td>
@@ -411,6 +417,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
+			<td class="compat unknown">?</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2003-jeff-binder/hello-3.hs">hello-3.hs</a></td>
@@ -420,6 +427,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
+			<td class="compat unknown">?</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2003-jeff-binder/hi.hs">hi.hs</a></td>
@@ -429,6 +437,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
+			<td class="compat unknown">?</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2003-jeff-binder/name.hs">name.hs</a></td>
@@ -438,6 +447,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Matches the first ten tokens exactly, but continues emitting 'homeless'/'Great' pairs indefinitely where OCaml/JS stop.">no</td>
 			<td class="compat yes">yes</td>
+			<td class="compat unknown">?</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2003-jeff-binder/null.hs">null.hs</a></td>
@@ -447,6 +457,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
+			<td class="compat unknown">?</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2003-jeff-binder/quiz.hs">quiz.hs</a></td>
@@ -456,6 +467,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
+			<td class="compat unknown">?</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2003-jeff-binder/simple.hs">simple.hs</a></td>
@@ -465,10 +477,11 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes</td>
+			<td class="compat unknown">?</td>
 		</tr>
 
 		<tr class="author-row">
-			<td colspan="7">Cal Henderson <span class="author-meta">— 2003 · author of the <a href="https://github.com/iamcal/perl-Language-Homespring">Perl interpreter</a></span></td>
+			<td colspan="8">Cal Henderson <span class="author-meta">— 2003 · author of the <a href="https://github.com/iamcal/perl-Language-Homespring">Perl interpreter</a></span></td>
 		</tr>
 
 		<tr>
@@ -479,10 +492,11 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
+			<td class="compat unknown">?</td>
 		</tr>
 
 		<tr class="author-row">
-			<td colspan="7">Joe Neeman <span class="author-meta">— 2005 · author of the <a href="https://github.com/jneem/homespring">OCaml interpreter</a></span></td>
+			<td colspan="8">Joe Neeman <span class="author-meta">— 2005 · author of the <a href="https://github.com/jneem/homespring">OCaml interpreter</a></span></td>
 		</tr>
 
 		<tr>
@@ -493,6 +507,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Emits 'hello' (one 'o' short of the OCaml/JS reference)">no</td>
 			<td class="compat yes">yes</td>
+			<td class="compat unknown">?</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2005-joe-neeman/tic.hs">tic.hs</a></td>
@@ -502,16 +517,17 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Emits nothing for this program">no</td>
 			<td class="compat yes">yes</td>
+			<td class="compat unknown">?</td>
 		</tr>
 
 		<tr class="author-row">
-			<td colspan="7">Quin Kennedy <span class="author-meta">— 2012 · author of a <a href="https://github.com/quinkennedy/Homespring">JavaScript interpreter</a></span></td>
+			<td colspan="8">Quin Kennedy <span class="author-meta">— 2012 · author of a <a href="https://github.com/quinkennedy/Homespring">JavaScript interpreter</a></span></td>
 		</tr>
 
 		<tr>
 			<td class="name"><a href="examples/2012-quin-kennedy/reverse.hsg">reverse.hsg</a></td>
 			<td class="desc">Reverses the input using a <code>force.up</code> node and a <code>split</code>.</td>
-			<td class="compat-merged" colspan="5" rowspan="4">
+			<td class="compat-merged" colspan="6" rowspan="4">
 				<p>Quin's example files don't run correctly on compliant interpreters, due to two important mistakes in the implementation.</p>
 				
 				<p>The <code>reverse*.hsg</code> examples rely on the <code>force up</code> node allowing upstream salmon to move to the first child, which it should be blocking.</p>
@@ -534,7 +550,7 @@ table.examples td.compat sup {
 		</tr>
 
 		<tr class="author-row">
-			<td colspan="7">Benito van der Zander <span class="author-meta">— 2013 · author of the <a href="https://github.com/benibela/home-river">HomeSpringTree compiler</a>; most are generated from HomeSpringTree (.hst) sources</span></td>
+			<td colspan="8">Benito van der Zander <span class="author-meta">— 2013 · author of the <a href="https://github.com/benibela/home-river">HomeSpringTree compiler</a>; most are generated from HomeSpringTree (.hst) sources</span></td>
 		</tr>
 
 		<tr>
@@ -545,6 +561,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
+			<td class="compat unknown">?</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/count.hs">count.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/count.hst">.hst</a>)</span></td>
@@ -554,6 +571,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
+			<td class="compat unknown">?</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/count2.hs">count2.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/count2.hst">.hst</a>)</span></td>
@@ -563,6 +581,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Produces '..._A8________A7________A6_' (reversed digits) instead of '..._A1________A2________A3_'">no</td>
 			<td class="compat yes">yes</td>
+			<td class="compat unknown">?</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/count3.hs">count3.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/count3.hst">.hst</a>)</span></td>
@@ -572,6 +591,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Produces '_________9_9A_9B…' instead of '________x_xA…'">no</td>
 			<td class="compat yes">yes</td>
+			<td class="compat unknown">?</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/count4.hs">count4.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/count4.hst">.hst</a>)</span></td>
@@ -581,6 +601,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Emits a reordered prefix ('numberhello…')">no</td>
 			<td class="compat yes">yes</td>
+			<td class="compat unknown">?</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/count.poem.hs">count.poem.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/count.poem.hst">.hst</a>)</span></td>
@@ -590,6 +611,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
+			<td class="compat unknown">?</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/count.poem.withfillers.hs">count.poem.withfillers.hs</a></td>
@@ -599,6 +621,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
+			<td class="compat unknown">?</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/fizzbuzz.hs">fizzbuzz.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/fizzbuzz.hst">.hst</a>)</span></td>
@@ -608,6 +631,7 @@ table.examples td.compat sup {
 			<td class="compat no" title="Emits letter placeholders ('f\nf\nFizz\nf\nBuzz…') where it should emit digits">no</td>
 			<td class="compat no" title="Emits placeholder tokens ('c_\nc_\nFizz\nc_\nBuzz…') where it should emit digits">no</td>
 			<td class="compat yes">yes</td>
+			<td class="compat unknown">?</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/fizzbuzz.poem.hs">fizzbuzz.poem.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/fizzbuzz.poem.hst">.hst</a>)</span></td>
@@ -617,6 +641,7 @@ table.examples td.compat sup {
 			<td class="compat no" title="Leaks an 'and' prefix into the output ('and1\n2\nFizz\n…')">no</td>
 			<td class="compat no" title="Emits placeholder tokens ('c_\nc_\nFizz\nc_\nBuzz…') where it should emit digits">no</td>
 			<td class="compat yes">yes</td>
+			<td class="compat unknown">?</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/fizzbuzztick.hs">fizzbuzztick.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/fizzbuzztick.hst">.hst</a>)</span></td>
@@ -626,6 +651,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Starts with 'tick' and reorders the output">no</td>
 			<td class="compat yes">yes</td>
+			<td class="compat unknown">?</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/helloworld.hs">helloworld.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/helloworld.hst">.hst</a>)</span></td>
@@ -635,6 +661,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
+			<td class="compat unknown">?</td>
 		</tr>
 
 	</tbody>
