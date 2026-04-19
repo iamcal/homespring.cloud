@@ -31,7 +31,7 @@ main p {
 <?php include 'include/nav.php'; ?>
 
 <main>
-	<h1>About homespring.cloud</h1>
+	<h1>About Homespring.cloud</h1>
 
 	<p>Homespring.cloud is a visual debugger and learning tool for the Homespring esoteric programming language.</p>
 
@@ -52,14 +52,34 @@ Universe bear hatchery Hello. World!.
 
 	<p>The <a href="https://jeffreymbinder.net/misc/hs/hstut.html">original tutorial</a> is available to help learn the language more fully.</p>
 
+	<p>There have been three language specifications over the last 25 years:</p>
+	<ul>
+		<li><a href="/homespring.js/docs/Homespring-Official-Language-Standard.pdf">Jeff Binder's Official 2003 Spec</a></li>
+		<li><a href="/homespring.js/docs/Homespring-Proposed-Language-Standard.pdf">Joe Neeman's Proposed 2005 Spec</a></li>
+		<li><a href="/homespring.js/docs/Homespring-Updated-Language-Standard.pdf">Cal Henderson's Updated 2026 Spec</a></li>
+	</ul>
+
+
 	<h2>This Debugger</h2>
 
 	<p>Homespring programs, while simple and elegant, can be a challenge to write due to the lack of rivers in most text editors.
 		This debugger was created by <a href="https://www.iamcal.com/">Cal Henderson</a> to allow interactive visualiztion of a program's river system,
-		without having to install or compile any complex software. Under the good it uses the
+		without having to install or compile any complex software. Under the hood it uses the
 		<a href="https://github.com/iamcal/homespring.js">homespring.js</a> interpreter, currently the most complete
 		<a href="/interpreters">interpreter implementation</a>.</p>
 
+	<p>The source code for this website is <a href="https://github.com/iamcal/homespring.cloud">available on github</a>.</p>
+
+
+	<h2>Futher Reading</h2>
+
+	<p>You can find links to all of the known implementations on the <a href="/interpreters">interpreters page</a>.</p>
+
+	<p>The <a href="https://esolangs.org/wiki/Homespring">Homespring page on the Esolang Wiki</a> has some basic information about the language.</p>
+
+	<p>Jeff Binder wrote a <a href="https://jeffreymbinder.net/208/homespring">short history of the language</a> in 2018.</p>
+
+	<p>Try It Online has an <a href="https://tio.run/#homespring">online Homespring version</a>, though it always seems to time out after 60 seconds with no output.</p>
 
 </main>
 
