@@ -471,7 +471,7 @@ html, body {
 		<span class="speed-icon">🐇</span>
 	</label>
 	<div class="sep"></div>
-	<button id="btn-examples" title="Load an example program"><span class="btn-icon">📚</span>Examples</button>
+	<button id="btn-examples" title="Load an example program">Example Programs</button>
 	<span class="tick-counter">Tick: <span id="tick-num">0</span></span>
 </div>
 
