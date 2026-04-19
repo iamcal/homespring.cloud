@@ -66,6 +66,7 @@ ADAPTERS = [
     '2005-joe-neeman',
     '2012-quin-kennedy',
     '2017-cal-henderson-js',
+    '2018-martijn-arts',
 ]
 
 QUIN_STAR_SKIP = {'jeff-simple'}
@@ -119,12 +120,12 @@ def main():
         if i > 0:
             print()
         print('\t\t<tr class="author-row">')
-        print(f'\t\t\t<td colspan="7">{author} <span class="author-meta">{meta}</span></td>')
+        print(f'\t\t\t<td colspan="{len(ADAPTERS) + 2}">{author} <span class="author-meta">{meta}</span></td>')
         print('\t\t</tr>')
         print()
         # Quin Kennedy's four programs are all "invalid" for harness
         # purposes — see the explanation cell. Merge the whole result block
-        # into a single cell spanning 5 cols × len(progs) rows.
+        # into a single cell spanning len(ADAPTERS) cols × len(progs) rows.
         merge_block = (author == 'Quin Kennedy')
         for j, (slug, href, name, desc) in enumerate(progs):
             name_cell = f'<a href="{href}">{name}</a>'
@@ -136,7 +137,7 @@ def main():
             if merge_block:
                 if j == 0:
                     explanation = open(QUIN_EXPLANATION).read().rstrip()
-                    print(f'\t\t\t<td class="compat-merged" colspan="5" '
+                    print(f'\t\t\t<td class="compat-merged" colspan="{len(ADAPTERS)}" '
                           f'rowspan="{len(progs)}">')
                     for line in explanation.splitlines():
                         print(f'\t\t\t\t{line}')

@@ -87,4 +87,9 @@ log "Quin Kennedy's Node.js interpreter needs no build step"
 
 log "homespring.js needs no build step"
 
+# ---- Martijn Arts (JavaScript, 2018) -------------------------------------
+# Nothing to build; loaded as an ES module by the .mjs driver.
+
+log "Martijn Arts's homespring-js needs no build step"
+
 log "all interpreters ready. Run  \`python3 $here/run.py\`  to execute the tests."

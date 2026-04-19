@@ -243,12 +243,43 @@ class HomespringJsAdapter(Adapter):
                           timeout_s, env)
 
 
+class MartijnArtsAdapter(Adapter):
+    id = "2018-martijn-arts"
+    label = "Martijn Arts (JavaScript, 2018)"
+
+    @property
+    def lib(self) -> Path:
+        return INTERP_DIR / self.id / "homespring.js"
+
+    def is_available(self) -> tuple[bool, str]:
+        if shutil.which("node") is None:
+            return False, "node not in PATH"
+        if not self.lib.exists():
+            return False, f"missing {self.lib} — submodule not initialized"
+        return True, "ok"
+
+    def run(self, program_path, stdin, timeout_s, tick_limit):
+        # The driver is a .mjs file because Martijn's interpreter uses ES
+        # modules; .mjs is enough for node to load it as ESM without having
+        # to touch the submodule's package.json.
+        env = {"HS_TICKS": "1"}
+        if tick_limit:
+            env["HS_LIMIT"] = str(tick_limit)
+        driver = ROOT / "patches" / "martijn_arts_driver.mjs"
+        # --no-warnings silences the MODULE_TYPELESS_PACKAGE_JSON spam from
+        # node loading the submodule's .js as ESM without a package "type".
+        return self._exec(["node", "--no-warnings",
+                           str(driver), str(program_path)], stdin,
+                          timeout_s, env)
+
+
 ADAPTERS: list[Adapter] = [
     JoeNeemanAdapter(),
     JeffBinderAdapter(),
     CalHendersonAdapter(),
     QuinKennedyAdapter(),
     HomespringJsAdapter(),
+    MartijnArtsAdapter(),
 ]
 
 

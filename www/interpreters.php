@@ -377,7 +377,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
-			<td class="compat unknown">?</td>
+			<td class="compat no">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2003-jeff-binder/cat.hs">cat.hs</a></td>
@@ -387,7 +387,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
-			<td class="compat unknown">?</td>
+			<td class="compat no">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2003-jeff-binder/first.hs">first.hs</a></td>
@@ -397,7 +397,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
-			<td class="compat unknown">?</td>
+			<td class="compat no">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2003-jeff-binder/hello-1.hs">hello-1.hs</a></td>
@@ -407,7 +407,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
-			<td class="compat unknown">?</td>
+			<td class="compat no" title="timed out after 3.0s">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2003-jeff-binder/hello-2.hs">hello-2.hs</a></td>
@@ -417,7 +417,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
-			<td class="compat unknown">?</td>
+			<td class="compat no" title="tick mismatch: expected 10, got 8">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2003-jeff-binder/hello-3.hs">hello-3.hs</a></td>
@@ -427,7 +427,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
-			<td class="compat unknown">?</td>
+			<td class="compat no" title="tick mismatch: expected 16, got 6">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2003-jeff-binder/hi.hs">hi.hs</a></td>
@@ -437,7 +437,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
-			<td class="compat unknown">?</td>
+			<td class="compat no">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2003-jeff-binder/name.hs">name.hs</a></td>
@@ -447,7 +447,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Matches the first ten tokens exactly, but continues emitting 'homeless'/'Great' pairs indefinitely where OCaml/JS stop.">no</td>
 			<td class="compat yes">yes</td>
-			<td class="compat unknown">?</td>
+			<td class="compat no">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2003-jeff-binder/null.hs">null.hs</a></td>
@@ -457,7 +457,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
-			<td class="compat unknown">?</td>
+			<td class="compat no">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2003-jeff-binder/quiz.hs">quiz.hs</a></td>
@@ -467,7 +467,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
-			<td class="compat unknown">?</td>
+			<td class="compat no">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2003-jeff-binder/simple.hs">simple.hs</a></td>
@@ -477,7 +477,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes</td>
-			<td class="compat unknown">?</td>
+			<td class="compat yes">yes</td>
 		</tr>
 
 		<tr class="author-row">
@@ -492,7 +492,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
-			<td class="compat unknown">?</td>
+			<td class="compat no" title="tick mismatch: expected 7, got 20">no</td>
 		</tr>
 
 		<tr class="author-row">
@@ -507,7 +507,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Emits 'hello' (one 'o' short of the OCaml/JS reference)">no</td>
 			<td class="compat yes">yes</td>
-			<td class="compat unknown">?</td>
+			<td class="compat no">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2005-joe-neeman/tic.hs">tic.hs</a></td>
@@ -517,7 +517,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Emits nothing for this program">no</td>
 			<td class="compat yes">yes</td>
-			<td class="compat unknown">?</td>
+			<td class="compat no">no</td>
 		</tr>
 
 		<tr class="author-row">
@@ -561,7 +561,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
-			<td class="compat unknown">?</td>
+			<td class="compat no" title="tick mismatch: expected 53, got 80">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/count.hs">count.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/count.hst">.hst</a>)</span></td>
@@ -571,7 +571,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
-			<td class="compat unknown">?</td>
+			<td class="compat no" title="tick mismatch: expected 39, got 37">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/count2.hs">count2.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/count2.hst">.hst</a>)</span></td>
@@ -581,7 +581,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Produces '..._A8________A7________A6_' (reversed digits) instead of '..._A1________A2________A3_'">no</td>
 			<td class="compat yes">yes</td>
-			<td class="compat unknown">?</td>
+			<td class="compat no">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/count3.hs">count3.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/count3.hst">.hst</a>)</span></td>
@@ -591,7 +591,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Produces '_________9_9A_9B…' instead of '________x_xA…'">no</td>
 			<td class="compat yes">yes</td>
-			<td class="compat unknown">?</td>
+			<td class="compat no">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/count4.hs">count4.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/count4.hst">.hst</a>)</span></td>
@@ -601,7 +601,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Emits a reordered prefix ('numberhello…')">no</td>
 			<td class="compat yes">yes</td>
-			<td class="compat unknown">?</td>
+			<td class="compat no">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/count.poem.hs">count.poem.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/count.poem.hst">.hst</a>)</span></td>
@@ -611,7 +611,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
-			<td class="compat unknown">?</td>
+			<td class="compat no" title="tick mismatch: expected 39, got 37">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/count.poem.withfillers.hs">count.poem.withfillers.hs</a></td>
@@ -621,7 +621,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
-			<td class="compat unknown">?</td>
+			<td class="compat no" title="tick mismatch: expected 51, got 250">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/fizzbuzz.hs">fizzbuzz.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/fizzbuzz.hst">.hst</a>)</span></td>
@@ -631,7 +631,7 @@ table.examples td.compat sup {
 			<td class="compat no" title="Emits letter placeholders ('f\nf\nFizz\nf\nBuzz…') where it should emit digits">no</td>
 			<td class="compat no" title="Emits placeholder tokens ('c_\nc_\nFizz\nc_\nBuzz…') where it should emit digits">no</td>
 			<td class="compat yes">yes</td>
-			<td class="compat unknown">?</td>
+			<td class="compat no">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/fizzbuzz.poem.hs">fizzbuzz.poem.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/fizzbuzz.poem.hst">.hst</a>)</span></td>
@@ -641,7 +641,7 @@ table.examples td.compat sup {
 			<td class="compat no" title="Leaks an 'and' prefix into the output ('and1\n2\nFizz\n…')">no</td>
 			<td class="compat no" title="Emits placeholder tokens ('c_\nc_\nFizz\nc_\nBuzz…') where it should emit digits">no</td>
 			<td class="compat yes">yes</td>
-			<td class="compat unknown">?</td>
+			<td class="compat no">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/fizzbuzztick.hs">fizzbuzztick.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/fizzbuzztick.hst">.hst</a>)</span></td>
@@ -651,7 +651,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Starts with 'tick' and reorders the output">no</td>
 			<td class="compat yes">yes</td>
-			<td class="compat unknown">?</td>
+			<td class="compat no">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/helloworld.hs">helloworld.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/helloworld.hst">.hst</a>)</span></td>
@@ -661,7 +661,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
-			<td class="compat unknown">?</td>
+			<td class="compat no" title="tick mismatch: expected 9, got 60">no</td>
 		</tr>
 
 	</tbody>
