@@ -1,99 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Examples — homespring.cloud</title>
+<?php $title = 'Examples — homespring.cloud'; include 'include/header.php'; ?>
 <style>
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-:root {
-	--bg: #1e1e2e;
-	--surface: #282840;
-	--surface2: #313150;
-	--border: #3e3e5e;
-	--text: #cdd6f4;
-	--text-dim: #7f849c;
-	--accent: #89b4fa;
-	--accent-hover: #74a8fc;
-	--green: #a6e3a1;
-	--red: #f38ba8;
-	--yellow: #f9e2af;
-	--peach: #fab387;
-	--toolbar-h: 48px;
-	--font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
-	--font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-}
-
+/* Examples-specific: make the page scrollable vertically (the
+   debugger pins overflow to hidden, which we don't want here) and
+   keep the toolbar stuck to the top while the table scrolls under. */
 html, body {
-	background: var(--bg);
-	color: var(--text);
-	font-family: var(--font-sans);
 	min-height: 100%;
 }
 
-a {
-	color: var(--accent);
-	text-decoration: none;
-}
-
-a:hover {
-	color: var(--accent-hover);
-	text-decoration: underline;
-}
-
 #toolbar {
-	height: var(--toolbar-h);
-	background: var(--surface);
-	border-bottom: 1px solid var(--border);
-	display: flex;
-	align-items: center;
-	padding: 0 16px;
-	gap: 8px;
 	position: sticky;
 	top: 0;
 	z-index: 10;
-}
-
-#toolbar .brand {
-	font-weight: 700;
-	font-size: 15px;
-	color: var(--accent);
-	margin-right: 16px;
-	user-select: none;
-}
-
-#toolbar .brand a {
-	color: inherit;
-	text-decoration: none;
-}
-
-#toolbar .nav-links {
-	display: flex;
-	gap: 4px;
-}
-
-#toolbar .nav-links a {
-	background: var(--surface2);
-	color: var(--text);
-	border: 1px solid var(--border);
-	border-radius: 6px;
-	padding: 6px 14px;
-	font-size: 13px;
-	transition: background 0.15s, border-color 0.15s;
-}
-
-#toolbar .nav-links a:hover {
-	background: var(--border);
-	border-color: var(--accent);
-	text-decoration: none;
-}
-
-#toolbar .nav-links a.current {
-	background: var(--accent);
-	color: var(--bg);
-	border-color: var(--accent);
 }
 
 main {
@@ -335,16 +253,6 @@ table.examples td.compat sup {
 	margin-bottom: 0;
 }
 
-code {
-	background: var(--surface2);
-	border: 1px solid var(--border);
-	border-radius: 4px;
-	padding: 1px 6px;
-	font-family: var(--font-mono);
-	font-size: 0.9em;
-	color: var(--text);
-}
-
 .compat-merged code {
 	font-size: 11px;
 }
@@ -377,8 +285,8 @@ code {
 <div id="toolbar">
 	<span class="brand"><a href="/">homespring.cloud</a></span>
 	<div class="nav-links">
-		<a href="home.htm">Debugger</a>
-		<a href="examples.htm" class="current">Examples</a>
+		<a href="home.php">Debugger</a>
+		<a href="examples.php" class="current">Examples</a>
 	</div>
 </div>
 
@@ -743,5 +651,4 @@ code {
 
 </main>
 
-</body>
-</html>
+<?php include 'include/footer.php'; ?>

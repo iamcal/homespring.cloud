@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render the entire tbody for examples.htm from tests/results.json."""
+"""Render the entire tbody for examples.php from tests/results.json."""
 import json
 
 RESULTS = '/mnt/webroot/homespring.cloud/tests/results.json'

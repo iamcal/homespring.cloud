@@ -1,59 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>homespring.cloud</title>
+<?php include 'include/header.php'; ?>
 <script src="homespring.js/lib/homespring.js?v=2"></script>
 <style>
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-:root {
-	--bg: #1e1e2e;
-	--surface: #282840;
-	--surface2: #313150;
-	--border: #3e3e5e;
-	--text: #cdd6f4;
-	--text-dim: #7f849c;
-	--accent: #89b4fa;
-	--accent-hover: #74a8fc;
-	--green: #a6e3a1;
-	--red: #f38ba8;
-	--yellow: #f9e2af;
-	--peach: #fab387;
-	--toolbar-h: 48px;
-	--font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
-	--font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-}
-
+/* Debugger-specific: pin the body to the viewport so the tree pane can
+   fill the remaining height without scrolling the whole page. */
 html, body {
 	height: 100%;
-	background: var(--bg);
-	color: var(--text);
-	font-family: var(--font-sans);
 	overflow: hidden;
 }
 
-/* ---- Toolbar ---- */
-
-#toolbar {
-	height: var(--toolbar-h);
-	background: var(--surface);
-	border-bottom: 1px solid var(--border);
-	display: flex;
-	align-items: center;
-	padding: 0 16px;
-	gap: 8px;
-}
-
-#toolbar .brand {
-	font-weight: 700;
-	font-size: 15px;
-	color: var(--accent);
-	margin-right: 16px;
-	user-select: none;
-}
+/* ---- Toolbar additions ---- */
 
 #toolbar button {
 	background: var(--surface2);
@@ -93,13 +49,6 @@ html, body {
 #toolbar button .btn-icon {
 	font-size: 13px;
 	line-height: 1;
-}
-
-#toolbar .sep {
-	width: 1px;
-	height: 24px;
-	background: var(--border);
-	margin: 0 4px;
 }
 
 #toolbar .speed-control {
@@ -1345,5 +1294,4 @@ window.addEventListener('resize', function(){
 createProgram();
 
 </script>
-</body>
-</html>
+<?php include 'include/footer.php'; ?>
