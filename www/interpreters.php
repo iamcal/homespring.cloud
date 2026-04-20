@@ -530,7 +530,7 @@ table.examples td.compat sup {
 		<tr>
 			<td class="name"><a href="examples/2003-jeff-binder/name.hs">name.hs</a></td>
 			<td class="desc">An acrostic program whose node names spell out HOMESPRING line by line.</td>
-			<td class="compat no" title="Emits a 'HatcheryHatcheryhomeless' cycle indefinitely instead of the OCaml/JS 'Great'/'homeless' pattern — completely different salmon naming.">no</td>
+			<td class="compat yes presumed" title="Runs under the original 2003 destruction rules: a destroyed node's name is blanked to '' (see `break-stuff!!!`), which then makes salmon at the parent spawn instead of routing through the destroyed child. That produces the 'Hatcheryhomeless' cycle here once Snowmelt smashes Oblivion. Later interpreters, starting with Joe Neeman's 2005 OCaml, track destruction as a separate flag and leave node names intact — so salmon route through to Great and the program eventually quiesces."><i>yes</i></td>
 			<td class="compat no" title="Starts with 'homelesshomelessGreat' and keeps alternating 'homeless'/'Great' forever, where OCaml/JS stop after ten tokens.">no</td>
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Matches the first ten tokens exactly, but continues emitting 'homeless'/'Great' pairs indefinitely where OCaml/JS stop.">no</td>
