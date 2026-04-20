@@ -320,6 +320,13 @@ table.examples td.compat sup {
 
 .compat-merged p {
 	margin-bottom: 8px;
+	/* Keep each paragraph visible while the user scrolls horizontally
+	   through the 7-column spanning cell. The sticky left sits just past
+	   the frozen name column — the name column's higher z-index means it
+	   visually covers any overlap, so only the portion to the right of
+	   the name column is ever shown. */
+	position: sticky;
+	left: 150px;
 }
 
 .compat-merged p:last-child {
