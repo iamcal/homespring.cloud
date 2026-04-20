@@ -1635,4 +1635,4 @@ window.addEventListener('resize', function(){
 createProgram();
 
 </script>
-<?php include '../include/footer.php'; ?>
+<?php $hide_site_footer = true; include '../include/footer.php'; ?>
