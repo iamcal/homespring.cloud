@@ -1,0 +1,521 @@
+{
+  "generated_at": 1776704478,
+  "adapter": {
+    "id": "2005-joe-neeman",
+    "label": "Joe Neeman (OCaml, 2005)",
+    "available": true,
+    "reason": "ok"
+  },
+  "programs": [
+    {
+      "slug": "benito-clock",
+      "description": "Ticking clock \u2014 each cycle prints eight X's followed by a 'y'. We verify the first couple of cycles.",
+      "source": "www/examples/2013-benito-van-der-zander/clock.hs"
+    },
+    {
+      "slug": "benito-count-poem-withfillers",
+      "description": "Poetic counter with additional filler words \u2014 takes longer to start emitting.",
+      "source": "www/examples/2013-benito-van-der-zander/count.poem.withfillers.hs"
+    },
+    {
+      "slug": "benito-count-poem",
+      "description": "Counter written in Benito's poetic Homespring style.",
+      "source": "www/examples/2013-benito-van-der-zander/count.poem.hs"
+    },
+    {
+      "slug": "benito-count",
+      "description": "Counts up from 1 \u2014 the simplest of Benito's counter programs.",
+      "source": "www/examples/2013-benito-van-der-zander/count.hs"
+    },
+    {
+      "slug": "benito-count2",
+      "description": "Elaborate counter built from digit generators \u2014 prints an underscore ramp first.",
+      "source": "www/examples/2013-benito-van-der-zander/count2.hs"
+    },
+    {
+      "slug": "benito-count3",
+      "description": "Counter variant \u2014 prints underscores then an x-prefixed alphabet ramp.",
+      "source": "www/examples/2013-benito-van-der-zander/count3.hs"
+    },
+    {
+      "slug": "benito-count4",
+      "description": "Large counter (~10 KB of source) \u2014 emits a '0\\n1\\n2\\n\u2026' sequence with no stdin.",
+      "source": "www/examples/2013-benito-van-der-zander/count4.hs"
+    },
+    {
+      "slug": "benito-fizzbuzz-poem",
+      "description": "FizzBuzz in the poetic style \u2014 considerably longer source than fizzbuzz.hs.",
+      "source": "www/examples/2013-benito-van-der-zander/fizzbuzz.poem.hs"
+    },
+    {
+      "slug": "benito-fizzbuzz",
+      "description": "FizzBuzz \u2014 Fizz for multiples of 3, Buzz for 5, FizzBuzz for both. Slow to start on homespring.js.",
+      "source": "www/examples/2013-benito-van-der-zander/fizzbuzz.hs"
+    },
+    {
+      "slug": "benito-fizzbuzztick",
+      "description": "Compact FizzBuzz driven by a time node \u2014 emits tick markers between the numbers.",
+      "source": "www/examples/2013-benito-van-der-zander/fizzbuzztick.hs"
+    },
+    {
+      "slug": "benito-helloworld",
+      "description": "Benito's 'Hello World' \u2014 emitted as 'hello world' by the complete interpreters.",
+      "source": "www/examples/2013-benito-van-der-zander/helloworld.hs"
+    },
+    {
+      "slug": "cal-hello2",
+      "description": "Compact Hello World \u2014 the example shipped with Cal's Perl interpreter.",
+      "source": "www/examples/2003-cal-henderson/hello2.hs"
+    },
+    {
+      "slug": "jeff-add",
+      "description": "Single-digit adder \u2014 pipes two digits through a unary counter. Famously slow.",
+      "source": "www/examples/2003-jeff-binder/add.hs"
+    },
+    {
+      "slug": "jeff-cat",
+      "description": "One-line cat \u2014 an empty/newline program that echoes stdin to stdout.",
+      "source": "www/examples/2003-jeff-binder/cat.hs"
+    },
+    {
+      "slug": "jeff-first",
+      "description": "Infinite spring \u2014 repeatedly emits 'Hello, world.' until interrupted. We cap ticks and verify a prefix.",
+      "source": "www/examples/2003-jeff-binder/first.hs"
+    },
+    {
+      "slug": "jeff-hello-1",
+      "description": "Hello World #1 \u2014 minimal hatchery + bear + powers + marshy + snowmelt.",
+      "source": "www/examples/2003-jeff-binder/hello-1.hs"
+    },
+    {
+      "slug": "jeff-hello-2",
+      "description": "Hello World #2 \u2014 variation with extra filler words between the meaningful tokens.",
+      "source": "www/examples/2003-jeff-binder/hello-2.hs"
+    },
+    {
+      "slug": "jeff-hello-3",
+      "description": "Hello World #3 \u2014 uses a hydro power + spring source, force field, shallows, and sense nodes.",
+      "source": "www/examples/2003-jeff-binder/hello-3.hs"
+    },
+    {
+      "slug": "jeff-hi",
+      "description": "Interactive greeter \u2014 asks 'What's your name?' and responds 'Hi, <name>!'.",
+      "source": "www/examples/2003-jeff-binder/hi.hs"
+    },
+    {
+      "slug": "jeff-name",
+      "description": "Prints the HOMESPRING acronym. The complete interpreters (OCaml and homespring.js) agree on an output; the others each produce their own divergent pattern.",
+      "source": "www/examples/2003-jeff-binder/name.hs"
+    },
+    {
+      "slug": "jeff-null",
+      "description": "Zero-byte program \u2014 the null program is specially trapped and is not a quine.",
+      "source": "www/examples/2003-jeff-binder/null.hs"
+    },
+    {
+      "slug": "jeff-quiz",
+      "description": "Quiz \u2014 asks 'what's six times four?' and validates the answer. '24' terminates silently; other input yields 'you lie!'.",
+      "source": "www/examples/2003-jeff-binder/quiz.hs"
+    },
+    {
+      "slug": "jeff-simple",
+      "description": "Trivial one-byte program (a lone newline): parses to a tree with no active nodes; produces no output.",
+      "source": "www/examples/2003-jeff-binder/simple.hs"
+    },
+    {
+      "slug": "joe-flipflop",
+      "description": "Flip-flop toggle using an inverse-lock and a pair of pump/switch nodes.",
+      "source": "www/examples/2005-joe-neeman/flipflop.hs"
+    },
+    {
+      "slug": "joe-tic",
+      "description": "Tic-tac-toe \u2014 reads a move (1-9) on stdin, renders the board, then waits for the next move. We play 5 (centre, o) then 3 (top-right, x).",
+      "source": "www/examples/2005-joe-neeman/tic.hs"
+    },
+    {
+      "slug": "quin-reverse-2",
+      "description": "Reverse variant \u2014 'split wings calm the ebb and flow'.",
+      "source": "www/examples/2012-quin-kennedy/reverse-2.hsg"
+    },
+    {
+      "slug": "quin-reverse-3",
+      "description": "Reverse \u2014 third variation of the arrangement.",
+      "source": "www/examples/2012-quin-kennedy/reverse-3.hsg"
+    },
+    {
+      "slug": "quin-reverse",
+      "description": "Reverse \u2014 uses force.up and split. Every interpreter produces a different output.",
+      "source": "www/examples/2012-quin-kennedy/reverse.hsg"
+    },
+    {
+      "slug": "quin-split",
+      "description": "Splits input into pieces. We can't verify expected output automatically.",
+      "source": "www/examples/2012-quin-kennedy/split.hsg"
+    }
+  ],
+  "results": [
+    {
+      "program": "benito-clock",
+      "adapter": "2005-joe-neeman",
+      "status": "pass",
+      "expected_output": "XXXXXXXXy\nXXXXXXXXy\nXXXXXXXXy\nXXXXXXXXy\nXXXXXXX",
+      "actual_output": "XXXXXXXXy\nXXXXXXXXy\nXXXXXXXXy\nXXXXXXXXy\nXXXXXXX",
+      "expected_ticks": 53,
+      "actual_ticks": 53,
+      "notes": [],
+      "wall_time_ms": 7,
+      "presumed_pass": false
+    },
+    {
+      "program": "benito-count-poem-withfillers",
+      "adapter": "2005-joe-neeman",
+      "status": "pass",
+      "expected_output": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n40\n41\n42\n43\n44\n45\n46\n47\n48\n49\n50\n51\n52\n53\n54\n55\n56\n57\n58\n59\n60\n61\n62\n63\n64\n65\n66\n67\n68\n69\n70\n71\n72\n73\n74\n75\n76\n77\n78\n79\n80\n81\n82\n83\n84\n85\n86\n87\n88\n89\n90\n91\n92\n93\n94\n95\n96\n97\n98\n99\n100\n",
+      "actual_output": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n40\n41\n42\n43\n44\n45\n46\n47\n48\n49\n50\n51\n52\n53\n54\n55\n56\n57\n58\n59\n60\n61\n62\n63\n64\n65\n66\n67\n68\n69\n70\n71\n72\n73\n74\n75\n76\n77\n78\n79\n80\n81\n82\n83\n84\n85\n86\n87\n88\n89\n90\n91\n92\n93\n94\n95\n96\n97\n98\n99\n100\n",
+      "expected_ticks": 51,
+      "actual_ticks": 51,
+      "notes": [],
+      "wall_time_ms": 11,
+      "presumed_pass": false
+    },
+    {
+      "program": "benito-count-poem",
+      "adapter": "2005-joe-neeman",
+      "status": "pass",
+      "expected_output": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n40\n41\n42\n43\n44\n45\n46\n47\n48\n49\n50\n51\n52\n53\n54\n55\n56\n57\n58\n59\n60\n61\n62\n63\n64\n65\n66\n67\n68\n69\n70\n71\n72\n73\n74\n75\n76\n77\n78\n79\n80\n81\n82\n83\n84\n85\n86\n87\n88\n89\n90\n91\n92\n93\n94\n95\n96\n97\n98\n99\n100\n",
+      "actual_output": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n40\n41\n42\n43\n44\n45\n46\n47\n48\n49\n50\n51\n52\n53\n54\n55\n56\n57\n58\n59\n60\n61\n62\n63\n64\n65\n66\n67\n68\n69\n70\n71\n72\n73\n74\n75\n76\n77\n78\n79\n80\n81\n82\n83\n84\n85\n86\n87\n88\n89\n90\n91\n92\n93\n94\n95\n96\n97\n98\n99\n100\n",
+      "expected_ticks": 39,
+      "actual_ticks": 39,
+      "notes": [],
+      "wall_time_ms": 10,
+      "presumed_pass": false
+    },
+    {
+      "program": "benito-count",
+      "adapter": "2005-joe-neeman",
+      "status": "pass",
+      "expected_output": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n40\n41\n42\n43\n44\n45\n46\n47\n48\n49\n50\n51\n52\n53\n54\n55\n56\n57\n58\n59\n60\n61\n62\n63\n64\n65\n66\n67\n68\n69\n70\n71\n72\n73\n74\n75\n76\n77\n78\n79\n80\n81\n82\n83\n84\n85\n86\n87\n88\n89\n90\n91\n92\n93\n94\n95\n96\n97\n98\n99\n100\n",
+      "actual_output": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n40\n41\n42\n43\n44\n45\n46\n47\n48\n49\n50\n51\n52\n53\n54\n55\n56\n57\n58\n59\n60\n61\n62\n63\n64\n65\n66\n67\n68\n69\n70\n71\n72\n73\n74\n75\n76\n77\n78\n79\n80\n81\n82\n83\n84\n85\n86\n87\n88\n89\n90\n91\n92\n93\n94\n95\n96\n97\n98\n99\n100\n",
+      "expected_ticks": 39,
+      "actual_ticks": 39,
+      "notes": [],
+      "wall_time_ms": 12,
+      "presumed_pass": false
+    },
+    {
+      "program": "benito-count2",
+      "adapter": "2005-joe-neeman",
+      "status": "pass",
+      "expected_output": "_________________________________________________A1________A2________A3_",
+      "actual_output": "_________________________________________________A1________A2________A3_",
+      "expected_ticks": null,
+      "actual_ticks": 80,
+      "notes": [],
+      "wall_time_ms": 40,
+      "presumed_pass": false
+    },
+    {
+      "program": "benito-count3",
+      "adapter": "2005-joe-neeman",
+      "status": "pass",
+      "expected_output": "________________________x_xA_xB_xC_xD_xE_xF_xG_xH_xI_0I_1I_2I_3I_4I_5I_6I_7I_9I_0H_1H_2H_3H_4H_5H_6H_7H_9H_0G_1G_2G_3G_4G_5G_6G_7G_9G_0F_1F_2F_3F_4F_5F_6F_7F_9F_0E_1E_",
+      "actual_output": "________________________x_xA_xB_xC_xD_xE_xF_xG_xH_xI_0I_1I_2I_3I_4I_5I_6I_7I_9I_0H_1H_2H_3H_4H_5H_6H_7H_9H_0G_1G_2G_3G_4G_5G_6G_7G_9G_0F_1F_2F_3F_4F_5F_6F_7F_9F_0E_1E_",
+      "expected_ticks": null,
+      "actual_ticks": 80,
+      "notes": [],
+      "wall_time_ms": 16,
+      "presumed_pass": false
+    },
+    {
+      "program": "benito-count4",
+      "adapter": "2005-joe-neeman",
+      "status": "pass",
+      "expected_output": "0\n1\n2\n",
+      "actual_output": "0\n1\n2\n",
+      "expected_ticks": null,
+      "actual_ticks": 80,
+      "notes": [],
+      "wall_time_ms": 44,
+      "presumed_pass": false
+    },
+    {
+      "program": "benito-fizzbuzz-poem",
+      "adapter": "2005-joe-neeman",
+      "status": "pass",
+      "expected_output": "1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\n13\n14\nFizzBuzz\n16\n17\nFizz\n19\nBuzz\nFizz\n22\n23\nFizz\nBuzz\n26\nFizz\n28\n29\nFizzBuzz\n31\n32\nFizz\n34\nBuzz\nFizz\n37\n38\nFizz\nBuzz\n41\nFizz\n43\n44\nFizzBuzz\n46\n47\nFizz\n49\nBuzz\nFizz\n52\n53\nFizz\nBuzz\n56\nFizz\n58\n59\nFizzBuzz\n61\n62\nFizz\n64\nBuzz\nFizz\n67\n68\nFizz\nBuzz\n71\nFizz\n73\n74\nFizzBuzz\n76\n77\nFizz\n79\nBuzz\nFizz\n82\n83\nFizz\nBuzz\n86\nFizz\n88\n89\nFizzBuzz\n91\n92\nFizz\n94\nBuzz\nFizz\n97\n98\nFizz\nBuzz\n",
+      "actual_output": "1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\n13\n14\nFizzBuzz\n16\n17\nFizz\n19\nBuzz\nFizz\n22\n23\nFizz\nBuzz\n26\nFizz\n28\n29\nFizzBuzz\n31\n32\nFizz\n34\nBuzz\nFizz\n37\n38\nFizz\nBuzz\n41\nFizz\n43\n44\nFizzBuzz\n46\n47\nFizz\n49\nBuzz\nFizz\n52\n53\nFizz\nBuzz\n56\nFizz\n58\n59\nFizzBuzz\n61\n62\nFizz\n64\nBuzz\nFizz\n67\n68\nFizz\nBuzz\n71\nFizz\n73\n74\nFizzBuzz\n76\n77\nFizz\n79\nBuzz\nFizz\n82\n83\nFizz\nBuzz\n86\nFizz\n88\n89\nFizzBuzz\n91\n92\nFizz\n94\nBuzz\nFizz\n97\n98\nFizz\nBuzz\n",
+      "expected_ticks": 2207,
+      "actual_ticks": 2207,
+      "notes": [],
+      "wall_time_ms": 1494,
+      "presumed_pass": false
+    },
+    {
+      "program": "benito-fizzbuzz",
+      "adapter": "2005-joe-neeman",
+      "status": "pass",
+      "expected_output": "1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\n13\n14\nFizzBuzz\n16\n17\nFizz\n19\nBuzz\nFizz\n22\n23\nFizz\nBuzz\n26\nFizz\n28\n29\nFizzBuzz\n31\n32\nFizz\n34\nBuzz\nFizz\n37\n38\nFizz\nBuzz\n41\nFizz\n43\n44\nFizzBuzz\n46\n47\nFizz\n49\nBuzz\nFizz\n52\n53\nFizz\nBuzz\n56\nFizz\n58\n59\nFizzBuzz\n",
+      "actual_output": "1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\n13\n14\nFizzBuzz\n16\n17\nFizz\n19\nBuzz\nFizz\n22\n23\nFizz\nBuzz\n26\nFizz\n28\n29\nFizzBuzz\n31\n32\nFizz\n34\nBuzz\nFizz\n37\n38\nFizz\nBuzz\n41\nFizz\n43\n44\nFizzBuzz\n46\n47\nFizz\n49\nBuzz\nFizz\n52\n53\nFizz\nBuzz\n56\nFizz\n58\n59\nFizzBuzz\n",
+      "expected_ticks": null,
+      "actual_ticks": 1500,
+      "notes": [],
+      "wall_time_ms": 1000,
+      "presumed_pass": false
+    },
+    {
+      "program": "benito-fizzbuzztick",
+      "adapter": "2005-joe-neeman",
+      "status": "pass",
+      "expected_output": "FizzBuzz\ntick\ntick\nFizz3\ntick\nBuzz5\nFizz6\ntick\ntick\nFizz9\nBuzz10\ntick\nFizz12\ntick\ntick\nFizzBuzz15\ntick\ntick\nFizz18\ntick\nBuzz20\nFizz21\ntick\ntick\nFizz24\nBuzz25\ntick\nFizz27\ntick\ntick\nFizzBuzz30\ntick\ntick\nFizz33\ntick\nBuzz35\nFizz36\ntick\ntick\nFizz39\nBuzz40\ntick\nFizz42\ntick\ntick\nFizzBuzz\ntick\ntick\nFizz3\ntick\nBuzz5\nFizz6\ntick\ntick\nFizz9\nBuzz10\ntick\nFizz12\ntick\ntick\nFizzBuzz15\ntick\ntick\nFizz18\ntick\nBuzz20\nFizz21\ntick\ntick\nFizz24\nBuzz25\ntick\nFizz27\ntick\ntick\nFizzBuzz30\ntick\ntick\nFizz33\ntick\nBuzz35\nFizz36\ntick\ntick\nFizz39\nBuzz40\ntick\nFizz42\ntick\ntick\nFizzBuzz\ntick\ntick\nFizz3\ntick\nBuzz5\nFizz6\ntick\ntick\nFizz9\nBuzz10\ntick\nFizz12\ntick\ntick\nFizzBuzz15\ntick\ntick\nFizz18\ntick\nBuzz20\nFizz21\ntick\ntick\nFizz24\nBuzz25\ntick\nFizz27\ntick\ntick\nFizzBuzz30\ntick\ntick\nFizz33\ntick\nBuzz35\nFizz36\ntick\ntick\nFizz39\nBuzz40\ntick\nFizz42\ntick\ntick\nFizzBuzz\ntick\ntick\nFizz3\ntick\n",
+      "actual_output": "FizzBuzz\ntick\ntick\nFizz3\ntick\nBuzz5\nFizz6\ntick\ntick\nFizz9\nBuzz10\ntick\nFizz12\ntick\ntick\nFizzBuzz15\ntick\ntick\nFizz18\ntick\nBuzz20\nFizz21\ntick\ntick\nFizz24\nBuzz25\ntick\nFizz27\ntick\ntick\nFizzBuzz30\ntick\ntick\nFizz33\ntick\nBuzz35\nFizz36\ntick\ntick\nFizz39\nBuzz40\ntick\nFizz42\ntick\ntick\nFizzBuzz\ntick\ntick\nFizz3\ntick\nBuzz5\nFizz6\ntick\ntick\nFizz9\nBuzz10\ntick\nFizz12\ntick\ntick\nFizzBuzz15\ntick\ntick\nFizz18\ntick\nBuzz20\nFizz21\ntick\ntick\nFizz24\nBuzz25\ntick\nFizz27\ntick\ntick\nFizzBuzz30\ntick\ntick\nFizz33\ntick\nBuzz35\nFizz36\ntick\ntick\nFizz39\nBuzz40\ntick\nFizz42\ntick\ntick\nFizzBuzz\ntick\ntick\nFizz3\ntick\nBuzz5\nFizz6\ntick\ntick\nFizz9\nBuzz10\ntick\nFizz12\ntick\ntick\nFizzBuzz15\ntick\ntick\nFizz18\ntick\nBuzz20\nFizz21\ntick\ntick\nFizz24\nBuzz25\ntick\nFizz27\ntick\ntick\nFizzBuzz30\ntick\ntick\nFizz33\ntick\nBuzz35\nFizz36\ntick\ntick\nFizz39\nBuzz40\ntick\nFizz42\ntick\ntick\nFizzBuzz\ntick\ntick\nFizz3\ntick\n",
+      "expected_ticks": null,
+      "actual_ticks": 200,
+      "notes": [],
+      "wall_time_ms": 72,
+      "presumed_pass": false
+    },
+    {
+      "program": "benito-helloworld",
+      "adapter": "2005-joe-neeman",
+      "status": "pass",
+      "expected_output": "hello world\n",
+      "actual_output": "hello world\n",
+      "expected_ticks": 9,
+      "actual_ticks": 9,
+      "notes": [],
+      "wall_time_ms": 7,
+      "presumed_pass": false
+    },
+    {
+      "program": "cal-hello2",
+      "adapter": "2005-joe-neeman",
+      "status": "pass",
+      "expected_output": "Hello, world!\n",
+      "actual_output": "Hello, world!\n",
+      "expected_ticks": 7,
+      "actual_ticks": 7,
+      "notes": [],
+      "wall_time_ms": 7,
+      "presumed_pass": false
+    },
+    {
+      "program": "jeff-add",
+      "adapter": "2005-joe-neeman",
+      "status": "pass",
+      "expected_output": "? + ",
+      "actual_output": "? + ",
+      "expected_ticks": null,
+      "actual_ticks": 200,
+      "notes": [],
+      "wall_time_ms": 19,
+      "presumed_pass": false
+    },
+    {
+      "program": "jeff-cat",
+      "adapter": "2005-joe-neeman",
+      "status": "pass",
+      "expected_output": "hello\n",
+      "actual_output": "hello\n",
+      "expected_ticks": null,
+      "actual_ticks": 20,
+      "notes": [],
+      "wall_time_ms": 6,
+      "presumed_pass": false
+    },
+    {
+      "program": "jeff-first",
+      "adapter": "2005-joe-neeman",
+      "status": "pass",
+      "expected_output": "Hello, world.\nHello, world.\nHello, world.\n",
+      "actual_output": "Hello, world.\nHello, world.\nHello, world.\nHello, world.\nHello, world.\nHello, world.\nHello, world.\nHello, world.\nHello, world.\nHello, world.\nHello, world.\nHello, world.\nHello, world.\nHello, world.\nHello, world.\n",
+      "expected_ticks": null,
+      "actual_ticks": 20,
+      "notes": [],
+      "wall_time_ms": 5,
+      "presumed_pass": false
+    },
+    {
+      "program": "jeff-hello-1",
+      "adapter": "2005-joe-neeman",
+      "status": "pass",
+      "expected_output": "Hello World!\n",
+      "actual_output": "Hello World!\n",
+      "expected_ticks": 7,
+      "actual_ticks": 7,
+      "notes": [],
+      "wall_time_ms": 5,
+      "presumed_pass": false
+    },
+    {
+      "program": "jeff-hello-2",
+      "adapter": "2005-joe-neeman",
+      "status": "pass",
+      "expected_output": "Hello World!\n",
+      "actual_output": "Hello World!\n",
+      "expected_ticks": 10,
+      "actual_ticks": 10,
+      "notes": [],
+      "wall_time_ms": 5,
+      "presumed_pass": false
+    },
+    {
+      "program": "jeff-hello-3",
+      "adapter": "2005-joe-neeman",
+      "status": "pass",
+      "expected_output": "Hello, World!\n",
+      "actual_output": "Hello, World!\n",
+      "expected_ticks": 16,
+      "actual_ticks": 16,
+      "notes": [],
+      "wall_time_ms": 7,
+      "presumed_pass": false
+    },
+    {
+      "program": "jeff-hi",
+      "adapter": "2005-joe-neeman",
+      "status": "pass",
+      "expected_output": "Hi. What's your name? Hi, World!\n",
+      "actual_output": "Hi. What's your name? Hi, World!\n",
+      "expected_ticks": null,
+      "actual_ticks": 32,
+      "notes": [],
+      "wall_time_ms": 6,
+      "presumed_pass": false
+    },
+    {
+      "program": "jeff-name",
+      "adapter": "2005-joe-neeman",
+      "status": "pass",
+      "expected_output": "GreatGreatGreatGreathomelessGreathomelessGreatGreat",
+      "actual_output": "GreatGreatGreatGreathomelessGreathomelessGreatGreat",
+      "expected_ticks": null,
+      "actual_ticks": 50,
+      "notes": [],
+      "wall_time_ms": 6,
+      "presumed_pass": false
+    },
+    {
+      "program": "jeff-null",
+      "adapter": "2005-joe-neeman",
+      "status": "pass",
+      "expected_output": "In Homespring, the null program is not a quine.\n",
+      "actual_output": "In Homespring, the null program is not a quine.\n",
+      "expected_ticks": 0,
+      "actual_ticks": null,
+      "notes": [],
+      "wall_time_ms": 5,
+      "presumed_pass": false
+    },
+    {
+      "program": "jeff-quiz",
+      "adapter": "2005-joe-neeman",
+      "status": "pass",
+      "expected_output": "what's six times four? you lie!\n",
+      "actual_output": "what's six times four? you lie!\n",
+      "expected_ticks": null,
+      "actual_ticks": 29,
+      "notes": [],
+      "wall_time_ms": 6,
+      "presumed_pass": false
+    },
+    {
+      "program": "jeff-simple",
+      "adapter": "2005-joe-neeman",
+      "status": "pass",
+      "expected_output": "",
+      "actual_output": "",
+      "expected_ticks": null,
+      "actual_ticks": 20,
+      "notes": [],
+      "wall_time_ms": 6,
+      "presumed_pass": false
+    },
+    {
+      "program": "joe-flipflop",
+      "adapter": "2005-joe-neeman",
+      "status": "pass",
+      "expected_output": "helloo",
+      "actual_output": "helloo",
+      "expected_ticks": null,
+      "actual_ticks": 60,
+      "notes": [],
+      "wall_time_ms": 9,
+      "presumed_pass": false
+    },
+    {
+      "program": "joe-tic",
+      "adapter": "2005-joe-neeman",
+      "status": "pass",
+      "expected_output": " | |\n-----\n |o|\n-----\n | |\n | |x\n-----\n |o|\n-----\n | |\n",
+      "actual_output": " | |\n-----\n |o|\n-----\n | |\n | |x\n-----\n |o|\n-----\n | |\n",
+      "expected_ticks": null,
+      "actual_ticks": 30000,
+      "notes": [],
+      "wall_time_ms": 1832,
+      "presumed_pass": false
+    },
+    {
+      "program": "quin-reverse-2",
+      "adapter": "2005-joe-neeman",
+      "status": "skip",
+      "expected_output": "",
+      "actual_output": "",
+      "expected_ticks": null,
+      "actual_ticks": null,
+      "notes": [
+        "Three-way disagreement between Quin, OCaml, and homespring.js on output."
+      ],
+      "wall_time_ms": 0,
+      "presumed_pass": false
+    },
+    {
+      "program": "quin-reverse-3",
+      "adapter": "2005-joe-neeman",
+      "status": "skip",
+      "expected_output": "",
+      "actual_output": "",
+      "expected_ticks": null,
+      "actual_ticks": null,
+      "notes": [
+        "Three-way disagreement; homespring.js output is particularly divergent ('helloforce up')."
+      ],
+      "wall_time_ms": 0,
+      "presumed_pass": false
+    },
+    {
+      "program": "quin-reverse",
+      "adapter": "2005-joe-neeman",
+      "status": "skip",
+      "expected_output": "",
+      "actual_output": "",
+      "expected_ticks": null,
+      "actual_ticks": null,
+      "notes": [
+        "Three-way disagreement between Quin (author), OCaml, and homespring.js. Jeff crashes; Perl emits nothing. No canonical expected output."
+      ],
+      "wall_time_ms": 0,
+      "presumed_pass": false
+    },
+    {
+      "program": "quin-split",
+      "adapter": "2005-joe-neeman",
+      "status": "skip",
+      "expected_output": "",
+      "actual_output": "",
+      "expected_ticks": null,
+      "actual_ticks": null,
+      "notes": [
+        "Four interpreters emit nothing, one emits garbage \u2014 no canonical expected output to verify."
+      ],
+      "wall_time_ms": 0,
+      "presumed_pass": false
+    }
+  ],
+  "summary": {
+    "pass": 25,
+    "fail": 0,
+    "error": 0,
+    "timeout": 0,
+    "skip": 4
+  }
+}

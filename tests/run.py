@@ -4,8 +4,10 @@ Homespring test harness.
 
 Runs every program in tests/programs/ under every registered interpreter
 adapter, compares output against the expected output declared in each
-program's meta.json, and writes a machine-readable report to
-tests/results.json.
+program's meta.json, and writes one JSON file per adapter under
+tests/results/<adapter_id>.json. Running with -a/--adapter only touches
+that adapter's file, so individual interpreters can be re-run without
+redoing the others.
 
 See tests/README.md for details on adding programs and interpreters.
 """
@@ -700,14 +702,15 @@ def main() -> int:
                         help="only run programs matching substring")
     parser.add_argument("--adapter", "-a", default=None,
                         help="only run this adapter id")
-    parser.add_argument("--json", default=str(ROOT / "results.json"),
-                        help="path to write JSON report")
+    parser.add_argument("--results-dir", default=str(ROOT / "results"),
+                        help="directory to write per-adapter JSON reports")
     parser.add_argument("--no-color", action="store_true")
     parser.add_argument("--verbose", "-v", action="store_true")
     args = parser.parse_args()
 
     color = not args.no_color and sys.stdout.isatty()
-    programs = load_programs(Path(args.programs))
+    all_programs = load_programs(Path(args.programs))
+    programs = all_programs
     if args.filter:
         programs = [p for p in programs if args.filter in p.slug]
 
@@ -739,19 +742,50 @@ def main() -> int:
           f"error: {counts['error']}  timeout: {counts['timeout']}  "
           f"skip: {counts['skip']}")
 
-    report = {
-        "generated_at": int(time.time()),
-        "adapters": [{"id": a.id, "label": a.label,
-                      "available": a.is_available()[0],
-                      "reason": a.is_available()[1]} for a in ADAPTERS],
-        "programs": [{"slug": p.slug, "description": p.description,
+    # Write one file per adapter we actually ran. Untouched adapters
+    # keep whatever results they had in results-dir from a previous run,
+    # and even within a touched adapter we merge by program slug so a
+    # filtered run (-k foo) only overwrites matching rows — the rest of
+    # that adapter's history carries over intact.
+    generated_at = int(time.time())
+    programs_meta = [{"slug": p.slug, "description": p.description,
                       "source": str(p.source.relative_to(REPO))}
-                     for p in programs],
-        "results": [asdict(o) for o in outcomes],
-        "summary": counts,
-    }
-    Path(args.json).write_text(json.dumps(report, indent=2) + "\n")
-    print(f"\nwrote {args.json}")
+                     for p in all_programs]
+    results_dir = Path(args.results_dir)
+    results_dir.mkdir(parents=True, exist_ok=True)
+
+    written = []
+    for adapter in adapters:
+        new_by_prog = {o.program: asdict(o) for o in outcomes
+                       if o.adapter == adapter.id}
+        out = results_dir / f"{adapter.id}.json"
+        if out.exists():
+            prior = json.loads(out.read_text())
+            merged = {r["program"]: r for r in prior.get("results", [])}
+            merged.update(new_by_prog)
+            results_rows = list(merged.values())
+        else:
+            results_rows = list(new_by_prog.values())
+
+        adapter_counts = {"pass": 0, "fail": 0, "error": 0,
+                          "timeout": 0, "skip": 0}
+        for r in results_rows:
+            adapter_counts[r["status"]] = adapter_counts.get(r["status"], 0) + 1
+        available, reason = adapter.is_available()
+        payload = {
+            "generated_at": generated_at,
+            "adapter": {"id": adapter.id, "label": adapter.label,
+                        "available": available, "reason": reason},
+            "programs": programs_meta,
+            "results": results_rows,
+            "summary": adapter_counts,
+        }
+        out.write_text(json.dumps(payload, indent=2) + "\n")
+        written.append(out)
+
+    print()
+    for p in written:
+        print(f"wrote {p}")
     return 0 if counts["fail"] == 0 and counts["error"] == 0 else 1
 
 

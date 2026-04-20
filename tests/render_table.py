@@ -1,8 +1,13 @@
 #!/usr/bin/env python3
-"""Render the entire tbody for interpreters.php from tests/results.json."""
+"""Render the entire tbody for interpreters.php from the per-adapter JSON
+files under tests/results/. Each file is produced by run.py and contains
+that adapter's results; we merge them here so the table reflects whatever
+combination of adapter re-runs has happened since the last full run."""
+import glob
 import json
+import os
 
-RESULTS = '/mnt/webroot/homespring.cloud/tests/results.json'
+RESULTS_DIR = '/mnt/webroot/homespring.cloud/tests/results'
 QUIN_EXPLANATION = '/mnt/webroot/homespring.cloud/tests/quin_test_explanation.txt'
 
 SECTIONS = [
@@ -112,10 +117,20 @@ def cell(res, slug, aid):
     return '<td class="compat no">no</td>'
 
 
+def load_all_results(results_dir):
+    """Read every <adapter>.json in results_dir and flatten into one list
+    of result rows. Missing adapters are fine — cells will render as '?'."""
+    rows = []
+    for path in sorted(glob.glob(os.path.join(results_dir, '*.json'))):
+        payload = json.load(open(path))
+        rows.extend(payload.get('results', []))
+    return rows
+
+
 def main():
-    r = json.load(open(RESULTS))
+    rows = load_all_results(RESULTS_DIR)
     by_prog = {}
-    for res in r['results']:
+    for res in rows:
         by_prog.setdefault(res['program'], {})[res['adapter']] = res
 
     for i, (author, meta, progs) in enumerate(SECTIONS):

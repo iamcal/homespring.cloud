@@ -1,23 +1,31 @@
 # Homespring test harness
 
 Runs every example program under each vendored interpreter, compares output
-against an editable per-program expected value, and writes a machine-readable
-report to `results.json` for the rest of the site to consume.
+against an editable per-program expected value, and writes one machine-readable
+report per adapter under `results/<adapter_id>.json` for the rest of the site
+to consume.
 
 ## Quick start
 
 ```bash
 tests/setup.sh        # one-time: install deps, build each interpreter, apply patches
-python3 tests/run.py  # run all tests
+python3 tests/run.py  # run all tests — writes every results/<adapter>.json
 ```
 
-Filter by program or by interpreter:
+Filter by program or by interpreter — targeted runs update only the matching
+adapter files, and within those files only the matching program rows:
 
 ```bash
-python3 tests/run.py -k hello           # only programs whose slug contains 'hello'
-python3 tests/run.py -a 2005-joe-neeman # only the OCaml interpreter
-python3 tests/run.py -v                 # show expected vs actual on failures
+python3 tests/run.py -k hello            # only programs whose slug contains 'hello'
+python3 tests/run.py -a 2005-joe-neeman  # only the OCaml interpreter
+python3 tests/run.py -a 2023-james-thistlewood -k hello  # both filters
+python3 tests/run.py -v                  # show expected vs actual on failures
 ```
+
+Results files are merged by `(adapter, program)` — a filtered re-run overwrites
+the matching rows inside the relevant adapter file and leaves the rest intact,
+so you can iterate on one interpreter without re-running the others. Untouched
+adapter files are never modified.
 
 Exit status is non-zero when any test fails or errors; timeouts that happened
 to produce the expected prefix still count as pass.
@@ -29,13 +37,16 @@ tests/
 ├── README.md
 ├── setup.sh                   # builds all interpreters; idempotent
 ├── run.py                     # the harness
-├── results.json               # latest report (generated)
+├── results/                   # one <adapter>.json per interpreter (generated)
 ├── adapters are defined inline in run.py (one class per interpreter)
 ├── patches/
 │   ├── 2005-joe-neeman.patch  # OCaml 4.07+ fixes + HS_QUIET/HS_TICKS/HS_LIMIT
 │   ├── 2003-jeff-binder.patch # don't exit on stdin EOF
 │   ├── cal_henderson_driver.pl
-│   └── homespring_js_driver.js
+│   ├── homespring_js_driver.js
+│   ├── martijn_arts_driver.mjs
+│   ├── james_thistlewood_driver.js
+│   └── addison_bean_driver/   # Rust driver crate (builds via cargo)
 └── programs/
     ├── hello-1/
     │   ├── program.hs
@@ -129,15 +140,16 @@ Defaults:
 
 ## Report format
 
-`results.json` is the source of truth for downstream consumers (e.g. pages
-on the site that show an interpreter-compatibility matrix). Shape:
+Each `results/<adapter>.json` is the source of truth for that interpreter's
+cells in the site's compatibility matrix. `render_table.py` concatenates
+them all. Shape:
 
 ```jsonc
 {
   "generated_at": 1713398400,
-  "adapters":  [ {"id": "2005-joe-neeman", "label": "…", "available": true, "reason": "ok"}, … ],
+  "adapter":   {"id": "2005-joe-neeman", "label": "…", "available": true, "reason": "ok"},
   "programs":  [ {"slug": "hello-1", "description": "…", "source": "tests/programs/hello-1/program.hs"}, … ],
-  "results":   [ {"program": "hello-1", "adapter": "…", "status": "pass|fail|error|timeout|skip",
+  "results":   [ {"program": "hello-1", "adapter": "2005-joe-neeman", "status": "pass|fail|error|timeout|skip",
                   "expected_output": "…", "actual_output": "…",
                   "expected_ticks": 7, "actual_ticks": 7,
                   "notes": [], "wall_time_ms": 123}, … ],
