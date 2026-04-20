@@ -66,6 +66,7 @@ ADAPTERS = [
     '2005-joe-neeman',
     '2012-quin-kennedy',
     '2017-cal-henderson-js',
+    '2017-addison-bean',
     '2018-martijn-arts',
 ]
 

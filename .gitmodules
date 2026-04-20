@@ -19,3 +19,6 @@
 [submodule "interpreters/2018-martijn-arts"]
 	path = interpreters/2018-martijn-arts
 	url = https://github.com/martijnarts/homespring-js.git
+[submodule "interpreters/2017-addison-bean"]
+	path = interpreters/2017-addison-bean
+	url = https://github.com/Addisonbean/Homespring-rs

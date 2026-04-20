@@ -18,6 +18,7 @@ command -v ocamlopt  >/dev/null || need_apt+=("ocaml")
 command -v guile     >/dev/null || need_apt+=("guile-3.0")
 command -v perl      >/dev/null || need_apt+=("perl")
 command -v node      >/dev/null || warn "node is not installed; homespring.js and Quin's interpreter will be unavailable"
+command -v cargo     >/dev/null || warn "cargo is not installed; Addison Bean's Rust interpreter will be unavailable"
 
 if [ ${#need_apt[@]} -gt 0 ]; then
     log "installing system packages: ${need_apt[*]}"
@@ -91,5 +92,20 @@ log "homespring.js needs no build step"
 # Nothing to build; loaded as an ES module by the .mjs driver.
 
 log "Martijn Arts's homespring-js needs no build step"
+
+# ---- Addison Bean (Rust, 2017) -------------------------------------------
+# The source compiles cleanly but is an unfinished WIP — Program::execute is
+# still `unimplemented!()` for River programs and main.rs is a hardcoded
+# scratchpad with no file-based CLI, so the harness flags it unavailable.
+# We still build it so a future driver has a compiled lib to link against.
+
+addison="$interp/2017-addison-bean"
+if command -v cargo >/dev/null; then
+    log "building Addison Bean's Rust interpreter"
+    (cd "$addison" && cargo build --release >/dev/null)
+    log "  built $addison/target/release/homespring"
+else
+    warn "skipping Addison Bean's Rust build (cargo missing)"
+fi
 
 log "all interpreters ready. Run  \`python3 $here/run.py\`  to execute the tests."

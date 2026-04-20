@@ -408,12 +408,39 @@ class MartijnArtsAdapter(Adapter):
                           timeout_s, env)
 
 
+class AddisonBeanAdapter(Adapter):
+    # Addison Bean's 2017 Rust crate compiles, but it's an unfinished WIP:
+    # Program::execute is `unimplemented!()` for River programs, main.rs is a
+    # hardcoded demo with no file-based CLI, and only a handful of node types
+    # and ticks are actually implemented. The adapter reports unavailable so
+    # the harness records the interpreter's state without pretending to test
+    # programs that can't run at all.
+    id = "2017-addison-bean"
+    label = "Addison Bean (Rust, 2017)"
+
+    @property
+    def bin(self) -> Path:
+        return INTERP_DIR / self.id / "target" / "release" / "homespring"
+
+    def is_available(self) -> tuple[bool, str]:
+        if shutil.which("cargo") is None and not self.bin.exists():
+            return False, "cargo not in PATH"
+        return False, ("incomplete implementation: Program::execute is "
+                       "unimplemented for River programs, main.rs has no "
+                       "file-based CLI")
+
+    def run(self, program_path, stdin, timeout_s, tick_limit):
+        # Unreachable — is_available always returns False.
+        raise NotImplementedError
+
+
 ADAPTERS: list[Adapter] = [
     JoeNeemanAdapter(),
     JeffBinderAdapter(),
     CalHendersonAdapter(),
     QuinKennedyAdapter(),
     HomespringJsAdapter(),
+    AddisonBeanAdapter(),
     MartijnArtsAdapter(),
 ]
 

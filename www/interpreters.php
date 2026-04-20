@@ -14,6 +14,7 @@
 		['lang' => 'OCaml',        'date' => '2005-11-24', 'author' => 'Joe Neeman',    'url' => 'https://github.com/jneem/homespring',                'repo' => 'github.com/jneem/homespring',                'desc' => 'Released along with an updated spec.'],
 		['lang' => 'JavaScript',   'date' => '2012-10-30', 'author' => 'Quin Kennedy',  'url' => 'https://github.com/quinkennedy/Homespring',          'repo' => 'github.com/quinkennedy/Homespring',          'desc' => 'The first JavaScript implementation.'],
 		['lang' => 'JavaScript',   'date' => '2017-01-29', 'author' => 'Cal Henderson', 'url' => 'https://github.com/iamcal/homespring.js',            'repo' => 'github.com/iamcal/homespring.js',            'desc' => 'The implementation that powers this website.'],
+		['lang' => 'Rust',         'date' => '2017-12-19', 'author' => 'Addison Bean', 'url' => 'https://github.com/Addisonbean/Homespring-rs',        'repo' => 'github.com/Addisonbean/Homespring-rs',       'desc' => 'An incomplete WIP — parses programs, but only a few node types and ticks are implemented.'],
 		['lang' => 'JavaScript',   'date' => '2018-05-30', 'author' => 'Martijn Arts',  'url' => 'https://github.com/martijnarts/homespring-js',       'repo' => 'github.com/martijnarts/homespring-js',       'desc' => 'A demo implementation with HTML visualizer.'],
 	];
 	foreach ($interpreters as &$_i) { $_i['yes'] = 0; $_i['total'] = 0; }
@@ -368,13 +369,14 @@ table.examples td.compat sup {
 			<th class="compat"><span class="lang">OCaml</span><span class="year">2005</span></th>
 			<th class="compat"><span class="lang">JavaScript</span><span class="year">2012</span></th>
 			<th class="compat"><span class="lang">JavaScript</span><span class="year">2017</span></th>
+			<th class="compat"><span class="lang">Rust</span><span class="year">2017</span></th>
 			<th class="compat"><span class="lang">JavaScript</span><span class="year">2018</span></th>
 		</tr>
 	</thead>
 	<tbody>
 
 		<tr class="author-row">
-			<td colspan="8">Jeff Binder <span class="author-meta">— 2003 · author of Homespring and its <a href="https://github.com/iamcal/Homespring">original Scheme interpreter</a></span></td>
+			<td colspan="9">Jeff Binder <span class="author-meta">— 2003 · author of Homespring and its <a href="https://github.com/iamcal/Homespring">original Scheme interpreter</a></span></td>
 		</tr>
 
 		<tr>
@@ -385,6 +387,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
+			<td class="compat no" title="unavailable: incomplete implementation: Program::execute is unimplemented for River programs, main.rs has no file-based CLI">no</td>
 			<td class="compat no">no</td>
 		</tr>
 		<tr>
@@ -395,6 +398,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
+			<td class="compat no" title="unavailable: incomplete implementation: Program::execute is unimplemented for River programs, main.rs has no file-based CLI">no</td>
 			<td class="compat no">no</td>
 		</tr>
 		<tr>
@@ -405,6 +409,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
+			<td class="compat no" title="unavailable: incomplete implementation: Program::execute is unimplemented for River programs, main.rs has no file-based CLI">no</td>
 			<td class="compat no">no</td>
 		</tr>
 		<tr>
@@ -415,6 +420,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
+			<td class="compat no" title="unavailable: incomplete implementation: Program::execute is unimplemented for River programs, main.rs has no file-based CLI">no</td>
 			<td class="compat no" title="timed out after 3.0s">no</td>
 		</tr>
 		<tr>
@@ -425,6 +431,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
+			<td class="compat no" title="unavailable: incomplete implementation: Program::execute is unimplemented for River programs, main.rs has no file-based CLI">no</td>
 			<td class="compat no" title="tick mismatch: expected 10, got 8">no</td>
 		</tr>
 		<tr>
@@ -435,6 +442,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
+			<td class="compat no" title="unavailable: incomplete implementation: Program::execute is unimplemented for River programs, main.rs has no file-based CLI">no</td>
 			<td class="compat no" title="tick mismatch: expected 16, got 6">no</td>
 		</tr>
 		<tr>
@@ -445,6 +453,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
+			<td class="compat no" title="unavailable: incomplete implementation: Program::execute is unimplemented for River programs, main.rs has no file-based CLI">no</td>
 			<td class="compat no">no</td>
 		</tr>
 		<tr>
@@ -455,6 +464,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Matches the first ten tokens exactly, but continues emitting 'homeless'/'Great' pairs indefinitely where OCaml/JS stop.">no</td>
 			<td class="compat yes">yes</td>
+			<td class="compat no" title="unavailable: incomplete implementation: Program::execute is unimplemented for River programs, main.rs has no file-based CLI">no</td>
 			<td class="compat no">no</td>
 		</tr>
 		<tr>
@@ -465,6 +475,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
+			<td class="compat no" title="unavailable: incomplete implementation: Program::execute is unimplemented for River programs, main.rs has no file-based CLI">no</td>
 			<td class="compat no">no</td>
 		</tr>
 		<tr>
@@ -475,6 +486,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
+			<td class="compat no" title="unavailable: incomplete implementation: Program::execute is unimplemented for River programs, main.rs has no file-based CLI">no</td>
 			<td class="compat no">no</td>
 		</tr>
 		<tr>
@@ -485,11 +497,12 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes</td>
+			<td class="compat no" title="unavailable: incomplete implementation: Program::execute is unimplemented for River programs, main.rs has no file-based CLI">no</td>
 			<td class="compat yes">yes</td>
 		</tr>
 
 		<tr class="author-row">
-			<td colspan="8">Cal Henderson <span class="author-meta">— 2003 · author of the <a href="https://github.com/iamcal/perl-Language-Homespring">Perl interpreter</a></span></td>
+			<td colspan="9">Cal Henderson <span class="author-meta">— 2003 · author of the <a href="https://github.com/iamcal/perl-Language-Homespring">Perl interpreter</a></span></td>
 		</tr>
 
 		<tr>
@@ -500,11 +513,12 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
+			<td class="compat no" title="unavailable: incomplete implementation: Program::execute is unimplemented for River programs, main.rs has no file-based CLI">no</td>
 			<td class="compat no" title="tick mismatch: expected 7, got 20">no</td>
 		</tr>
 
 		<tr class="author-row">
-			<td colspan="8">Joe Neeman <span class="author-meta">— 2005 · author of the <a href="https://github.com/jneem/homespring">OCaml interpreter</a></span></td>
+			<td colspan="9">Joe Neeman <span class="author-meta">— 2005 · author of the <a href="https://github.com/jneem/homespring">OCaml interpreter</a></span></td>
 		</tr>
 
 		<tr>
@@ -515,6 +529,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Emits 'hello' (one 'o' short of the OCaml/JS reference)">no</td>
 			<td class="compat yes">yes</td>
+			<td class="compat no" title="unavailable: incomplete implementation: Program::execute is unimplemented for River programs, main.rs has no file-based CLI">no</td>
 			<td class="compat no">no</td>
 		</tr>
 		<tr>
@@ -525,17 +540,18 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Emits nothing for this program">no</td>
 			<td class="compat yes">yes</td>
+			<td class="compat no" title="unavailable: incomplete implementation: Program::execute is unimplemented for River programs, main.rs has no file-based CLI">no</td>
 			<td class="compat no" title="Does not support the node types used">no</td>
 		</tr>
 
 		<tr class="author-row">
-			<td colspan="8">Quin Kennedy <span class="author-meta">— 2012 · author of a <a href="https://github.com/quinkennedy/Homespring">JavaScript interpreter</a></span></td>
+			<td colspan="9">Quin Kennedy <span class="author-meta">— 2012 · author of a <a href="https://github.com/quinkennedy/Homespring">JavaScript interpreter</a></span></td>
 		</tr>
 
 		<tr>
 			<td class="name"><a href="examples/2012-quin-kennedy/reverse.hsg">reverse.hsg</a></td>
 			<td class="desc">Reverses the input using a <code>force.up</code> node and a <code>split</code>.</td>
-			<td class="compat-merged" colspan="6" rowspan="4">
+			<td class="compat-merged" colspan="7" rowspan="4">
 				<p>Quin's example files don't run correctly on compliant interpreters, due to two important mistakes in the implementation.</p>
 				
 				<p>The <code>reverse*.hsg</code> examples rely on the <code>force up</code> node allowing upstream salmon to move to the first child, which it should be blocking.</p>
@@ -558,7 +574,7 @@ table.examples td.compat sup {
 		</tr>
 
 		<tr class="author-row">
-			<td colspan="8">Benito van der Zander <span class="author-meta">— 2013 · author of the <a href="https://github.com/benibela/home-river">HomeSpringTree compiler</a>; most are generated from HomeSpringTree (.hst) sources</span></td>
+			<td colspan="9">Benito van der Zander <span class="author-meta">— 2013 · author of the <a href="https://github.com/benibela/home-river">HomeSpringTree compiler</a>; most are generated from HomeSpringTree (.hst) sources</span></td>
 		</tr>
 
 		<tr>
@@ -569,6 +585,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
+			<td class="compat no" title="unavailable: incomplete implementation: Program::execute is unimplemented for River programs, main.rs has no file-based CLI">no</td>
 			<td class="compat no" title="tick mismatch: expected 53, got 80">no</td>
 		</tr>
 		<tr>
@@ -579,6 +596,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
+			<td class="compat no" title="unavailable: incomplete implementation: Program::execute is unimplemented for River programs, main.rs has no file-based CLI">no</td>
 			<td class="compat no" title="tick mismatch: expected 39, got 37">no</td>
 		</tr>
 		<tr>
@@ -589,6 +607,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Produces '..._A8________A7________A6_' (reversed digits) instead of '..._A1________A2________A3_'">no</td>
 			<td class="compat yes">yes</td>
+			<td class="compat no" title="unavailable: incomplete implementation: Program::execute is unimplemented for River programs, main.rs has no file-based CLI">no</td>
 			<td class="compat no">no</td>
 		</tr>
 		<tr>
@@ -599,6 +618,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Produces '_________9_9A_9B…' instead of '________x_xA…'">no</td>
 			<td class="compat yes">yes</td>
+			<td class="compat no" title="unavailable: incomplete implementation: Program::execute is unimplemented for River programs, main.rs has no file-based CLI">no</td>
 			<td class="compat no">no</td>
 		</tr>
 		<tr>
@@ -609,6 +629,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Emits a reordered prefix ('numberhello…')">no</td>
 			<td class="compat yes">yes</td>
+			<td class="compat no" title="unavailable: incomplete implementation: Program::execute is unimplemented for River programs, main.rs has no file-based CLI">no</td>
 			<td class="compat no">no</td>
 		</tr>
 		<tr>
@@ -619,6 +640,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
+			<td class="compat no" title="unavailable: incomplete implementation: Program::execute is unimplemented for River programs, main.rs has no file-based CLI">no</td>
 			<td class="compat no" title="tick mismatch: expected 39, got 37">no</td>
 		</tr>
 		<tr>
@@ -629,6 +651,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
+			<td class="compat no" title="unavailable: incomplete implementation: Program::execute is unimplemented for River programs, main.rs has no file-based CLI">no</td>
 			<td class="compat no" title="tick mismatch: expected 51, got 250">no</td>
 		</tr>
 		<tr>
@@ -639,6 +662,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Emits placeholder tokens ('c_\nc_\nFizz\nc_\nBuzz…') where it should emit digits">no</td>
 			<td class="compat yes">yes</td>
+			<td class="compat no" title="unavailable: incomplete implementation: Program::execute is unimplemented for River programs, main.rs has no file-based CLI">no</td>
 			<td class="compat no">no</td>
 		</tr>
 		<tr>
@@ -649,6 +673,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Emits placeholder tokens ('c_\nc_\nFizz\nc_\nBuzz…') where it should emit digits">no</td>
 			<td class="compat yes">yes</td>
+			<td class="compat no" title="unavailable: incomplete implementation: Program::execute is unimplemented for River programs, main.rs has no file-based CLI">no</td>
 			<td class="compat no">no</td>
 		</tr>
 		<tr>
@@ -659,6 +684,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Starts with 'tick' and reorders the output">no</td>
 			<td class="compat yes">yes</td>
+			<td class="compat no" title="unavailable: incomplete implementation: Program::execute is unimplemented for River programs, main.rs has no file-based CLI">no</td>
 			<td class="compat no">no</td>
 		</tr>
 		<tr>
@@ -669,6 +695,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
+			<td class="compat no" title="unavailable: incomplete implementation: Program::execute is unimplemented for River programs, main.rs has no file-based CLI">no</td>
 			<td class="compat no" title="tick mismatch: expected 9, got 60">no</td>
 		</tr>
 
