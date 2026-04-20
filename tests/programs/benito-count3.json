@@ -1,5 +1,5 @@
 {
-  "description": "Counter variant \u2014 prints underscores then an x-prefixed alphabet ramp.",
+  "description": "Counter variant — prints underscores then an x-prefixed alphabet ramp.",
   "source": "www/examples/2013-benito-van-der-zander/count3.hs",
   "input": "",
   "tick_limit": 80,
@@ -16,7 +16,16 @@
     },
     "2012-quin-kennedy": {
       "skip": true,
-      "skip_reason": "Produces '_________9_9A_9B\u2026' instead of '________x_xA\u2026'"
+      "skip_reason": "Produces '_________9_9A_9B…' instead of '________x_xA…'"
+    },
+    "2017-addison-bean": {
+      "notes": "Panics with `already borrowed: BorrowMutError` on the first FishDown tick — river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output."
+    },
+    "2018-martijn-arts": {
+      "notes": "Parser splits on spaces only, so the newline + indent structure of the source collapses into a flat tree — the intended river layout is lost and output is either empty or a stream of literal node-name salmon."
+    },
+    "2023-james-thistlewood": {
+      "notes": "Halts partway through — emits 72 underscores then stops before reaching the lettered digits."
     }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "description": "Hello World #3 \u2014 uses a hydro power + spring source, force field, shallows, and sense nodes.",
+  "description": "Hello World #3 — uses a hydro power + spring source, force field, shallows, and sense nodes.",
   "source": "www/examples/2003-jeff-binder/hello-3.hs",
   "input": "",
   "expected_output": "Hello, World!\n",
@@ -13,6 +13,15 @@
       "extra_newlines": [
         14
       ]
+    },
+    "2017-addison-bean": {
+      "notes": "Panics with `already borrowed: BorrowMutError` on the first FishDown tick — river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output."
+    },
+    "2018-martijn-arts": {
+      "notes": "Does not support the sense / shallows / force.field nodes this program uses to gate output."
+    },
+    "2023-james-thistlewood": {
+      "notes": "Correct greeting followed by a stray `homeless` salmon — an extra hatchery emission after the program's intended output."
     }
   },
   "expected_ticks": 16

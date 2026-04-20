@@ -1,5 +1,5 @@
 {
-  "description": "Compact Hello World \u2014 the example shipped with Cal's Perl interpreter.",
+  "description": "Compact Hello World — the example shipped with Cal's Perl interpreter.",
   "source": "www/examples/2003-cal-henderson/hello2.hs",
   "input": "",
   "tick_limit": 20,
@@ -9,12 +9,18 @@
   "overrides": {
     "2003-cal-henderson": {
       "expected_ticks": 6,
-      "notes": "Finishes in 6 ticks instead of the OCaml reference's 7 \u2014 a minor phase-ordering difference."
+      "notes": "Finishes in 6 ticks instead of the OCaml reference's 7 — a minor phase-ordering difference."
     },
     "2012-quin-kennedy": {
       "extra_newlines": [
         14
       ]
+    },
+    "2017-addison-bean": {
+      "notes": "Panics with `already borrowed: BorrowMutError` on the first FishDown tick — river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output."
+    },
+    "2018-martijn-arts": {
+      "notes": "Runs but produces no output — the parser's flat tree leaves nothing to route salmon to the root."
     }
   }
 }

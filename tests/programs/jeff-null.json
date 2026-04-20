@@ -1,5 +1,5 @@
 {
-  "description": "Zero-byte program \u2014 the null program is specially trapped and is not a quine.",
+  "description": "Zero-byte program — the null program is specially trapped and is not a quine.",
   "source": "www/examples/2003-jeff-binder/null.hs",
   "input": "",
   "expected_output": "In Homespring, the null program is not a quine.\n",
@@ -13,6 +13,15 @@
       "extra_newlines": [
         48
       ]
+    },
+    "2017-addison-bean": {
+      "notes": "Empty source is parsed as a single-node River rather than triggering the Quine branch, so the hardcoded 'not a quine' message never fires."
+    },
+    "2018-martijn-arts": {
+      "notes": "No special handling for the null/empty program."
+    },
+    "2023-james-thistlewood": {
+      "notes": "Parser crashes with 'trying to add token above root' — the tokenizer yields a trailing empty token for the empty source that buildTree can't resolve."
     }
   },
   "expected_ticks": 0

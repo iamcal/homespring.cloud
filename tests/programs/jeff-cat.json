@@ -1,5 +1,5 @@
 {
-  "description": "One-line cat \u2014 an empty/newline program that echoes stdin to stdout.",
+  "description": "One-line cat — an empty/newline program that echoes stdin to stdout.",
   "source": "www/examples/2003-jeff-binder/cat.hs",
   "input": "hello\n",
   "tick_limit": 20,
@@ -19,6 +19,15 @@
       "extra_newlines": [
         6
       ]
+    },
+    "2017-addison-bean": {
+      "notes": "Panics with `already borrowed: BorrowMutError` on the first FishDown tick — river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output."
+    },
+    "2018-martijn-arts": {
+      "notes": "No stdin support — input salmon are never created."
+    },
+    "2023-james-thistlewood": {
+      "notes": "Produces no output — the driver's one-line-per-tick stdin model doesn't line up with the interpreter's input loop for this program."
     }
   }
 }

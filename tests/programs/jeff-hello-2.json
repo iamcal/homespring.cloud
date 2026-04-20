@@ -1,5 +1,5 @@
 {
-  "description": "Hello World #2 \u2014 variation with extra filler words between the meaningful tokens.",
+  "description": "Hello World #2 — variation with extra filler words between the meaningful tokens.",
   "source": "www/examples/2003-jeff-binder/hello-2.hs",
   "input": "",
   "expected_output": "Hello World!\n",
@@ -8,12 +8,18 @@
   "overrides": {
     "2003-cal-henderson": {
       "expected_ticks": 9,
-      "notes": "Finishes in 9 ticks instead of the OCaml reference's 10 \u2014 a minor phase-ordering difference."
+      "notes": "Finishes in 9 ticks instead of the OCaml reference's 10 — a minor phase-ordering difference."
     },
     "2012-quin-kennedy": {
       "extra_newlines": [
         13
       ]
+    },
+    "2017-addison-bean": {
+      "notes": "Panics with `already borrowed: BorrowMutError` on the first FishDown tick — river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output."
+    },
+    "2018-martijn-arts": {
+      "notes": "Runs 8 phases and produces no output."
     }
   }
 }

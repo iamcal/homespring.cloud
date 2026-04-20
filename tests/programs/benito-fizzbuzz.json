@@ -1,5 +1,5 @@
 {
-  "description": "FizzBuzz \u2014 Fizz for multiples of 3, Buzz for 5, FizzBuzz for both. Slow to start on homespring.js.",
+  "description": "FizzBuzz — Fizz for multiples of 3, Buzz for 5, FizzBuzz for both. Slow to start on homespring.js.",
   "source": "www/examples/2013-benito-van-der-zander/fizzbuzz.hs",
   "input": "",
   "tick_limit": 1500,
@@ -16,7 +16,16 @@
     },
     "2012-quin-kennedy": {
       "skip": true,
-      "skip_reason": "Emits placeholder tokens ('c_\\nc_\\nFizz\\nc_\\nBuzz\u2026') where it should emit digits"
+      "skip_reason": "Emits placeholder tokens ('c_\\nc_\\nFizz\\nc_\\nBuzz…') where it should emit digits"
+    },
+    "2017-addison-bean": {
+      "notes": "Panics with `already borrowed: BorrowMutError` on the first FishDown tick — river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output."
+    },
+    "2018-martijn-arts": {
+      "notes": "Parser splits on spaces only, so the newline + indent structure of the source collapses into a flat tree — the intended river layout is lost and output is either empty or a stream of literal node-name salmon."
+    },
+    "2023-james-thistlewood": {
+      "notes": "No output produced within the tick cap — program is known to be very slow; raising the cap may or may not help."
     }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "description": "Hello World #1 \u2014 minimal hatchery + bear + powers + marshy + snowmelt.",
+  "description": "Hello World #1 — minimal hatchery + bear + powers + marshy + snowmelt.",
   "source": "www/examples/2003-jeff-binder/hello-1.hs",
   "input": "",
   "expected_output": "Hello World!\n",
@@ -7,12 +7,18 @@
   "overrides": {
     "2003-cal-henderson": {
       "expected_ticks": 6,
-      "notes": "Finishes in 6 ticks instead of the OCaml reference's 7 \u2014 a minor phase-ordering difference."
+      "notes": "Finishes in 6 ticks instead of the OCaml reference's 7 — a minor phase-ordering difference."
     },
     "2012-quin-kennedy": {
       "extra_newlines": [
         13
       ]
+    },
+    "2017-addison-bean": {
+      "notes": "Panics with `already borrowed: BorrowMutError` on the first FishDown tick — river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output."
+    },
+    "2018-martijn-arts": {
+      "notes": "Enters an infinite loop and hits the 3s timeout without producing any output."
     }
   },
   "expected_ticks": 7

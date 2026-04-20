@@ -1,5 +1,5 @@
 {
-  "generated_at": 1776704970,
+  "generated_at": 1776705937,
   "adapter": {
     "id": "2017-addison-bean",
     "label": "Addison Bean (Rust, 2017)",
@@ -162,8 +162,10 @@
       "actual_output": "",
       "expected_ticks": 53,
       "actual_ticks": null,
-      "notes": [],
-      "wall_time_ms": 2,
+      "notes": [
+        "Panics with `already borrowed: BorrowMutError` on the first FishDown tick \u2014 river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output."
+      ],
+      "wall_time_ms": 1,
       "presumed_pass": false
     },
     {
@@ -174,8 +176,10 @@
       "actual_output": "",
       "expected_ticks": 51,
       "actual_ticks": null,
-      "notes": [],
-      "wall_time_ms": 2,
+      "notes": [
+        "Panics with `already borrowed: BorrowMutError` on the first FishDown tick \u2014 river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output."
+      ],
+      "wall_time_ms": 1,
       "presumed_pass": false
     },
     {
@@ -186,8 +190,10 @@
       "actual_output": "",
       "expected_ticks": 39,
       "actual_ticks": null,
-      "notes": [],
-      "wall_time_ms": 2,
+      "notes": [
+        "Panics with `already borrowed: BorrowMutError` on the first FishDown tick \u2014 river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output."
+      ],
+      "wall_time_ms": 1,
       "presumed_pass": false
     },
     {
@@ -198,8 +204,10 @@
       "actual_output": "",
       "expected_ticks": 39,
       "actual_ticks": null,
-      "notes": [],
-      "wall_time_ms": 2,
+      "notes": [
+        "Panics with `already borrowed: BorrowMutError` on the first FishDown tick \u2014 river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output."
+      ],
+      "wall_time_ms": 1,
       "presumed_pass": false
     },
     {
@@ -210,8 +218,10 @@
       "actual_output": "",
       "expected_ticks": null,
       "actual_ticks": null,
-      "notes": [],
-      "wall_time_ms": 1,
+      "notes": [
+        "Panics with `already borrowed: BorrowMutError` on the first FishDown tick \u2014 river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output."
+      ],
+      "wall_time_ms": 2,
       "presumed_pass": false
     },
     {
@@ -222,8 +232,10 @@
       "actual_output": "",
       "expected_ticks": null,
       "actual_ticks": null,
-      "notes": [],
-      "wall_time_ms": 3,
+      "notes": [
+        "Panics with `already borrowed: BorrowMutError` on the first FishDown tick \u2014 river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output."
+      ],
+      "wall_time_ms": 1,
       "presumed_pass": false
     },
     {
@@ -234,8 +246,10 @@
       "actual_output": "",
       "expected_ticks": null,
       "actual_ticks": null,
-      "notes": [],
-      "wall_time_ms": 2,
+      "notes": [
+        "Panics with `already borrowed: BorrowMutError` on the first FishDown tick \u2014 river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output."
+      ],
+      "wall_time_ms": 1,
       "presumed_pass": false
     },
     {
@@ -246,7 +260,9 @@
       "actual_output": "",
       "expected_ticks": 2207,
       "actual_ticks": null,
-      "notes": [],
+      "notes": [
+        "Panics with `already borrowed: BorrowMutError` on the first FishDown tick \u2014 river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output."
+      ],
       "wall_time_ms": 1,
       "presumed_pass": false
     },
@@ -258,8 +274,10 @@
       "actual_output": "",
       "expected_ticks": null,
       "actual_ticks": null,
-      "notes": [],
-      "wall_time_ms": 2,
+      "notes": [
+        "Panics with `already borrowed: BorrowMutError` on the first FishDown tick \u2014 river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output."
+      ],
+      "wall_time_ms": 3,
       "presumed_pass": false
     },
     {
@@ -270,8 +288,10 @@
       "actual_output": "",
       "expected_ticks": null,
       "actual_ticks": null,
-      "notes": [],
-      "wall_time_ms": 4,
+      "notes": [
+        "Panics with `already borrowed: BorrowMutError` on the first FishDown tick \u2014 river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output."
+      ],
+      "wall_time_ms": 3,
       "presumed_pass": false
     },
     {
@@ -282,8 +302,10 @@
       "actual_output": "",
       "expected_ticks": 9,
       "actual_ticks": null,
-      "notes": [],
-      "wall_time_ms": 7,
+      "notes": [
+        "Panics with `already borrowed: BorrowMutError` on the first FishDown tick \u2014 river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output."
+      ],
+      "wall_time_ms": 2,
       "presumed_pass": false
     },
     {
@@ -294,8 +316,10 @@
       "actual_output": "",
       "expected_ticks": 7,
       "actual_ticks": null,
-      "notes": [],
-      "wall_time_ms": 4,
+      "notes": [
+        "Panics with `already borrowed: BorrowMutError` on the first FishDown tick \u2014 river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output."
+      ],
+      "wall_time_ms": 2,
       "presumed_pass": false
     },
     {
@@ -306,8 +330,10 @@
       "actual_output": "",
       "expected_ticks": null,
       "actual_ticks": null,
-      "notes": [],
-      "wall_time_ms": 3,
+      "notes": [
+        "Panics with `already borrowed: BorrowMutError` on the first FishDown tick \u2014 river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output."
+      ],
+      "wall_time_ms": 1,
       "presumed_pass": false
     },
     {
@@ -318,8 +344,10 @@
       "actual_output": "",
       "expected_ticks": null,
       "actual_ticks": 20,
-      "notes": [],
-      "wall_time_ms": 13,
+      "notes": [
+        "Panics with `already borrowed: BorrowMutError` on the first FishDown tick \u2014 river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output."
+      ],
+      "wall_time_ms": 1,
       "presumed_pass": false
     },
     {
@@ -330,8 +358,10 @@
       "actual_output": "",
       "expected_ticks": null,
       "actual_ticks": null,
-      "notes": [],
-      "wall_time_ms": 3,
+      "notes": [
+        "Panics with `already borrowed: BorrowMutError` on the first FishDown tick \u2014 river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output."
+      ],
+      "wall_time_ms": 1,
       "presumed_pass": false
     },
     {
@@ -342,8 +372,10 @@
       "actual_output": "",
       "expected_ticks": 7,
       "actual_ticks": null,
-      "notes": [],
-      "wall_time_ms": 4,
+      "notes": [
+        "Panics with `already borrowed: BorrowMutError` on the first FishDown tick \u2014 river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output."
+      ],
+      "wall_time_ms": 1,
       "presumed_pass": false
     },
     {
@@ -354,8 +386,10 @@
       "actual_output": "",
       "expected_ticks": 10,
       "actual_ticks": null,
-      "notes": [],
-      "wall_time_ms": 3,
+      "notes": [
+        "Panics with `already borrowed: BorrowMutError` on the first FishDown tick \u2014 river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output."
+      ],
+      "wall_time_ms": 2,
       "presumed_pass": false
     },
     {
@@ -366,8 +400,10 @@
       "actual_output": "",
       "expected_ticks": 16,
       "actual_ticks": null,
-      "notes": [],
-      "wall_time_ms": 3,
+      "notes": [
+        "Panics with `already borrowed: BorrowMutError` on the first FishDown tick \u2014 river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output."
+      ],
+      "wall_time_ms": 1,
       "presumed_pass": false
     },
     {
@@ -378,7 +414,9 @@
       "actual_output": "",
       "expected_ticks": null,
       "actual_ticks": null,
-      "notes": [],
+      "notes": [
+        "Panics with `already borrowed: BorrowMutError` on the first FishDown tick \u2014 river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output."
+      ],
       "wall_time_ms": 3,
       "presumed_pass": false
     },
@@ -390,8 +428,10 @@
       "actual_output": "",
       "expected_ticks": null,
       "actual_ticks": null,
-      "notes": [],
-      "wall_time_ms": 2,
+      "notes": [
+        "Panics with `already borrowed: BorrowMutError` on the first FishDown tick \u2014 river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output."
+      ],
+      "wall_time_ms": 3,
       "presumed_pass": false
     },
     {
@@ -403,9 +443,10 @@
       "expected_ticks": 0,
       "actual_ticks": 200,
       "notes": [
+        "Empty source is parsed as a single-node River rather than triggering the Quine branch, so the hardcoded 'not a quine' message never fires.",
         "tick mismatch: expected 0, got 200"
       ],
-      "wall_time_ms": 6,
+      "wall_time_ms": 2,
       "presumed_pass": false
     },
     {
@@ -416,7 +457,9 @@
       "actual_output": "",
       "expected_ticks": null,
       "actual_ticks": null,
-      "notes": [],
+      "notes": [
+        "Panics with `already borrowed: BorrowMutError` on the first FishDown tick \u2014 river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output."
+      ],
       "wall_time_ms": 2,
       "presumed_pass": false
     },
@@ -429,7 +472,7 @@
       "expected_ticks": null,
       "actual_ticks": 20,
       "notes": [],
-      "wall_time_ms": 3,
+      "wall_time_ms": 1,
       "presumed_pass": false
     },
     {
@@ -440,8 +483,10 @@
       "actual_output": "",
       "expected_ticks": null,
       "actual_ticks": null,
-      "notes": [],
-      "wall_time_ms": 2,
+      "notes": [
+        "Panics with `already borrowed: BorrowMutError` on the first FishDown tick \u2014 river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output."
+      ],
+      "wall_time_ms": 1,
       "presumed_pass": false
     },
     {
@@ -452,8 +497,10 @@
       "actual_output": "",
       "expected_ticks": null,
       "actual_ticks": null,
-      "notes": [],
-      "wall_time_ms": 15,
+      "notes": [
+        "Panics with `already borrowed: BorrowMutError` on the first FishDown tick \u2014 river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output."
+      ],
+      "wall_time_ms": 1,
       "presumed_pass": false
     },
     {
@@ -465,7 +512,7 @@
       "expected_ticks": null,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 4,
+      "wall_time_ms": 2,
       "presumed_pass": false
     },
     {
@@ -477,7 +524,7 @@
       "expected_ticks": null,
       "actual_ticks": null,
       "notes": [],
-      "wall_time_ms": 3,
+      "wall_time_ms": 1,
       "presumed_pass": false
     },
     {
@@ -489,7 +536,7 @@
       "expected_ticks": null,
       "actual_ticks": 60,
       "notes": [],
-      "wall_time_ms": 4,
+      "wall_time_ms": 2,
       "presumed_pass": false
     },
     {
@@ -501,7 +548,7 @@
       "expected_ticks": null,
       "actual_ticks": 60,
       "notes": [],
-      "wall_time_ms": 4,
+      "wall_time_ms": 1,
       "presumed_pass": false
     }
   ],

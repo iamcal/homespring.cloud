@@ -1,5 +1,5 @@
 {
-  "description": "Ticking clock \u2014 each cycle prints eight X's followed by a 'y'. We verify the first couple of cycles.",
+  "description": "Ticking clock — each cycle prints eight X's followed by a 'y'. We verify the first couple of cycles.",
   "source": "www/examples/2013-benito-van-der-zander/clock.hs",
   "input": "",
   "tick_limit": 80,
@@ -18,6 +18,15 @@
       "extra_newlines": [
         47
       ]
+    },
+    "2017-addison-bean": {
+      "notes": "Panics with `already borrowed: BorrowMutError` on the first FishDown tick — river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output."
+    },
+    "2018-martijn-arts": {
+      "notes": "Parser splits on spaces only, so the newline + indent structure of the source collapses into a flat tree — the intended river layout is lost and output is either empty or a stream of literal node-name salmon."
+    },
+    "2023-james-thistlewood": {
+      "notes": "Emits the correct y-column sequence but with only one X per column instead of eight — the shallows/range counter isn't incrementing as expected."
     }
   },
   "expected_ticks": 53

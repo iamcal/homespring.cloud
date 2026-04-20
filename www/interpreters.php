@@ -451,9 +451,9 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
-			<td class="compat no">no</td>
-			<td class="compat no">no</td>
-			<td class="compat no">no</td>
+			<td class="compat no" title="Panics with `already borrowed: BorrowMutError` on the first FishDown tick — river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output.">no</td>
+			<td class="compat no" title="No stdin support — input salmon are never created.">no</td>
+			<td class="compat no" title="Reads input but the unary counter doesn't produce the expected sum.">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2003-jeff-binder/cat.hs">cat.hs</a></td>
@@ -463,9 +463,9 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
-			<td class="compat no">no</td>
-			<td class="compat no">no</td>
-			<td class="compat no">no</td>
+			<td class="compat no" title="Panics with `already borrowed: BorrowMutError` on the first FishDown tick — river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output.">no</td>
+			<td class="compat no" title="No stdin support — input salmon are never created.">no</td>
+			<td class="compat no" title="Produces no output — the driver's one-line-per-tick stdin model doesn't line up with the interpreter's input loop for this program.">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2003-jeff-binder/first.hs">first.hs</a></td>
@@ -475,8 +475,8 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
-			<td class="compat no">no</td>
-			<td class="compat no">no</td>
+			<td class="compat no" title="Panics with `already borrowed: BorrowMutError` on the first FishDown tick — river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output.">no</td>
+			<td class="compat no" title="Runs but produces no output.">no</td>
 			<td class="compat yes">yes</td>
 		</tr>
 		<tr>
@@ -487,8 +487,8 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
-			<td class="compat no">no</td>
-			<td class="compat no" title="timed out after 3.0s">no</td>
+			<td class="compat no" title="Panics with `already borrowed: BorrowMutError` on the first FishDown tick — river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output.">no</td>
+			<td class="compat no" title="Enters an infinite loop and hits the 3s timeout without producing any output.">no</td>
 			<td class="compat yes">yes</td>
 		</tr>
 		<tr>
@@ -499,8 +499,8 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
-			<td class="compat no">no</td>
-			<td class="compat no" title="tick mismatch: expected 10, got 8">no</td>
+			<td class="compat no" title="Panics with `already borrowed: BorrowMutError` on the first FishDown tick — river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output.">no</td>
+			<td class="compat no" title="Runs 8 phases and produces no output.">no</td>
 			<td class="compat yes">yes</td>
 		</tr>
 		<tr>
@@ -511,9 +511,9 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
-			<td class="compat no">no</td>
-			<td class="compat no" title="tick mismatch: expected 16, got 6">no</td>
-			<td class="compat no">no</td>
+			<td class="compat no" title="Panics with `already borrowed: BorrowMutError` on the first FishDown tick — river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output.">no</td>
+			<td class="compat no" title="Does not support the sense / shallows / force.field nodes this program uses to gate output.">no</td>
+			<td class="compat no" title="Correct greeting followed by a stray `homeless` salmon — an extra hatchery emission after the program's intended output.">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2003-jeff-binder/hi.hs">hi.hs</a></td>
@@ -523,9 +523,9 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
-			<td class="compat no">no</td>
-			<td class="compat no">no</td>
-			<td class="compat no">no</td>
+			<td class="compat no" title="Panics with `already borrowed: BorrowMutError` on the first FishDown tick — river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output.">no</td>
+			<td class="compat no" title="No stdin support — input salmon are never created.">no</td>
+			<td class="compat no" title="Reads input but doesn't produce the full greeting.">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2003-jeff-binder/name.hs">name.hs</a></td>
@@ -535,9 +535,9 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Matches the first ten tokens exactly, but continues emitting 'homeless'/'Great' pairs indefinitely where OCaml/JS stop.">no</td>
 			<td class="compat yes">yes</td>
-			<td class="compat no">no</td>
-			<td class="compat no">no</td>
-			<td class="compat no">no</td>
+			<td class="compat no" title="Panics with `already borrowed: BorrowMutError` on the first FishDown tick — river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output.">no</td>
+			<td class="compat no" title="Parser splits on spaces only, so the newline + indent structure of the source collapses into a flat tree — the intended river layout is lost and output is either empty or a stream of literal node-name salmon.">no</td>
+			<td class="compat no" title="Acrostic salmon not emitted.">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2003-jeff-binder/null.hs">null.hs</a></td>
@@ -547,9 +547,9 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
-			<td class="compat no" title="tick mismatch: expected 0, got 200">no</td>
-			<td class="compat no">no</td>
-			<td class="compat no">no</td>
+			<td class="compat no" title="Empty source is parsed as a single-node River rather than triggering the Quine branch, so the hardcoded 'not a quine' message never fires.">no</td>
+			<td class="compat no" title="No special handling for the null/empty program.">no</td>
+			<td class="compat no" title="Parser crashes with 'trying to add token above root' — the tokenizer yields a trailing empty token for the empty source that buildTree can't resolve.">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2003-jeff-binder/quiz.hs">quiz.hs</a></td>
@@ -559,9 +559,9 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
-			<td class="compat no">no</td>
-			<td class="compat no">no</td>
-			<td class="compat no">no</td>
+			<td class="compat no" title="Panics with `already borrowed: BorrowMutError` on the first FishDown tick — river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output.">no</td>
+			<td class="compat no" title="No stdin support — input salmon are never created.">no</td>
+			<td class="compat no" title="Reads input but produces no response.">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2003-jeff-binder/simple.hs">simple.hs</a></td>
@@ -588,8 +588,8 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
-			<td class="compat no">no</td>
-			<td class="compat no" title="tick mismatch: expected 7, got 20">no</td>
+			<td class="compat no" title="Panics with `already borrowed: BorrowMutError` on the first FishDown tick — river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output.">no</td>
+			<td class="compat no" title="Runs but produces no output — the parser's flat tree leaves nothing to route salmon to the root.">no</td>
 			<td class="compat yes">yes</td>
 		</tr>
 
@@ -605,9 +605,9 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Emits 'hello' (one 'o' short of the OCaml/JS reference)">no</td>
 			<td class="compat yes">yes</td>
-			<td class="compat no">no</td>
-			<td class="compat no">no</td>
-			<td class="compat no">no</td>
+			<td class="compat no" title="Panics with `already borrowed: BorrowMutError` on the first FishDown tick — river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output.">no</td>
+			<td class="compat no" title="Does not support inverse-lock / pump / switch nodes.">no</td>
+			<td class="compat no" title="Flip-flop logic doesn't produce any output.">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2005-joe-neeman/tic.hs">tic.hs</a></td>
@@ -617,9 +617,9 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Emits nothing for this program">no</td>
 			<td class="compat yes">yes</td>
-			<td class="compat no">no</td>
+			<td class="compat no" title="Panics with `already borrowed: BorrowMutError` on the first FishDown tick — river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output.">no</td>
 			<td class="compat no" title="Does not support the node types used">no</td>
-			<td class="compat no">no</td>
+			<td class="compat no" title="Game loop doesn't advance past the initial render.">no</td>
 		</tr>
 
 		<tr class="author-row">
@@ -663,9 +663,9 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
-			<td class="compat no">no</td>
-			<td class="compat no" title="tick mismatch: expected 53, got 80">no</td>
-			<td class="compat no">no</td>
+			<td class="compat no" title="Panics with `already borrowed: BorrowMutError` on the first FishDown tick — river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output.">no</td>
+			<td class="compat no" title="Parser splits on spaces only, so the newline + indent structure of the source collapses into a flat tree — the intended river layout is lost and output is either empty or a stream of literal node-name salmon.">no</td>
+			<td class="compat no" title="Emits the correct y-column sequence but with only one X per column instead of eight — the shallows/range counter isn't incrementing as expected.">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/count.hs">count.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/count.hst">.hst</a>)</span></td>
@@ -675,9 +675,9 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
-			<td class="compat no">no</td>
-			<td class="compat no" title="tick mismatch: expected 39, got 37">no</td>
-			<td class="compat no" title="tick mismatch: expected 39, got 100">no</td>
+			<td class="compat no" title="Panics with `already borrowed: BorrowMutError` on the first FishDown tick — river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output.">no</td>
+			<td class="compat no" title="Parser splits on spaces only, so the newline + indent structure of the source collapses into a flat tree — the intended river layout is lost and output is either empty or a stream of literal node-name salmon.">no</td>
+			<td class="compat no" title="Correct output; driver runs to the tick cap instead of detecting natural termination so the actual_ticks count doesn't match the OCaml reference.">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/count2.hs">count2.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/count2.hst">.hst</a>)</span></td>
@@ -687,9 +687,9 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Produces '..._A8________A7________A6_' (reversed digits) instead of '..._A1________A2________A3_'">no</td>
 			<td class="compat yes">yes</td>
-			<td class="compat no">no</td>
-			<td class="compat no">no</td>
-			<td class="compat no">no</td>
+			<td class="compat no" title="Panics with `already borrowed: BorrowMutError` on the first FishDown tick — river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output.">no</td>
+			<td class="compat no" title="Parser splits on spaces only, so the newline + indent structure of the source collapses into a flat tree — the intended river layout is lost and output is either empty or a stream of literal node-name salmon.">no</td>
+			<td class="compat no" title="Counter emits full 0-9 runs per decade marker (A0123456789…) instead of the hold-and-carry sequence (…A1…A2…A3…).">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/count3.hs">count3.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/count3.hst">.hst</a>)</span></td>
@@ -699,9 +699,9 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Produces '_________9_9A_9B…' instead of '________x_xA…'">no</td>
 			<td class="compat yes">yes</td>
-			<td class="compat no">no</td>
-			<td class="compat no">no</td>
-			<td class="compat no">no</td>
+			<td class="compat no" title="Panics with `already borrowed: BorrowMutError` on the first FishDown tick — river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output.">no</td>
+			<td class="compat no" title="Parser splits on spaces only, so the newline + indent structure of the source collapses into a flat tree — the intended river layout is lost and output is either empty or a stream of literal node-name salmon.">no</td>
+			<td class="compat no" title="Halts partway through — emits 72 underscores then stops before reaching the lettered digits.">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/count4.hs">count4.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/count4.hst">.hst</a>)</span></td>
@@ -711,9 +711,9 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Emits a reordered prefix ('numberhello…')">no</td>
 			<td class="compat yes">yes</td>
-			<td class="compat no">no</td>
-			<td class="compat no">no</td>
-			<td class="compat no">no</td>
+			<td class="compat no" title="Panics with `already borrowed: BorrowMutError` on the first FishDown tick — river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output.">no</td>
+			<td class="compat no" title="Parser splits on spaces only, so the newline + indent structure of the source collapses into a flat tree — the intended river layout is lost and output is either empty or a stream of literal node-name salmon.">no</td>
+			<td class="compat no" title="No output produced within the tick cap.">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/count.poem.hs">count.poem.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/count.poem.hst">.hst</a>)</span></td>
@@ -723,9 +723,9 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
-			<td class="compat no">no</td>
-			<td class="compat no" title="tick mismatch: expected 39, got 37">no</td>
-			<td class="compat no" title="tick mismatch: expected 39, got 100">no</td>
+			<td class="compat no" title="Panics with `already borrowed: BorrowMutError` on the first FishDown tick — river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output.">no</td>
+			<td class="compat no" title="Parser splits on spaces only, so the newline + indent structure of the source collapses into a flat tree — the intended river layout is lost and output is either empty or a stream of literal node-name salmon.">no</td>
+			<td class="compat no" title="Correct output; driver runs to the tick cap instead of detecting natural termination so the actual_ticks count doesn't match the OCaml reference.">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/count.poem.withfillers.hs">count.poem.withfillers.hs</a></td>
@@ -735,9 +735,9 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
-			<td class="compat no">no</td>
-			<td class="compat no" title="tick mismatch: expected 51, got 250">no</td>
-			<td class="compat no" title="tick mismatch: expected 51, got 250">no</td>
+			<td class="compat no" title="Panics with `already borrowed: BorrowMutError` on the first FishDown tick — river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output.">no</td>
+			<td class="compat no" title="Parser splits on spaces only, so the newline + indent structure of the source collapses into a flat tree — the intended river layout is lost and output is either empty or a stream of literal node-name salmon.">no</td>
+			<td class="compat no" title="No output produced within the 250-tick cap.">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/fizzbuzz.hs">fizzbuzz.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/fizzbuzz.hst">.hst</a>)</span></td>
@@ -747,9 +747,9 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Emits placeholder tokens ('c_\nc_\nFizz\nc_\nBuzz…') where it should emit digits">no</td>
 			<td class="compat yes">yes</td>
-			<td class="compat no">no</td>
-			<td class="compat no">no</td>
-			<td class="compat no">no</td>
+			<td class="compat no" title="Panics with `already borrowed: BorrowMutError` on the first FishDown tick — river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output.">no</td>
+			<td class="compat no" title="Parser splits on spaces only, so the newline + indent structure of the source collapses into a flat tree — the intended river layout is lost and output is either empty or a stream of literal node-name salmon.">no</td>
+			<td class="compat no" title="No output produced within the tick cap — program is known to be very slow; raising the cap may or may not help.">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/fizzbuzz.poem.hs">fizzbuzz.poem.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/fizzbuzz.poem.hst">.hst</a>)</span></td>
@@ -759,9 +759,9 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Emits placeholder tokens ('c_\nc_\nFizz\nc_\nBuzz…') where it should emit digits">no</td>
 			<td class="compat yes">yes</td>
-			<td class="compat no">no</td>
-			<td class="compat no">no</td>
-			<td class="compat no" title="tick mismatch: expected 2207, got 3000">no</td>
+			<td class="compat no" title="Panics with `already borrowed: BorrowMutError` on the first FishDown tick — river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output.">no</td>
+			<td class="compat no" title="Parser splits on spaces only, so the newline + indent structure of the source collapses into a flat tree — the intended river layout is lost and output is either empty or a stream of literal node-name salmon.">no</td>
+			<td class="compat no" title="No output produced within the tick cap — program is known to be very slow; raising the cap may or may not help.">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/fizzbuzztick.hs">fizzbuzztick.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/fizzbuzztick.hst">.hst</a>)</span></td>
@@ -771,9 +771,9 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Starts with 'tick' and reorders the output">no</td>
 			<td class="compat yes">yes</td>
-			<td class="compat no">no</td>
-			<td class="compat no">no</td>
-			<td class="compat no">no</td>
+			<td class="compat no" title="Panics with `already borrowed: BorrowMutError` on the first FishDown tick — river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output.">no</td>
+			<td class="compat no" title="Parser splits on spaces only, so the newline + indent structure of the source collapses into a flat tree — the intended river layout is lost and output is either empty or a stream of literal node-name salmon.">no</td>
+			<td class="compat no" title="Emits `tick` on every tick but never the Fizz/Buzz arithmetic.">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/helloworld.hs">helloworld.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/helloworld.hst">.hst</a>)</span></td>
@@ -783,8 +783,8 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
-			<td class="compat no">no</td>
-			<td class="compat no" title="tick mismatch: expected 9, got 60">no</td>
+			<td class="compat no" title="Panics with `already borrowed: BorrowMutError` on the first FishDown tick — river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output.">no</td>
+			<td class="compat no" title="Parser splits on spaces only, so the newline + indent structure of the source collapses into a flat tree — the intended river layout is lost and output is either empty or a stream of literal node-name salmon.">no</td>
 			<td class="compat yes">yes</td>
 		</tr>
 

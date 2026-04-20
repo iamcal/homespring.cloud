@@ -1,7 +1,10 @@
 {
-  "description": "Tic-tac-toe \u2014 reads a move (1-9) on stdin, renders the board, then waits for the next move. We play 5 (centre, o) then 3 (top-right, x).",
+  "description": "Tic-tac-toe — reads a move (1-9) on stdin, renders the board, then waits for the next move. We play 5 (centre, o) then 3 (top-right, x).",
   "source": "www/examples/2005-joe-neeman/tic.hs",
-  "input_script": ["5\n", "3\n"],
+  "input_script": [
+    "5\n",
+    "3\n"
+  ],
   "quiesce_s": 1.5,
   "tick_limit": 30000,
   "timeout": 30,
@@ -22,6 +25,12 @@
     "2018-martijn-arts": {
       "skip": true,
       "skip_reason": "Does not support the node types used"
+    },
+    "2017-addison-bean": {
+      "notes": "Panics with `already borrowed: BorrowMutError` on the first FishDown tick — river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output."
+    },
+    "2023-james-thistlewood": {
+      "notes": "Game loop doesn't advance past the initial render."
     }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "description": "Interactive greeter \u2014 asks 'What's your name?' and responds 'Hi, <name>!'.",
+  "description": "Interactive greeter — asks 'What's your name?' and responds 'Hi, <name>!'.",
   "source": "www/examples/2003-jeff-binder/hi.hs",
   "input": "World\n",
   "tick_limit": 50,
@@ -14,6 +14,15 @@
       "extra_newlines": [
         33
       ]
+    },
+    "2017-addison-bean": {
+      "notes": "Panics with `already borrowed: BorrowMutError` on the first FishDown tick — river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output."
+    },
+    "2018-martijn-arts": {
+      "notes": "No stdin support — input salmon are never created."
+    },
+    "2023-james-thistlewood": {
+      "notes": "Reads input but doesn't produce the full greeting."
     }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "description": "Elaborate counter built from digit generators \u2014 prints an underscore ramp first.",
+  "description": "Elaborate counter built from digit generators — prints an underscore ramp first.",
   "source": "www/examples/2013-benito-van-der-zander/count2.hs",
   "input": "",
   "tick_limit": 80,
@@ -17,6 +17,15 @@
     "2012-quin-kennedy": {
       "skip": true,
       "skip_reason": "Produces '..._A8________A7________A6_' (reversed digits) instead of '..._A1________A2________A3_'"
+    },
+    "2017-addison-bean": {
+      "notes": "Panics with `already borrowed: BorrowMutError` on the first FishDown tick — river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output."
+    },
+    "2018-martijn-arts": {
+      "notes": "Parser splits on spaces only, so the newline + indent structure of the source collapses into a flat tree — the intended river layout is lost and output is either empty or a stream of literal node-name salmon."
+    },
+    "2023-james-thistlewood": {
+      "notes": "Counter emits full 0-9 runs per decade marker (A0123456789…) instead of the hold-and-carry sequence (…A1…A2…A3…)."
     }
   }
 }

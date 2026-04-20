@@ -1,5 +1,5 @@
 {
-  "description": "Single-digit adder \u2014 pipes two digits through a unary counter. Famously slow.",
+  "description": "Single-digit adder — pipes two digits through a unary counter. Famously slow.",
   "source": "www/examples/2003-jeff-binder/add.hs",
   "input": "2\n3\n",
   "tick_limit": 200,
@@ -13,12 +13,21 @@
     "2003-jeff-binder": {
       "skip": true,
       "presumed_pass": true,
-      "skip_reason": "Runs this program correctly under an interactive terminal \u2014 typing `2` then `3` at the prompts produces `? + 5` \u2014 but the harness's one-shot piped stdin closes before the slow unary counter finishes."
+      "skip_reason": "Runs this program correctly under an interactive terminal — typing `2` then `3` at the prompts produces `? + 5` — but the harness's one-shot piped stdin closes before the slow unary counter finishes."
     },
     "2012-quin-kennedy": {
       "extra_newlines": [
         4
       ]
+    },
+    "2017-addison-bean": {
+      "notes": "Panics with `already borrowed: BorrowMutError` on the first FishDown tick — river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output."
+    },
+    "2018-martijn-arts": {
+      "notes": "No stdin support — input salmon are never created."
+    },
+    "2023-james-thistlewood": {
+      "notes": "Reads input but the unary counter doesn't produce the expected sum."
     }
   }
 }

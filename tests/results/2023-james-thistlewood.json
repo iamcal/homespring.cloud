@@ -1,5 +1,5 @@
 {
-  "generated_at": 1776704478,
+  "generated_at": 1776705952,
   "adapter": {
     "id": "2023-james-thistlewood",
     "label": "James Thistlewood (JavaScript, 2023)",
@@ -162,8 +162,10 @@
       "actual_output": "y\ny\ny\ny\ny\ny\nXy\nXy\nXy\nXy\nXy\nXy\nXy\nXy\nXy\nXy\nXy\nXy\nXy\nXy\nXy\nXy\nXy\nXy\nXy\nXy\nXy\nXy\nXy\nXy\nXy\nXy\nXy\nXy\nXy\nXy\nXy\nXy\nXy\nXy\nXy\nXy\nXy\nXy\nXy\n",
       "expected_ticks": 53,
       "actual_ticks": 53,
-      "notes": [],
-      "wall_time_ms": 63,
+      "notes": [
+        "Emits the correct y-column sequence but with only one X per column instead of eight \u2014 the shallows/range counter isn't incrementing as expected."
+      ],
+      "wall_time_ms": 77,
       "presumed_pass": false
     },
     {
@@ -175,9 +177,10 @@
       "expected_ticks": 51,
       "actual_ticks": 250,
       "notes": [
+        "No output produced within the 250-tick cap.",
         "tick mismatch: expected 51, got 250"
       ],
-      "wall_time_ms": 47,
+      "wall_time_ms": 50,
       "presumed_pass": false
     },
     {
@@ -189,9 +192,10 @@
       "expected_ticks": 39,
       "actual_ticks": 100,
       "notes": [
+        "Correct output; driver runs to the tick cap instead of detecting natural termination so the actual_ticks count doesn't match the OCaml reference.",
         "tick mismatch: expected 39, got 100"
       ],
-      "wall_time_ms": 136,
+      "wall_time_ms": 149,
       "presumed_pass": false
     },
     {
@@ -203,9 +207,10 @@
       "expected_ticks": 39,
       "actual_ticks": 100,
       "notes": [
+        "Correct output; driver runs to the tick cap instead of detecting natural termination so the actual_ticks count doesn't match the OCaml reference.",
         "tick mismatch: expected 39, got 100"
       ],
-      "wall_time_ms": 145,
+      "wall_time_ms": 141,
       "presumed_pass": false
     },
     {
@@ -216,8 +221,10 @@
       "actual_output": "__________________________________A0123456789_A0123456789_A0123456789_A0123456789_A0123456789_A0123456789_A0123456789_A0123456789_A0123456789_A0123456789_A0123456789_A0123456789_A0123456789_A0123456789_A0123456789_A0123456789_A0123456789_A0123456789_A0123456789_A0123456789_A0123456789_A0123456789_A0123456789_A0123456789_A0123456789_A0123456789_A0123456789_A0123456789_A0123456789_A0123456789_A0123456789_A0123456789_A0123456789",
       "expected_ticks": null,
       "actual_ticks": 80,
-      "notes": [],
-      "wall_time_ms": 211,
+      "notes": [
+        "Counter emits full 0-9 runs per decade marker (A0123456789\u2026) instead of the hold-and-carry sequence (\u2026A1\u2026A2\u2026A3\u2026)."
+      ],
+      "wall_time_ms": 190,
       "presumed_pass": false
     },
     {
@@ -228,8 +235,10 @@
       "actual_output": "________________________________________________________________________",
       "expected_ticks": null,
       "actual_ticks": 80,
-      "notes": [],
-      "wall_time_ms": 123,
+      "notes": [
+        "Halts partway through \u2014 emits 72 underscores then stops before reaching the lettered digits."
+      ],
+      "wall_time_ms": 108,
       "presumed_pass": false
     },
     {
@@ -240,8 +249,10 @@
       "actual_output": "",
       "expected_ticks": null,
       "actual_ticks": 80,
-      "notes": [],
-      "wall_time_ms": 65,
+      "notes": [
+        "No output produced within the tick cap."
+      ],
+      "wall_time_ms": 48,
       "presumed_pass": false
     },
     {
@@ -253,9 +264,10 @@
       "expected_ticks": 2207,
       "actual_ticks": 3000,
       "notes": [
+        "No output produced within the tick cap \u2014 program is known to be very slow; raising the cap may or may not help.",
         "tick mismatch: expected 2207, got 3000"
       ],
-      "wall_time_ms": 3684,
+      "wall_time_ms": 3964,
       "presumed_pass": false
     },
     {
@@ -266,8 +278,10 @@
       "actual_output": "",
       "expected_ticks": null,
       "actual_ticks": 1500,
-      "notes": [],
-      "wall_time_ms": 1695,
+      "notes": [
+        "No output produced within the tick cap \u2014 program is known to be very slow; raising the cap may or may not help."
+      ],
+      "wall_time_ms": 1579,
       "presumed_pass": false
     },
     {
@@ -278,8 +292,10 @@
       "actual_output": "tick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\ntick\n",
       "expected_ticks": null,
       "actual_ticks": 200,
-      "notes": [],
-      "wall_time_ms": 184,
+      "notes": [
+        "Emits `tick` on every tick but never the Fizz/Buzz arithmetic."
+      ],
+      "wall_time_ms": 214,
       "presumed_pass": false
     },
     {
@@ -291,7 +307,7 @@
       "expected_ticks": 9,
       "actual_ticks": 9,
       "notes": [],
-      "wall_time_ms": 48,
+      "wall_time_ms": 42,
       "presumed_pass": false
     },
     {
@@ -303,7 +319,7 @@
       "expected_ticks": 7,
       "actual_ticks": 7,
       "notes": [],
-      "wall_time_ms": 45,
+      "wall_time_ms": 41,
       "presumed_pass": false
     },
     {
@@ -314,8 +330,10 @@
       "actual_output": "",
       "expected_ticks": null,
       "actual_ticks": 1,
-      "notes": [],
-      "wall_time_ms": 44,
+      "notes": [
+        "Reads input but the unary counter doesn't produce the expected sum."
+      ],
+      "wall_time_ms": 51,
       "presumed_pass": false
     },
     {
@@ -326,8 +344,10 @@
       "actual_output": "",
       "expected_ticks": null,
       "actual_ticks": 0,
-      "notes": [],
-      "wall_time_ms": 39,
+      "notes": [
+        "Produces no output \u2014 the driver's one-line-per-tick stdin model doesn't line up with the interpreter's input loop for this program."
+      ],
+      "wall_time_ms": 45,
       "presumed_pass": false
     },
     {
@@ -339,7 +359,7 @@
       "expected_ticks": null,
       "actual_ticks": 20,
       "notes": [],
-      "wall_time_ms": 45,
+      "wall_time_ms": 43,
       "presumed_pass": false
     },
     {
@@ -351,7 +371,7 @@
       "expected_ticks": 7,
       "actual_ticks": 7,
       "notes": [],
-      "wall_time_ms": 43,
+      "wall_time_ms": 40,
       "presumed_pass": false
     },
     {
@@ -363,7 +383,7 @@
       "expected_ticks": 10,
       "actual_ticks": 10,
       "notes": [],
-      "wall_time_ms": 45,
+      "wall_time_ms": 44,
       "presumed_pass": false
     },
     {
@@ -374,8 +394,10 @@
       "actual_output": "Hello, World!\nhomeless",
       "expected_ticks": 16,
       "actual_ticks": 16,
-      "notes": [],
-      "wall_time_ms": 47,
+      "notes": [
+        "Correct greeting followed by a stray `homeless` salmon \u2014 an extra hatchery emission after the program's intended output."
+      ],
+      "wall_time_ms": 43,
       "presumed_pass": false
     },
     {
@@ -386,8 +408,10 @@
       "actual_output": "",
       "expected_ticks": null,
       "actual_ticks": 1,
-      "notes": [],
-      "wall_time_ms": 41,
+      "notes": [
+        "Reads input but doesn't produce the full greeting."
+      ],
+      "wall_time_ms": 42,
       "presumed_pass": false
     },
     {
@@ -398,8 +422,10 @@
       "actual_output": "",
       "expected_ticks": null,
       "actual_ticks": 1,
-      "notes": [],
-      "wall_time_ms": 39,
+      "notes": [
+        "Acrostic salmon not emitted."
+      ],
+      "wall_time_ms": 40,
       "presumed_pass": false
     },
     {
@@ -410,8 +436,10 @@
       "actual_output": "",
       "expected_ticks": 0,
       "actual_ticks": 0,
-      "notes": [],
-      "wall_time_ms": 46,
+      "notes": [
+        "Parser crashes with 'trying to add token above root' \u2014 the tokenizer yields a trailing empty token for the empty source that buildTree can't resolve."
+      ],
+      "wall_time_ms": 44,
       "presumed_pass": false
     },
     {
@@ -422,7 +450,9 @@
       "actual_output": "",
       "expected_ticks": null,
       "actual_ticks": 1,
-      "notes": [],
+      "notes": [
+        "Reads input but produces no response."
+      ],
       "wall_time_ms": 42,
       "presumed_pass": false
     },
@@ -446,8 +476,10 @@
       "actual_output": "",
       "expected_ticks": null,
       "actual_ticks": 1,
-      "notes": [],
-      "wall_time_ms": 39,
+      "notes": [
+        "Flip-flop logic doesn't produce any output."
+      ],
+      "wall_time_ms": 42,
       "presumed_pass": false
     },
     {
@@ -458,8 +490,10 @@
       "actual_output": "",
       "expected_ticks": null,
       "actual_ticks": 1,
-      "notes": [],
-      "wall_time_ms": 43,
+      "notes": [
+        "Game loop doesn't advance past the initial render."
+      ],
+      "wall_time_ms": 65,
       "presumed_pass": false
     },
     {
@@ -471,7 +505,7 @@
       "expected_ticks": null,
       "actual_ticks": 1,
       "notes": [],
-      "wall_time_ms": 43,
+      "wall_time_ms": 50,
       "presumed_pass": false
     },
     {
@@ -483,7 +517,7 @@
       "expected_ticks": null,
       "actual_ticks": 1,
       "notes": [],
-      "wall_time_ms": 40,
+      "wall_time_ms": 51,
       "presumed_pass": false
     },
     {
@@ -495,7 +529,7 @@
       "expected_ticks": null,
       "actual_ticks": 0,
       "notes": [],
-      "wall_time_ms": 43,
+      "wall_time_ms": 41,
       "presumed_pass": false
     },
     {
@@ -507,7 +541,7 @@
       "expected_ticks": null,
       "actual_ticks": 1,
       "notes": [],
-      "wall_time_ms": 49,
+      "wall_time_ms": 46,
       "presumed_pass": false
     }
   ],
