@@ -133,16 +133,24 @@ p.lead a {
 	line-height: 1.4;
 }
 
-/* Examples table */
+/* Examples table — wrapped in a horizontally-scrolling container so the
+   compat matrix can keep growing sideways. The program-name column is
+   frozen to the left via position:sticky so it stays visible while the
+   description and per-interpreter cells scroll. */
+
+.table-scroll {
+	margin-top: 16px;
+	border: 1px solid var(--border);
+	border-radius: 8px;
+	overflow-x: auto;
+	background: var(--surface);
+}
 
 table.examples {
 	width: 100%;
-	border-collapse: collapse;
-	margin-top: 16px;
+	border-collapse: separate;
+	border-spacing: 0;
 	background: var(--surface);
-	border: 1px solid var(--border);
-	border-radius: 8px;
-	overflow: hidden;
 }
 
 table.examples thead th {
@@ -212,6 +220,29 @@ table.examples td.name {
 	font-family: var(--font-mono);
 	font-size: 13px;
 	white-space: nowrap;
+}
+
+/* Freeze the program-name column and the matching header cell. Sticky
+   cells need an explicit background so scrolled content doesn't bleed
+   through, and a right border so the seam is visible while scrolling. */
+table.examples thead th:first-child,
+table.examples td.name {
+	position: sticky;
+	left: 0;
+	background: var(--surface);
+	border-right: 1px solid var(--border);
+	z-index: 1;
+}
+
+table.examples thead th:first-child {
+	background: var(--surface2);
+	z-index: 2;
+}
+
+/* Give the description some breathing room now that we can scroll. */
+table.examples td.desc,
+table.examples thead th:nth-child(2) {
+	min-width: 360px;
 }
 
 table.examples td.name a {
@@ -359,6 +390,7 @@ table.examples td.compat sup {
 
 <h2>The Example Programs</h2>
 
+<div class="table-scroll">
 <table class="examples">
 	<thead>
 		<tr>
@@ -701,6 +733,7 @@ table.examples td.compat sup {
 
 	</tbody>
 </table>
+</div>
 
 <div class="legend-inline">
 	<span><b class="compat yes">yes</b> &nbsp;runs correctly</span>
