@@ -1,10 +1,11 @@
 {
-  "description": "Tic-tac-toe \u2014 needs stdin input to start. Prints the board frames between moves.",
+  "description": "Tic-tac-toe \u2014 reads a move (1-9) on stdin, renders the board, then waits for the next move. We play 5 (centre, o) then 3 (top-right, x).",
   "source": "www/examples/2005-joe-neeman/tic.hs",
-  "input": "hello\n",
-  "tick_limit": 200,
-  "timeout": 8,
-  "expected_output": " | |\n-----\n | |\n-----\n",
+  "input_script": ["5\n", "3\n"],
+  "quiesce_s": 1.5,
+  "tick_limit": 30000,
+  "timeout": 30,
+  "expected_output": " | |\n-----\n |o|\n-----\n | |\n | |x\n-----\n |o|\n-----\n | |\n",
   "overrides": {
     "2003-jeff-binder": {
       "skip": true,
@@ -17,6 +18,10 @@
     "2012-quin-kennedy": {
       "skip": true,
       "skip_reason": "Emits nothing for this program"
+    },
+    "2018-martijn-arts": {
+      "skip": true,
+      "skip_reason": "Does not support the node types used"
     }
   }
 }

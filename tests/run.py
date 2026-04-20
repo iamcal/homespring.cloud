@@ -59,6 +59,15 @@ class Adapter:
             tick_limit: int | None) -> RunResult:
         raise NotImplementedError
 
+    def run_scripted(self, program_path: Path, script: list[str],
+                     timeout_s: float, tick_limit: int | None,
+                     quiesce_s: float) -> RunResult:
+        """Feed inputs one at a time, waiting quiesce_s of no output between
+        each. The default implementation just concatenates the script and
+        hands it to run() — adapters that can meaningfully drive interactive
+        programs should override this with an _exec_scripted-based version."""
+        return self.run(program_path, "".join(script), timeout_s, tick_limit)
+
     # Utilities used by subclasses.
     def _exec(self, cmd: list[str], stdin: str, timeout_s: float,
               env: dict[str, str] | None = None) -> RunResult:
@@ -101,6 +110,115 @@ class Adapter:
             wall_time_ms=elapsed_ms,
         )
 
+    def _exec_scripted(self, cmd: list[str], script: list[str],
+                       timeout_s: float, env: dict[str, str] | None = None,
+                       quiesce_s: float = 1.0) -> RunResult:
+        """Drive an interpreter with a sequence of scripted inputs. After
+        each input we wait quiesce_s of stdout silence (or the program
+        exits, whichever comes first) before sending the next one. The
+        overall wall-clock budget is capped by timeout_s."""
+        import threading
+        started = time.monotonic()
+        env_full = os.environ.copy()
+        if env:
+            env_full.update(env)
+        try:
+            proc = subprocess.Popen(
+                cmd,
+                stdin=subprocess.PIPE,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                env=env_full,
+            )
+        except FileNotFoundError as e:
+            return RunResult(exit_code=-1, error=str(e))
+
+        out_chunks: list[bytes] = []
+        err_chunks: list[bytes] = []
+        last_activity = [time.monotonic()]
+        lock = threading.Lock()
+
+        def reader(src, buf):
+            try:
+                while True:
+                    chunk = src.read(1)
+                    if not chunk:
+                        return
+                    with lock:
+                        buf.append(chunk)
+                        last_activity[0] = time.monotonic()
+            except Exception:
+                pass
+
+        t_out = threading.Thread(target=reader, args=(proc.stdout, out_chunks),
+                                 daemon=True)
+        t_err = threading.Thread(target=reader, args=(proc.stderr, err_chunks),
+                                 daemon=True)
+        t_out.start()
+        t_err.start()
+
+        deadline = started + timeout_s
+        timed_out = False
+
+        def wait_quiet():
+            nonlocal timed_out
+            while proc.poll() is None:
+                now = time.monotonic()
+                if now > deadline:
+                    timed_out = True
+                    return
+                with lock:
+                    since = now - last_activity[0]
+                if since >= quiesce_s:
+                    return
+                time.sleep(0.05)
+
+        for step in script:
+            if proc.poll() is not None:
+                break
+            if time.monotonic() > deadline:
+                timed_out = True
+                break
+            try:
+                proc.stdin.write(step.encode())
+                proc.stdin.flush()
+            except (BrokenPipeError, OSError):
+                break
+            with lock:
+                last_activity[0] = time.monotonic()
+            wait_quiet()
+            if timed_out:
+                break
+
+        try:
+            proc.stdin.close()
+        except Exception:
+            pass
+
+        # Let the interpreter finish cleanly; kill it if it's still running
+        # after the overall budget.
+        while proc.poll() is None:
+            if time.monotonic() > deadline:
+                timed_out = True
+                proc.kill()
+                break
+            time.sleep(0.05)
+        proc.wait()
+
+        t_out.join(timeout=1)
+        t_err.join(timeout=1)
+
+        stdout = b"".join(out_chunks).decode("utf-8", errors="replace")
+        stderr = b"".join(err_chunks).decode("utf-8", errors="replace")
+        return RunResult(
+            stdout=stdout,
+            stderr=stderr,
+            exit_code=proc.returncode if not timed_out else -1,
+            ticks=_parse_ticks(stderr),
+            timed_out=timed_out,
+            wall_time_ms=int((time.monotonic() - started) * 1000),
+        )
+
 
 _TICKS_RX = re.compile(r"^TICKS:(\d+)$", re.MULTILINE)
 
@@ -129,6 +247,14 @@ class JoeNeemanAdapter(Adapter):
             env["HS_LIMIT"] = str(tick_limit)
         return self._exec([str(self.binary), str(program_path)], stdin,
                           timeout_s, env)
+
+    def run_scripted(self, program_path, script, timeout_s, tick_limit,
+                     quiesce_s):
+        env = {"HS_QUIET": "1", "HS_TICKS": "1"}
+        if tick_limit:
+            env["HS_LIMIT"] = str(tick_limit)
+        return self._exec_scripted([str(self.binary), str(program_path)],
+                                   script, timeout_s, env, quiesce_s)
 
 
 class JeffBinderAdapter(Adapter):
@@ -241,6 +367,15 @@ class HomespringJsAdapter(Adapter):
         driver = ROOT / "patches" / "homespring_js_driver.js"
         return self._exec(["node", str(driver), str(program_path)], stdin,
                           timeout_s, env)
+
+    def run_scripted(self, program_path, script, timeout_s, tick_limit,
+                     quiesce_s):
+        env = {"HS_TICKS": "1"}
+        if tick_limit:
+            env["HS_LIMIT"] = str(tick_limit)
+        driver = ROOT / "patches" / "homespring_js_driver.js"
+        return self._exec_scripted(["node", str(driver), str(program_path)],
+                                   script, timeout_s, env, quiesce_s)
 
 
 class MartijnArtsAdapter(Adapter):
@@ -431,7 +566,19 @@ def run_one(program: Program, adapter: Adapter) -> TestOutcome:
 
     tick_limit = override.get("tick_limit", program.tick_limit)
     timeout_s = float(override.get("timeout", program.timeout))
-    result = adapter.run(program.source, program.stdin, timeout_s, tick_limit)
+    # If the meta lists an input_script, feed the inputs one at a time,
+    # waiting quiesce_s of stdout silence between each. Used for genuinely
+    # interactive programs (tic-tac-toe) where the second input only makes
+    # sense once the first move has been rendered.
+    input_script = override.get("input_script", program.meta.get("input_script"))
+    if input_script:
+        quiesce_s = float(override.get("quiesce_s",
+                                       program.meta.get("quiesce_s", 1.0)))
+        result = adapter.run_scripted(program.source, input_script,
+                                      timeout_s, tick_limit, quiesce_s)
+    else:
+        result = adapter.run(program.source, program.stdin, timeout_s,
+                             tick_limit)
 
     notes = []
     matched = compare(expected, result.stdout, normalize)

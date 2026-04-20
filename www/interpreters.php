@@ -525,7 +525,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Emits nothing for this program">no</td>
 			<td class="compat yes">yes</td>
-			<td class="compat no">no</td>
+			<td class="compat no" title="Does not support the node types used">no</td>
 		</tr>
 
 		<tr class="author-row">
