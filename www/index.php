@@ -902,7 +902,16 @@ function createProgram(){
 	program.input = inputArea.value || null;
 
 	program.onOutput = function(str){
+		// Follow-tail scroll: if the user was already at the bottom,
+		// keep them there; if they'd scrolled up to review earlier
+		// output, preserve their position.
+		var paneBody = outputLog.parentNode;
+		var atBottom = paneBody.scrollHeight - paneBody.clientHeight
+			- paneBody.scrollTop < 2;
 		outputLog.textContent += str;
+		if (atBottom) {
+			paneBody.scrollTop = paneBody.scrollHeight;
+		}
 	};
 
 	computeLayout();
