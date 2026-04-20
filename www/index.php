@@ -975,7 +975,7 @@ function computeLayout(){
 	// Tilted labels rise higher above each node, so reserve extra top
 	// padding so they don't clip off the top of the canvas.
 	var columnSpacing = maxDepth > 0 ? usableW / maxDepth : usableW;
-	var tiltLabels = columnSpacing < 60;
+	var tiltLabels = columnSpacing < 100;
 	var padTop = tiltLabels ? 110 : 50;
 	var padBottom = 50;
 	var usableH = H - padTop - padBottom;
