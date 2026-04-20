@@ -189,6 +189,16 @@ table.examples thead th.compat .year {
 	margin-top: 1px;
 }
 
+table.examples thead th.compat .pct {
+	display: block;
+	font-family: var(--font-mono);
+	font-size: 11px;
+	font-weight: 600;
+	color: var(--green);
+	margin-top: 4px;
+	cursor: help;
+}
+
 table.examples tbody td {
 	padding: 10px 14px;
 	font-size: 13px;
@@ -403,13 +413,18 @@ table.examples td.compat sup {
 		<tr>
 			<th>Example</th>
 			<th>Description</th>
-			<th class="compat"><span class="lang">Scheme</span><span class="year">2003</span></th>
-			<th class="compat"><span class="lang">Perl</span><span class="year">2003</span></th>
-			<th class="compat"><span class="lang">OCaml</span><span class="year">2005</span></th>
-			<th class="compat"><span class="lang">JavaScript</span><span class="year">2012</span></th>
-			<th class="compat"><span class="lang">JavaScript</span><span class="year">2017</span></th>
-			<th class="compat"><span class="lang">Rust</span><span class="year">2017</span></th>
-			<th class="compat"><span class="lang">JavaScript</span><span class="year">2018</span></th>
+<?php
+	// Short labels for the compact column headers — the "Guile Scheme"
+	// card title doesn't fit in a 90px-wide cell, so drop "Guile".
+	$short_lang = ['Guile Scheme' => 'Scheme'];
+	foreach ($interpreters as $i):
+		$pct = $i['total'] > 0 ? round(100 * $i['yes'] / $i['total']) : 0;
+		$tip = $i['yes'] . '/' . $i['total'] . ' examples run correctly';
+		$lang = $short_lang[$i['lang']] ?? $i['lang'];
+		$year = substr($i['date'], 0, 4);
+?>
+			<th class="compat" title="<?= htmlspecialchars($tip) ?>"><span class="lang"><?= htmlspecialchars($lang) ?></span><span class="year"><?= $year ?></span><span class="pct"><?= $pct ?>%</span></th>
+<?php endforeach; ?>
 		</tr>
 	</thead>
 	<tbody>
