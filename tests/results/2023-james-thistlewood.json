@@ -1,5 +1,5 @@
 {
-  "generated_at": 1776706936,
+  "generated_at": 1776707481,
   "adapter": {
     "id": "2023-james-thistlewood",
     "label": "James Thistlewood (JavaScript, 2023)",
@@ -197,10 +197,10 @@
       "expected_ticks": 51,
       "actual_ticks": 250,
       "notes": [
-        "No output produced within the 250-tick cap.",
+        "Produces no output in 250 ticks \u2014 the reference interpreters emit the full 1..100 sequence by tick 51, so James's per-tick state transitions diverge from the spec on this program.",
         "tick mismatch: expected 51, got 250"
       ],
-      "wall_time_ms": 50,
+      "wall_time_ms": 42,
       "presumed_pass": false
     },
     {
@@ -270,9 +270,9 @@
       "expected_ticks": null,
       "actual_ticks": 80,
       "notes": [
-        "No output produced within the tick cap."
+        "Produces no output in 80 ticks \u2014 the reference interpreters emit '0\\n1\\n2\\n' well within that, so James's per-tick state transitions diverge from the spec on this program."
       ],
-      "wall_time_ms": 48,
+      "wall_time_ms": 63,
       "presumed_pass": false
     },
     {
@@ -284,10 +284,10 @@
       "expected_ticks": 2207,
       "actual_ticks": 3000,
       "notes": [
-        "No output produced within the tick cap \u2014 program is known to be very slow; raising the cap may or may not help.",
+        "Produces no output in 3000 ticks \u2014 the reference interpreters complete the full expected output at tick 2207, so James's per-tick state transitions diverge from the spec somewhere in this program's tree.",
         "tick mismatch: expected 2207, got 3000"
       ],
-      "wall_time_ms": 3964,
+      "wall_time_ms": 3403,
       "presumed_pass": false
     },
     {
@@ -299,9 +299,9 @@
       "expected_ticks": null,
       "actual_ticks": 1500,
       "notes": [
-        "No output produced within the tick cap \u2014 program is known to be very slow; raising the cap may or may not help."
+        "Produces no output in 1500 ticks \u2014 the reference interpreters have already emitted '1\\n2\\nFizz\\n\u2026\\nFizzBuzz\\n' by this point, so James's per-tick state transitions diverge from the spec somewhere in this program's tree."
       ],
-      "wall_time_ms": 1579,
+      "wall_time_ms": 1651,
       "presumed_pass": false
     },
     {
@@ -315,7 +315,7 @@
       "notes": [
         "Emits `tick` on every tick but never the Fizz/Buzz arithmetic."
       ],
-      "wall_time_ms": 214,
+      "wall_time_ms": 192,
       "presumed_pass": false
     },
     {

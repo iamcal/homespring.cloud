@@ -26,7 +26,7 @@
       "notes": "Parser splits on spaces only, so the newline + indent structure of the source collapses into a flat tree — the intended river layout is lost and output is either empty or a stream of literal node-name salmon."
     },
     "2023-james-thistlewood": {
-      "notes": "No output produced within the 250-tick cap."
+      "notes": "Produces no output in 250 ticks — the reference interpreters emit the full 1..100 sequence by tick 51, so James's per-tick state transitions diverge from the spec on this program."
     }
   },
   "expected_ticks": 51

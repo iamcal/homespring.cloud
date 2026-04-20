@@ -713,7 +713,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Panics with `already borrowed: BorrowMutError` on the first FishDown tick — river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output.">no</td>
 			<td class="compat no" title="Parser splits on spaces only, so the newline + indent structure of the source collapses into a flat tree — the intended river layout is lost and output is either empty or a stream of literal node-name salmon.">no</td>
-			<td class="compat no" title="No output produced within the tick cap.">no</td>
+			<td class="compat no" title="Produces no output in 80 ticks — the reference interpreters emit '0\n1\n2\n' well within that, so James's per-tick state transitions diverge from the spec on this program.">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/count.poem.hs">count.poem.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/count.poem.hst">.hst</a>)</span></td>
@@ -737,7 +737,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Panics with `already borrowed: BorrowMutError` on the first FishDown tick — river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output.">no</td>
 			<td class="compat no" title="Parser splits on spaces only, so the newline + indent structure of the source collapses into a flat tree — the intended river layout is lost and output is either empty or a stream of literal node-name salmon.">no</td>
-			<td class="compat no" title="No output produced within the 250-tick cap.">no</td>
+			<td class="compat no" title="Produces no output in 250 ticks — the reference interpreters emit the full 1..100 sequence by tick 51, so James's per-tick state transitions diverge from the spec on this program.">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/fizzbuzz.hs">fizzbuzz.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/fizzbuzz.hst">.hst</a>)</span></td>
@@ -749,7 +749,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Panics with `already borrowed: BorrowMutError` on the first FishDown tick — river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output.">no</td>
 			<td class="compat no" title="Parser splits on spaces only, so the newline + indent structure of the source collapses into a flat tree — the intended river layout is lost and output is either empty or a stream of literal node-name salmon.">no</td>
-			<td class="compat no" title="No output produced within the tick cap — program is known to be very slow; raising the cap may or may not help.">no</td>
+			<td class="compat no" title="Produces no output in 1500 ticks — the reference interpreters have already emitted '1\n2\nFizz\n…\nFizzBuzz\n' by this point, so James's per-tick state transitions diverge from the spec somewhere in this program's tree.">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/fizzbuzz.poem.hs">fizzbuzz.poem.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/fizzbuzz.poem.hst">.hst</a>)</span></td>
@@ -761,7 +761,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Panics with `already borrowed: BorrowMutError` on the first FishDown tick — river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output.">no</td>
 			<td class="compat no" title="Parser splits on spaces only, so the newline + indent structure of the source collapses into a flat tree — the intended river layout is lost and output is either empty or a stream of literal node-name salmon.">no</td>
-			<td class="compat no" title="No output produced within the tick cap — program is known to be very slow; raising the cap may or may not help.">no</td>
+			<td class="compat no" title="Produces no output in 3000 ticks — the reference interpreters complete the full expected output at tick 2207, so James's per-tick state transitions diverge from the spec somewhere in this program's tree.">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/fizzbuzztick.hs">fizzbuzztick.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/fizzbuzztick.hst">.hst</a>)</span></td>

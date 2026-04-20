@@ -25,7 +25,7 @@
       "notes": "Parser splits on spaces only, so the newline + indent structure of the source collapses into a flat tree — the intended river layout is lost and output is either empty or a stream of literal node-name salmon."
     },
     "2023-james-thistlewood": {
-      "notes": "No output produced within the tick cap — program is known to be very slow; raising the cap may or may not help."
+      "notes": "Produces no output in 1500 ticks — the reference interpreters have already emitted '1\\n2\\nFizz\\n…\\nFizzBuzz\\n' by this point, so James's per-tick state transitions diverge from the spec somewhere in this program's tree."
     }
   }
 }
