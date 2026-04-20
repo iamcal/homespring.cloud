@@ -460,6 +460,79 @@ html, body {
 	line-height: 1.4;
 }
 
+/* ---- Welcome modal (first-visit intro) ---- */
+
+#welcome-modal {
+	position: fixed;
+	inset: 0;
+	z-index: 1000;
+}
+
+#welcome-modal[hidden] {
+	display: none;
+}
+
+#welcome-modal .modal-backdrop {
+	position: absolute;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.55);
+}
+
+#welcome-modal .modal-box {
+	position: relative;
+	margin: 10vh auto;
+	max-width: 520px;
+	background: var(--surface);
+	border: 1px solid var(--border);
+	border-radius: 8px;
+	overflow: hidden;
+	box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+#welcome-modal .modal-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 14px 20px;
+	border-bottom: 1px solid var(--border);
+}
+
+#welcome-modal .modal-header h3 {
+	font-size: 16px;
+	font-weight: 600;
+	color: var(--text);
+	margin: 0;
+}
+
+#welcome-modal .modal-close {
+	background: transparent;
+	border: none;
+	color: var(--text-dim);
+	font-size: 22px;
+	line-height: 1;
+	cursor: pointer;
+	padding: 0 8px;
+}
+
+#welcome-modal .modal-close:hover {
+	color: var(--text);
+}
+
+#welcome-modal .modal-body {
+	padding: 18px 24px 22px;
+}
+
+#welcome-modal .modal-body p {
+	color: var(--text-dim);
+	font-size: 14px;
+	line-height: 1.55;
+	margin-bottom: 12px;
+}
+
+#welcome-modal .modal-body p:last-child {
+	margin-bottom: 0;
+}
+
 /* ---- Small / short viewports ----
    Phone-sized or short landscape windows can't afford the fixed
    40/60 split: the tree pane gets squashed below its 200px min-height
@@ -577,6 +650,22 @@ html, body {
 <?php endforeach; ?>
 			</ul>
 <?php endforeach; ?>
+		</div>
+	</div>
+</div>
+
+<!-- Welcome modal (first visit or #start) -->
+<div id="welcome-modal" hidden>
+	<div class="modal-backdrop"></div>
+	<div class="modal-box">
+		<div class="modal-header">
+			<h3>Homespring.cloud</h3>
+			<button type="button" class="modal-close" aria-label="Close">&times;</button>
+		</div>
+		<div class="modal-body">
+			<p>Homespring.cloud is a visual debugger and learning tool for the Homespring programming language.</p>
+			<p>Homespring programs are poems that describe river systems, where salmon pass data up and down stream.</p>
+			<p>There are a handful of example programs to get you started &mdash; just hit the play button to see it in action.</p>
 		</div>
 	</div>
 </div>
@@ -749,8 +838,28 @@ function closeExamples(){ examplesModal.hidden = true; }
 examplesModal.querySelector('.modal-close').addEventListener('click', closeExamples);
 examplesModal.querySelector('.modal-backdrop').addEventListener('click', closeExamples);
 document.addEventListener('keydown', function(e){
-	if (e.key === 'Escape' && !examplesModal.hidden) closeExamples();
+	if (e.key !== 'Escape') return;
+	if (!examplesModal.hidden) closeExamples();
+	else if (!welcomeModal.hidden) closeWelcome();
 });
+
+// ---- Welcome modal ----
+// Shown the first time a visitor lands on the debugger, or any time the URL
+// has a #start fragment (so we can link people to a fresh intro).
+
+var welcomeModal = document.getElementById('welcome-modal');
+function closeWelcome(){
+	welcomeModal.hidden = true;
+	try { localStorage.setItem('hs.welcome.seen', '1'); } catch(e) {}
+}
+welcomeModal.querySelector('.modal-close').addEventListener('click', closeWelcome);
+welcomeModal.querySelector('.modal-backdrop').addEventListener('click', closeWelcome);
+
+var seenWelcome = false;
+try { seenWelcome = localStorage.getItem('hs.welcome.seen') === '1'; } catch(e) {}
+if (location.hash === '#start' || !seenWelcome) {
+	welcomeModal.hidden = false;
+}
 
 examplesModal.querySelectorAll('.examples-list li').forEach(function(li){
 	li.addEventListener('click', function(){
