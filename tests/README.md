@@ -56,40 +56,92 @@ tests/
 
 ## Interpreters
 
-| id                       | language    | year | build step                                                   |
-|--------------------------|-------------|------|--------------------------------------------------------------|
-| `2005-joe-neeman`        | OCaml       | 2005 | `./configure && make -C src hsrun_opt` (patched)             |
-| `2003-jeff-binder`       | Guile Scheme| 2003 | none — invoked as `guile -e main -s interpreters/…/hs`        |
-| `2003-cal-henderson`     | Perl        | 2003 | `perl Makefile.PL && make` — used via `perl -Mblib`          |
-| `2012-quin-kennedy`      | Node.js     | 2012 | none — `node homespring.js [-n LIMIT] <file>`                |
-| `2017-cal-henderson-js`  | Node.js     | 2017 | none — driver in `patches/homespring_js_driver.js`           |
+Listed in chronological order of release. All are vendored as git submodules
+under `interpreters/<id>/`; `id` doubles as both submodule name and adapter
+key in meta.json overrides.
+
+| id                         | language      | year | invocation                                                             |
+|----------------------------|---------------|------|------------------------------------------------------------------------|
+| `2003-jeff-binder`         | Guile Scheme  | 2003 | `guile -e main -s interpreters/…/hs` (patched for stdin EOF)           |
+| `2003-cal-henderson`       | Perl          | 2003 | `perl Makefile.PL && make`, then via `patches/cal_henderson_driver.pl` |
+| `2005-joe-neeman`          | OCaml         | 2005 | `./configure && make -C src hsrun_opt` (patched for OCaml 4.07+)       |
+| `2012-quin-kennedy`        | Node.js       | 2012 | `node homespring.js [-n LIMIT] <file>` (no driver)                     |
+| `2017-cal-henderson-js`    | Node.js       | 2017 | `patches/homespring_js_driver.js` (loads `www/homespring.js`)          |
+| `2017-addison-bean`        | Rust          | 2017 | `patches/addison_bean_driver/` (cargo-built wrapper around the crate)  |
+| `2018-martijn-arts`        | Node.js (ESM) | 2018 | `patches/martijn_arts_driver.mjs`                                      |
+| `2023-james-thistlewood`   | Node.js       | 2023 | `patches/james_thistlewood_driver.js` (vm sandbox with stubbed DOM)    |
 
 Benito van der Zander's 2013 `home-river` is a Homespring **program** collection
 and a compiler *to* Homespring, not a runtime, so it has no adapter.
 
-### Why the patches
-
-- **Joe Neeman (OCaml)**: the 2005 source uses `String.lowercase` (removed in
-  4.07) and calls `really_input` with a `string` where modern OCaml wants
-  `bytes`. We also extend `hsrun.ml` to honor `HS_QUIET=1` (skip the tree
-  dump), `HS_TICKS=1` (write `TICKS:N` on stderr at exit), and `HS_LIMIT=N`
-  (max ticks), and to treat stdin EOF as "no more input" instead of raising
-  `End_of_file`.
-- **Jeff Binder (Guile)**: the original script calls `(exit 0)` when stdin
-  reaches EOF, which kills the interpreter before the program has a chance to
-  finish. The patch turns that exit into a no-op so the main loop keeps
-  running until the program itself terminates.
+### Patches
 
 Both patches are re-applied by `setup.sh` after a fresh `git clean` of the
-submodules; the submodule shas are not changed.
+submodules; the submodule SHAs are not changed.
+
+- **`2005-joe-neeman.patch`** — the 2005 OCaml source uses `String.lowercase`
+  (removed in 4.07) and calls `really_input` with a `string` where modern OCaml
+  wants `bytes`. The patch also extends `hsrun.ml` to honor `HS_QUIET=1` (skip
+  the tree dump), `HS_TICKS=1` (write `TICKS:N` on stderr at exit), and
+  `HS_LIMIT=N` (max ticks), and to treat stdin EOF as "no more input" instead
+  of raising `End_of_file`.
+- **`2003-jeff-binder.patch`** — the original Guile script calls `(exit 0)`
+  when stdin reaches EOF, which kills the interpreter before the program has
+  a chance to finish. The patch turns that exit into a no-op so the main
+  loop keeps running until the program itself terminates.
+
+### Drivers
+
+Interpreters that aren't a straight CLI invocation get a driver under
+`patches/` to bridge them to the harness's stdio + env-var contract
+(`HS_LIMIT`, `HS_TICKS`).
+
+- **`cal_henderson_driver.pl`** — wraps the Perl module
+  (`Language::Homespring`). Drives `tick()` in a loop, counts ticks, honors
+  `HS_LIMIT` / `HS_TICKS`.
+- **`homespring_js_driver.js`** — loads `www/homespring.js` (the site's own
+  interpreter submodule) as a CommonJS module. Steps tick-by-tick via
+  `setImmediate` so stdin `data` events get serviced between ticks —
+  matters for interactive programs fed by scripted inputs.
+- **`martijn_arts_driver.mjs`** — loads Martijn's homespring-js as an ES
+  module. His `Runner` exposes `runs` (total phases) and `tickOrder`, so
+  the driver divides to get logical ticks. Multiplies `HS_LIMIT` by phase
+  count to get an equivalent phase cap.
+- **`james_thistlewood_driver.js`** — the 2023 visualizer is a one-file
+  browser script (`index.js` + EaselJS canvas). Driver loads it into a
+  `vm` sandbox with stubbed `window`/`document`/`createjs`, then shadows
+  the three I/O hooks (`homespringOutput`, `homespringGetInput`,
+  `homespringError`) by appending replacement function declarations —
+  later top-level declarations win at script scope, so we can intercept
+  without touching the submodule. Stdin is split by newlines and one line
+  per call matches the visualizer's per-step input model.
+- **`addison_bean_driver/`** — a small Rust crate that path-deps on
+  `interpreters/2017-addison-bean` and runs a minimal tick loop over the
+  phases that are actually wired up (Snow, Water, Misc, FishHatch,
+  FishDown, FishUp). Power and Input are skipped because their
+  `PropagationOrder::Any` hits `unimplemented!()` inside `Node::tick`.
+  Most test programs still fail because `move_salmon(Downstream)` holds
+  the parent borrow while the tick recursion is already inside it —
+  multi-level trees panic on the first FishDown. Built via
+  `cargo build --release` in `setup.sh`.
 
 ### Tick counts
 
-Where the interpreter exposes it, we report the number of ticks taken. Joe
-Neeman (via `HS_TICKS=1`), Cal Henderson's Perl module (driver counts in a
-loop), and homespring.js (driver counts via `onTickEnd`) all report. Jeff
-Binder's Guile and Quin Kennedy's Node.js do not expose a tick counter, so
-their `actual_ticks` field is `null`.
+Where the interpreter exposes it, we report the number of ticks taken
+via `TICKS:N` on stderr:
+
+| id                       | tick count source                                      |
+|--------------------------|--------------------------------------------------------|
+| `2003-jeff-binder`       | **not reported** — Guile script has no counter         |
+| `2003-cal-henderson`     | driver counts loop iterations                          |
+| `2005-joe-neeman`        | patched `hsrun.ml` emits `TICKS:N` when `HS_TICKS=1`   |
+| `2012-quin-kennedy`      | **not reported** — CLI has no counter                  |
+| `2017-cal-henderson-js`  | driver counts via `p.tickNum`                          |
+| `2017-addison-bean`      | driver counts loop iterations                          |
+| `2018-martijn-arts`      | driver reports `runs / tickOrder.length`               |
+| `2023-james-thistlewood` | driver counts loop iterations                          |
+
+`actual_ticks` is `null` for the two interpreters that don't report.
 
 ## Adding a program
 
@@ -121,9 +173,10 @@ Defaults:
 - `normalize` is trailing-whitespace tolerant. Use `"exact"` to force a
   byte-for-byte match, `"prefix"` for infinite/repeating programs, `"strip"`
   to ignore all surrounding whitespace.
-- `tick_limit` is honored by interpreters that support it (Joe Neeman via
-  `HS_LIMIT`, Cal Henderson via `HS_LIMIT`, Quin Kennedy via `-n`, homespring.js
-  via `HS_LIMIT`). Jeff Binder ignores it; rely on `timeout` to bound runtime.
+- `tick_limit` is honored by every adapter except Jeff Binder's Guile
+  (Joe Neeman, Cal Perl, homespring.js, Martijn, James, and Addison read
+  `HS_LIMIT`; Quin uses `-n`). For Jeff's interpreter rely on `timeout`
+  to bound runtime.
 
 ## Adding an interpreter
 
