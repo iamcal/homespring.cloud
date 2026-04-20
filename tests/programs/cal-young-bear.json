@@ -1,0 +1,29 @@
+{
+  "description": "young bear eats every other mature salmon — the first homeless gets through with a Hello, then every second homeless is skipped and only one in two mature 'homeless' fish reach the root.",
+  "source": "www/examples/2026-cal-henderson/test-young-bear.hs",
+  "input": "",
+  "tick_limit": 20,
+  "timeout": 3,
+  "expected_output": "Hello\nhomelessHello\nhomelessHello\n",
+  "normalize": "prefix",
+  "overrides": {
+    "2003-jeff-binder": {
+      "notes": "young. bear eats every mature salmon (like a regular bear) instead of every other, so the homeless fish never reach output."
+    },
+    "2003-cal-henderson": {
+      "notes": "young. bear's eat-every-other logic is offset differently — produces 'Hello\\nhomelessHello\\nHello\\nhomelessHello\\n' instead of the reference's uniform alternation."
+    },
+    "2012-quin-kennedy": {
+      "notes": "Similar eat-every-other pattern but offset by one cycle vs the OCaml reference."
+    },
+    "2017-addison-bean": {
+      "notes": "Panics with `already borrowed: BorrowMutError` on the first FishDown tick — river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output."
+    },
+    "2018-martijn-arts": {
+      "notes": "Parser splits on spaces only, so the newline + indent structure of the source collapses into a flat tree — the intended river layout is lost and output is either empty or a stream of literal node-name salmon."
+    },
+    "2023-james-thistlewood": {
+      "notes": "Alternation is offset by one cycle vs the OCaml reference — extra 'Hello' before the first 'homeless' pair."
+    }
+  }
+}

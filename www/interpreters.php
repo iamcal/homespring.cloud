@@ -788,6 +788,59 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 		</tr>
 
+		<tr class="author-row">
+			<td colspan="10">Cal Henderson <span class="author-meta">— 2026 · focused tests for this harness, each written to exercise one node whose behaviour the older programs barely touched</span></td>
+		</tr>
+
+		<tr>
+			<td class="name"><a href="examples/2026-cal-henderson/test-waterfall.hs">test-waterfall.hs</a></td>
+			<td class="desc">Upstream salmon are blocked by the <code>waterfall</code> and spawn there instead of climbing to the leaf.</td>
+			<td class="compat no" title="Waterfall doesn't block upstream salmon — the homeless fish climb straight past it and spawn at the Hello leaf instead.">no</td>
+			<td class="compat no" title="Waterfall doesn't block upstream salmon — the homeless fish climb straight past it and spawn at the Hello leaf instead.">no</td>
+			<td class="compat yes">yes</td>
+			<td class="compat no" title="Emits only a stray newline — waterfall blocks more than just upstream salmon.">no</td>
+			<td class="compat yes">yes</td>
+			<td class="compat no" title="Panics with `already borrowed: BorrowMutError` on the first FishDown tick — river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output.">no</td>
+			<td class="compat no" title="Parser splits on spaces only, so the newline + indent structure of the source collapses into a flat tree — the intended river layout is lost and output is either empty or a stream of literal node-name salmon.">no</td>
+			<td class="compat no" title="Waterfall doesn't block — salmon climb through it and the hatchery, so output is 'homelesshatchery' cycles instead of 'waterfallhomeless'.">no</td>
+		</tr>
+		<tr>
+			<td class="name"><a href="examples/2026-cal-henderson/test-clone.hs">test-clone.hs</a></td>
+			<td class="desc"><code>clone</code> duplicates each passing salmon, so every cycle emits multiple <code>homeless</code> before <code>Hello</code>.</td>
+			<td class="compat no" title="Clone produces one fewer salmon per cycle than the reference — 3 homeless before Hello instead of 4.">no</td>
+			<td class="compat no" title="Clone has no effect — a single homeless per cycle instead of the duplicated output the OCaml reference produces.">no</td>
+			<td class="compat yes">yes</td>
+			<td class="compat no" title="Clone over-multiplies — 6 homeless per cycle instead of the reference's 4.">no</td>
+			<td class="compat yes">yes</td>
+			<td class="compat no" title="Panics with `already borrowed: BorrowMutError` on the first FishDown tick — river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output.">no</td>
+			<td class="compat no" title="Parser splits on spaces only, so the newline + indent structure of the source collapses into a flat tree — the intended river layout is lost and output is either empty or a stream of literal node-name salmon.">no</td>
+			<td class="compat yes">yes</td>
+		</tr>
+		<tr>
+			<td class="name"><a href="examples/2026-cal-henderson/test-young-bear.hs">test-young-bear.hs</a></td>
+			<td class="desc"><code>young. bear</code> eats every other mature salmon, letting only half the <code>homeless</code> fish reach the root.</td>
+			<td class="compat no" title="young. bear eats every mature salmon (like a regular bear) instead of every other, so the homeless fish never reach output.">no</td>
+			<td class="compat no" title="young. bear's eat-every-other logic is offset differently — produces 'Hello\nhomelessHello\nHello\nhomelessHello\n' instead of the reference's uniform alternation.">no</td>
+			<td class="compat yes">yes</td>
+			<td class="compat no" title="Similar eat-every-other pattern but offset by one cycle vs the OCaml reference.">no</td>
+			<td class="compat yes">yes</td>
+			<td class="compat no" title="Panics with `already borrowed: BorrowMutError` on the first FishDown tick — river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output.">no</td>
+			<td class="compat no" title="Parser splits on spaces only, so the newline + indent structure of the source collapses into a flat tree — the intended river layout is lost and output is either empty or a stream of literal node-name salmon.">no</td>
+			<td class="compat no" title="Alternation is offset by one cycle vs the OCaml reference — extra 'Hello' before the first 'homeless' pair.">no</td>
+		</tr>
+		<tr>
+			<td class="name"><a href="examples/2026-cal-henderson/test-spawn.hs">test-spawn.hs</a></td>
+			<td class="desc"><code>spawn</code> forces upstream salmon to spawn in place, so the output is the node's own name.</td>
+			<td class="compat yes">yes</td>
+			<td class="compat no" title="spawn has no effect — upstream salmon continue past it to the Hello leaf instead of spawning in place.">no</td>
+			<td class="compat yes">yes</td>
+			<td class="compat yes">yes<sup>*</sup></td>
+			<td class="compat yes">yes</td>
+			<td class="compat no" title="Panics with `already borrowed: BorrowMutError` on the first FishDown tick — river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output.">no</td>
+			<td class="compat no" title="Parser splits on spaces only, so the newline + indent structure of the source collapses into a flat tree — the intended river layout is lost and output is either empty or a stream of literal node-name salmon.">no</td>
+			<td class="compat yes">yes</td>
+		</tr>
+
 	</tbody>
 </table>
 </div>

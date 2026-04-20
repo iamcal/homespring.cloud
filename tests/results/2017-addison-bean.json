@@ -1,5 +1,5 @@
 {
-  "generated_at": 1776705937,
+  "generated_at": 1776706936,
   "adapter": {
     "id": "2017-addison-bean",
     "label": "Addison Bean (Rust, 2017)",
@@ -63,9 +63,29 @@
       "source": "www/examples/2013-benito-van-der-zander/helloworld.hs"
     },
     {
+      "slug": "cal-clone",
+      "description": "clone creates an extra young downstream salmon for each salmon passing through \u2014 every hatchery cycle emits multiple 'homeless' fish instead of one.",
+      "source": "www/examples/2026-cal-henderson/test-clone.hs"
+    },
+    {
       "slug": "cal-hello2",
       "description": "Compact Hello World \u2014 the example shipped with Cal's Perl interpreter.",
       "source": "www/examples/2003-cal-henderson/hello2.hs"
+    },
+    {
+      "slug": "cal-spawn",
+      "description": "spawn forces upstream salmon to spawn in place \u2014 they never reach the Hello leaf, so each tick emits 'spawn' (the node's name) instead of 'Hello'.",
+      "source": "www/examples/2026-cal-henderson/test-spawn.hs"
+    },
+    {
+      "slug": "cal-waterfall",
+      "description": "waterfall blocks upstream salmon from leaving, so the hatchery's 'homeless' fish get stuck at the waterfall and spawn there instead of climbing to the Hello leaf.",
+      "source": "www/examples/2026-cal-henderson/test-waterfall.hs"
+    },
+    {
+      "slug": "cal-young-bear",
+      "description": "young bear eats every other mature salmon \u2014 the first homeless gets through with a Hello, then every second homeless is skipped and only one in two mature 'homeless' fish reach the root.",
+      "source": "www/examples/2026-cal-henderson/test-young-bear.hs"
     },
     {
       "slug": "jeff-add",
@@ -319,7 +339,7 @@
       "notes": [
         "Panics with `already borrowed: BorrowMutError` on the first FishDown tick \u2014 river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output."
       ],
-      "wall_time_ms": 2,
+      "wall_time_ms": 1,
       "presumed_pass": false
     },
     {
@@ -550,11 +570,67 @@
       "notes": [],
       "wall_time_ms": 1,
       "presumed_pass": false
+    },
+    {
+      "program": "cal-clone",
+      "adapter": "2017-addison-bean",
+      "status": "fail",
+      "expected_output": "homelesshomelesshomelesshomelessHello\n",
+      "actual_output": "",
+      "expected_ticks": null,
+      "actual_ticks": null,
+      "notes": [
+        "Panics with `already borrowed: BorrowMutError` on the first FishDown tick \u2014 river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output."
+      ],
+      "wall_time_ms": 2,
+      "presumed_pass": false
+    },
+    {
+      "program": "cal-spawn",
+      "adapter": "2017-addison-bean",
+      "status": "fail",
+      "expected_output": "spawnspawnspawn",
+      "actual_output": "",
+      "expected_ticks": null,
+      "actual_ticks": null,
+      "notes": [
+        "Panics with `already borrowed: BorrowMutError` on the first FishDown tick \u2014 river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output."
+      ],
+      "wall_time_ms": 1,
+      "presumed_pass": false
+    },
+    {
+      "program": "cal-waterfall",
+      "adapter": "2017-addison-bean",
+      "status": "fail",
+      "expected_output": "waterfallhomelesswaterfallhomeless",
+      "actual_output": "",
+      "expected_ticks": null,
+      "actual_ticks": null,
+      "notes": [
+        "Panics with `already borrowed: BorrowMutError` on the first FishDown tick \u2014 river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output."
+      ],
+      "wall_time_ms": 4,
+      "presumed_pass": false
+    },
+    {
+      "program": "cal-young-bear",
+      "adapter": "2017-addison-bean",
+      "status": "fail",
+      "expected_output": "Hello\nhomelessHello\nhomelessHello\n",
+      "actual_output": "",
+      "expected_ticks": null,
+      "actual_ticks": null,
+      "notes": [
+        "Panics with `already borrowed: BorrowMutError` on the first FishDown tick \u2014 river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output."
+      ],
+      "wall_time_ms": 2,
+      "presumed_pass": false
     }
   ],
   "summary": {
     "pass": 5,
-    "fail": 24,
+    "fail": 28,
     "error": 0,
     "timeout": 0,
     "skip": 0

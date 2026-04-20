@@ -50,6 +50,12 @@ SECTIONS = [
         ('benito-fizzbuzztick',   'examples/2013-benito-van-der-zander/fizzbuzztick.hs',   'fizzbuzztick.hs',   'A compact FizzBuzz variant driven by time ticks.'),
         ('benito-helloworld',     'examples/2013-benito-van-der-zander/helloworld.hs',     'helloworld.hs',     'A fourth take on "Hello, World!" — generated from a HomeSpringTree source.'),
     ]),
+    ('Cal Henderson', '— 2026 · focused tests for this harness, each written to exercise one node whose behaviour the older programs barely touched', [
+        ('cal-waterfall',   'examples/2026-cal-henderson/test-waterfall.hs',   'test-waterfall.hs',   'Upstream salmon are blocked by the <code>waterfall</code> and spawn there instead of climbing to the leaf.'),
+        ('cal-clone',       'examples/2026-cal-henderson/test-clone.hs',       'test-clone.hs',       '<code>clone</code> duplicates each passing salmon, so every cycle emits multiple <code>homeless</code> before <code>Hello</code>.'),
+        ('cal-young-bear',  'examples/2026-cal-henderson/test-young-bear.hs',  'test-young-bear.hs',  '<code>young. bear</code> eats every other mature salmon, letting only half the <code>homeless</code> fish reach the root.'),
+        ('cal-spawn',       'examples/2026-cal-henderson/test-spawn.hs',       'test-spawn.hs',       '<code>spawn</code> forces upstream salmon to spawn in place, so the output is the node\'s own name.'),
+    ]),
 ]
 
 HST_LINK = {

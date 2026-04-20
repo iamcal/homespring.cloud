@@ -1,0 +1,29 @@
+{
+  "description": "waterfall blocks upstream salmon from leaving, so the hatchery's 'homeless' fish get stuck at the waterfall and spawn there instead of climbing to the Hello leaf.",
+  "source": "www/examples/2026-cal-henderson/test-waterfall.hs",
+  "input": "",
+  "tick_limit": 20,
+  "timeout": 3,
+  "expected_output": "waterfallhomelesswaterfallhomeless",
+  "normalize": "prefix",
+  "overrides": {
+    "2003-jeff-binder": {
+      "notes": "Waterfall doesn't block upstream salmon — the homeless fish climb straight past it and spawn at the Hello leaf instead."
+    },
+    "2003-cal-henderson": {
+      "notes": "Waterfall doesn't block upstream salmon — the homeless fish climb straight past it and spawn at the Hello leaf instead."
+    },
+    "2012-quin-kennedy": {
+      "notes": "Emits only a stray newline — waterfall blocks more than just upstream salmon."
+    },
+    "2017-addison-bean": {
+      "notes": "Panics with `already borrowed: BorrowMutError` on the first FishDown tick — river.rs:237's move_salmon borrows the parent mutably while the tick recursion still holds it, so any multi-level tree crashes before producing output."
+    },
+    "2018-martijn-arts": {
+      "notes": "Parser splits on spaces only, so the newline + indent structure of the source collapses into a flat tree — the intended river layout is lost and output is either empty or a stream of literal node-name salmon."
+    },
+    "2023-james-thistlewood": {
+      "notes": "Waterfall doesn't block — salmon climb through it and the hatchery, so output is 'homelesshatchery' cycles instead of 'waterfallhomeless'."
+    }
+  }
+}
