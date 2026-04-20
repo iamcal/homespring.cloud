@@ -145,6 +145,15 @@ p.lead a {
 	border-radius: 8px;
 	overflow-x: auto;
 	background: var(--surface);
+	/* Break out of the 1100px main column and span the viewport minus
+	   a 40px gutter on each side, so the compat matrix can fit more
+	   interpreters without forcing a horizontal scrollbar. The 40px
+	   inset also absorbs any vertical-scrollbar width so 100vw doesn't
+	   cause page-level horizontal overflow. When viewport ≤ main's
+	   max-width the calc is ~0 and nothing changes. */
+	width: calc(100vw - 80px);
+	margin-left: calc(50% - 50vw + 40px);
+	margin-right: calc(50% - 50vw + 40px);
 }
 
 table.examples {
