@@ -1,0 +1,11 @@
+[package]
+name = "addison_bean_driver"
+version = "0.1.0"
+edition = "2018"
+
+[[bin]]
+name = "addison_bean_driver"
+path = "src/main.rs"
+
+[dependencies]
+homespring = { path = "../../../interpreters/2017-addison-bean" }

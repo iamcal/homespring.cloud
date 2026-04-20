@@ -441,7 +441,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
-			<td class="compat no" title="unavailable: incomplete implementation: Program::execute is unimplemented for River programs, main.rs has no file-based CLI">no</td>
+			<td class="compat no">no</td>
 			<td class="compat no">no</td>
 		</tr>
 		<tr>
@@ -452,7 +452,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
-			<td class="compat no" title="unavailable: incomplete implementation: Program::execute is unimplemented for River programs, main.rs has no file-based CLI">no</td>
+			<td class="compat no">no</td>
 			<td class="compat no">no</td>
 		</tr>
 		<tr>
@@ -463,7 +463,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
-			<td class="compat no" title="unavailable: incomplete implementation: Program::execute is unimplemented for River programs, main.rs has no file-based CLI">no</td>
+			<td class="compat no">no</td>
 			<td class="compat no">no</td>
 		</tr>
 		<tr>
@@ -474,7 +474,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
-			<td class="compat no" title="unavailable: incomplete implementation: Program::execute is unimplemented for River programs, main.rs has no file-based CLI">no</td>
+			<td class="compat no">no</td>
 			<td class="compat no" title="timed out after 3.0s">no</td>
 		</tr>
 		<tr>
@@ -485,7 +485,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
-			<td class="compat no" title="unavailable: incomplete implementation: Program::execute is unimplemented for River programs, main.rs has no file-based CLI">no</td>
+			<td class="compat no">no</td>
 			<td class="compat no" title="tick mismatch: expected 10, got 8">no</td>
 		</tr>
 		<tr>
@@ -496,7 +496,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
-			<td class="compat no" title="unavailable: incomplete implementation: Program::execute is unimplemented for River programs, main.rs has no file-based CLI">no</td>
+			<td class="compat no">no</td>
 			<td class="compat no" title="tick mismatch: expected 16, got 6">no</td>
 		</tr>
 		<tr>
@@ -507,7 +507,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
-			<td class="compat no" title="unavailable: incomplete implementation: Program::execute is unimplemented for River programs, main.rs has no file-based CLI">no</td>
+			<td class="compat no">no</td>
 			<td class="compat no">no</td>
 		</tr>
 		<tr>
@@ -518,7 +518,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Matches the first ten tokens exactly, but continues emitting 'homeless'/'Great' pairs indefinitely where OCaml/JS stop.">no</td>
 			<td class="compat yes">yes</td>
-			<td class="compat no" title="unavailable: incomplete implementation: Program::execute is unimplemented for River programs, main.rs has no file-based CLI">no</td>
+			<td class="compat no">no</td>
 			<td class="compat no">no</td>
 		</tr>
 		<tr>
@@ -529,7 +529,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
-			<td class="compat no" title="unavailable: incomplete implementation: Program::execute is unimplemented for River programs, main.rs has no file-based CLI">no</td>
+			<td class="compat no" title="tick mismatch: expected 0, got 200">no</td>
 			<td class="compat no">no</td>
 		</tr>
 		<tr>
@@ -540,7 +540,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
-			<td class="compat no" title="unavailable: incomplete implementation: Program::execute is unimplemented for River programs, main.rs has no file-based CLI">no</td>
+			<td class="compat no">no</td>
 			<td class="compat no">no</td>
 		</tr>
 		<tr>
@@ -551,7 +551,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes</td>
-			<td class="compat no" title="unavailable: incomplete implementation: Program::execute is unimplemented for River programs, main.rs has no file-based CLI">no</td>
+			<td class="compat yes">yes</td>
 			<td class="compat yes">yes</td>
 		</tr>
 
@@ -567,7 +567,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
-			<td class="compat no" title="unavailable: incomplete implementation: Program::execute is unimplemented for River programs, main.rs has no file-based CLI">no</td>
+			<td class="compat no">no</td>
 			<td class="compat no" title="tick mismatch: expected 7, got 20">no</td>
 		</tr>
 
@@ -583,7 +583,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Emits 'hello' (one 'o' short of the OCaml/JS reference)">no</td>
 			<td class="compat yes">yes</td>
-			<td class="compat no" title="unavailable: incomplete implementation: Program::execute is unimplemented for River programs, main.rs has no file-based CLI">no</td>
+			<td class="compat no">no</td>
 			<td class="compat no">no</td>
 		</tr>
 		<tr>
@@ -594,7 +594,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Emits nothing for this program">no</td>
 			<td class="compat yes">yes</td>
-			<td class="compat no" title="unavailable: incomplete implementation: Program::execute is unimplemented for River programs, main.rs has no file-based CLI">no</td>
+			<td class="compat no">no</td>
 			<td class="compat no" title="Does not support the node types used">no</td>
 		</tr>
 
@@ -639,7 +639,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
-			<td class="compat no" title="unavailable: incomplete implementation: Program::execute is unimplemented for River programs, main.rs has no file-based CLI">no</td>
+			<td class="compat no">no</td>
 			<td class="compat no" title="tick mismatch: expected 53, got 80">no</td>
 		</tr>
 		<tr>
@@ -650,7 +650,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
-			<td class="compat no" title="unavailable: incomplete implementation: Program::execute is unimplemented for River programs, main.rs has no file-based CLI">no</td>
+			<td class="compat no">no</td>
 			<td class="compat no" title="tick mismatch: expected 39, got 37">no</td>
 		</tr>
 		<tr>
@@ -661,7 +661,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Produces '..._A8________A7________A6_' (reversed digits) instead of '..._A1________A2________A3_'">no</td>
 			<td class="compat yes">yes</td>
-			<td class="compat no" title="unavailable: incomplete implementation: Program::execute is unimplemented for River programs, main.rs has no file-based CLI">no</td>
+			<td class="compat no">no</td>
 			<td class="compat no">no</td>
 		</tr>
 		<tr>
@@ -672,7 +672,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Produces '_________9_9A_9B…' instead of '________x_xA…'">no</td>
 			<td class="compat yes">yes</td>
-			<td class="compat no" title="unavailable: incomplete implementation: Program::execute is unimplemented for River programs, main.rs has no file-based CLI">no</td>
+			<td class="compat no">no</td>
 			<td class="compat no">no</td>
 		</tr>
 		<tr>
@@ -683,7 +683,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Emits a reordered prefix ('numberhello…')">no</td>
 			<td class="compat yes">yes</td>
-			<td class="compat no" title="unavailable: incomplete implementation: Program::execute is unimplemented for River programs, main.rs has no file-based CLI">no</td>
+			<td class="compat no">no</td>
 			<td class="compat no">no</td>
 		</tr>
 		<tr>
@@ -694,7 +694,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
-			<td class="compat no" title="unavailable: incomplete implementation: Program::execute is unimplemented for River programs, main.rs has no file-based CLI">no</td>
+			<td class="compat no">no</td>
 			<td class="compat no" title="tick mismatch: expected 39, got 37">no</td>
 		</tr>
 		<tr>
@@ -705,7 +705,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
-			<td class="compat no" title="unavailable: incomplete implementation: Program::execute is unimplemented for River programs, main.rs has no file-based CLI">no</td>
+			<td class="compat no">no</td>
 			<td class="compat no" title="tick mismatch: expected 51, got 250">no</td>
 		</tr>
 		<tr>
@@ -716,7 +716,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Emits placeholder tokens ('c_\nc_\nFizz\nc_\nBuzz…') where it should emit digits">no</td>
 			<td class="compat yes">yes</td>
-			<td class="compat no" title="unavailable: incomplete implementation: Program::execute is unimplemented for River programs, main.rs has no file-based CLI">no</td>
+			<td class="compat no">no</td>
 			<td class="compat no">no</td>
 		</tr>
 		<tr>
@@ -727,7 +727,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Emits placeholder tokens ('c_\nc_\nFizz\nc_\nBuzz…') where it should emit digits">no</td>
 			<td class="compat yes">yes</td>
-			<td class="compat no" title="unavailable: incomplete implementation: Program::execute is unimplemented for River programs, main.rs has no file-based CLI">no</td>
+			<td class="compat no">no</td>
 			<td class="compat no">no</td>
 		</tr>
 		<tr>
@@ -738,7 +738,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Starts with 'tick' and reorders the output">no</td>
 			<td class="compat yes">yes</td>
-			<td class="compat no" title="unavailable: incomplete implementation: Program::execute is unimplemented for River programs, main.rs has no file-based CLI">no</td>
+			<td class="compat no">no</td>
 			<td class="compat no">no</td>
 		</tr>
 		<tr>
@@ -749,7 +749,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
-			<td class="compat no" title="unavailable: incomplete implementation: Program::execute is unimplemented for River programs, main.rs has no file-based CLI">no</td>
+			<td class="compat no">no</td>
 			<td class="compat no" title="tick mismatch: expected 9, got 60">no</td>
 		</tr>
 

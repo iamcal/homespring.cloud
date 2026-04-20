@@ -94,18 +94,20 @@ log "homespring.js needs no build step"
 log "Martijn Arts's homespring-js needs no build step"
 
 # ---- Addison Bean (Rust, 2017) -------------------------------------------
-# The source compiles cleanly but is an unfinished WIP — Program::execute is
-# still `unimplemented!()` for River programs and main.rs is a hardcoded
-# scratchpad with no file-based CLI, so the harness flags it unavailable.
-# We still build it so a future driver has a compiled lib to link against.
+# The crate itself is an unfinished WIP — Program::execute is still
+# `unimplemented!()` for River programs and main.rs is a hardcoded demo.
+# To get the harness to exercise whatever DOES work, we build a separate
+# driver under tests/patches/addison_bean_driver that depends on the
+# submodule as a path dep and runs a minimal tick loop (skipping the two
+# tick phases whose Node::tick arm is unimplemented).
 
-addison="$interp/2017-addison-bean"
+addison_driver="$here/patches/addison_bean_driver"
 if command -v cargo >/dev/null; then
-    log "building Addison Bean's Rust interpreter"
-    (cd "$addison" && cargo build --release >/dev/null)
-    log "  built $addison/target/release/homespring"
+    log "building Addison Bean driver"
+    (cd "$addison_driver" && cargo build --release >/dev/null)
+    log "  built $addison_driver/target/release/addison_bean_driver"
 else
-    warn "skipping Addison Bean's Rust build (cargo missing)"
+    warn "skipping Addison Bean driver build (cargo missing)"
 fi
 
 log "all interpreters ready. Run  \`python3 $here/run.py\`  to execute the tests."
