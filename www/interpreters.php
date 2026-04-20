@@ -16,6 +16,7 @@
 		['lang' => 'JavaScript',   'date' => '2017-01-29', 'author' => 'Cal Henderson', 'url' => 'https://github.com/iamcal/homespring.js',            'repo' => 'github.com/iamcal/homespring.js',            'desc' => 'The implementation that powers this website.'],
 		['lang' => 'Rust',         'date' => '2017-12-19', 'author' => 'Addison Bean', 'url' => 'https://github.com/Addisonbean/Homespring-rs',        'repo' => 'github.com/Addisonbean/Homespring-rs',       'desc' => 'An incomplete WIP — parses programs, but only a few node types and ticks are implemented.'],
 		['lang' => 'JavaScript',   'date' => '2018-05-30', 'author' => 'Martijn Arts',  'url' => 'https://github.com/martijnarts/homespring-js',       'repo' => 'github.com/martijnarts/homespring-js',       'desc' => 'A demo implementation with HTML visualizer.'],
+		['lang' => 'JavaScript',   'date' => '2023-01-02', 'author' => 'James Thistlewood', 'url' => 'https://github.com/jthistle/homespring-visualizer', 'repo' => 'github.com/jthistle/homespring-visualizer', 'desc' => 'A browser visualizer with an embedded interpreter; driven headlessly here.'],
 	];
 	foreach ($interpreters as &$_i) { $_i['yes'] = 0; $_i['total'] = 0; }
 	unset($_i);
@@ -430,7 +431,7 @@ table.examples td.compat sup {
 	<tbody>
 
 		<tr class="author-row">
-			<td colspan="9">Jeff Binder <span class="author-meta">— 2003 · author of Homespring and its <a href="https://github.com/iamcal/Homespring">original Scheme interpreter</a></span></td>
+			<td colspan="10">Jeff Binder <span class="author-meta">— 2003 · author of Homespring and its <a href="https://github.com/iamcal/Homespring">original Scheme interpreter</a></span></td>
 		</tr>
 
 		<tr>
@@ -441,6 +442,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
+			<td class="compat no">no</td>
 			<td class="compat no">no</td>
 			<td class="compat no">no</td>
 		</tr>
@@ -454,6 +456,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no">no</td>
 			<td class="compat no">no</td>
+			<td class="compat no">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2003-jeff-binder/first.hs">first.hs</a></td>
@@ -465,6 +468,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no">no</td>
 			<td class="compat no">no</td>
+			<td class="compat yes">yes</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2003-jeff-binder/hello-1.hs">hello-1.hs</a></td>
@@ -476,6 +480,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no">no</td>
 			<td class="compat no" title="timed out after 3.0s">no</td>
+			<td class="compat yes">yes</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2003-jeff-binder/hello-2.hs">hello-2.hs</a></td>
@@ -487,6 +492,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no">no</td>
 			<td class="compat no" title="tick mismatch: expected 10, got 8">no</td>
+			<td class="compat yes">yes</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2003-jeff-binder/hello-3.hs">hello-3.hs</a></td>
@@ -498,6 +504,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no">no</td>
 			<td class="compat no" title="tick mismatch: expected 16, got 6">no</td>
+			<td class="compat no">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2003-jeff-binder/hi.hs">hi.hs</a></td>
@@ -507,6 +514,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
+			<td class="compat no">no</td>
 			<td class="compat no">no</td>
 			<td class="compat no">no</td>
 		</tr>
@@ -520,6 +528,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no">no</td>
 			<td class="compat no">no</td>
+			<td class="compat no">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2003-jeff-binder/null.hs">null.hs</a></td>
@@ -531,6 +540,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="tick mismatch: expected 0, got 200">no</td>
 			<td class="compat no">no</td>
+			<td class="compat no">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2003-jeff-binder/quiz.hs">quiz.hs</a></td>
@@ -540,6 +550,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes<sup>*</sup></td>
 			<td class="compat yes">yes</td>
+			<td class="compat no">no</td>
 			<td class="compat no">no</td>
 			<td class="compat no">no</td>
 		</tr>
@@ -553,10 +564,11 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes</td>
 			<td class="compat yes">yes</td>
+			<td class="compat yes">yes</td>
 		</tr>
 
 		<tr class="author-row">
-			<td colspan="9">Cal Henderson <span class="author-meta">— 2003 · author of the <a href="https://github.com/iamcal/perl-Language-Homespring">Perl interpreter</a></span></td>
+			<td colspan="10">Cal Henderson <span class="author-meta">— 2003 · author of the <a href="https://github.com/iamcal/perl-Language-Homespring">Perl interpreter</a></span></td>
 		</tr>
 
 		<tr>
@@ -569,10 +581,11 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no">no</td>
 			<td class="compat no" title="tick mismatch: expected 7, got 20">no</td>
+			<td class="compat yes">yes</td>
 		</tr>
 
 		<tr class="author-row">
-			<td colspan="9">Joe Neeman <span class="author-meta">— 2005 · author of the <a href="https://github.com/jneem/homespring">OCaml interpreter</a></span></td>
+			<td colspan="10">Joe Neeman <span class="author-meta">— 2005 · author of the <a href="https://github.com/jneem/homespring">OCaml interpreter</a></span></td>
 		</tr>
 
 		<tr>
@@ -583,6 +596,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Emits 'hello' (one 'o' short of the OCaml/JS reference)">no</td>
 			<td class="compat yes">yes</td>
+			<td class="compat no">no</td>
 			<td class="compat no">no</td>
 			<td class="compat no">no</td>
 		</tr>
@@ -596,16 +610,17 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no">no</td>
 			<td class="compat no" title="Does not support the node types used">no</td>
+			<td class="compat no">no</td>
 		</tr>
 
 		<tr class="author-row">
-			<td colspan="9">Quin Kennedy <span class="author-meta">— 2012 · author of a <a href="https://github.com/quinkennedy/Homespring">JavaScript interpreter</a></span></td>
+			<td colspan="10">Quin Kennedy <span class="author-meta">— 2012 · author of a <a href="https://github.com/quinkennedy/Homespring">JavaScript interpreter</a></span></td>
 		</tr>
 
 		<tr>
 			<td class="name"><a href="examples/2012-quin-kennedy/reverse.hsg">reverse.hsg</a></td>
 			<td class="desc">Reverses the input using a <code>force.up</code> node and a <code>split</code>.</td>
-			<td class="compat-merged" colspan="7" rowspan="4">
+			<td class="compat-merged" colspan="8" rowspan="4">
 				<p>Quin's example files don't run correctly on compliant interpreters, due to two important mistakes in the implementation.</p>
 				
 				<p>The <code>reverse*.hsg</code> examples rely on the <code>force up</code> node allowing upstream salmon to move to the first child, which it should be blocking.</p>
@@ -628,7 +643,7 @@ table.examples td.compat sup {
 		</tr>
 
 		<tr class="author-row">
-			<td colspan="9">Benito van der Zander <span class="author-meta">— 2013 · author of the <a href="https://github.com/benibela/home-river">HomeSpringTree compiler</a>; most are generated from HomeSpringTree (.hst) sources</span></td>
+			<td colspan="10">Benito van der Zander <span class="author-meta">— 2013 · author of the <a href="https://github.com/benibela/home-river">HomeSpringTree compiler</a>; most are generated from HomeSpringTree (.hst) sources</span></td>
 		</tr>
 
 		<tr>
@@ -641,6 +656,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no">no</td>
 			<td class="compat no" title="tick mismatch: expected 53, got 80">no</td>
+			<td class="compat no">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/count.hs">count.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/count.hst">.hst</a>)</span></td>
@@ -652,6 +668,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no">no</td>
 			<td class="compat no" title="tick mismatch: expected 39, got 37">no</td>
+			<td class="compat no" title="tick mismatch: expected 39, got 100">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/count2.hs">count2.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/count2.hst">.hst</a>)</span></td>
@@ -661,6 +678,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Produces '..._A8________A7________A6_' (reversed digits) instead of '..._A1________A2________A3_'">no</td>
 			<td class="compat yes">yes</td>
+			<td class="compat no">no</td>
 			<td class="compat no">no</td>
 			<td class="compat no">no</td>
 		</tr>
@@ -674,6 +692,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no">no</td>
 			<td class="compat no">no</td>
+			<td class="compat no">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/count4.hs">count4.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/count4.hst">.hst</a>)</span></td>
@@ -683,6 +702,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Emits a reordered prefix ('numberhello…')">no</td>
 			<td class="compat yes">yes</td>
+			<td class="compat no">no</td>
 			<td class="compat no">no</td>
 			<td class="compat no">no</td>
 		</tr>
@@ -696,6 +716,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no">no</td>
 			<td class="compat no" title="tick mismatch: expected 39, got 37">no</td>
+			<td class="compat no" title="tick mismatch: expected 39, got 100">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/count.poem.withfillers.hs">count.poem.withfillers.hs</a></td>
@@ -707,6 +728,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no">no</td>
 			<td class="compat no" title="tick mismatch: expected 51, got 250">no</td>
+			<td class="compat no" title="tick mismatch: expected 51, got 250">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/fizzbuzz.hs">fizzbuzz.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/fizzbuzz.hst">.hst</a>)</span></td>
@@ -716,6 +738,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Emits placeholder tokens ('c_\nc_\nFizz\nc_\nBuzz…') where it should emit digits">no</td>
 			<td class="compat yes">yes</td>
+			<td class="compat no">no</td>
 			<td class="compat no">no</td>
 			<td class="compat no">no</td>
 		</tr>
@@ -729,6 +752,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no">no</td>
 			<td class="compat no">no</td>
+			<td class="compat no" title="tick mismatch: expected 2207, got 3000">no</td>
 		</tr>
 		<tr>
 			<td class="name"><a href="examples/2013-benito-van-der-zander/fizzbuzztick.hs">fizzbuzztick.hs</a><span class="src-alt">(<a href="examples/2013-benito-van-der-zander/fizzbuzztick.hst">.hst</a>)</span></td>
@@ -738,6 +762,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no" title="Starts with 'tick' and reorders the output">no</td>
 			<td class="compat yes">yes</td>
+			<td class="compat no">no</td>
 			<td class="compat no">no</td>
 			<td class="compat no">no</td>
 		</tr>
@@ -751,6 +776,7 @@ table.examples td.compat sup {
 			<td class="compat yes">yes</td>
 			<td class="compat no">no</td>
 			<td class="compat no" title="tick mismatch: expected 9, got 60">no</td>
+			<td class="compat yes">yes</td>
 		</tr>
 
 	</tbody>

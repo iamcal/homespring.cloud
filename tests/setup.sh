@@ -93,6 +93,12 @@ log "homespring.js needs no build step"
 
 log "Martijn Arts's homespring-js needs no build step"
 
+# ---- James Thistlewood (JavaScript, 2023) --------------------------------
+# Nothing to build; the driver loads index.js into a vm sandbox with
+# stubbed DOM.
+
+log "James Thistlewood's homespring-visualizer needs no build step"
+
 # ---- Addison Bean (Rust, 2017) -------------------------------------------
 # The crate itself is an unfinished WIP — Program::execute is still
 # `unimplemented!()` for River programs and main.rs is a hardcoded demo.

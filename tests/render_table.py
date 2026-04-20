@@ -68,6 +68,7 @@ ADAPTERS = [
     '2017-cal-henderson-js',
     '2017-addison-bean',
     '2018-martijn-arts',
+    '2023-james-thistlewood',
 ]
 
 QUIN_STAR_SKIP = {'jeff-simple'}

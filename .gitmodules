@@ -22,3 +22,6 @@
 [submodule "interpreters/2017-addison-bean"]
 	path = interpreters/2017-addison-bean
 	url = https://github.com/Addisonbean/Homespring-rs
+[submodule "interpreters/2023-james-thistlewood"]
+	path = interpreters/2023-james-thistlewood
+	url = https://github.com/jthistle/homespring-visualizer

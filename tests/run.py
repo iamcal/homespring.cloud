@@ -438,6 +438,35 @@ class AddisonBeanAdapter(Adapter):
                           timeout_s, env)
 
 
+class JamesThistlewoodAdapter(Adapter):
+    # James Thistlewood's 2023 interpreter ships as a one-file browser
+    # visualizer (index.js + EaselJS canvas). A driver under
+    # tests/patches/ loads it in a vm sandbox with stubbed DOM, shadowing
+    # its I/O hooks to talk to stdio. Handles most of the node types and
+    # tick phases spelled out in the spec.
+    id = "2023-james-thistlewood"
+    label = "James Thistlewood (JavaScript, 2023)"
+
+    @property
+    def script(self) -> Path:
+        return INTERP_DIR / self.id / "index.js"
+
+    def is_available(self) -> tuple[bool, str]:
+        if shutil.which("node") is None:
+            return False, "node not in PATH"
+        if not self.script.exists():
+            return False, f"missing {self.script} — submodule not initialized"
+        return True, "ok"
+
+    def run(self, program_path, stdin, timeout_s, tick_limit):
+        env = {"HS_TICKS": "1"}
+        if tick_limit:
+            env["HS_LIMIT"] = str(tick_limit)
+        driver = ROOT / "patches" / "james_thistlewood_driver.js"
+        return self._exec(["node", str(driver), str(program_path)], stdin,
+                          timeout_s, env)
+
+
 ADAPTERS: list[Adapter] = [
     JoeNeemanAdapter(),
     JeffBinderAdapter(),
@@ -446,6 +475,7 @@ ADAPTERS: list[Adapter] = [
     HomespringJsAdapter(),
     AddisonBeanAdapter(),
     MartijnArtsAdapter(),
+    JamesThistlewoodAdapter(),
 ]
 
 
